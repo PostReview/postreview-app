@@ -25,12 +25,15 @@
   },
   "dependencies": {
     "@prisma/client": "2.31.0-integration-undici-4.3",
+    "autoprefixer": "10.3.4",
     "blitz": "0.39.0",
-    "react-dom": "alpha",
-    "react": "alpha",
-    "zod": "3.8.2",
     "final-form": "4.20.2",
-    "react-final-form": "6.5.3"
+    "postcss": "8.3.6",
+    "react": "alpha",
+    "react-dom": "alpha",
+    "react-final-form": "6.5.3",
+    "tailwindcss": "2.1.2",
+    "zod": "3.8.2"
   },
   "devDependencies": {
     "@types/preview-email": "2.0.1",
