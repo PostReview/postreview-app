@@ -10,7 +10,7 @@ const Layout = ({ title, children }: LayoutProps) => {
   return (
     <>
       <Head>
-        <title>{title || "postreview-app"}</title>
+        <title>{title || "hello-blitz-postgresql"}</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
