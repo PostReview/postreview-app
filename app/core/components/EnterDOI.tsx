@@ -1,14 +1,22 @@
 import React, { useEffect, useState, createContext } from "react"
+import { useQuery, invoke, useMutation } from "blitz"
+import addArticle from "../../mutations/addArticle"
+import getArticles from "../../queries/getArticles"
 import ArticleList from "./ArticleList"
 import axios from "axios"
+import { useCurrentUser } from "app/core/hooks/useCurrentUser"
+
 import { v4 as uuidv4 } from "uuid"
 
 export const ArticleContext = createContext([] as any)
 
 export default function EnterDOI() {
+  const currentUser = useCurrentUser()
+
   const LOCAL_STORAGE_KEY = "doiResolver"
   const defaultDoi = "10.3390/publications7020040"
   const [doi, setDoi] = useState(defaultDoi)
+
   const [articles, setArticles] = useState([] as any)
 
   const ArticleContextValue = {
@@ -16,10 +24,11 @@ export default function EnterDOI() {
     setArticles,
   }
 
-  //   Initialize Local Storage
+  const [defaultArticles] = useQuery(getArticles, undefined)
+
+  // Get the database data when the page is loaded
   useEffect(() => {
-    const articleJSON = localStorage.getItem(LOCAL_STORAGE_KEY) as any
-    if (typeof articleJSON !== "undefined") setArticles(JSON.parse(articleJSON))
+    setArticles(defaultArticles)
   }, [])
 
   // saving the data to local storage when articles changes (setItem)
@@ -35,16 +44,21 @@ export default function EnterDOI() {
       const doiURL = "https://api.crossref.org/works/" + doi
       const response = await axios.get(doiURL)
       const newArticleMetadata = response.data.message
-      // const plauditData = await getPlauditMetadata() //   Get plaudit data and inject to new article
-      //   const plauditData = null
-      // const plauditNumEvents = plauditData?.events?.length
       const newArticle = {
         id: uuidv4(),
-        metadata: newArticleMetadata,
-        // plaudit_count: plauditNumEvents,
+        title: newArticleMetadata.title[0],
+        doi: newArticleMetadata.DOI,
+        publishedYear: newArticleMetadata.created["date-parts"][0][0],
+        journal: newArticleMetadata["short-container-title"][0],
+        author: newArticleMetadata.author,
+        addedBy: currentUser?.name,
+        addedById: currentUser?.id,
+        newArticleMetadata,
       }
+      console.log(newArticle)
 
       setArticles([newArticle, ...articles])
+      await invoke(addArticle, { ...newArticle })
     } catch {
       handleArticleNotFound()
     }

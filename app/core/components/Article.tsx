@@ -3,16 +3,14 @@ import { FaBook, FaUser, FaHeart } from "react-icons/fa"
 import ArticleContext from "./ArticleContext"
 
 export default function Article(props) {
-  const { handleArticleDelete, id, metadata: articleMetadata, plaudit_count } = props
+  const { handleArticleDelete, id, author, doi, title, plaudit_count } = props
 
   const plauditCount = plaudit_count
-
-  if (!articleMetadata.author) return null
   return (
     <div className="m-2 p-2 bg-yellow-50 rounded hover:bg-yellow-100">
       <div>
         <div id="author" className="font-semibold inline">
-          {articleMetadata?.title}
+          {title}
         </div>
         <button
           onClick={() => handleArticleDelete(id)}
@@ -23,7 +21,7 @@ export default function Article(props) {
       </div>
       <div className="article__author ml-2 text-gray-700">
         <FaUser className="inline mr-2" />
-        {articleMetadata?.author?.map((author, i, authors) => {
+        {author?.map((author, i, authors) => {
           if (authors.length - 1 === i) {
             /* If last author, do not print the semicolon */
             return `${author.family}, ${author.given}`
@@ -33,14 +31,10 @@ export default function Article(props) {
         })}
       </div>
       <div className="article__DOI ml-2 text-gray-700">
-        <a href={articleMetadata?.link[0].URL} rel="noreferrer" target="_blank">
+        <a rel="noreferrer" target="_blank">
           <FaBook className="inline mr-2" />
-          {articleMetadata.DOI}
+          {doi}
         </a>
-        <div className="float-right float-bottom mr-2">
-          Plaudit <FaHeart className="inline mx-1 mb-1" />
-          {plauditCount}
-        </div>
       </div>
     </div>
   )

@@ -27,6 +27,7 @@ model User {
 
   author  Author[]
   Comment Review[]
+  Article Article[]
 }
 
 model Session {
@@ -72,10 +73,12 @@ model Article {
   id            Int      @id @default(autoincrement())
   createdAt     DateTime @default(now())
   updatedAt     DateTime @updatedAt
+  addedBy       User     @relation(fields: [addedById], references: [id])
+  addedById     Int
   doi           String
   title         String
   publishedYear Int
-  journal       DateTime
+  journal       String
   author        Author[]
   Review        Review[]
 }
