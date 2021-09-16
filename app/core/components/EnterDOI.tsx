@@ -1,6 +1,7 @@
 import React, { useEffect, useState, createContext } from "react"
 import { useQuery, invoke, useMutation } from "blitz"
 import addArticle from "../../mutations/addArticle"
+import deleteArticle from "../../mutations/deleteArticle"
 import getArticles from "../../queries/getArticles"
 import ArticleList from "./ArticleList"
 import axios from "axios"
@@ -64,8 +65,9 @@ export default function EnterDOI() {
     }
   }
 
-  function handleArticleDelete(id) {
+  async function handleArticleDelete(id) {
     setArticles(articles.filter((article) => article.id !== id))
+    await invoke(deleteArticle, id)
   }
 
   return (
