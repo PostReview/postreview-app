@@ -23,7 +23,7 @@ model User {
 
   tokens   Token[]
   sessions Session[]
-  icon     String
+  icon     String?
 
   author  Author[]
   Comment Review[]
@@ -70,15 +70,16 @@ model Token {
 // }
 
 model Article {
-  id            Int      @id @default(autoincrement())
+  id            String   @id @default(uuid())
   createdAt     DateTime @default(now())
   updatedAt     DateTime @updatedAt
   addedBy       User     @relation(fields: [addedById], references: [id])
   addedById     Int
-  doi           String
+  doi           String   @unique
   title         String
   publishedYear Int
   journal       String
+  authorString  String
   author        Author[]
   Review        Review[]
 }
@@ -87,12 +88,12 @@ model Author {
   id          Int      @id @default(autoincrement())
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
-  orcid       String
+  orcid       String?  @unique
   familyName  String
   givenName   String
-  affiliation String
+  affiliation String?
   Article     Article? @relation(fields: [articleId], references: [id])
-  articleId   Int?
+  articleId   String?
   User        User?    @relation(fields: [userId], references: [id])
   userId      Int?
 }
@@ -105,7 +106,7 @@ model Review {
   targetArticle Article? @relation(fields: [articleId], references: [id])
   comment       String
   userId        Int
-  articleId     Int
+  articleId     String?
 }
 
 enum Role {

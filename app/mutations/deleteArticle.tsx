@@ -1,7 +1,7 @@
 import db from "db"
 import { Ctx, AuthorizationError } from "blitz"
 
-export default async function deleteArticle(id: number, ctx: Ctx) {
+export default async function deleteArticle(id: string, ctx: Ctx) {
   ctx.session.$authorize()
 
   if (!ctx.session.userId) {

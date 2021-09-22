@@ -6,6 +6,7 @@ export default function ArticleList(props) {
   const { handleArticleDelete } = useContext(ArticleContext)
   const { articles } = props
   if (!articles) return null
+  console.log(articles)
   return (
     <div>
       {articles?.map((article) => {

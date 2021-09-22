@@ -1,6 +1,5 @@
 import React, { useContext } from "react"
 import { FaBook, FaUser, FaHeart } from "react-icons/fa"
-import ArticleContext from "./ArticleContext"
 
 export default function Article(props) {
   const { handleArticleDelete, id, author, doi, title, plaudit_count } = props
@@ -14,7 +13,7 @@ export default function Article(props) {
         </div>
         <button
           onClick={() => handleArticleDelete(id)}
-          className="inline text-white bg-red-200 hover:bg-red-500 px-2 float-right rounded-full h-6 w-6 flex items-center justify-center"
+          className="flex text-white bg-red-200 hover:bg-red-500 px-2 float-right rounded-full h-6 w-6 items-center justify-center"
         >
           &#215;
         </button>

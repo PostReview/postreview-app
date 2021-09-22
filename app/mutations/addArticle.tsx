@@ -9,6 +9,7 @@ const AddArticle = z.object({
   publishedYear: z.number().int(),
   journal: z.string(),
   addedById: z.number().int(),
+  authorString: z.string(),
 })
 
 export default async function addArticle(input: z.infer<typeof AddArticle>, ctx: Ctx) {
