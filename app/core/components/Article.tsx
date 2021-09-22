@@ -1,5 +1,6 @@
 import React, { useContext } from "react"
 import { FaBook, FaUser } from "react-icons/fa"
+import { Link } from "@blitzjs/core"
 
 export default function Article(props) {
   const { handleArticleDelete, id, authorString, doi, title } = props
@@ -8,7 +9,7 @@ export default function Article(props) {
     <div className="m-2 p-2 bg-yellow-50 rounded hover:bg-yellow-100">
       <div>
         <div id="author" className="font-semibold inline">
-          {title}
+          <Link href={`/articles/${id}`}>{title}</Link>
         </div>
         <button
           onClick={() => handleArticleDelete(id)}

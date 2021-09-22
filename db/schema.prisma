@@ -99,15 +99,39 @@ model Author {
 }
 
 model Review {
-  id            Int      @id @default(autoincrement())
-  createdAt     DateTime @default(now())
-  updatedAt     DateTime @updatedAt
-  writtenBy     User     @relation(fields: [userId], references: [id])
-  targetArticle Article? @relation(fields: [articleId], references: [id])
-  comment       String
+  id            Int             @id @default(autoincrement())
+  createdAt     DateTime        @default(now())
+  updatedAt     DateTime        @updatedAt
+  writtenBy     User            @relation(fields: [userId], references: [id])
+  targetArticle Article?        @relation(fields: [articleId], references: [id])
+  comment       String?
   userId        Int
-  articleId     String?
+  articleId     String
+  question      ReviewQuestions @relation(fields: [questionId], references: [questionId])
+  response      String
+  questionId    Int
 }
+
+model ReviewQuestions {
+  questionId       Int      @id @default(autoincrement())
+  surveyId         Int?
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+  questionText     String
+  maxValue         Int?     @default(7)
+  minValue         Int?     @default(1)
+  minLabel         String?
+  maxLabel         String?
+  questionCategory String?
+  Review           Review[]
+}
+
+// model ReviewQuestionType {
+//   questionTypeId Int      @id @default(autoincrement())
+//   createdAt      DateTime @default(now())
+//   updatedAt      DateTime @updatedAt
+
+// }
 
 enum Role {
   USER

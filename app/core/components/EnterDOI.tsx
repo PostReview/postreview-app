@@ -16,7 +16,6 @@ export const ArticleContext = createContext([] as any)
 
 export default function EnterDOI() {
   const currentUser = useCurrentUser()
-  const LOCAL_STORAGE_KEY = "doiResolver"
   const defaultDoi = "10.3390/publications7020040"
   const [doi, setDoi] = useState(defaultDoi)
   const [articles, setArticles] = useState([] as any)
@@ -31,18 +30,13 @@ export default function EnterDOI() {
     setIsOpen(!isOpen)
   }
 
+  const [addArticleMutation] = useMutation(addArticle)
+  const [deleteArticleMutation] = useMutation(deleteArticle)
+
   // Get the database data when the page is loaded
   useEffect(() => {
     setArticles(defaultArticles)
-  }, [defaultArticles])
-
-  // saving the data to local storage when articles changes (setItem)
-  useEffect(() => {
-    localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(articles))
-  }, [articles])
-  function handleArticleNotFound() {
-    return null
-  }
+  }, [])
 
   async function getArticleMetadata() {
     try {
@@ -75,29 +69,38 @@ export default function EnterDOI() {
         })
         .toString(),
     }
-
     return newArticle
   }
 
   async function handleArticleAdd() {
     const newArticleMetadata = await getArticleMetadata()
-    const newArticle = await parseArticleMetadata(newArticleMetadata)
+    if (!newArticleMetadata) return null
 
+    const newArticle = await parseArticleMetadata(newArticleMetadata)
     // Is article already in the database?
     const alreadyInDb = await invoke(isArticlePresent, newArticle.doi)
     if (alreadyInDb) return togglePopup()
+    // push to database
+    await invoke(addArticleMutation, { ...newArticle })
+    window.location.reload()
 
-    // refresh the view by pulling data from database (not SetArticles)
-    setArticles([newArticle, ...articles])
-    await invoke(addArticle, { ...newArticle })
+    // read from database
+    // setArticles([newArticle, ...articles])
+
     // add authors - implement with Nested Writes in the future
     // https://www.prisma.io/docs/concepts/components/prisma-client/relation-queries#nested-writes
   }
 
   async function handleArticleDelete(id) {
     setArticles(articles.filter((article) => article.id !== id))
-    await invoke(deleteArticle, id)
+    await invoke(deleteArticleMutation, id)
   }
+
+  function handleArticleNotFound() {
+    window.alert("Article not found")
+  }
+
+  console.log(articles)
 
   return (
     <div>

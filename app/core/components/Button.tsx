@@ -1,9 +1,10 @@
 import React from "react"
 
-export default function Button(butonString, onClick) {
+export default function Button(props) {
+  const { text, onClick } = props
   return (
     <button className="border p-6" onClick={onClick}>
-      {butonString}
+      {text.toString()}
     </button>
   )
 }
