@@ -1,10 +1,9 @@
 import React, { useContext } from "react"
-import { FaBook, FaUser, FaHeart } from "react-icons/fa"
+import { FaBook, FaUser } from "react-icons/fa"
 
 export default function Article(props) {
-  const { handleArticleDelete, id, author, doi, title, plaudit_count } = props
+  const { handleArticleDelete, id, authorString, doi, title } = props
 
-  const plauditCount = plaudit_count
   return (
     <div className="m-2 p-2 bg-yellow-50 rounded hover:bg-yellow-100">
       <div>
@@ -20,14 +19,7 @@ export default function Article(props) {
       </div>
       <div className="article__author ml-2 text-gray-700">
         <FaUser className="inline mr-2" />
-        {author?.map((author, i, authors) => {
-          if (authors.length - 1 === i) {
-            /* If last author, do not print the semicolon */
-            return `${author.family}, ${author.given}`
-          } else {
-            return `${author.family}, ${author.given}; `
-          }
-        })}
+        {authorString}
       </div>
       <div className="article__DOI ml-2 text-gray-700">
         <a rel="noreferrer" target="_blank">

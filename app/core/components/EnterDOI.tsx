@@ -4,33 +4,26 @@ import addArticle from "../../mutations/addArticle"
 import deleteArticle from "../../mutations/deleteArticle"
 import getArticles from "../../queries/getArticles"
 import isArticlePresent from "../../queries/isArticlePresent"
-import findArticleByDoi from "../../queries/findArticleByDoi"
 import ArticleList from "./ArticleList"
 import PopupDuplicateArticle from "../components/PopupDuplicateArticle"
 import axios from "axios"
 import { useCurrentUser } from "app/core/hooks/useCurrentUser"
-import db from "db"
 
 import { v4 as uuidv4 } from "uuid"
 import Popup from "./Popup"
-import addAuthors from "app/mutations/addAuthors"
 
 export const ArticleContext = createContext([] as any)
 
 export default function EnterDOI() {
   const currentUser = useCurrentUser()
-
   const LOCAL_STORAGE_KEY = "doiResolver"
   const defaultDoi = "10.3390/publications7020040"
   const [doi, setDoi] = useState(defaultDoi)
-
   const [articles, setArticles] = useState([] as any)
-
   const ArticleContextValue = {
     handleArticleDelete,
     setArticles,
   }
-
   const [defaultArticles] = useQuery(getArticles, undefined)
   // Popup
   const [isOpen, setIsOpen] = useState(false)
@@ -42,8 +35,6 @@ export default function EnterDOI() {
   useEffect(() => {
     setArticles(defaultArticles)
   }, [defaultArticles])
-
-  console.log(defaultArticles)
 
   // saving the data to local storage when articles changes (setItem)
   useEffect(() => {
@@ -58,46 +49,55 @@ export default function EnterDOI() {
       const doiURL = "https://api.crossref.org/works/" + doi
       const response = await axios.get(doiURL)
       const newArticleMetadata = response.data.message
-      const newArticle = {
-        title: newArticleMetadata.title[0],
-        doi: newArticleMetadata.DOI,
-        publishedYear: newArticleMetadata.created["date-parts"][0][0],
-        journal: newArticleMetadata["short-container-title"][0],
-        addedBy: currentUser?.name,
-        addedById: currentUser?.id,
-        authorString: newArticleMetadata.author
-          .map((author, i, authors) => {
-            if (authors.length - 1 === i) {
-              /* If last author, do not print the semicolon */
-              return `${author.family}, ${author.given}`
-            } else {
-              return `${author.family}, ${author.given}; `
-            }
-          })
-          .toString(),
-      }
-      console.log(newArticle)
-      // Is article already in the database?
-      const alreadyInDb = await invoke(isArticlePresent, newArticle.doi)
-      if (alreadyInDb) return togglePopup()
-
-      // refresh the view by pulling data from database (not SetArticles)
-      setArticles([newArticle, ...articles])
-      await invoke(addArticle, { ...newArticle })
-      // add authors - not implemented right now because many-to-many is difficult
-      // const newArticleRes = await invoke(findArticleByDoi, newArticle.doi)
-      // await invoke(addAuthors, { ...newArticleMetadata.author, articleId: newArticleRes.id })
+      return newArticleMetadata
     } catch {
       handleArticleNotFound()
     }
+  }
+
+  async function parseArticleMetadata(newArticleMetadata) {
+    const newArticle = {
+      id: uuidv4(),
+      title: newArticleMetadata.title[0],
+      doi: newArticleMetadata.DOI,
+      publishedYear: newArticleMetadata.created["date-parts"][0][0],
+      journal: newArticleMetadata["short-container-title"][0],
+      addedBy: currentUser?.name,
+      addedById: currentUser?.id,
+      authorString: newArticleMetadata.author
+        .map((author, i, authors) => {
+          if (authors.length - 1 === i) {
+            /* If last author, do not print the semicolon */
+            return `${author.family}, ${author.given}`
+          } else {
+            return `${author.family}, ${author.given}; `
+          }
+        })
+        .toString(),
+    }
+
+    return newArticle
+  }
+
+  async function handleArticleAdd() {
+    const newArticleMetadata = await getArticleMetadata()
+    const newArticle = await parseArticleMetadata(newArticleMetadata)
+
+    // Is article already in the database?
+    const alreadyInDb = await invoke(isArticlePresent, newArticle.doi)
+    if (alreadyInDb) return togglePopup()
+
+    // refresh the view by pulling data from database (not SetArticles)
+    setArticles([newArticle, ...articles])
+    await invoke(addArticle, { ...newArticle })
+    // add authors - implement with Nested Writes in the future
+    // https://www.prisma.io/docs/concepts/components/prisma-client/relation-queries#nested-writes
   }
 
   async function handleArticleDelete(id) {
     setArticles(articles.filter((article) => article.id !== id))
     await invoke(deleteArticle, id)
   }
-
-  console.log(articles)
 
   return (
     <div>
@@ -113,7 +113,7 @@ export default function EnterDOI() {
         ></input>
         <button
           className="bg-yellow-500 hover:bg-yellow-600 mx-2 px-2 border rounded-md"
-          onClick={getArticleMetadata}
+          onClick={handleArticleAdd}
         >
           Add Article
         </button>

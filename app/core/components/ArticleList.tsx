@@ -5,8 +5,9 @@ import { ArticleContext } from "./EnterDOI"
 export default function ArticleList(props) {
   const { handleArticleDelete } = useContext(ArticleContext)
   const { articles } = props
+  console.log(articles?.map((article) => article.id))
+
   if (!articles) return null
-  console.log(articles)
   return (
     <div>
       {articles?.map((article) => {
