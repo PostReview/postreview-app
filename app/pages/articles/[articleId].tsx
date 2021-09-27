@@ -29,7 +29,7 @@ const ArticleDetails = () => {
         <ReviewList></ReviewList>
         {isOpen && (
           <Popup
-            className={"w-auto h-auto mt-3"}
+            className={""}
             content={<PopupReview article={article} handleClose={togglePopup} />}
             handleClose={togglePopup}
             xbutton={false}

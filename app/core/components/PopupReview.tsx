@@ -2,7 +2,7 @@ import { useQuery } from "@blitzjs/core"
 import getReviewQuestions from "app/queries/getReviewQuestions"
 import React from "react"
 import { ReviewQuestion } from "./ReviewQuestion"
-import Button from "./Button"
+import Button from "@mui/material/Button"
 
 export default function PopupReview(prop) {
   const { article, handleClose } = prop
@@ -23,13 +23,21 @@ export default function PopupReview(prop) {
           {article.doi}
         </a>
       </div>
-      <div id="question-container" className="w-7/12">
+      <div id="question-container" className="flex flex-col mx-36">
         {reviewQuestions.map((question) => {
           return <ReviewQuestion key={question.questionId} question={question}></ReviewQuestion>
         })}
+
+        <div id="button-container" className="flex justify-center">
+          <Button variant="text" onClick={handleClose}>
+            Cancel
+          </Button>
+          <Button variant="contained" onClick={undefined}>
+            Submit
+          </Button>
+          {/* Need "Are you sure?" Confirmation */}
+        </div>
       </div>
-      <Button text="Cancel" onClick={handleClose} />
-      {/* Need "Are you sure?" Confirmation */}
     </>
   )
 }
