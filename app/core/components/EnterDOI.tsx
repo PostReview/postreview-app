@@ -19,16 +19,17 @@ export default function EnterDOI() {
   const defaultDoi = "10.3390/publications7020040"
   const [doi, setDoi] = useState(defaultDoi)
   const [articles, setArticles] = useState([] as any)
-  const ArticleContextValue = {
-    handleArticleDelete,
-    setArticles,
-  }
-  const [defaultArticles] = useQuery(getArticles, undefined)
   // Popup
   const [isOpen, setIsOpen] = useState(false)
   const togglePopup = () => {
     setIsOpen(!isOpen)
   }
+
+  const ArticleContextValue = {
+    handleArticleDelete,
+    setArticles,
+  }
+  const [defaultArticles] = useQuery(getArticles, undefined)
 
   const [addArticleMutation] = useMutation(addArticle)
   const [deleteArticleMutation] = useMutation(deleteArticle)
@@ -99,8 +100,6 @@ export default function EnterDOI() {
   function handleArticleNotFound() {
     window.alert("Article not found")
   }
-
-  console.log(articles)
 
   return (
     <div>
