@@ -3,7 +3,7 @@ import Button from "@mui/material/Button"
 import Rating from "@mui/material/Rating"
 
 export const ReviewQuestion = (prop) => {
-  const { question } = prop
+  const { question, currentAnswer } = prop
 
   return (
     <div
@@ -31,7 +31,11 @@ export const ReviewQuestion = (prop) => {
           {question.minLabel}
         </div>
         <div id="rating-container" className="flex flex-col">
-          <Rating name="customized-10" defaultValue={undefined} max={question.maxValue} />
+          <Rating
+            name="customized-10"
+            defaultValue={currentAnswer ? currentAnswer : undefined}
+            max={question.maxValue}
+          />
           {/* <div className="text-center">ASDF</div> */}
         </div>
 
