@@ -19,7 +19,7 @@ export default async function addReview(input: z.infer<typeof AddReview>, ctx: C
     throw new AuthorizationError()
   }
 
-  const review = await db.review.create({ data })
+  const review = await db.reviewAnswers.create({ data })
 
   return review
 }
