@@ -1,12 +1,23 @@
 import { useQuery } from "@blitzjs/core"
 import getReviewQuestions from "app/queries/getReviewQuestions"
-import React from "react"
+import getReviewAnswers from "app/queries/getReviewAnswers"
+import React, { useState } from "react"
 import { ReviewQuestion } from "./ReviewQuestion"
 import Button from "@mui/material/Button"
+import { useCurrentUser } from "../hooks/useCurrentUser"
 
 export default function PopupReview(prop) {
   const { article, handleClose } = prop
   const [reviewQuestions] = useQuery(getReviewQuestions, undefined)
+  const currentUser = useCurrentUser()
+  const reviewAnswerQueryParams = {
+    currentUserId: currentUser?.id,
+    currentArticleId: article.id,
+  }
+  const [defaultReviewAnswers] = useQuery(getReviewAnswers, reviewAnswerQueryParams)
+  const [reviewAnswers, setReviewAnswers] = useState(defaultReviewAnswers)
+
+  console.log(reviewAnswers.find((e) => e.questionId === reviewQuestions[0]?.questionId))
   const handleSubmit = () => {
     undefined
   }
@@ -23,19 +34,27 @@ export default function PopupReview(prop) {
           {article.doi}
         </a>
       </div>
-      <div id="question-container" className="flex flex-col mx-36">
+      <div id="question-container" className="flex flex-col">
         {reviewQuestions.map((question) => {
-          return <ReviewQuestion key={question.questionId} question={question}></ReviewQuestion>
+          return (
+            <ReviewQuestion
+              key={question.questionId}
+              question={question}
+              currentAnswer={Number.parseInt(
+                reviewAnswers.find((e) => e.questionId === question.questionId)!.response
+              )}
+            />
+          )
         })}
 
         <div id="button-container" className="flex justify-center">
           <Button variant="text" onClick={handleClose}>
             Cancel
           </Button>
+          {/* Need "Are you sure?" Confirmation */}
           <Button variant="contained" onClick={undefined}>
             Submit
           </Button>
-          {/* Need "Are you sure?" Confirmation */}
         </div>
       </div>
     </>
