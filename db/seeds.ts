@@ -1,4 +1,5 @@
 import db from "./index"
+import { reviewAnswers } from "./reviewAnswers"
 import { reviewQuestions } from "./reviewQuestions"
 
 /*
@@ -15,6 +16,9 @@ const seed = async () => {
   for (let reviewQuestion of reviewQuestions) {
     await db.reviewQuestions.create({
       data: reviewQuestion,
+    })
+    await db.reviewAnswers.create({
+      data: reviewAnswers,
     })
   }
 }
