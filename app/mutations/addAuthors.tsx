@@ -20,7 +20,6 @@ export default async function addAuthors(input: any, articleId: number) {
     const author = input[i]
     data.push(parseAuthor(author, input.articleId))
   }
-  console.log(input.articleId)
   const authors = await db.author.createMany({ data, skipDuplicates: true })
 
   return authors

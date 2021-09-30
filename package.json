@@ -24,6 +24,9 @@
     ]
   },
   "dependencies": {
+    "@emotion/react": "11.4.1",
+    "@emotion/styled": "11.3.0",
+    "@mui/material": "5.0.1",
     "@prisma/client": "2.31.0-integration-undici-4.3",
     "autoprefixer": "10.3.4",
     "axios": "0.21.4",
@@ -35,6 +38,8 @@
     "react-dom": "18.0.0-alpha-67222f044-20210915",
     "react-final-form": "6.5.3",
     "react-icons": "4.2.0",
+    "react-likert-scale": "4.1.2",
+    "survey-react": "1.8.68",
     "tailwindcss": "2.1.2",
     "zod": "3.8.2"
   },
