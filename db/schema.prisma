@@ -26,7 +26,7 @@ model User {
   icon     String?
 
   author  Author[]
-  Comment Review[]
+  Comment ReviewAnswers[]
   Article Article[]
 }
 
@@ -70,18 +70,18 @@ model Token {
 // }
 
 model Article {
-  id            String   @id @default(uuid())
-  createdAt     DateTime @default(now())
-  updatedAt     DateTime @updatedAt
-  addedBy       User     @relation(fields: [addedById], references: [id])
+  id            String          @id @default(uuid())
+  createdAt     DateTime        @default(now())
+  updatedAt     DateTime        @updatedAt
+  addedBy       User            @relation(fields: [addedById], references: [id])
   addedById     Int
-  doi           String   @unique
+  doi           String          @unique
   title         String
   publishedYear Int
   journal       String
   authorString  String
   author        Author[]
-  Review        Review[]
+  Review        ReviewAnswers[]
 }
 
 model Author {
@@ -98,7 +98,7 @@ model Author {
   userId      Int?
 }
 
-model Review {
+model ReviewAnswers {
   id            Int             @id @default(autoincrement())
   createdAt     DateTime        @default(now())
   updatedAt     DateTime        @updatedAt
@@ -113,17 +113,17 @@ model Review {
 }
 
 model ReviewQuestions {
-  questionId       Int      @id @default(autoincrement())
+  questionId       Int             @id @default(autoincrement())
   surveyId         Int?
-  createdAt        DateTime @default(now())
-  updatedAt        DateTime @updatedAt
+  createdAt        DateTime        @default(now())
+  updatedAt        DateTime        @updatedAt
   questionText     String
-  maxValue         Int?     @default(7)
-  minValue         Int?     @default(1)
+  maxValue         Int?            @default(7)
+  minValue         Int?            @default(1)
   minLabel         String?
   maxLabel         String?
   questionCategory String?
-  Review           Review[]
+  Review           ReviewAnswers[]
 }
 
 // model ReviewQuestionType {
