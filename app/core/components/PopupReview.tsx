@@ -16,8 +16,6 @@ export default function PopupReview(prop) {
   }
   const [defaultReviewAnswers] = useQuery(getReviewAnswers, reviewAnswerQueryParams)
   const [reviewAnswers, setReviewAnswers] = useState(defaultReviewAnswers)
-
-  console.log(reviewAnswers.find((e) => e.questionId === reviewQuestions[0]?.questionId))
   const handleSubmit = () => {
     undefined
   }
@@ -41,7 +39,7 @@ export default function PopupReview(prop) {
               key={question.questionId}
               question={question}
               currentAnswer={Number.parseInt(
-                reviewAnswers.find((e) => e.questionId === question.questionId)!.response
+                reviewAnswers.find((e) => e?.questionId === question?.questionId)!?.response
               )}
             />
           )
