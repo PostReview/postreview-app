@@ -36,9 +36,7 @@ export const ReviewQuestion = (prop) => {
             defaultValue={currentAnswer ? currentAnswer : undefined}
             max={question.maxValue}
           />
-          {/* <div className="text-center">ASDF</div> */}
         </div>
-
         <div
           id="max-label"
           className="
