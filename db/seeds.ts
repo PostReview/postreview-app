@@ -13,14 +13,16 @@ const seed = async () => {
   // for (let i = 0; i < 5; i++) {
   //   await db.project.create({ data: { name: "Project " + i } })
   // }
-  for (let reviewQuestion of reviewQuestions) {
-    await db.reviewQuestions.create({
-      data: reviewQuestion,
-    })
-    await db.reviewAnswers.create({
-      data: reviewAnswers,
-    })
-  }
+
+  // Seed review questions
+  await db.reviewQuestions.createMany({
+    data: reviewQuestions,
+  })
+
+  // Seed review answers
+  await db.reviewAnswers.createMany({
+    data: reviewAnswers,
+  })
 }
 
 export default seed

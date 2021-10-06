@@ -110,6 +110,8 @@ model ReviewAnswers {
   question      ReviewQuestions @relation(fields: [questionId], references: [questionId])
   response      String
   questionId    Int
+
+  @@unique([articleId, questionId, userId])
 }
 
 model ReviewQuestions {
