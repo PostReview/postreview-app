@@ -1,10 +1,11 @@
-import { useQuery } from "@blitzjs/core"
+import { useQuery, useMutation, invoke } from "@blitzjs/core"
 import getReviewQuestions from "app/queries/getReviewQuestions"
 import getReviewAnswers from "app/queries/getReviewAnswers"
 import React, { useState } from "react"
 import { ReviewQuestion } from "./ReviewQuestion"
 import Button from "@mui/material/Button"
 import { useCurrentUser } from "../hooks/useCurrentUser"
+import addReview from "app/mutations/addReview"
 
 export default function PopupReview(prop) {
   const { article, handleClose } = prop
@@ -16,8 +17,20 @@ export default function PopupReview(prop) {
   }
   const [defaultReviewAnswers] = useQuery(getReviewAnswers, reviewAnswerQueryParams)
   const [reviewAnswers, setReviewAnswers] = useState(defaultReviewAnswers)
-  const handleSubmit = () => {
-    undefined
+
+  const [hasUserReviwed, setHasUserReviewed] = useState(false)
+
+  const updateRating = (questionId, newRating) => {
+    const newAnswers = [...reviewAnswers]
+    const index = newAnswers.findIndex((r) => r.questionId === questionId)
+    if (index < 0) newAnswers[questionId - 1] = newRating
+    if (index >= 0) newAnswers[index] = newRating
+    setReviewAnswers(newAnswers)
+  }
+  const [addReviewMutation] = useMutation(addReview)
+  const handleReviewSubmit = async () => {
+    await invoke(addReviewMutation, [...reviewAnswers])
+    handleClose()
   }
   return (
     <>
@@ -36,11 +49,10 @@ export default function PopupReview(prop) {
         {reviewQuestions.map((question) => {
           return (
             <ReviewQuestion
-              key={question.questionId}
+              article={article}
+              key={question?.questionId}
               question={question}
-              currentAnswer={Number.parseInt(
-                reviewAnswers.find((e) => e?.questionId === question?.questionId)!?.response
-              )}
+              onReviewUpdate={updateRating}
             />
           )
         })}
@@ -50,7 +62,7 @@ export default function PopupReview(prop) {
             Cancel
           </Button>
           {/* Need "Are you sure?" Confirmation */}
-          <Button variant="contained" onClick={undefined}>
+          <Button variant="contained" onClick={handleReviewSubmit}>
             Submit
           </Button>
         </div>

@@ -2,14 +2,14 @@ import db from "db"
 import { Ctx, AuthorizationError } from "blitz"
 import * as z from "zod"
 
-// schema validation
-const AddReview = z.object({
-  // prisma schema
-  userId: z.number(),
-  articleId: z.string(),
-  questionId: z.number(),
-  response: z.string(),
-})
+const AddReview = z.array(
+  z.object({
+    userId: z.number(),
+    articleId: z.string(),
+    questionId: z.number(),
+    response: z.number(),
+  })
+)
 
 export default async function addReview(input: z.infer<typeof AddReview>, ctx: Ctx) {
   const data = AddReview.parse(input)
@@ -18,8 +18,7 @@ export default async function addReview(input: z.infer<typeof AddReview>, ctx: C
   if (!ctx.session.userId) {
     throw new AuthorizationError()
   }
-
-  const review = await db.reviewAnswers.create({ data })
-
+  // update or create records
+  const review = await db.reviewAnswers.createMany({ data })
   return review
 }
