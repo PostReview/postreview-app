@@ -1,10 +1,20 @@
 import React from "react"
 import Button from "@mui/material/Button"
 import Rating from "@mui/material/Rating"
+import { useCurrentUser } from "../hooks/useCurrentUser"
 
-export const ReviewQuestion = (prop) => {
-  const { question, currentAnswer } = prop
-
+export const ReviewQuestion = (props) => {
+  const { article, question, onReviewUpdate } = props
+  const currentUser = useCurrentUser()
+  const handleRatingChange = (questionId, newValue) => {
+    const newData = {
+      userId: currentUser?.id,
+      articleId: article.id,
+      response: newValue,
+      questionId: questionId,
+    }
+    onReviewUpdate(questionId, newData)
+  }
   return (
     <div
       className="
@@ -33,8 +43,10 @@ export const ReviewQuestion = (prop) => {
         <div id="rating-container" className="flex flex-col">
           <Rating
             name="customized-10"
-            defaultValue={currentAnswer ? currentAnswer : undefined}
             max={question.maxValue}
+            onChange={(event, newValue) => {
+              handleRatingChange(question.questionId, newValue)
+            }}
           />
         </div>
         <div
