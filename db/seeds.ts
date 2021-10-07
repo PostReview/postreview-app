@@ -20,9 +20,9 @@ const seed = async () => {
   })
 
   // Seed review answers
-  await db.reviewAnswers.createMany({
-    data: reviewAnswers,
-  })
+  // await db.reviewAnswers.createMany({
+  //   data: reviewAnswers,
+  // })
 }
 
 export default seed
