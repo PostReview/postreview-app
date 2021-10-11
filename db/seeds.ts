@@ -1,6 +1,7 @@
 import db from "./index"
 import { reviewAnswers } from "./reviewAnswers"
 import { reviewQuestions } from "./reviewQuestions"
+import { users } from "./users"
 
 /*
  * This seed function is executed when you run `blitz db seed`.
@@ -18,6 +19,11 @@ const seed = async () => {
   await db.reviewQuestions.createMany({
     data: reviewQuestions,
   })
+
+  // Seed users
+  // await db.user.createMany({
+  //   data: users,
+  // })
 
   // Seed review answers
   // await db.reviewAnswers.createMany({
