@@ -1,12 +1,13 @@
 import { BlitzPage, useParam, useQuery } from "@blitzjs/core"
-import Button from "app/core/components/Button"
-import { ArticleContext } from "app/core/components/EnterDOI"
+import Button from "@mui/material/Button"
 import Header from "app/core/components/Header"
 import { ReviewList } from "app/core/components/ReviewList"
 import getArticle from "app/queries/getArticle"
-import { Suspense, useContext, useState } from "react"
+import { Suspense, useState } from "react"
 import Popup from "app/core/components/Popup"
 import PopupReview from "app/core/components/PopupReview"
+import hasUserSunmittedReview from "app/queries/hasUserSubmittedReview"
+import { useCurrentUser } from "app/core/hooks/useCurrentUser"
 
 const ArticleDetails = () => {
   const articleId = useParam("articleId", "string") as string
@@ -15,22 +16,47 @@ const ArticleDetails = () => {
   const togglePopup = () => {
     setIsOpen(!isOpen)
   }
+  const currentUser = useCurrentUser()
+  const [defaultUserHasReview] = useQuery(hasUserSunmittedReview, {
+    userId: currentUser?.id,
+    articleId: articleId,
+  })
+  const [userHasReview, setUserHasReview] = useState(defaultUserHasReview)
+  const toggleEditWindow = () => {
+    undefined
+  }
 
   return (
     <>
       <Header />
-      <main>
+      <main className="p-5">
         {/* Article Info Component */}
         <p>id: {articleId}</p>
         <h1>Title: {article ? article.title : "Article Not Found"}</h1>
         {/* Submit Review Button Component */}
-        <Button text={"Submit a Review"} onClick={togglePopup} />
+        {!userHasReview && (
+          <Button variant="contained" onClick={togglePopup}>
+            Rate This Paper
+          </Button>
+        )}
+        {userHasReview && (
+          <Button variant="contained" onClick={toggleEditWindow}>
+            Edit/Update Your Rating
+          </Button>
+        )}
+
         {/* Review Components */}
         <ReviewList></ReviewList>
         {isOpen && (
           <Popup
             className={""}
-            content={<PopupReview article={article} handleClose={togglePopup} />}
+            content={
+              <PopupReview
+                article={article}
+                handleClose={togglePopup}
+                setUserHasReview={setUserHasReview}
+              />
+            }
             handleClose={togglePopup}
             xbutton={false}
           />
