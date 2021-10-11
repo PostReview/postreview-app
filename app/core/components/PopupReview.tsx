@@ -8,7 +8,7 @@ import { useCurrentUser } from "../hooks/useCurrentUser"
 import addReview from "app/mutations/addReview"
 
 export default function PopupReview(prop) {
-  const { article, handleClose } = prop
+  const { article, handleClose, setUserHasReview } = prop
   const [reviewQuestions] = useQuery(getReviewQuestions, undefined)
   const currentUser = useCurrentUser()
   const reviewAnswerQueryParams = {
@@ -31,6 +31,8 @@ export default function PopupReview(prop) {
   const handleReviewSubmit = async () => {
     await invoke(addReviewMutation, [...reviewAnswers])
     handleClose()
+    setUserHasReview(true)
+    window.location.reload()
   }
   return (
     <>
