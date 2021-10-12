@@ -25,6 +25,9 @@ model User {
   sessions Session[]
   icon     String?
 
+  isAnonymous Boolean @default(false)
+  psudonym    String?
+
   author  Author[]
   Comment ReviewAnswers[]
   Article Article[]
