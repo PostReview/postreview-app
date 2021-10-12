@@ -18,9 +18,9 @@ export const ReviewQuestion = (props) => {
   return (
     <div
       className="
-      border-gray-400 p-5
-    bg-green-100
-    m-5
+      border-gray-400 p-4
+    bg-green-50
+    m-3
     rounded-md"
     >
       <div id="question-header" className="mb-2">
@@ -29,17 +29,14 @@ export const ReviewQuestion = (props) => {
       <div
         id="response-options"
         className="flex items-center justify-center
-        text-gray-500
-        bg-green-50"
+        text-gray-500"
       >
         <div
           id="min-label"
           className="
            w-1/3
            p-2"
-        >
-          {question.minLabel}
-        </div>
+        ></div>
         <div id="rating-container" className="flex flex-col">
           <Rating
             name="customized-10"
@@ -54,9 +51,7 @@ export const ReviewQuestion = (props) => {
           className="
            w-1/3
            p-2"
-        >
-          {question.maxLabel}
-        </div>
+        ></div>
       </div>
     </div>
   )
