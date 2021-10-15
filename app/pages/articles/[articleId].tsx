@@ -30,10 +30,8 @@ const ArticleDetails = () => {
     <>
       <Header />
       <main className="p-5">
-        {/* Article Info Component */}
         <p>id: {articleId}</p>
         <h1>Title: {article ? article.title : "Article Not Found"}</h1>
-        {/* Submit Review Button Component */}
         {!userHasReview && (
           <Button variant="contained" onClick={togglePopup}>
             Rate This Paper
@@ -44,12 +42,9 @@ const ArticleDetails = () => {
             Edit/Update Your Rating
           </Button>
         )}
-
-        {/* Review Components */}
-        <ReviewList></ReviewList>
+        <ReviewList article={article} />
         {isOpen && (
           <Popup
-            className={""}
             content={
               <PopupReview
                 article={article}
