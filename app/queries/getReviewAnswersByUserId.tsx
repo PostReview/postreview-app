@@ -6,6 +6,7 @@ export default async function getReviewAnswers(props) {
     where: { userId: currentUserId },
     include: {
       targetArticle: true,
+      question: true,
     },
   })
 }
