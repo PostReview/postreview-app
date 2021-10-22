@@ -1,6 +1,6 @@
-import { BlitzPage, useParam, useQuery } from "@blitzjs/core"
-import { HelpOutlineOutlined } from "@mui/icons-material"
+import { BlitzPage, useQuery } from "@blitzjs/core"
 import EditIcon from "@mui/icons-material/Edit"
+import AccountCircleIcon from "@mui/icons-material/AccountCircle"
 import {
   Button,
   Dialog,
@@ -9,14 +9,10 @@ import {
   DialogTitle,
   IconButton,
   TextField,
-  Tooltip,
 } from "@mui/material"
-import Switch from "@mui/material/Switch"
 import { Box } from "@mui/system"
-import ArticleList from "app/core/components/ArticleList"
 import Header from "app/core/components/Header"
 import { useCurrentUser } from "app/core/hooks/useCurrentUser"
-import getArticles from "app/queries/getArticles"
 import getReviewAnswersByUserId from "app/queries/getReviewAnswersByUserId"
 import { Suspense, useState } from "react"
 import { MyReviewsTable } from "app/core/components/MyReviewsTable"
@@ -24,16 +20,15 @@ import { MyReviewsTable } from "app/core/components/MyReviewsTable"
 const Profile = () => {
   const currentUser = useCurrentUser()
   const [reviewAnswers] = useQuery(getReviewAnswersByUserId, currentUser?.id)
-
+  const [handleDisabled, setHandleDisabled] = useState(true)
   const [isDeactivateAccountDialogOpen, setIsDeactivateAccountDialogOpen] = useState(false)
-
-  const [anonymousChecked, setAnonymousChecked] = useState(false)
-  const changeAnonymous = (event) => {
-    setAnonymousChecked(event.target.checked)
+  const changeHandle = () => {
+    if (!handleDisabled) setHandleDisabled(true)
+    if (handleDisabled) setHandleDisabled(false)
   }
 
-  const handlePseudonymChange = () => {
-    undefined
+  const handleHandleChange = (event) => {
+    console.log(event.target.value)
   }
 
   const openDeactivateAccountDialog = () => {
@@ -46,51 +41,57 @@ const Profile = () => {
   return (
     <>
       <Header />
-      <main className="p-5">
-        <div>
-          <h1 className="text-3xl">
-            {" "}
-            My Info
-            <IconButton className="">
-              <EditIcon className="" />
-            </IconButton>
-          </h1>
-          <div className="m-6">
-            <div>Name: {currentUser?.name} </div>
-            <div>Email: {currentUser?.email}</div>
-            <div>
-              <div>
-                {" "}
-                Anonymous Mode
-                <Tooltip
-                  title="Your name will appear with your reviews by default. You can hide your name and set up your pseudonym by turning on Anonymous Mode"
-                  placement="top-end"
-                >
-                  <IconButton>
-                    <HelpOutlineOutlined />
-                  </IconButton>
-                </Tooltip>
-                : <Switch checked={anonymousChecked} onChange={changeAnonymous} />
-              </div>
+      <main className="">
+        <div id="user-info-card" className="bg-gray-100 p-4">
+          <div className="flex flex-row items-center">
+            <div id="user-icon-container" className="m-2">
+              <AccountCircleIcon color="disabled" fontSize="large" />
             </div>
-            <div>
-              {anonymousChecked && (
-                <TextField
-                  id="outlined-basic"
-                  label="Pseudonym"
-                  variant="outlined"
-                  size="small"
-                  onChange={handlePseudonymChange}
-                />
-              )}
+            <div id="handle-field-container">
+              <TextField
+                disabled={handleDisabled}
+                id="outlined-basic"
+                label="Handle"
+                variant="filled"
+                size="small"
+                onChange={handleHandleChange}
+              />
+              <IconButton onClick={changeHandle}>
+                <EditIcon></EditIcon>
+              </IconButton>
+            </div>
+            <div id="user-name-container" className="m-2">
+              <TextField
+                disabled
+                id="user-name"
+                label="Display Name (optional)"
+                variant="filled"
+                defaultValue={currentUser?.name}
+                size="small"
+              />
+              <IconButton>
+                <EditIcon></EditIcon>
+              </IconButton>
+            </div>
+            <div id="user-email-container" className="m-2">
+              <TextField
+                disabled
+                id="user-email"
+                label="Email"
+                variant="filled"
+                defaultValue={currentUser?.email}
+                size="small"
+              />
+              <IconButton>
+                <EditIcon></EditIcon>
+              </IconButton>
             </div>
           </div>
         </div>
-
-        <div className="">
+        <div id="my-reviews-container" className="m-3">
           <h1 className="text-3xl">Reviews You Posted</h1>
           <div className="m-6">
-            <MyReviewsTable reviewAnswers={reviewAnswers} />
+            <MyReviewsTable reviewAnswers={reviewAnswers} currentUser={currentUser} />
           </div>
         </div>
         <div>
