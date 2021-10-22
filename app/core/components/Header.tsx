@@ -1,6 +1,7 @@
 import { Button } from "@mui/material"
 import AccountCircleIcon from "@mui/icons-material/AccountCircle"
 import React from "react"
+import { SearchBar } from "./SearchBar"
 
 export default function Header() {
   return (
@@ -9,16 +10,20 @@ export default function Header() {
         <div className="mx-6 text-2xl">
           <a href="/">PostReview</a>
         </div>
-        <div className="flex-grow"></div>
-        <a href="/profile">
-          <Button
-            className="focus:outline-none"
-            variant="contained"
-            startIcon={<AccountCircleIcon />}
-          >
-            My Page
-          </Button>
-        </a>
+        <div id="search-bar-container" className="flex flex-grow justify-end">
+          <SearchBar />
+        </div>
+        <div id="buttons-container" className="mx-4">
+          <a href="/profile">
+            <Button
+              className="focus:outline-none"
+              variant="contained"
+              startIcon={<AccountCircleIcon />}
+            >
+              My Page
+            </Button>
+          </a>
+        </div>
       </header>
     </>
   )
