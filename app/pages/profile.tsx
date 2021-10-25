@@ -95,6 +95,9 @@ const Profile = () => {
           </div>
         </div>
         <div>
+          <div id="public-view-container" className="m-2 text-blue-500 font-semibold">
+            <a href="#">Public profile view</a>
+          </div>
           <Box>
             <Button
               variant="text"
