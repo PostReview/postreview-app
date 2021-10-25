@@ -16,6 +16,7 @@ import { useCurrentUser } from "app/core/hooks/useCurrentUser"
 import getReviewAnswersByUserId from "app/queries/getReviewAnswersByUserId"
 import { Suspense, useState } from "react"
 import { MyReviewsTable } from "app/core/components/MyReviewsTable"
+import { MyReviewsEmptyState } from "app/core/components/MyReviewsEmptyState"
 
 const Profile = () => {
   const currentUser = useCurrentUser()
@@ -91,6 +92,7 @@ const Profile = () => {
         <div id="my-reviews-container" className="m-3">
           <h1 className="text-3xl">Reviews You Posted</h1>
           <div className="m-6">
+            {reviewAnswers.length === 0 && <MyReviewsEmptyState />}
             <MyReviewsTable reviewAnswers={reviewAnswers} currentUser={currentUser} />
           </div>
         </div>
