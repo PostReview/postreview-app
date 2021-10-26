@@ -111,7 +111,7 @@ model ReviewAnswers {
   question      ReviewQuestions @relation(fields: [questionId], references: [questionId])
   response      Int
   questionId    Int
-  isAnonymous   Boolean
+  isAnonymous   Boolean @default(false)
 
   @@unique([articleId, questionId, userId])
 }
