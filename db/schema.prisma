@@ -104,7 +104,7 @@ model ReviewAnswers {
   id            Int             @id @default(autoincrement())
   createdAt     DateTime        @default(now())
   updatedAt     DateTime        @updatedAt
-  writtenBy     User            @relation(fields: [userId], references: [id])
+  writtenBy     User?            @relation(fields: [userId], references: [id])
   targetArticle Article?        @relation(fields: [articleId], references: [id])
   userId        Int
   articleId     String
