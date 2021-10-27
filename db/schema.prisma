@@ -13,20 +13,19 @@ generator client {
 // --------------------------------------
 
 model User {
-  id             Int      @id @default(autoincrement())
-  createdAt      DateTime @default(now())
-  updatedAt      DateTime @updatedAt
-  name           String?
-  email          String   @unique
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  handle         String  @unique
+  displayName    String?
+  email          String  @unique
   hashedPassword String?
-  role           Role     @default(USER)
+  role           Role    @default(USER)
 
   tokens   Token[]
   sessions Session[]
   icon     String?
-
-  isAnonymous Boolean @default(false)
-  psudonym    String?
 
   author  Author[]
   Comment ReviewAnswers[]
@@ -107,12 +106,12 @@ model ReviewAnswers {
   updatedAt     DateTime        @updatedAt
   writtenBy     User            @relation(fields: [userId], references: [id])
   targetArticle Article?        @relation(fields: [articleId], references: [id])
-  comment       String?
   userId        Int
   articleId     String
   question      ReviewQuestions @relation(fields: [questionId], references: [questionId])
   response      Int
   questionId    Int
+  isAnonymous   Boolean         @default(false)
 
   @@unique([articleId, questionId, userId])
 }
