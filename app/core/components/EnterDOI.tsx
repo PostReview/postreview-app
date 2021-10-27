@@ -57,7 +57,7 @@ export default function EnterDOI() {
       doi: newArticleMetadata.DOI,
       publishedYear: newArticleMetadata.created["date-parts"][0][0],
       journal: newArticleMetadata["short-container-title"][0],
-      addedBy: currentUser?.name,
+      addedBy: currentUser?.handle,
       addedById: currentUser?.id,
       authorString: newArticleMetadata.author
         .map((author, i, authors) => {
