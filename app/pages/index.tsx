@@ -42,7 +42,9 @@ const UserInfo = () => {
           <br />
           User role: <code>{currentUser.role}</code>
           <br />
-          User name: <code>{currentUser.name}</code>
+          User handle: <code>{currentUser.handle}</code>
+          <br />
+          User display name: <code>{currentUser.displayName}</code>
         </div>
         <EnterDOI />
       </>
