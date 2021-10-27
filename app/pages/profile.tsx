@@ -54,6 +54,7 @@ const Profile = () => {
                 id="outlined-basic"
                 label="Handle"
                 variant="filled"
+                defaultValue={currentUser?.handle}
                 size="small"
                 onChange={handleHandleChange}
               />
@@ -67,7 +68,7 @@ const Profile = () => {
                 id="user-name"
                 label="Display Name (optional)"
                 variant="filled"
-                defaultValue={currentUser?.name}
+                defaultValue={currentUser?.displayName}
                 size="small"
               />
               <IconButton>
