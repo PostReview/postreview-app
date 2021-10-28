@@ -25,7 +25,8 @@ export default passportAuth({
             where: { email },
             create: {
               email,
-              name: profile.displayName,
+              handle: profile.displayName,
+              displayName: profile.displayName,
               icon: profile.photos[0]?.value,
             },
             update: { email },
