@@ -1,12 +1,15 @@
 import db from "db"
 
-export default async function getReviewAnswers(props) {
+export default async function getReviewAnswersByUserId(props) {
   const { currentUserId } = props
-  return await db.reviewAnswers.findMany({
-    where: { userId: currentUserId },
+  return await db.article.findMany({
+    where: { review: { every: { writtenBy: currentUserId } } },
     include: {
-      targetArticle: true,
-      question: true,
+      review: {
+        include: {
+          question: true,
+        },
+      },
     },
   })
 }
