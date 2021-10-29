@@ -13,14 +13,14 @@ import {
 import { Box } from "@mui/system"
 import Header from "app/core/components/Header"
 import { useCurrentUser } from "app/core/hooks/useCurrentUser"
-import getReviewAnswersByUserId from "app/queries/getReviewAnswersByUserId"
+import getArticleWithReviewByUserId from "app/queries/getReviewAnswersByUserId"
 import { Suspense, useState } from "react"
 import { MyReviewsTable } from "app/core/components/MyReviewsTable"
 import { MyReviewsEmptyState } from "app/core/components/MyReviewsEmptyState"
 
 const Profile = () => {
   const currentUser = useCurrentUser()
-  const [reviewAnswers] = useQuery(getReviewAnswersByUserId, currentUser?.id)
+  const [articleWithReview] = useQuery(getArticleWithReviewByUserId, currentUser?.id)
   const [handleDisabled, setHandleDisabled] = useState(true)
   const [isDeactivateAccountDialogOpen, setIsDeactivateAccountDialogOpen] = useState(false)
   const changeHandle = () => {
@@ -93,8 +93,8 @@ const Profile = () => {
         <div id="my-reviews-container" className="m-3">
           <h1 className="text-3xl">Reviews You Posted</h1>
           <div className="m-6">
-            {reviewAnswers.length === 0 && <MyReviewsEmptyState />}
-            <MyReviewsTable reviewAnswers={reviewAnswers} currentUser={currentUser} />
+            {articleWithReview.length === 0 && <MyReviewsEmptyState />}
+            <MyReviewsTable articleWithReview={articleWithReview} currentUser={currentUser} />
           </div>
         </div>
         <div>
