@@ -28,8 +28,8 @@ model User {
   icon     String?
 
   author  Author[]
-  Comment ReviewAnswers[]
-  Article Article[]
+  review  ReviewAnswers[]
+  article Article[]
 }
 
 model Session {
@@ -83,7 +83,7 @@ model Article {
   journal       String
   authorString  String
   author        Author[]
-  Review        ReviewAnswers[]
+  review        ReviewAnswers[]
 }
 
 model Author {
@@ -127,7 +127,7 @@ model ReviewQuestions {
   minLabel         String?
   maxLabel         String?
   questionCategory String?
-  Review           ReviewAnswers[]
+  review           ReviewAnswers[]
 }
 
 // model ReviewQuestionType {
