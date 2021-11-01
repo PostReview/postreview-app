@@ -3,17 +3,8 @@ import React from "react"
 import { styled } from "@mui/material/styles"
 
 export const MyReviewsTable = (props) => {
-  const { reviewAnswers, currentUser } = props
-  const uniqueArticleIds = Array.from(new Set(reviewAnswers.map((answer) => answer.articleId)))
+  const { articleWithReview, currentUser } = props
   const ratingScaleMax = 5
-
-  let articleArray = [] as any
-  for (const articleId of uniqueArticleIds) {
-    articleArray.push({
-      articleId,
-      answers: reviewAnswers.filter((answer) => answer.articleId === articleId),
-    })
-  }
 
   const RatingTotal = styled(Rating)({
     "& .MuiRating-iconFilled": {
@@ -23,32 +14,33 @@ export const MyReviewsTable = (props) => {
       color: "#ff3d47",
     },
   })
+  console.log(articleWithReview)
 
   return (
     <>
-      {articleArray.map((article) => (
+      {articleWithReview.map((article) => (
         <div
-          key={article.articleId}
+          key={article.id}
           className="bg-gray-50 m-6 p-4 border-gray-600 border-2
           flex flex-col  max-w-5xl"
         >
           <div id="metadata-container" className="mx-4 flex flex-row justify-between">
             <div id="article-metadata" className="m-2">
-              <a href={`articles/${article.articleId}`}>
-                <h2 className="font-bold">{article.answers[0].targetArticle.title}</h2>
+              <a href={`articles/${article.id}`}>
+                <h2 className="font-bold">{article.title}</h2>
               </a>
               <div id="author" className="text-sm">
-                {article.answers[0].targetArticle.authorString}
+                {article.authorString}
               </div>
-              <div className="text-sm text-gray-500">{article.answers[0].targetArticle.doi}</div>
+              <div className="text-sm text-gray-500">{article.doi}</div>
             </div>
             <div id="review-metadata" className="text-xs">
               <div id="submitter">Submitted by: {currentUser.name}</div>
               <div id="submitted-on">
-                Submitted: {article.answers[0].createdAt.toISOString().split("T")[0]}
+                Submitted: {article.review[0]?.createdAt.toISOString().split("T")[0]}
               </div>
               <div id="last-updated-on">
-                Last updated: {article.answers[0].updatedAt.toISOString().split("T")[0]}
+                Last updated: {article.review[0]?.updatedAt.toISOString().split("T")[0]}
               </div>
             </div>
           </div>
@@ -64,13 +56,13 @@ export const MyReviewsTable = (props) => {
                   readOnly
                   max={ratingScaleMax}
                   value={
-                    article.answers.reduce((prev, current) => prev + current.response, 0) /
-                    article.answers.length
+                    article.review.reduce((prev, current) => prev + current.response, 0) /
+                    article.review.length
                   }
                 />
               </div>
             </div>
-            {article.answers.map((answer) => (
+            {article.review.map((answer) => (
               <div key={answer.id} className="m-2 text-center">
                 {answer.question.questionCategory}
                 <div id="rating">
