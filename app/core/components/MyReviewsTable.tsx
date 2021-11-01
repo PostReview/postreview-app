@@ -14,6 +14,7 @@ export const MyReviewsTable = (props) => {
       color: "#ff3d47",
     },
   })
+  console.log(articleWithReview)
 
   return (
     <>
@@ -36,10 +37,10 @@ export const MyReviewsTable = (props) => {
             <div id="review-metadata" className="text-xs">
               <div id="submitter">Submitted by: {currentUser.name}</div>
               <div id="submitted-on">
-                Submitted: {article.review[0].createdAt.toISOString().split("T")[0]}
+                Submitted: {article.review[0]?.createdAt.toISOString().split("T")[0]}
               </div>
               <div id="last-updated-on">
-                Last updated: {article.review[0].updatedAt.toISOString().split("T")[0]}
+                Last updated: {article.review[0]?.updatedAt.toISOString().split("T")[0]}
               </div>
             </div>
           </div>
