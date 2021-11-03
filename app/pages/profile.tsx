@@ -17,6 +17,7 @@ import getArticleWithReviewByUserId from "app/queries/getReviewAnswersByUserId"
 import { Suspense, useState } from "react"
 import { MyReviewsTable } from "app/core/components/MyReviewsTable"
 import { MyReviewsEmptyState } from "app/core/components/MyReviewsEmptyState"
+import { Footer } from "app/core/components/Footer"
 
 const Profile = () => {
   const currentUser = useCurrentUser()
@@ -40,9 +41,9 @@ const Profile = () => {
   }
 
   return (
-    <>
+    <div className="flex flex-col min-h-screen">
       <Header />
-      <main className="">
+      <main className="flex-grow">
         <div id="user-info-card" className="bg-gray-100 p-4">
           <div className="flex flex-row items-center">
             <div id="user-icon-container" className="m-2">
@@ -128,7 +129,8 @@ const Profile = () => {
           </Box>
         </div>
       </main>
-    </>
+      <Footer />
+    </div>
   )
 }
 
