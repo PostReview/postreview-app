@@ -10,6 +10,7 @@ import GoogleButton from "../core/components/GoogleButton"
 import Header from "../core/components/Header"
 import ArticleList from "../core/components/ArticleList"
 import EnterDOI from "../core/components/EnterDOI"
+import { Footer } from "app/core/components/Footer"
 
 const LOCAL_STORAGE_KEY = "doiResolver"
 
@@ -75,8 +76,7 @@ const Home: BlitzPage = () => {
           </div>
         </div>
       </main>
-
-      <footer className="bg-gray-100"></footer>
+      <Footer />
     </div>
   )
 }
