@@ -8,6 +8,7 @@ import Popup from "app/core/components/Popup"
 import PopupReview from "app/core/components/PopupReview"
 import hasUserSunmittedReview from "app/queries/hasUserSubmittedReview"
 import { useCurrentUser } from "app/core/hooks/useCurrentUser"
+import { Footer } from "app/core/components/Footer"
 
 const ArticleDetails = () => {
   const articleId = useParam("articleId", "string") as string
@@ -27,9 +28,9 @@ const ArticleDetails = () => {
   }
 
   return (
-    <>
+    <div className="flex flex-col min-h-screen">
       <Header />
-      <main className="p-5">
+      <main className="p-5 flex-grow">
         <p>id: {articleId}</p>
         <h1>Title: {article ? article.title : "Article Not Found"}</h1>
         {!userHasReview && (
@@ -57,7 +58,8 @@ const ArticleDetails = () => {
           />
         )}
       </main>
-    </>
+      <Footer />
+    </div>
   )
 }
 
