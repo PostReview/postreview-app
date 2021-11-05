@@ -1,4 +1,4 @@
-import React, { Suspense, useEffect, useState, createContext } from "react"
+import React, { Suspense } from "react"
 import { Image, useRouter, useSession, BlitzPage, useMutation, Routes } from "blitz"
 import Layout from "app/core/layouts/Layout"
 import { useCurrentUser } from "app/core/hooks/useCurrentUser"
@@ -8,7 +8,6 @@ import logo from "public/logo.png"
 // Components
 import GoogleButton from "../core/components/GoogleButton"
 import Header from "../core/components/Header"
-import ArticleList from "../core/components/ArticleList"
 import EnterDOI from "../core/components/EnterDOI"
 import { Footer } from "app/core/components/Footer"
 
