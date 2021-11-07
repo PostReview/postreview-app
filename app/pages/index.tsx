@@ -44,8 +44,12 @@ const UserInfo = () => {
 const Home: BlitzPage = () => {
   return (
     <div className="flex flex-col min-h-screen">
-      <Header />
-      <main className="flex-grow">
+      <Suspense fallback="Loading..." >
+        <Header currentUser />
+      </Suspense>
+      <main
+        className="flex-grow"
+      >
         <div id="hero" className="flex flex-col items-center">
           <div id="logo">
             <Image src={logo} alt="PostReview" />
