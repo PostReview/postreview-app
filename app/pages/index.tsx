@@ -1,4 +1,4 @@
-import React, { Suspense, useEffect, useState, createContext } from "react"
+import React, { Suspense } from "react"
 import { Image, useRouter, useSession, BlitzPage, useMutation, Routes } from "blitz"
 import Layout from "app/core/layouts/Layout"
 import { useCurrentUser } from "app/core/hooks/useCurrentUser"
@@ -8,7 +8,6 @@ import logo from "public/logo.png"
 // Components
 import GoogleButton from "../core/components/GoogleButton"
 import Header from "../core/components/Header"
-import ArticleList from "../core/components/ArticleList"
 import EnterDOI from "../core/components/EnterDOI"
 import { Footer } from "app/core/components/Footer"
 
@@ -30,23 +29,6 @@ const UserInfo = () => {
   if (currentUser) {
     return (
       <>
-        <button
-          className="border p-6"
-          onClick={async () => {
-            await logoutMutation()
-          }}
-        >
-          Logout
-        </button>
-        <div>
-          User id: <code>{currentUser.id}</code>
-          <br />
-          User role: <code>{currentUser.role}</code>
-          <br />
-          User handle: <code>{currentUser.handle}</code>
-          <br />
-          User display name: <code>{currentUser.displayName}</code>
-        </div>
         <EnterDOI />
       </>
     )
@@ -62,8 +44,12 @@ const UserInfo = () => {
 const Home: BlitzPage = () => {
   return (
     <div className="flex flex-col min-h-screen">
-      <Header />
-      <main className="flex-grow">
+      <Suspense fallback="Loading..." >
+        <Header currentUser />
+      </Suspense>
+      <main
+        className="flex-grow"
+      >
         <div id="hero" className="flex flex-col items-center">
           <div id="logo">
             <Image src={logo} alt="PostReview" />
