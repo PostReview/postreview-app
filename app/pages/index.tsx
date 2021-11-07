@@ -29,23 +29,6 @@ const UserInfo = () => {
   if (currentUser) {
     return (
       <>
-        <button
-          className="border p-6"
-          onClick={async () => {
-            await logoutMutation()
-          }}
-        >
-          Logout
-        </button>
-        <div>
-          User id: <code>{currentUser.id}</code>
-          <br />
-          User role: <code>{currentUser.role}</code>
-          <br />
-          User handle: <code>{currentUser.handle}</code>
-          <br />
-          User display name: <code>{currentUser.displayName}</code>
-        </div>
         <EnterDOI />
       </>
     )
