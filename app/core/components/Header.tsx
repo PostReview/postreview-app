@@ -6,7 +6,9 @@ import { Button } from "@mui/material"
 export default function Header() {
   return (
     <>
-      <header className="bg-gradient-to-r from-green-100 to-blue-500 flex flex-row items-center h-16">
+      <header
+        className="bg-gray-100 flex flex-row items-center h-16"
+      >
         <div className="mx-6 text-2xl">
           <a href="/">PostReview</a>
         </div>
