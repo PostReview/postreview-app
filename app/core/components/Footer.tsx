@@ -5,7 +5,7 @@ import GitHubIcon from '@mui/icons-material/GitHub';
 export const Footer = () => {
   return (
     <footer
-      className="bg-gray-300"
+      className="bg-gray-200"
     >
       <div className="h-16 flex flex-row items-center sm:w-full lg:w-5/6 mx-auto">
         <div
