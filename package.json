@@ -2,6 +2,7 @@
   "name": "postreview-app",
   "version": "1.0.0",
   "scripts": {
+    "start:production": "blitz start --port $PORT",
     "dev": "blitz dev",
     "build": "blitz build",
     "start": "blitz start",
