@@ -7,7 +7,7 @@ export default function Header() {
   return (
     <>
       <header
-        className="bg-gray-200 flex flex-row items-center h-16"
+        className="bg-gray-100 flex flex-row items-center h-16"
       >
         <div className="mx-6 text-2xl">
           <a href="/">PostReview</a>
