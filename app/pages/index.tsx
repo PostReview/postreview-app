@@ -10,6 +10,7 @@ import GoogleButton from "../core/components/GoogleButton"
 import Header from "../core/components/Header"
 import EnterDOI from "../core/components/EnterDOI"
 import { Footer } from "app/core/components/Footer"
+import { Hero } from "app/core/components/Hero"
 
 const LOCAL_STORAGE_KEY = "doiResolver"
 
@@ -50,7 +51,9 @@ const Home: BlitzPage = () => {
       <main
         className="flex-grow"
       >
-        <div id="hero" className="flex flex-col items-center">
+        <div id="hero-container" className="flex flex-col items-center">
+          <Hero />
+
           <div id="logo">
             <Image src={logo} alt="PostReview" />
           </div>
