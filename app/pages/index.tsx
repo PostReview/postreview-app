@@ -11,6 +11,8 @@ import Header from "../core/components/Header"
 import EnterDOI from "../core/components/EnterDOI"
 import { Footer } from "app/core/components/Footer"
 import { Hero } from "app/core/components/Hero"
+import { HowItWorks } from "app/core/components/HowItWorks"
+import { NotConvincedYet } from "app/core/components/NotConvincedYet"
 
 const LOCAL_STORAGE_KEY = "doiResolver"
 
@@ -36,7 +38,6 @@ const UserInfo = () => {
   } else {
     return (
       <>
-        <GoogleButton />
       </>
     )
   }
@@ -49,15 +50,12 @@ const Home: BlitzPage = () => {
         <Header />
       </Suspense>
       <main
-        className="flex-grow"
+        className="flex-grow flex flex-col items-center"
       >
-        <div id="hero-container" className="flex flex-col items-center">
-          <Hero />
-
-          <div id="logo">
-            <Image src={logo} alt="PostReview" />
-          </div>
-          <div className="mb-6">Rotten Tomatoes (TM) for Scientific Articles</div>
+        <Hero />
+        <HowItWorks />
+        <NotConvincedYet />
+        <div>
           <div className="mx-2">
             <Suspense fallback="Loading...">
               <UserInfo />
