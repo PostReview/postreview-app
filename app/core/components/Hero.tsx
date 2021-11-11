@@ -5,13 +5,13 @@ export const Hero = () => {
     <>
       <div className="px-6 md:px-12 lg:px-24 my-28 flex flex-col items-center">
         <div className="text-3xl md:text-5xl lg:text-7xl">
-          Sharing your opinions made easy
-        </div>
-        <div className="text-xl text-pr-blue mt-4">
-          Share your thoughts with those who care—Opinions in science have never been this accessible
-        </div>
-        <div
-          id="action-container"
+        Post your review, post-publication.
+      </div>
+      <div className="text-xl text-pr-blue mt-4">
+        Share your thoughts with those who care—Opinions in science have never been this accessible
+      </div>
+      <div
+        id="action-container"
           className="my-12"
         >
           <input
