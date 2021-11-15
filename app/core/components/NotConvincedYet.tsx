@@ -2,45 +2,56 @@ import React from 'react'
 import AccessTimeIcon from '@mui/icons-material/AccessTime';
 import RateReviewIcon from '@mui/icons-material/RateReview';
 import GroupsIcon from '@mui/icons-material/Groups';
+import communityImage from 'public/helena-lopes-PGnqT0rXWLs-unsplash.jpg'
+import Image from 'next/image';
 
 const features = [
   {
     name: 'Share your opinions, instantly',
     description:
       'Your opinions matter, and we make it easy to share',
-    icon: <RateReviewIcon />,
+    icon: RateReviewIcon,
   },
   {
     name: 'Save time',
     description:
       'We aggregate ratings, so that you can focus on highly-rated papers',
-    icon: <AccessTimeIcon />,
+    icon: AccessTimeIcon,
   },
   {
     name: 'Join the movement',
     description:
       'Together, we can bring reviewing power back to researchers from publishers',
-    icon: <GroupsIcon />,
+    icon: GroupsIcon,
   },
 ]
 
 export const NotConvincedYet = () => {
   return (
-    <div className="flex flex-col justify-evenly">
-      <h1 className="text-4xl self-center m-6">
-        Let us help your research
-      </h1>
-      <div id="features-container" className="flex flex-row mx-20 max-w-6xl">
+    <div id="feature-cols" className="flex flex-col lg:flex-row items-center mx-20">
+      <div id="feature-image" className="flex-1">
+        <h1 className="text-4xl self-center m-6">
+          Unlocking the power of community in science
+        </h1>
+        <Image
+          src={communityImage}
+          alt="community image"
+          layout="responsive"
+        />
+      </div>
+      <div id="features-container" className="flex flex-col flex-1">
         {features.map((feature) => (
-          <div key={feature.name} className="flex-1 mx-6">
-            <h2 className="text-xl text-center">
-              {feature.name}
-            </h2>
-            <div className="text-gray-600">
-              {feature.description}
+          <div key={feature.name} className="m-6 flex flex-row">
+            <div id="icon-container" >
+              <feature.icon className="text-4xl text-blue-500 mx-6" />
             </div>
-            <div className="text-center">
-              {feature.icon}
+            <div id="text-container">
+              <h2 className="text-xl">
+                {feature.name}
+              </h2>
+              <div className="text-gray-600">
+                {feature.description}
+              </div>
             </div>
           </div>
         ))}
