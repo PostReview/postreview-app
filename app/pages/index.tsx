@@ -2,7 +2,6 @@ import React, { Suspense } from "react"
 import { useRouter, useSession, BlitzPage, useMutation, Routes } from "blitz"
 import Layout from "app/core/layouts/Layout"
 import { useCurrentUser } from "app/core/hooks/useCurrentUser"
-import logout from "app/auth/mutations/logout"
 
 // Components
 import Header from "../core/components/Header"
@@ -24,7 +23,6 @@ const LOCAL_STORAGE_KEY = "doiResolver"
 
 const UserInfo = () => {
   const currentUser = useCurrentUser()
-  const [logoutMutation] = useMutation(logout)
   // Redirect
   const router = useRouter()
   const session = useSession()
