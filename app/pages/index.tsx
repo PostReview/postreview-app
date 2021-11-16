@@ -2,7 +2,6 @@ import React, { Suspense } from "react"
 import { useRouter, useSession, BlitzPage, useMutation, Routes } from "blitz"
 import Layout from "app/core/layouts/Layout"
 import { useCurrentUser } from "app/core/hooks/useCurrentUser"
-import logout from "app/auth/mutations/logout"
 
 // Components
 import Header from "../core/components/Header"
@@ -12,6 +11,7 @@ import { Hero } from "app/core/components/Hero"
 import { HowItWorks } from "app/core/components/HowItWorks"
 import { NotConvincedYet } from "app/core/components/NotConvincedYet"
 import { SignUpButton } from "app/core/components/SignUpButton"
+import { Visions } from "app/core/components/Visions"
 
 const LOCAL_STORAGE_KEY = "doiResolver"
 
@@ -23,7 +23,6 @@ const LOCAL_STORAGE_KEY = "doiResolver"
 
 const UserInfo = () => {
   const currentUser = useCurrentUser()
-  const [logoutMutation] = useMutation(logout)
   // Redirect
   const router = useRouter()
   const session = useSession()
@@ -55,6 +54,7 @@ const Home: BlitzPage = () => {
         <HowItWorks />
         <NotConvincedYet />
         <SignUpButton />
+        <Visions />
         <div>
           <div className="mx-2">
             <Suspense fallback="Loading...">
