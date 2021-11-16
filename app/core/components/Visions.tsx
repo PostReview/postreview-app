@@ -15,7 +15,7 @@ const visions = [
   {
     name: 'Diverse',
     description:
-      'Acadmia lacks diversity. We want to amplify voices of members of underrepresented communities and identities in academic spaces.',
+      'Acadmia lacks diversity. We want to amplify voices of members of underrepresented groups and identities in science.',
     image: diverseImage,
   },
   {
