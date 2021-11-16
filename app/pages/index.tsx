@@ -9,7 +9,7 @@ import EnterDOI from "../core/components/EnterDOI"
 import { Footer } from "app/core/components/Footer"
 import { Hero } from "app/core/components/Hero"
 import { HowItWorks } from "app/core/components/HowItWorks"
-import { NotConvincedYet } from "app/core/components/NotConvincedYet"
+import { Features } from "app/core/components/Features"
 import { SignUpButton } from "app/core/components/SignUpButton"
 import { Visions } from "app/core/components/Visions"
 
@@ -51,8 +51,8 @@ const Home: BlitzPage = () => {
         className="flex-grow flex flex-col items-center"
       >
         <Hero />
+        <Features />
         <HowItWorks />
-        <NotConvincedYet />
         <SignUpButton />
         <Visions />
         <div>
