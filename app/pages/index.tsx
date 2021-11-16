@@ -1,15 +1,17 @@
 import React, { Suspense } from "react"
-import { Image, useRouter, useSession, BlitzPage, useMutation, Routes } from "blitz"
+import { useRouter, useSession, BlitzPage, useMutation, Routes } from "blitz"
 import Layout from "app/core/layouts/Layout"
 import { useCurrentUser } from "app/core/hooks/useCurrentUser"
 import logout from "app/auth/mutations/logout"
-import logo from "public/logo.png"
 
 // Components
-import GoogleButton from "../core/components/GoogleButton"
 import Header from "../core/components/Header"
 import EnterDOI from "../core/components/EnterDOI"
 import { Footer } from "app/core/components/Footer"
+import { Hero } from "app/core/components/Hero"
+import { HowItWorks } from "app/core/components/HowItWorks"
+import { NotConvincedYet } from "app/core/components/NotConvincedYet"
+import { SignUpButton } from "app/core/components/SignUpButton"
 
 const LOCAL_STORAGE_KEY = "doiResolver"
 
@@ -35,7 +37,6 @@ const UserInfo = () => {
   } else {
     return (
       <>
-        <GoogleButton />
       </>
     )
   }
@@ -48,13 +49,13 @@ const Home: BlitzPage = () => {
         <Header />
       </Suspense>
       <main
-        className="flex-grow"
+        className="flex-grow flex flex-col items-center"
       >
-        <div id="hero" className="flex flex-col items-center">
-          <div id="logo">
-            <Image src={logo} alt="PostReview" />
-          </div>
-          <div className="mb-6">Rotten Tomatoes (TM) for Scientific Articles</div>
+        <Hero />
+        <HowItWorks />
+        <NotConvincedYet />
+        <SignUpButton />
+        <div>
           <div className="mx-2">
             <Suspense fallback="Loading...">
               <UserInfo />
