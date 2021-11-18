@@ -2,6 +2,32 @@ import { Button, Rating } from '@mui/material'
 import React from 'react'
 import { SearchBar } from './SearchBar'
 import DescriptionIcon from '@mui/icons-material/Description';
+import { Review } from './Review';
+
+const sampleReviewProps = {
+  ratingScaleMax: 5,
+  article: {
+    title: "An examination on unicorns",
+    review: [
+      {
+        id: 1,
+        createdAt: Date(),
+        response: 3,
+        questionCategory: "Research Question",
+      },
+      {
+        id: 2,
+        createdAt: Date(),
+        response: 4,
+        questionCategory: "Design"
+      }
+    ]
+  },
+  user: {
+    name: "Aiolos"
+  },
+
+}
 
 
 const howItWorks = [
@@ -40,7 +66,7 @@ const howItWorks = [
   {
     step: 3,
     name: "Your rating is recorded",
-    div: undefined
+    div: <Review {...sampleReviewProps} />
   },
   {
     step: 4,
