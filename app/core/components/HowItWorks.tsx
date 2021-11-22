@@ -3,6 +3,7 @@ import React from 'react'
 import { SearchBar } from './SearchBar'
 import DescriptionIcon from '@mui/icons-material/Description';
 import { Review } from './Review';
+import Article from './Article';
 
 const sampleReviewProps = {
   ratingScaleMax: 5,
@@ -26,7 +27,14 @@ const sampleReviewProps = {
   user: {
     name: "Aiolos"
   },
+}
 
+const sampleArticle = {
+  id: "sample",
+  authorString: "Dragon",
+  doi: "10.9999/xyz/abc123",
+  title: "An examination on unicorns",
+  disabled: true
 }
 
 
@@ -34,44 +42,48 @@ const howItWorks = [
   {
     step: 1,
     name: "Pick a paper",
-    div: <>
-      <SearchBar />
-      <Button variant="contained">Search</Button>
-    </>
+    div:
+      <div className="m-6">
+        <SearchBar />
+        <Button variant="contained">Search</Button>
+      </div>
   },
   {
     step: 2,
     name: "Rate the paper",
-    div: <div >
-      <div className="text-purple-100">
-        <DescriptionIcon className="text-gray-600 text-4xl" />
+    div:
+      <div className="m-6">
+        <div className="text-purple-100">
+          <DescriptionIcon className="text-gray-600 text-4xl" />
+        </div>
+        <div>
+          Research Question <br />
+          <Rating name="read-only" value={4} readOnly />
+        </div>
+        <div>
+          Design<br />
+          <Rating name="read-only" value={3} readOnly />
+        </div>
+        <div>
+          Findings<br />
+          <Rating name="read-only" value={5} readOnly />
+        </div>
+        <div>
+          ...
+        </div>
       </div>
-      <div>
-        Research Question <br />
-        <Rating name="read-only" value={4} readOnly />
-      </div>
-      <div>
-        Design<br />
-        <Rating name="read-only" value={3} readOnly />
-      </div>
-      <div>
-        Findings<br />
-        <Rating name="read-only" value={5} readOnly />
-      </div>
-      <div>
-        ...
-      </div>
-    </div>
   },
   {
     step: 3,
     name: "Your rating is recorded",
-    div: <Review {...sampleReviewProps} />
+    div: <Review
+      {...sampleReviewProps}
+      disabled={true} />
   },
   {
     step: 4,
     name: "All users' ratings are combined",
-    div: undefined
+    div: <Article {...sampleArticle} />
   },
 ]
 
@@ -83,11 +95,13 @@ export const HowItWorks = () => {
         How it Works
       </div>
       {howItWorks.map((step) => (
-        <div key={step.name} className="flex flex-row">
-          <div className="mx-6">
+        <div key={step.name} className="flex flex-col">
+          <div className="">
             {step.step}. {step.name}
           </div>
-          {step.div}
+          <div className="m-6">
+            {step.div}
+          </div>
         </div>
       ))}
     </div>
