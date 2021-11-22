@@ -8,13 +8,13 @@ export const Review = (props) => {
     review,
     article,
     user,
-    ratingScaleMax
+    ratingScaleMax,
+    disabled
   } = props
 
   return (
     <>
       <div
-        key={"key"}
         className="bg-gray-50 m-6 p-4 border-gray-600 border-2
           flex flex-col  max-w-5xl"
       >
@@ -23,11 +23,16 @@ export const Review = (props) => {
           className="mx-4 flex flex-row justify-between"
         >
           <div id="article-metadata" className="m-2">
-            <a href={"#"}>
+            {!disabled ?
+              <a href={`articles/${article.id}`}>
+                <h2 className="font-bold">
+                  {article.title}
+                </h2>
+              </a>
+              :
               <h2 className="font-bold">
                 {article.title}
-              </h2>
-            </a>
+              </h2>}
             <div id="author" className="text-sm">
               {article.authorString}
             </div>
@@ -39,12 +44,16 @@ export const Review = (props) => {
             <div id="submitter">
               Submitted by: {user.name}
             </div>
-            <div id="submitted-on">
-              {/* Submitted: {article.review[0]?.createdAt?.toISOString().split("T")[0]} */}
-            </div>
-            <div id="last-updated-on">
-              {/* Last updated: {article.review[0]?.updatedAt.toISOString().split("T")[0]} */}
-            </div>
+            {!disabled &&
+              <>
+                <div id="submitted-on">
+                  Submitted: {article.review[0]?.createdAt?.toISOString().split("T")[0]}
+                </div>
+                <div id="last-updated-on">
+                  Last updated: {article.review[0]?.updatedAt.toISOString().split("T")[0]}
+                </div>
+              </>
+            }
           </div>
         </div>
         <div
@@ -74,9 +83,7 @@ export const Review = (props) => {
               questionCategory={review.questionCategory}
             />
           ))}
-          <div>
-            ...
-          </div>
+          {disabled && <div>...</div>}
         </div>
       </div>
       {userId && <>

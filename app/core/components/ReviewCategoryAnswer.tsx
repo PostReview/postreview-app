@@ -5,12 +5,11 @@ export const ReviewCategoryAnswer = (props) => {
   const {
     questionCategory,
     ratingScaleMax,
-    key,
     response
   } = props
 
   return (
-    <div key={key} className="m-2 text-center">
+    <div className="m-2 text-center">
       {questionCategory}
       <div id="rating">
         <Rating
