@@ -3,14 +3,7 @@ import { RatingTotal } from "./RatingTotal"
 import { ReviewCategoryAnswer } from "./ReviewCategoryAnswer"
 
 export const Review = (props) => {
-  const {
-    userId,
-    review,
-    article,
-    user,
-    ratingScaleMax,
-    disabled
-  } = props
+  const { userId, review, article, user, ratingScaleMax, disabled } = props
 
   return (
     <>
@@ -18,33 +11,23 @@ export const Review = (props) => {
         className="bg-gray-50 m-6 p-4 border-gray-600 border-2
           flex flex-col  max-w-5xl"
       >
-        <div
-          id="metadata-container"
-          className="mx-4 flex flex-row justify-between"
-        >
+        <div id="metadata-container" className="mx-4 flex flex-row justify-between">
           <div id="article-metadata" className="m-2">
-            {!disabled ?
+            {!disabled ? (
               <a href={`articles/${article.id}`}>
-                <h2 className="font-bold">
-                  {article.title}
-                </h2>
+                <h2 className="font-bold">{article.title}</h2>
               </a>
-              :
-              <h2 className="font-bold">
-                {article.title}
-              </h2>}
+            ) : (
+              <h2 className="font-bold">{article.title}</h2>
+            )}
             <div id="author" className="text-sm">
               {article.authorString}
             </div>
-            <div className="text-sm text-gray-500">
-              {article.doi}
-            </div>
+            <div className="text-sm text-gray-500">{article.doi}</div>
           </div>
           <div id="review-metadata" className="text-xs">
-            <div id="submitter">
-              Submitted by: {user.name}
-            </div>
-            {!disabled &&
+            <div id="submitter">Submitted by: {user.name}</div>
+            {!disabled && (
               <>
                 <div id="submitted-on">
                   Submitted: {article.review[0]?.createdAt?.toISOString().split("T")[0]}
@@ -53,7 +36,7 @@ export const Review = (props) => {
                   Last updated: {article.review[0]?.updatedAt.toISOString().split("T")[0]}
                 </div>
               </>
-            }
+            )}
           </div>
         </div>
         <div
@@ -68,8 +51,7 @@ export const Review = (props) => {
                 readOnly
                 max={ratingScaleMax}
                 value={
-                  article.review.reduce((prev, current) =>
-                    prev + current.response, 0) /
+                  article.review.reduce((prev, current) => prev + current.response, 0) /
                   article.review.length
                 }
               />
@@ -86,11 +68,12 @@ export const Review = (props) => {
           {disabled && <div>...</div>}
         </div>
       </div>
-      {userId && <>
-        <div>ID: {userId}</div>
-        <div>{JSON.stringify(review)}</div>
-      </>}
-
+      {userId && (
+        <>
+          <div>ID: {userId}</div>
+          <div>{JSON.stringify(review)}</div>
+        </>
+      )}
     </>
   )
 }

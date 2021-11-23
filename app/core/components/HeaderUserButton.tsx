@@ -1,9 +1,9 @@
-import { Link, useMutation } from '@blitzjs/core'
-import { Avatar, Button, Menu, MenuItem } from '@mui/material'
+import { Link, useMutation } from "@blitzjs/core"
+import { Avatar, Button, Menu, MenuItem } from "@mui/material"
 import logout from "app/auth/mutations/logout"
-import React, { useState } from 'react'
-import { useCurrentUser } from '../hooks/useCurrentUser'
-import GoogleButton from './GoogleButton'
+import React, { useState } from "react"
+import { useCurrentUser } from "../hooks/useCurrentUser"
+import GoogleButton from "./GoogleButton"
 
 export const HeaderUserButton = () => {
   const currentUser = useCurrentUser()
@@ -21,29 +21,22 @@ export const HeaderUserButton = () => {
   }
 
   const handleClose = () => {
-    setAnchorEl(null);
+    setAnchorEl(null)
   }
-
 
   console.log(currentUser)
 
   return (
     <div>
-      {currentUser ?
-        <Button
-          id="user-avatar"
-          className="focus:outline-none"
-          onClick={handleClick}
-        >
-          {currentUser.icon ?
-            <Avatar
-              alt={currentUser.handle}
-              src={currentUser.icon!} /> :
-            <Avatar>
-              {currentUser?.handle?.[0]}
-            </Avatar>}
+      {currentUser ? (
+        <Button id="user-avatar" className="focus:outline-none" onClick={handleClick}>
+          {currentUser.icon ? (
+            <Avatar alt={currentUser.handle} src={currentUser.icon!} />
+          ) : (
+            <Avatar>{currentUser?.handle?.[0]}</Avatar>
+          )}
         </Button>
-        :
+      ) : (
         <Button
           id="login-button"
           variant="contained"
@@ -52,33 +45,22 @@ export const HeaderUserButton = () => {
         >
           Login / Signup
         </Button>
-      }
-      <Menu
-        anchorEl={anchorEl}
-        open={open}
-        onClose={handleClose}
-      >
-        {currentUser ?
+      )}
+      <Menu anchorEl={anchorEl} open={open} onClose={handleClose}>
+        {currentUser ? (
           <>
-            <MenuItem
-              onClick={handleClose}
-            >
-              <Link href="/profile">
-                Profile
-              </Link>
+            <MenuItem onClick={handleClose}>
+              <Link href="/profile">Profile</Link>
             </MenuItem>
-            <MenuItem
-              onClick={handleLogout}
-            >
-              Logout
-            </MenuItem>
-          </> :
+            <MenuItem onClick={handleLogout}>Logout</MenuItem>
+          </>
+        ) : (
           <>
             <MenuItem>
               <GoogleButton />
             </MenuItem>
           </>
-        }
+        )}
       </Menu>
     </div>
   )

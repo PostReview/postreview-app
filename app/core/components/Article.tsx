@@ -2,19 +2,10 @@ import React from "react"
 import { FaBook, FaUser } from "react-icons/fa"
 import { Link } from "@blitzjs/core"
 import { Rating } from "@mui/material"
-import Chip from '@mui/material/Chip';
-
+import Chip from "@mui/material/Chip"
 
 export default function Article(props) {
-  const {
-    id,
-    authorString,
-    doi,
-    title,
-    disabled,
-    article,
-    user
-  } = props
+  const { id, authorString, doi, title, disabled, article, user } = props
 
   const ratingsCount = 113
   return (
@@ -23,17 +14,10 @@ export default function Article(props) {
     flex flex-col  max-w-5xl"
     >
       <div>
-        <div
-          id="article-header"
-          className="flex flex-row"
-        >
+        <div id="article-header" className="flex flex-row">
           <Chip label={ratingsCount} className="mr-2" />
           <div id="title" className="font-semibold inline">
-            {
-              disabled ?
-                <span>{title}</span> :
-                <Link href={`/articles/${id}`}>{title}</Link>
-            }
+            {disabled ? <span>{title}</span> : <Link href={`/articles/${id}`}>{title}</Link>}
           </div>
           <div>
             <div className="article__author ml-2 text-gray-700">
@@ -54,9 +38,7 @@ export default function Article(props) {
         className="flex lg:flex-row flex-col items-center justify-evenly text-xs mx-6"
       >
         <div id="total" className="px-3 border-r-2 text-center">
-          <div
-            id="total-rating"
-          >
+          <div id="total-rating">
             <Rating
               disabled
               defaultValue={0.4}
@@ -71,9 +53,7 @@ export default function Article(props) {
           Total
         </div>
         <div className="px-3 text-center">
-          <div
-            id="research-question"
-          >
+          <div id="research-question">
             <Rating
               disabled
               defaultValue={0.4}
@@ -87,9 +67,7 @@ export default function Article(props) {
           Research Question
         </div>
         <div className="px-3 text-center">
-          <div
-            id="design"
-          >
+          <div id="design">
             <Rating
               disabled
               defaultValue={0.7}

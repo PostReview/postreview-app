@@ -6,12 +6,7 @@ export default function GoogleButton() {
   return (
     <>
       <a href="/api/auth/google">
-        <Image
-          src={googleLogo}
-          alt="Sign-in with Google"
-          height={48}
-          width={200}
-        />
+        <Image src={googleLogo} alt="Sign-in with Google" height={48} width={200} />
       </a>
     </>
   )
