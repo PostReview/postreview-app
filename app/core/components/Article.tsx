@@ -1,6 +1,6 @@
 import React from "react"
 import { FaBook, FaUser } from "react-icons/fa"
-import { Link } from "@blitzjs/core"
+import { Link } from "next/link"
 import { Rating } from "@mui/material"
 import Chip from "@mui/material/Chip"
 
