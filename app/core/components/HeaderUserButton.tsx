@@ -1,4 +1,5 @@
-import { Link, useMutation } from "@blitzjs/core"
+import { useMutation } from "next/data-client"
+import { Link } from "next/link"
 import { Avatar, Button, Menu, MenuItem } from "@mui/material"
 import logout from "app/auth/mutations/logout"
 import React, { useState } from "react"
