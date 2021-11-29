@@ -1,4 +1,4 @@
-import { BlitzPage, useParam, useQuery } from "@blitzjs/core"
+import { BlitzPage, useParam, useQuery } from "blitz"
 import Button from "@mui/material/Button"
 import Header from "app/core/components/Header"
 import { ReviewList } from "app/core/components/ReviewList"

@@ -1,5 +1,5 @@
 import React from "react"
-import { useQuery } from "@blitzjs/core"
+import { useQuery } from "blitz"
 import CircularProgress from "@mui/material/CircularProgress"
 import Box from "@mui/material/Box"
 import Typography from "@mui/material/Typography"

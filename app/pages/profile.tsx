@@ -1,4 +1,4 @@
-import { BlitzPage, useQuery } from "@blitzjs/core"
+import { BlitzPage, useQuery } from "blitz"
 import EditIcon from "@mui/icons-material/Edit"
 import AccountCircleIcon from "@mui/icons-material/AccountCircle"
 import {

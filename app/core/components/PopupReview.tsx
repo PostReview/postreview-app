@@ -1,4 +1,4 @@
-import { useQuery, useMutation, invoke } from "@blitzjs/core"
+import { useQuery, useMutation, invoke } from "blitz"
 import getReviewQuestions from "app/queries/getReviewQuestions"
 import getReviewAnswers from "app/queries/getReviewAnswers"
 import React, { useState } from "react"
