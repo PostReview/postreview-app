@@ -34,22 +34,17 @@ const UserInfo = () => {
       </>
     )
   } else {
-    return (
-      <>
-      </>
-    )
+    return <></>
   }
 }
 
 const Home: BlitzPage = () => {
   return (
     <div className="flex flex-col min-h-screen">
-      <Suspense fallback="Loading..." >
+      <Suspense fallback="Loading...">
         <Header />
       </Suspense>
-      <main
-        className="flex-grow flex flex-col items-center"
-      >
+      <main className="flex-grow flex flex-col items-center">
         <Hero />
         <Features />
         <HowItWorks />
