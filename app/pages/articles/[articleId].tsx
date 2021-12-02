@@ -30,17 +30,14 @@ const ArticleDetails = () => {
   return (
     <div className="flex flex-col min-h-screen">
       <Header />
-      <main className="p-5 flex-grow">
-        <p>id: {articleId}</p>
-        <h1>Title: {article ? article.title : "Article Not Found"}</h1>
-        {!userHasReview && (
+      <main className="m-6 flex-grow">
+        {userHasReview ? (
+          <Button variant="contained" onClick={toggleEditWindow}>
+            Edit Your Rating
+          </Button>
+        ) : (
           <Button variant="contained" onClick={togglePopup}>
             Rate This Paper
-          </Button>
-        )}
-        {userHasReview && (
-          <Button variant="contained" onClick={toggleEditWindow}>
-            Edit/Update Your Rating
           </Button>
         )}
         <ReviewList article={article} />
