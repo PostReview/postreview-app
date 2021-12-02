@@ -11,11 +11,12 @@ export default async function getReviewAnswers(props) {
         },
       },
     },
-    select: {
-      id: true,
-      displayName: true,
-      handle: true,
-      review: true,
+    include: {
+      review: {
+        include: {
+          question: true,
+        },
+      },
     },
   })
   // return await db.reviewAnswers.findMany({
