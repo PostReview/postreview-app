@@ -7,28 +7,25 @@ import Typography from "@mui/material/Typography"
 import { Review } from "./Review"
 import { useCurrentUser } from "../hooks/useCurrentUser"
 import getReviewAnswers from "app/queries/getReviewAnswers"
+import { IndividualReview } from "./IndividualReview"
 
 export const ReviewList = (prop) => {
   const { article } = prop
   const currentUser = useCurrentUser()
 
-  const [reviews] = useQuery(getReviewAnswers, {
+  const [usersWithReview] = useQuery(getReviewAnswers, {
     currentArticleId: article?.id,
   })
 
-  const isWrittenBy = (answer, userId) => {
-    return answer.userId === userId
-  }
+  // const userIds = Array.from(new Set(reviews.map((review) => review.userId)))
 
-  const userIds = Array.from(new Set(reviews.map((review) => review.userId)))
+  // userIds.forEach((userId) => {
+  //   const reviewsPerUser = reviews.filter(({ userId }) => userId === 1)
+  // })
 
-  userIds.forEach((userId) => {
-    const reviewsPerUser = reviews.filter(({ userId }) => userId === 1)
-  })
-
-  const prScoreTotal = Math.round(
-    (reviews.reduce((total, next) => total + next.response / 7, 0) / reviews.length) * 100
-  )
+  // const prScoreTotal = Math.round(
+  //   (reviews.reduce((total, next) => total + next.response / 7, 0) / reviews.length) * 100
+  // )
 
   function CircularProgressWithLabel(props) {
     return (
@@ -58,20 +55,22 @@ export const ReviewList = (prop) => {
     <>
       <div className="p-5">
         Rating
-        <div>
-          <CircularProgressWithLabel value={prScoreTotal} />
-        </div>
-        <div className="text-gray-400">Based on {userIds.length} Rating/s</div>
+        <div>{/* <CircularProgressWithLabel value={prScoreTotal} /> */}</div>
+        {/* <div className="text-gray-400">Based on {userIds.length} Rating/s</div> */}
       </div>
 
       <div className="p-5">
         <div>Individual Reviews</div>
-        {userIds.map((userId) => {
-          const reviewsPerUser = reviews.filter((review) => review.userId === userId)
-          return <Review key={userId} userId={userId} review={reviewsPerUser} />
-        })}
-
-        {/* {JSON.stringify(reviews)} */}
+        {usersWithReview.map((user) => (
+          <IndividualReview
+            key={user.id}
+            displayName={user.handle}
+            handle={user.handle}
+            reviews={user.review}
+          >
+            {JSON.stringify(user)}
+          </IndividualReview>
+        ))}
       </div>
     </>
   )
