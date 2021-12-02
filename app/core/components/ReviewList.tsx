@@ -8,6 +8,7 @@ import { Review } from "./Review"
 import { useCurrentUser } from "../hooks/useCurrentUser"
 import getReviewAnswers from "app/queries/getReviewAnswers"
 import { IndividualReview } from "./IndividualReview"
+import Article from "./Article"
 
 export const ReviewList = (prop) => {
   const { article } = prop
@@ -53,11 +54,8 @@ export const ReviewList = (prop) => {
 
   return (
     <>
-      <div className="p-5">
-        Rating
-        <div>{/* <CircularProgressWithLabel value={prScoreTotal} /> */}</div>
-        {/* <div className="text-gray-400">Based on {userIds.length} Rating/s</div> */}
-      </div>
+      <div className="p-5">Rating</div>
+      <Article {...article} />
 
       <div className="p-5">
         <div>Individual Reviews</div>
