@@ -54,11 +54,15 @@ export const ReviewList = (prop) => {
 
   return (
     <>
-      <div className="p-5">Rating</div>
+      <div className="border-b m-6 text-2xl">
+        <h1>Overall Score</h1>
+      </div>
       <Article {...article} />
 
-      <div className="p-5">
-        <div>Individual Reviews</div>
+      <div>
+        <div className="border-b m-6 text-2xl">
+          <h1>All Ratings</h1>
+        </div>
         {usersWithReview.map((user) => (
           <IndividualReview
             key={user.id}
