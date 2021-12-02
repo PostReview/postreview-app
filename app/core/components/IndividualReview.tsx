@@ -18,7 +18,7 @@ export const IndividualReview = (props) => {
             <div id="author" className="text-sm"></div>
           </div>
           <div id="review-metadata" className="text-xs">
-            <div id="submitter">Submitted by: {handle}</div>
+            <div id="submitter">Submitted by: {isAnonymous ? displayName : handle}</div>
             <div id="submitted-on">
               Submitted: {reviews[0]?.createdAt?.toISOString().split("T")[0]}
             </div>
@@ -44,7 +44,6 @@ export const IndividualReview = (props) => {
               />
             </div>
           </div>
-          {console.log(reviews)}
           {reviews.map((review) => (
             <ReviewCategoryAnswer
               key={review.id}
