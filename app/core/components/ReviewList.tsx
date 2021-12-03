@@ -54,11 +54,6 @@ export const ReviewList = (prop) => {
 
   return (
     <>
-      <div className="border-b m-6 text-2xl">
-        <h1>Overall Score</h1>
-      </div>
-      <Article {...article} />
-
       <div>
         <div className="border-b m-6 text-2xl">
           <h1>All Ratings</h1>
