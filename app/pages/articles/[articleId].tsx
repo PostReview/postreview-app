@@ -9,6 +9,7 @@ import PopupReview from "app/core/components/PopupReview"
 import hasUserSunmittedReview from "app/queries/hasUserSubmittedReview"
 import { useCurrentUser } from "app/core/hooks/useCurrentUser"
 import { Footer } from "app/core/components/Footer"
+import Article from "app/core/components/Article"
 
 const ArticleDetails = () => {
   const articleId = useParam("articleId", "string") as string
@@ -26,20 +27,27 @@ const ArticleDetails = () => {
   const toggleEditWindow = () => {
     undefined
   }
+  const ActionButton = () => {
+    return userHasReview ? (
+      <Button variant="contained" onClick={toggleEditWindow}>
+        Edit Your Rating
+      </Button>
+    ) : (
+      <Button variant="contained" onClick={togglePopup}>
+        Rate This Paper
+      </Button>
+    )
+  }
 
   return (
     <div className="flex flex-col min-h-screen">
       <Header />
       <main className="m-6 flex-grow">
-        {userHasReview ? (
-          <Button variant="contained" onClick={toggleEditWindow}>
-            Edit Your Rating
-          </Button>
-        ) : (
-          <Button variant="contained" onClick={togglePopup}>
-            Rate This Paper
-          </Button>
-        )}
+        <div className="border-b m-6 text-2xl">
+          <h1>Overall Score</h1>
+        </div>
+        <Article {...article} />
+        <ActionButton />
         <ReviewList article={article} />
         {isOpen && (
           <Popup
