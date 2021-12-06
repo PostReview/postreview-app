@@ -1,13 +1,8 @@
 import React from "react"
 import { useQuery } from "blitz"
-import CircularProgress from "@mui/material/CircularProgress"
-import Box from "@mui/material/Box"
-import Typography from "@mui/material/Typography"
-import { Review } from "./Review"
 import { useCurrentUser } from "../hooks/useCurrentUser"
 import getReviewAnswers from "app/queries/getReviewAnswers"
 import { IndividualReview } from "./IndividualReview"
-import Article from "./Article"
 
 export const ReviewList = (prop) => {
   const { article } = prop
@@ -47,10 +42,12 @@ export const ReviewList = (prop) => {
                 displayName={user.handle}
                 handle={user.handle}
                 reviews={user.review}
-          >
-            {JSON.stringify(user)}
-          </IndividualReview>
-        ))}
+              />
+            ))
+          ) : (
+            <div>Review Empty State</div>
+          )}
+        </div>
       </div>
     </>
   )
