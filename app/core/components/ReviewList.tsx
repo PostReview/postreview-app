@@ -23,15 +23,30 @@ export const ReviewList = (prop) => {
   return (
     <>
       <div>
+        <div className="border-b m-6 text-2xl max-w-3xl">
+          <h1>Your Rating</h1>
+        </div>
+        <div id="your-review-wrapper" className="flex flex-col items-center">
+          {currentUserReview.map((user) => (
+            <IndividualReview
+              key={user.id}
+              displayName={user.handle}
+              handle={user.handle}
+              reviews={user.review}
+            />
+          ))}
+        </div>
         <div className="border-b m-6 text-2xl">
           <h1>All Ratings</h1>
         </div>
-        {usersWithReview.map((user) => (
-          <IndividualReview
-            key={user.id}
-            displayName={user.handle}
-            handle={user.handle}
-            reviews={user.review}
+        <div id="individual-review-wrapper" className="flex flex-col items-center">
+          {otherUserReview.length ? (
+            otherUserReview.map((user) => (
+              <IndividualReview
+                key={user.id}
+                displayName={user.handle}
+                handle={user.handle}
+                reviews={user.review}
           >
             {JSON.stringify(user)}
           </IndividualReview>
