@@ -42,11 +42,13 @@ const ArticleDetails = () => {
   return (
     <div className="flex flex-col min-h-screen">
       <Header />
-      <main className="m-6 flex-grow">
-        <div className="border-b m-6 text-2xl">
+      <main className="m-6 flex-grow max-w-7xl">
+        <div className="m-6 text-4xl text-center">
           <h1>Overall Score</h1>
         </div>
-        <Article {...article} />
+        <div id="article-container " className="flex flex-col items-center">
+          <Article {...article} />
+        </div>
         <ActionButton />
         <ReviewList article={article} />
         {isOpen && (
