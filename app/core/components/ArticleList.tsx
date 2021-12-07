@@ -1,16 +1,14 @@
-import React, { useContext } from "react"
+import React from "react"
 import Article from "./Article"
-import { ArticleContext } from "./EnterDOI"
 
 export default function ArticleList(props) {
-  const { handleArticleDelete } = useContext(ArticleContext)
   const { articles } = props
 
   if (!articles) return null
   return (
     <div>
       {articles?.map((article) => {
-        return <Article key={article.id} handleArticleDelete={handleArticleDelete} {...article} />
+        return <Article key={article.id} {...article} />
       })}
     </div>
   )
