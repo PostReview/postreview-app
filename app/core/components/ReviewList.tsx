@@ -17,8 +17,8 @@ export const ReviewList = (prop) => {
 
   return (
     <>
-      <div>
-        <div className="border-b m-6 text-2xl max-w-3xl">
+      <div id="reviews-container" className="max-w-4xl">
+        <div className="border-b m-6 text-2xl">
           <h1>Your Rating</h1>
         </div>
         <div id="your-review-wrapper" className="flex flex-col items-center">
@@ -45,7 +45,7 @@ export const ReviewList = (prop) => {
               />
             ))
           ) : (
-            <div>Review Empty State</div>
+            <div className="m-20">No other reviews</div>
           )}
         </div>
       </div>
