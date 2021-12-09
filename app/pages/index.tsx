@@ -12,6 +12,7 @@ import { HowItWorks } from "app/core/components/HowItWorks"
 import { Features } from "app/core/components/Features"
 import { SignUpButton } from "app/core/components/SignUpButton"
 import { Visions } from "app/core/components/Visions"
+import ArticleList from "app/core/components/ArticleList"
 
 const LOCAL_STORAGE_KEY = "doiResolver"
 
@@ -50,6 +51,9 @@ const Home: BlitzPage = () => {
         <HowItWorks />
         <SignUpButton />
         <Visions />
+        <Suspense fallback="Loading...">
+          <ArticleList />
+        </Suspense>
         <div>
           <div className="mx-2">
             <Suspense fallback="Loading...">
