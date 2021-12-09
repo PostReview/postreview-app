@@ -13,20 +13,13 @@ export default function Article(props) {
     currentArticleId: id,
   })
 
-  console.log(articleScores)
+  const ratingsCount = articleScores.length
+  const totalRating = articleScores.reduce((prev, current) => {
+    // console.log("prev: " + prev)
+    // console.log("current: " + current._avg.response)
+    return prev + current._avg.response! / articleScores.length
+  }, 0)
 
-  const totalRating =
-    usersWithReview.reduce(
-      (prev, current) =>
-        prev + current.review.reduce((prev, current) => prev + current.response, 0),
-      0
-    ) /
-    usersWithReview.length /
-    5
-
-  const ratingsCount = usersWithReview.length
-
-  const ratingsCount = 113
   return (
     <div
       className="bg-gray-50 m-6 p-4 border-gray-600 border-2
@@ -36,7 +29,7 @@ export default function Article(props) {
         <div id="article-header" className="flex flex-row">
           <Chip label={ratingsCount} className="mr-2" />
           <div id="title" className="font-semibold inline">
-            {disabled ? <span>{title}</span> : <Link href={`/articles/${id}`}>{title}</Link>}
+            <Link href={`/articles/${id}`}>{title}</Link>
           </div>
           <div>
             <div className="article__author ml-2 text-gray-700">
@@ -60,7 +53,7 @@ export default function Article(props) {
           <div id="total-rating">
             <Rating
               disabled
-              defaultValue={0.4}
+              defaultValue={totalRating / 5}
               precision={0.1}
               max={1}
               sx={{
@@ -71,6 +64,21 @@ export default function Article(props) {
           </div>
           Total
         </div>
+        {articleScores.map((score) => (
+          <div key={score.questionId} className="text-center">
+            <Rating
+              disabled
+              defaultValue={score._avg.response! / 5}
+              precision={0.1}
+              max={1}
+              sx={{
+                fontSize: 100,
+              }}
+            />
+            <div>{score.questionId}</div>
+          </div>
+        ))}
+
         <div className="px-3 text-center">
           <div id="research-question">
             <Rating
