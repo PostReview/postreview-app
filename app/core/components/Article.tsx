@@ -3,6 +3,8 @@ import { FaBook, FaUser } from "react-icons/fa"
 import { Link } from "next/link"
 import { Rating } from "@mui/material"
 import Chip from "@mui/material/Chip"
+import { useQuery } from "blitz"
+import getArticleScoresById from "app/queries/getArticleScoresById"
 
 export default function Article(props) {
   const { id, authorString, doi, title, disabled, usersWithReview } = props
