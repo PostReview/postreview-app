@@ -5,6 +5,7 @@ import { Rating } from "@mui/material"
 import Chip from "@mui/material/Chip"
 import { useQuery } from "blitz"
 import getArticleScoresById from "app/queries/getArticleScoresById"
+import getQuestionCategories from "app/queries/getQuestionCategories"
 
 export default function Article(props) {
   const { id, authorString, doi, title, disabled, usersWithReview } = props
@@ -12,6 +13,8 @@ export default function Article(props) {
   const [articleScores] = useQuery(getArticleScoresById, {
     currentArticleId: id,
   })
+
+  const [questionCategories] = useQuery(getQuestionCategories, undefined)
 
   const ratingsCount = articleScores.length
   const totalRating = articleScores.reduce((prev, current) => {
@@ -75,39 +78,14 @@ export default function Article(props) {
                 fontSize: 100,
               }}
             />
-            <div>{score.questionId}</div>
+            <div>
+              {
+                questionCategories.find((category) => category.questionId === score.questionId)
+                  ?.questionCategory
+              }
+            </div>
           </div>
         ))}
-
-        <div className="px-3 text-center">
-          <div id="research-question">
-            <Rating
-              disabled
-              defaultValue={0.4}
-              precision={0.1}
-              max={1}
-              sx={{
-                fontSize: 100,
-              }}
-            />
-          </div>
-          Research Question
-        </div>
-        <div className="px-3 text-center">
-          <div id="design">
-            <Rating
-              disabled
-              defaultValue={0.7}
-              precision={0.1}
-              max={1}
-              sx={{
-                fontSize: 100,
-              }}
-            />
-          </div>
-          Design
-        </div>
-        {disabled && <div>...</div>}
       </div>
     </div>
   )
