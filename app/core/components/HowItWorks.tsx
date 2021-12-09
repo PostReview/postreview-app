@@ -3,7 +3,7 @@ import React from "react"
 import { SearchBar } from "./SearchBar"
 import DescriptionIcon from "@mui/icons-material/Description"
 import { Review } from "./Review"
-import Article from "./Article"
+import ArticleSample from "./ArticleSample"
 
 const sampleReviewProps = {
   ratingScaleMax: 5,
@@ -27,14 +27,6 @@ const sampleReviewProps = {
   user: {
     name: "Aiolos",
   },
-}
-
-const sampleArticle = {
-  id: "sample",
-  authorString: "Dragon",
-  doi: "10.9999/xyz/abc123",
-  title: "An examination on unicorns",
-  disabled: true,
 }
 
 const howItWorks = [
@@ -82,7 +74,7 @@ const howItWorks = [
   {
     step: 4,
     name: "All users' ratings are combined",
-    div: <Article {...sampleArticle} />,
+    div: <ArticleSample />,
   },
 ]
 
