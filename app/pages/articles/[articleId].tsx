@@ -42,7 +42,7 @@ const ArticleDetails = () => {
   return (
     <div className="flex flex-col min-h-screen">
       <Header />
-      <main className="m-6 flex-grow max-w-7xl">
+      <main className="m-6 flex-grow flex flex-col items-center">
         <div className="m-6 text-4xl text-center">
           <h1>Overall Score</h1>
         </div>
