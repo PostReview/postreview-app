@@ -1,14 +1,20 @@
-import React from "react"
+import getArticles from "app/queries/getArticles"
+import React, { Suspense } from "react"
+import { useQuery } from "blitz"
 import Article from "./Article"
 
-export default function ArticleList(props) {
-  const { articles } = props
+export default function ArticleList() {
+  const [defaultArticles] = useQuery(getArticles, undefined)
 
-  if (!articles) return null
+  if (!defaultArticles) return null
   return (
     <div>
-      {articles?.map((article) => {
-        return <Article key={article.id} {...article} />
+      {defaultArticles?.map((article) => {
+        return (
+          <Suspense fallback="loading" key={article.id}>
+            <Article key={article.id} {...article} />
+          </Suspense>
+        )
       })}
     </div>
   )
