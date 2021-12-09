@@ -5,7 +5,24 @@ import { Rating } from "@mui/material"
 import Chip from "@mui/material/Chip"
 
 export default function Article(props) {
-  const { id, authorString, doi, title, disabled, article, user } = props
+  const { id, authorString, doi, title, disabled, usersWithReview } = props
+
+  const [articleScores] = useQuery(getArticleScoresById, {
+    currentArticleId: id,
+  })
+
+  console.log(articleScores)
+
+  const totalRating =
+    usersWithReview.reduce(
+      (prev, current) =>
+        prev + current.review.reduce((prev, current) => prev + current.response, 0),
+      0
+    ) /
+    usersWithReview.length /
+    5
+
+  const ratingsCount = usersWithReview.length
 
   const ratingsCount = 113
   return (
