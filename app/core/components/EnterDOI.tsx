@@ -4,7 +4,6 @@ import addArticle from "../../mutations/addArticle"
 import deleteArticle from "../../mutations/deleteArticle"
 import getArticles from "../../queries/getArticles"
 import isArticlePresent from "../../queries/isArticlePresent"
-import ArticleList from "./ArticleList"
 import PopupDuplicateArticle from "../components/PopupDuplicateArticle"
 import axios from "axios"
 import { useCurrentUser } from "app/core/hooks/useCurrentUser"
@@ -23,11 +22,6 @@ export default function EnterDOI() {
   const [isOpen, setIsOpen] = useState(false)
   const togglePopup = () => {
     setIsOpen(!isOpen)
-  }
-
-  const ArticleContextValue = {
-    handleArticleDelete,
-    setArticles,
   }
   const [defaultArticles] = useQuery(getArticles, undefined)
 
@@ -103,7 +97,6 @@ export default function EnterDOI() {
 
   return (
     <div>
-      {/* Article List */}
       <div className="m-1 p-6 bg-green-50 rounded-md">
         <input
           placeholder="Enter DOI"
@@ -120,9 +113,6 @@ export default function EnterDOI() {
           Add Article
         </button>
       </div>
-      <ArticleContext.Provider value={ArticleContextValue}>
-        <ArticleList articles={articles} />
-      </ArticleContext.Provider>
       {isOpen && <Popup content={<PopupDuplicateArticle />} handleClose={togglePopup} />}
     </div>
   )

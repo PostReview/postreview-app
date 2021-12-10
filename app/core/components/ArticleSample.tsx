@@ -1,27 +1,13 @@
 import React from "react"
 import { FaBook, FaUser } from "react-icons/fa"
-import { Link } from "next/link"
 import { Rating } from "@mui/material"
 import Chip from "@mui/material/Chip"
-import { useQuery } from "blitz"
-import getArticleScoresById from "app/queries/getArticleScoresById"
-import getQuestionCategories from "app/queries/getQuestionCategories"
 
-export default function Article(props) {
-  const { id, authorString, doi, title, disabled, usersWithReview } = props
-
-  const [articleScores] = useQuery(getArticleScoresById, {
-    currentArticleId: id,
-  })
-
-  const [questionCategories] = useQuery(getQuestionCategories, undefined)
-
-  const ratingsCount = articleScores.length
-  const totalRating = articleScores.reduce((prev, current) => {
-    // console.log("prev: " + prev)
-    // console.log("current: " + current._avg.response)
-    return prev + current._avg.response! / articleScores.length
-  }, 0)
+export default function ArticleSample() {
+  const title = "An examination on unicorns"
+  const ratingsCount = 14
+  const authorString = "Author, A."
+  const doi = "10.9999/xyz/abc123"
 
   return (
     <div
@@ -32,7 +18,7 @@ export default function Article(props) {
         <div id="article-header" className="flex flex-row">
           <Chip label={ratingsCount} className="mr-2" />
           <div id="title" className="font-semibold inline">
-            <Link href={`/articles/${id}`}>{title}</Link>
+            <span>{title}</span>
           </div>
           <div>
             <div className="article__author ml-2 text-gray-700">
@@ -56,7 +42,7 @@ export default function Article(props) {
           <div id="total-rating">
             <Rating
               disabled
-              defaultValue={totalRating / 5}
+              defaultValue={0.7}
               precision={0.1}
               max={1}
               sx={{
@@ -67,25 +53,35 @@ export default function Article(props) {
           </div>
           Total
         </div>
-        {articleScores.map((score) => (
-          <div key={score.questionId} className="text-center">
+        <div className="px-3 text-center">
+          <div id="research-question">
             <Rating
               disabled
-              defaultValue={score._avg.response! / 5}
+              defaultValue={0.4}
               precision={0.1}
               max={1}
               sx={{
                 fontSize: 100,
               }}
             />
-            <div>
-              {
-                questionCategories.find((category) => category.questionId === score.questionId)
-                  ?.questionCategory
-              }
-            </div>
           </div>
-        ))}
+          Research Question
+        </div>
+        <div className="px-3 text-center">
+          <div id="design">
+            <Rating
+              disabled
+              defaultValue={0.7}
+              precision={0.1}
+              max={1}
+              sx={{
+                fontSize: 100,
+              }}
+            />
+          </div>
+          Design
+        </div>
+        <div>...</div>
       </div>
     </div>
   )

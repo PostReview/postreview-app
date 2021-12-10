@@ -14,7 +14,6 @@ export const MyReviewsTable = (props) => {
       color: "#ff3d47",
     },
   })
-  console.log(articleWithReview)
 
   return (
     <>

@@ -1,77 +1,53 @@
 import React from "react"
 import { useQuery } from "blitz"
-import CircularProgress from "@mui/material/CircularProgress"
-import Box from "@mui/material/Box"
-import Typography from "@mui/material/Typography"
-
-import { Review } from "./Review"
 import { useCurrentUser } from "../hooks/useCurrentUser"
 import getReviewAnswers from "app/queries/getReviewAnswers"
+import { IndividualReview } from "./IndividualReview"
 
 export const ReviewList = (prop) => {
   const { article } = prop
   const currentUser = useCurrentUser()
 
-  const [reviews] = useQuery(getReviewAnswers, {
+  const [usersWithReview] = useQuery(getReviewAnswers, {
     currentArticleId: article?.id,
   })
 
-  const isWrittenBy = (answer, userId) => {
-    return answer.userId === userId
-  }
-
-  const userIds = Array.from(new Set(reviews.map((review) => review.userId)))
-
-  userIds.forEach((userId) => {
-    const reviewsPerUser = reviews.filter(({ userId }) => userId === 1)
-  })
-
-  const prScoreTotal = Math.round(
-    (reviews.reduce((total, next) => total + next.response / 7, 0) / reviews.length) * 100
-  )
-
-  function CircularProgressWithLabel(props) {
-    return (
-      <Box sx={{ position: "relative", display: "inline-flex" }}>
-        <CircularProgress variant="determinate" {...props} />
-        <Box
-          sx={{
-            top: 0,
-            left: 0,
-            bottom: 0,
-            right: 0,
-            position: "absolute",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-          }}
-        >
-          <Typography variant="caption" component="div" color="text.secondary">
-            {`${Math.round(props.value)}%`}
-          </Typography>
-        </Box>
-      </Box>
-    )
-  }
+  const currentUserReview = usersWithReview.filter((user) => user.id == currentUser?.id)
+  const otherUserReview = usersWithReview.filter((user) => user.id != currentUser?.id)
 
   return (
     <>
-      <div className="p-5">
-        Rating
-        <div>
-          <CircularProgressWithLabel value={prScoreTotal} />
+      <div id="reviews-container" className="max-w-4xl">
+        <div className="border-b m-6 text-2xl">
+          <h1>Your Rating</h1>
         </div>
-        <div className="text-gray-400">Based on {userIds.length} Rating/s</div>
-      </div>
-
-      <div className="p-5">
-        <div>Individual Reviews</div>
-        {userIds.map((userId) => {
-          const reviewsPerUser = reviews.filter((review) => review.userId === userId)
-          return <Review key={userId} userId={userId} review={reviewsPerUser} />
-        })}
-
-        {/* {JSON.stringify(reviews)} */}
+        <div id="your-review-wrapper" className="flex flex-col items-center">
+          {currentUserReview.map((user) => (
+            <IndividualReview
+              key={user.id}
+              displayName={user.handle}
+              handle={user.handle}
+              reviews={user.review}
+            />
+          ))}
+        </div>
+        <div className="border-b m-6 text-2xl">
+          <h1>All Ratings</h1>
+        </div>
+        <div id="individual-review-wrapper" className="flex flex-col items-center">
+          {otherUserReview.length ? (
+            otherUserReview.map((user) => (
+              <IndividualReview
+                key={user.id}
+                displayName={user.handle}
+                handle={user.handle}
+                reviews={user.review}
+              />
+            ))
+          ) : (
+            <div className="m-20">No other reviews</div>
+          )}
+        </div>
       </div>
     </>
   )

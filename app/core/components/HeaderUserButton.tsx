@@ -25,8 +25,6 @@ export const HeaderUserButton = () => {
     setAnchorEl(null)
   }
 
-  console.log(currentUser)
-
   return (
     <div>
       {currentUser ? (
