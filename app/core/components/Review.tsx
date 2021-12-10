@@ -8,6 +8,7 @@ export const Review = (props) => {
   const updatedAt = reviews[0]?.updatedAt.toISOString().split("T")[0]
   const ratingScaleMax = 5
   const isAnonymous = reviews[0].isAnonymous
+  const submittedBy = isAnonymous ? displayName : "Anonymous"
 
   return (
     <>
@@ -15,20 +16,6 @@ export const Review = (props) => {
         className="bg-gray-50 m-6 p-4 border-gray-600 border-2
           flex flex-col  max-w-5xl"
       >
-        <div id="metadata-container" className="mx-4 flex flex-row justify-between">
-          <div id="article-metadata" className="m-2">
-            <div id="author" className="text-sm"></div>
-          </div>
-          <div id="review-metadata" className="text-xs">
-            <div id="submitter">Submitted by: {isAnonymous ? displayName : "Anonymous"}</div>
-            <div id="submitted-on">
-              Submitted: {reviews[0]?.createdAt?.toISOString().split("T")[0]}
-            </div>
-            <div id="last-updated-on">
-              Last updated: {reviews[0]?.updatedAt.toISOString().split("T")[0]}
-            </div>
-          </div>
-        </div>
         <div
           id="ratings-container"
           className="flex lg:flex-row flex-col items-center justify-evenly text-xs mx-6"
