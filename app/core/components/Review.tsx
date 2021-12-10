@@ -3,7 +3,7 @@ import { RatingTotal } from "./RatingTotal"
 import { ReviewCategoryAnswer } from "./ReviewCategoryAnswer"
 
 export const Review = (props) => {
-  const { userId, review, article, user, ratingScaleMax, disabled } = props
+  const { userId, review, article, user, ratingScaleMax } = props
 
   return (
     <>
@@ -13,13 +13,9 @@ export const Review = (props) => {
       >
         <div id="metadata-container" className="mx-4 flex flex-row justify-between">
           <div id="article-metadata" className="m-2">
-            {!disabled ? (
-              <a href={`articles/${article.id}`}>
-                <h2 className="font-bold">{article.title}</h2>
-              </a>
-            ) : (
+            <a href={`articles/${article.id}`}>
               <h2 className="font-bold">{article.title}</h2>
-            )}
+            </a>
             <div id="author" className="text-sm">
               {article.authorString}
             </div>
@@ -27,16 +23,12 @@ export const Review = (props) => {
           </div>
           <div id="review-metadata" className="text-xs">
             <div id="submitter">Submitted by: {user.name}</div>
-            {!disabled && (
-              <>
-                <div id="submitted-on">
-                  Submitted: {article.review[0]?.createdAt?.toISOString().split("T")[0]}
-                </div>
-                <div id="last-updated-on">
-                  Last updated: {article.review[0]?.updatedAt.toISOString().split("T")[0]}
-                </div>
-              </>
-            )}
+            <div id="submitted-on">
+              Submitted: {article.review[0]?.createdAt?.toISOString().split("T")[0]}
+            </div>
+            <div id="last-updated-on">
+              Last updated: {article.review[0]?.updatedAt.toISOString().split("T")[0]}
+            </div>
           </div>
         </div>
         <div
@@ -65,15 +57,8 @@ export const Review = (props) => {
               questionCategory={review.questionCategory}
             />
           ))}
-          {disabled && <div>...</div>}
         </div>
       </div>
-      {userId && (
-        <>
-          <div>ID: {userId}</div>
-          <div>{JSON.stringify(review)}</div>
-        </>
-      )}
     </>
   )
 }
