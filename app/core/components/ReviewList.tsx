@@ -2,7 +2,7 @@ import React from "react"
 import { useQuery } from "blitz"
 import { useCurrentUser } from "../hooks/useCurrentUser"
 import getReviewAnswers from "app/queries/getReviewAnswers"
-import { IndividualReview } from "./IndividualReview"
+import { Review } from "./Review"
 
 export const ReviewList = (prop) => {
   const { article } = prop
@@ -23,7 +23,7 @@ export const ReviewList = (prop) => {
         </div>
         <div id="your-review-wrapper" className="flex flex-col items-center">
           {currentUserReview.map((user) => (
-            <IndividualReview
+            <Review
               key={user.id}
               displayName={user.handle}
               handle={user.handle}
@@ -37,7 +37,7 @@ export const ReviewList = (prop) => {
         <div id="individual-review-wrapper" className="flex flex-col items-center">
           {otherUserReview.length ? (
             otherUserReview.map((user) => (
-              <IndividualReview
+              <Review
                 key={user.id}
                 displayName={user.handle}
                 handle={user.handle}
