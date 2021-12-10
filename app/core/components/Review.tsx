@@ -3,7 +3,11 @@ import { RatingTotal } from "./RatingTotal"
 import { ReviewCategoryAnswer } from "./ReviewCategoryAnswer"
 
 export const Review = (props) => {
-  const { userId, review, article, user, ratingScaleMax } = props
+  const { handle, displayName, reviews } = props
+  const submittedAt = reviews[0]?.createdAt?.toISOString().split("T")[0]
+  const updatedAt = reviews[0]?.updatedAt.toISOString().split("T")[0]
+  const ratingScaleMax = 5
+  const isAnonymous = reviews[0].isAnonymous
 
   return (
     <>
@@ -13,21 +17,15 @@ export const Review = (props) => {
       >
         <div id="metadata-container" className="mx-4 flex flex-row justify-between">
           <div id="article-metadata" className="m-2">
-            <a href={`articles/${article.id}`}>
-              <h2 className="font-bold">{article.title}</h2>
-            </a>
-            <div id="author" className="text-sm">
-              {article.authorString}
-            </div>
-            <div className="text-sm text-gray-500">{article.doi}</div>
+            <div id="author" className="text-sm"></div>
           </div>
           <div id="review-metadata" className="text-xs">
-            <div id="submitter">Submitted by: {user.name}</div>
+            <div id="submitter">Submitted by: {isAnonymous ? displayName : "Anonymous"}</div>
             <div id="submitted-on">
-              Submitted: {article.review[0]?.createdAt?.toISOString().split("T")[0]}
+              Submitted: {reviews[0]?.createdAt?.toISOString().split("T")[0]}
             </div>
             <div id="last-updated-on">
-              Last updated: {article.review[0]?.updatedAt.toISOString().split("T")[0]}
+              Last updated: {reviews[0]?.updatedAt.toISOString().split("T")[0]}
             </div>
           </div>
         </div>
@@ -43,18 +41,17 @@ export const Review = (props) => {
                 readOnly
                 max={ratingScaleMax}
                 value={
-                  article.review.reduce((prev, current) => prev + current.response, 0) /
-                  article.review.length
+                  reviews.reduce((prev, current) => prev + current.response, 0) / reviews.length
                 }
               />
             </div>
           </div>
-          {article.review.map((review) => (
+          {reviews.map((review) => (
             <ReviewCategoryAnswer
               key={review.id}
               ratingScaleMax={5}
               response={review.response}
-              questionCategory={review.questionCategory}
+              questionCategory={review.question.questionCategory}
             />
           ))}
         </div>
