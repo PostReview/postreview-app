@@ -3,7 +3,7 @@ import { RatingTotal } from "./RatingTotal"
 import { ReviewCategoryAnswer } from "./ReviewCategoryAnswer"
 
 export const ReviewSample = (props) => {
-  const { userId, review, article, user, ratingScaleMax, disabled } = props
+  const { userId, review, article, user, ratingScaleMax } = props
 
   return (
     <>
