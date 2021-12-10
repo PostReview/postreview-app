@@ -2,7 +2,6 @@ import { Button, Rating } from "@mui/material"
 import React from "react"
 import { SearchBar } from "./SearchBar"
 import DescriptionIcon from "@mui/icons-material/Description"
-import { Review } from "./Review"
 import ArticleSample from "./ArticleSample"
 import { ReviewSample } from "./ReviewSample"
 
