@@ -28,6 +28,7 @@ export const ReviewList = (prop) => {
               displayName={user.handle}
               handle={user.handle}
               reviews={user.review}
+              userIcon={user.icon}
             />
           ))}
         </div>
