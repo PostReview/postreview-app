@@ -14,7 +14,7 @@ export const Review = (props) => {
   const tooltipText = `Submitted by: ${submittedBy} | Submitted: ${submittedAt} | Last updated: ${updatedAt} `
 
   return (
-    <div className="flex lg:flex-row flex-col items-center">
+    <div className="flex lg:flex-row flex-col items-center m-6">
       <div className="">
         <Tooltip title={tooltipText} placement="top" arrow>
           <Button id="user-avatar" className="focus:outline-none" onClick={undefined}>
@@ -27,7 +27,7 @@ export const Review = (props) => {
         </Tooltip>
       </div>
       <div
-        className="bg-gray-50 m-6 p-4 border-gray-600 border-2
+        className="bg-gray-50 p-4 border-gray-600 border-2
           flex flex-col  max-w-5xl"
       >
         <div
