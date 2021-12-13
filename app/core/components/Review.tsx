@@ -8,7 +8,7 @@ export const Review = (props) => {
   const submittedAt = reviews[0]?.createdAt?.toISOString().split("T")[0]
   const updatedAt = reviews[0]?.updatedAt.toISOString().split("T")[0]
   const ratingScaleMax = 5
-  const isAnonymous = reviews[0].isAnonymous
+  const isAnonymous = reviews[0]?.isAnonymous
   const submittedBy = isAnonymous ? "Anonymous" : displayName
   const submittedByIcon = userIcon
   const tooltipText = `Submitted by: ${submittedBy} | Submitted: ${submittedAt} | Last updated: ${updatedAt} `
