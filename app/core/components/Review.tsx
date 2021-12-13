@@ -1,17 +1,28 @@
+import { Avatar, Button, Tooltip } from "@mui/material"
 import React from "react"
 import { RatingTotal } from "./RatingTotal"
 import { ReviewCategoryAnswer } from "./ReviewCategoryAnswer"
 
 export const Review = (props) => {
-  const { handle, displayName, reviews } = props
+  const { handle, displayName, reviews, userIcon } = props
   const submittedAt = reviews[0]?.createdAt?.toISOString().split("T")[0]
   const updatedAt = reviews[0]?.updatedAt.toISOString().split("T")[0]
   const ratingScaleMax = 5
   const isAnonymous = reviews[0].isAnonymous
   const submittedBy = isAnonymous ? displayName : "Anonymous"
+  const submittedByIcon = userIcon
 
   return (
-    <>
+    <div className="flex flex-row items-center">
+      <div className="">
+        <Button id="user-avatar" className="focus:outline-none" onClick={undefined}>
+          {isAnonymous ? (
+            <Avatar alt={submittedBy} />
+          ) : (
+            <Avatar alt={submittedBy} src={submittedByIcon} />
+          )}
+        </Button>
+      </div>
       <div
         className="bg-gray-50 m-6 p-4 border-gray-600 border-2
           flex flex-col  max-w-5xl"
@@ -43,6 +54,6 @@ export const Review = (props) => {
           ))}
         </div>
       </div>
-    </>
+    </div>
   )
 }
