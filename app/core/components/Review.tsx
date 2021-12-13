@@ -9,19 +9,22 @@ export const Review = (props) => {
   const updatedAt = reviews[0]?.updatedAt.toISOString().split("T")[0]
   const ratingScaleMax = 5
   const isAnonymous = reviews[0].isAnonymous
-  const submittedBy = isAnonymous ? displayName : "Anonymous"
+  const submittedBy = isAnonymous ? "Anonymous" : displayName
   const submittedByIcon = userIcon
+  const tooltipText = `Submitted by: ${submittedBy} | Submitted: ${submittedAt} | Last updated: ${updatedAt} `
 
   return (
-    <div className="flex flex-row items-center">
+    <div className="flex lg:flex-row flex-col items-center">
       <div className="">
-        <Button id="user-avatar" className="focus:outline-none" onClick={undefined}>
-          {isAnonymous ? (
-            <Avatar alt={submittedBy} />
-          ) : (
-            <Avatar alt={submittedBy} src={submittedByIcon} />
-          )}
-        </Button>
+        <Tooltip title={tooltipText} placement="top" arrow>
+          <Button id="user-avatar" className="focus:outline-none" onClick={undefined}>
+            {isAnonymous ? (
+              <Avatar alt={submittedBy} />
+            ) : (
+              <Avatar alt={submittedBy} src={submittedByIcon} />
+            )}
+          </Button>
+        </Tooltip>
       </div>
       <div
         className="bg-gray-50 m-6 p-4 border-gray-600 border-2
