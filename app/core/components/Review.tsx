@@ -1,44 +1,35 @@
+import { Avatar, Button, Tooltip } from "@mui/material"
 import React from "react"
 import { RatingTotal } from "./RatingTotal"
 import { ReviewCategoryAnswer } from "./ReviewCategoryAnswer"
 
 export const Review = (props) => {
-  const { userId, review, article, user, ratingScaleMax, disabled } = props
+  const { handle, displayName, reviews, userIcon } = props
+  const submittedAt = reviews[0]?.createdAt?.toISOString().split("T")[0]
+  const updatedAt = reviews[0]?.updatedAt.toISOString().split("T")[0]
+  const ratingScaleMax = 5
+  const isAnonymous = reviews[0]?.isAnonymous
+  const submittedBy = isAnonymous ? "Anonymous" : displayName
+  const submittedByIcon = userIcon
+  const tooltipText = `Submitted by: ${submittedBy} | Submitted: ${submittedAt} | Last updated: ${updatedAt} `
 
   return (
-    <>
+    <div className="flex lg:flex-row flex-col items-center m-6">
+      <div className="">
+        <Tooltip title={tooltipText} placement="top" arrow>
+          <Button id="user-avatar" className="focus:outline-none" onClick={undefined}>
+            {isAnonymous ? (
+              <Avatar alt={submittedBy} />
+            ) : (
+              <Avatar alt={submittedBy} src={submittedByIcon} />
+            )}
+          </Button>
+        </Tooltip>
+      </div>
       <div
-        className="bg-gray-50 m-6 p-4 border-gray-600 border-2
+        className="bg-gray-50 p-4 border-gray-600 border-2
           flex flex-col  max-w-5xl"
       >
-        <div id="metadata-container" className="mx-4 flex flex-row justify-between">
-          <div id="article-metadata" className="m-2">
-            {!disabled ? (
-              <a href={`articles/${article.id}`}>
-                <h2 className="font-bold">{article.title}</h2>
-              </a>
-            ) : (
-              <h2 className="font-bold">{article.title}</h2>
-            )}
-            <div id="author" className="text-sm">
-              {article.authorString}
-            </div>
-            <div className="text-sm text-gray-500">{article.doi}</div>
-          </div>
-          <div id="review-metadata" className="text-xs">
-            <div id="submitter">Submitted by: {user.name}</div>
-            {!disabled && (
-              <>
-                <div id="submitted-on">
-                  Submitted: {article.review[0]?.createdAt?.toISOString().split("T")[0]}
-                </div>
-                <div id="last-updated-on">
-                  Last updated: {article.review[0]?.updatedAt.toISOString().split("T")[0]}
-                </div>
-              </>
-            )}
-          </div>
-        </div>
         <div
           id="ratings-container"
           className="flex lg:flex-row flex-col items-center justify-evenly text-xs mx-6"
@@ -51,29 +42,21 @@ export const Review = (props) => {
                 readOnly
                 max={ratingScaleMax}
                 value={
-                  article.review.reduce((prev, current) => prev + current.response, 0) /
-                  article.review.length
+                  reviews.reduce((prev, current) => prev + current.response, 0) / reviews.length
                 }
               />
             </div>
           </div>
-          {article.review.map((review) => (
+          {reviews.map((review) => (
             <ReviewCategoryAnswer
               key={review.id}
               ratingScaleMax={5}
               response={review.response}
-              questionCategory={review.questionCategory}
+              questionCategory={review.question.questionCategory}
             />
           ))}
-          {disabled && <div>...</div>}
         </div>
       </div>
-      {userId && (
-        <>
-          <div>ID: {userId}</div>
-          <div>{JSON.stringify(review)}</div>
-        </>
-      )}
-    </>
+    </div>
   )
 }

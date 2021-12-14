@@ -2,8 +2,8 @@ import { Button, Rating } from "@mui/material"
 import React from "react"
 import { SearchBar } from "./SearchBar"
 import DescriptionIcon from "@mui/icons-material/Description"
-import { Review } from "./Review"
 import ArticleSample from "./ArticleSample"
+import { ReviewSample } from "./ReviewSample"
 
 const sampleReviewProps = {
   ratingScaleMax: 5,
@@ -69,7 +69,7 @@ const howItWorks = [
   {
     step: 3,
     name: "Your rating is recorded",
-    div: <Review {...sampleReviewProps} disabled={true} />,
+    div: <ReviewSample {...sampleReviewProps} />,
   },
   {
     step: 4,

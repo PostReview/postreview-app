@@ -2,10 +2,8 @@ import React from "react"
 import { RatingTotal } from "./RatingTotal"
 import { ReviewCategoryAnswer } from "./ReviewCategoryAnswer"
 
-export const IndividualReview = (props) => {
-  const { handle, displayName, reviews } = props
-  const ratingScaleMax = 5
-  const isAnonymous = reviews[0].isAnonymous
+export const ReviewSample = (props) => {
+  const { userId, review, article, user, ratingScaleMax } = props
 
   return (
     <>
@@ -15,16 +13,14 @@ export const IndividualReview = (props) => {
       >
         <div id="metadata-container" className="mx-4 flex flex-row justify-between">
           <div id="article-metadata" className="m-2">
-            <div id="author" className="text-sm"></div>
+            <h2 className="font-bold">{article.title}</h2>
+            <div id="author" className="text-sm">
+              {article.authorString}
+            </div>
+            <div className="text-sm text-gray-500">{article.doi}</div>
           </div>
           <div id="review-metadata" className="text-xs">
-            <div id="submitter">Submitted by: {isAnonymous ? displayName : "Anonymous"}</div>
-            <div id="submitted-on">
-              Submitted: {reviews[0]?.createdAt?.toISOString().split("T")[0]}
-            </div>
-            <div id="last-updated-on">
-              Last updated: {reviews[0]?.updatedAt.toISOString().split("T")[0]}
-            </div>
+            <div id="submitter">Submitted by: {user.name}</div>
           </div>
         </div>
         <div
@@ -39,21 +35,29 @@ export const IndividualReview = (props) => {
                 readOnly
                 max={ratingScaleMax}
                 value={
-                  reviews.reduce((prev, current) => prev + current.response, 0) / reviews.length
+                  article.review.reduce((prev, current) => prev + current.response, 0) /
+                  article.review.length
                 }
               />
             </div>
           </div>
-          {reviews.map((review) => (
+          {article.review.map((review) => (
             <ReviewCategoryAnswer
               key={review.id}
               ratingScaleMax={5}
               response={review.response}
-              questionCategory={review.question.questionCategory}
+              questionCategory={review.questionCategory}
             />
           ))}
+          <div>...</div>
         </div>
       </div>
+      {userId && (
+        <>
+          <div>ID: {userId}</div>
+          <div>{JSON.stringify(review)}</div>
+        </>
+      )}
     </>
   )
 }
