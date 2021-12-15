@@ -6,6 +6,7 @@ import Button from "@mui/material/Button"
 import { useCurrentUser } from "../hooks/useCurrentUser"
 import addReview from "app/mutations/addReview"
 import getReviewAnswersByArticleAndUserIds from "app/queries/getReviewAnswersByArticleAndUserIds"
+import { DialogActions, DialogContent } from "@mui/material"
 
 export default function PopupReview(prop) {
   const { article, handleClose, setUserHasReview } = prop
@@ -21,7 +22,7 @@ export default function PopupReview(prop) {
   )
   const [reviewAnswers, setReviewAnswers] = useState(defaultReviewAnswers)
 
-  const [hasUserReviwed, setHasUserReviewed] = useState(false)
+  const defaultUserHasReview = !!defaultReviewAnswers?.length
 
   const updateRating = (questionId, newRating) => {
     const newAnswers = [...reviewAnswers]
@@ -39,39 +40,40 @@ export default function PopupReview(prop) {
   }
   return (
     <>
-      <div className="text-xs text-gray-50">ID: {article.id}</div>
-      <div>Reviewing:</div>
-      <div>
-        <strong>{article.title} </strong>
-      </div>
-      <div>{article.authorString}</div>
-      <div>
-        <a href={`https://doi.org/${article.doi}`} target="_blank" rel="noreferrer">
-          {article.doi}
-        </a>
-      </div>
-      <div id="question-container" className="flex flex-col">
-        {reviewQuestions.map((question) => {
-          return (
-            <ReviewQuestion
-              article={article}
-              key={question?.questionId}
-              question={question}
-              onReviewUpdate={updateRating}
-            />
-          )
-        })}
-
-        <div id="button-container" className="flex justify-center">
-          <Button variant="text" onClick={handleClose}>
-            Cancel
-          </Button>
-          {/* Need "Are you sure?" Confirmation */}
-          <Button variant="contained" onClick={handleReviewSubmit}>
-            Submit
-          </Button>
+      <DialogContent>
+        <div className="text-xs text-gray-50">ID: {article.id}</div>
+        <div>Reviewing:</div>
+        <div>
+          <strong>{article.title} </strong>
         </div>
-      </div>
+        <div>{article.authorString}</div>
+        <div>
+          <a href={`https://doi.org/${article.doi}`} target="_blank" rel="noreferrer">
+            {article.doi}
+          </a>
+        </div>
+        <div id="question-container" className="flex flex-col">
+          {reviewQuestions.map((question) => {
+            return (
+              <ReviewQuestion
+                article={article}
+                key={question?.questionId}
+                question={question}
+                onReviewUpdate={updateRating}
+              />
+            )
+          })}{" "}
+        </div>
+      </DialogContent>
+      <DialogActions>
+        <Button variant="text" onClick={handleClose}>
+          Cancel
+        </Button>
+        {/* Need "Are you sure?" Confirmation */}
+        <Button variant="contained" onClick={handleReviewSubmit}>
+          Submit
+        </Button>
+      </DialogActions>
     </>
   )
 }
