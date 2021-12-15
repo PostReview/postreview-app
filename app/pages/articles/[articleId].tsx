@@ -4,13 +4,12 @@ import Header from "app/core/components/Header"
 import { ReviewList } from "app/core/components/ReviewList"
 import getArticle from "app/queries/getArticle"
 import { Suspense, useState } from "react"
-import Popup from "app/core/components/Popup"
 import PopupReview from "app/core/components/PopupReview"
 import hasUserSunmittedReview from "app/queries/hasUserSubmittedReview"
 import { useCurrentUser } from "app/core/hooks/useCurrentUser"
 import { Footer } from "app/core/components/Footer"
 import Article from "app/core/components/Article"
-import { Dialog, DialogTitle } from "@mui/material"
+import { Dialog } from "@mui/material"
 
 const ArticleDetails = () => {
   const articleId = useParam("articleId", "string") as string
@@ -56,7 +55,6 @@ const ArticleDetails = () => {
         <ActionButton />
         <ReviewList article={article} />
         <Dialog open={isReviewDialogOpen} onClose={closeReviewDialog}>
-          <DialogTitle id="deactivate-account">{"Deactivating Your Account"}</DialogTitle>
           <PopupReview
             article={article}
             handleClose={closeReviewDialog}

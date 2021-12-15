@@ -6,7 +6,7 @@ import Button from "@mui/material/Button"
 import { useCurrentUser } from "../hooks/useCurrentUser"
 import addReview from "app/mutations/addReview"
 import getReviewAnswersByArticleAndUserIds from "app/queries/getReviewAnswersByArticleAndUserIds"
-import { DialogActions, DialogContent } from "@mui/material"
+import { DialogActions, DialogContent, DialogTitle } from "@mui/material"
 
 export default function PopupReview(prop) {
   const { article, handleClose, setUserHasReview } = prop
@@ -40,9 +40,9 @@ export default function PopupReview(prop) {
   }
   return (
     <>
+      <DialogTitle>{"Submit Your Rating"}</DialogTitle>
       <DialogContent>
         <div className="text-xs text-gray-50">ID: {article.id}</div>
-        <div>Reviewing:</div>
         <div>
           <strong>{article.title} </strong>
         </div>
