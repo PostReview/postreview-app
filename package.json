@@ -33,6 +33,7 @@
     "@mui/icons-material": "5.0.4",
     "@mui/material": "5.0.1",
     "@prisma/client": "3.6.0",
+    "prisma": "3.6.0",
     "autoprefixer": "10.3.4",
     "axios": "0.21.4",
     "blitz": "0.43.0",
