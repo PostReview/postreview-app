@@ -45,22 +45,20 @@ export const HeaderUserButton = () => {
           Login / Signup
         </Button>
       )}
-      <Menu anchorEl={anchorEl} open={open} onClose={handleClose}>
-        {currentUser ? (
-          <>
-            <MenuItem onClick={handleClose}>
-              <Link href="/profile">Profile</Link>
-            </MenuItem>
-            <MenuItem onClick={handleLogout}>Logout</MenuItem>
-          </>
-        ) : (
-          <>
-            <MenuItem>
-              <GoogleButton />
-            </MenuItem>
-          </>
-        )}
-      </Menu>
+      {currentUser ? (
+        <Menu anchorEl={anchorEl} open={open} onClose={handleClose}>
+          <MenuItem onClick={handleClose}>
+            <Link href="/profile">Profile</Link>
+          </MenuItem>
+          <MenuItem onClick={handleLogout}>Logout</MenuItem>
+        </Menu>
+      ) : (
+        <Menu anchorEl={anchorEl} open={open} onClose={handleClose}>
+          <MenuItem>
+            <GoogleButton />
+          </MenuItem>
+        </Menu>
+      )}
     </div>
   )
 }
