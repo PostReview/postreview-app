@@ -26,11 +26,11 @@ export const ReviewList = (prop) => {
           <div className="flex flex-col items-center">
             {currentUserHasReview ? (
               <Review
-                key={currentUserReview.id}
-                displayName={currentUserReview.handle}
-                handle={currentUserReview.handle}
-                reviews={currentUserReview.review}
-                userIcon={currentUserReview.icon}
+                key={currentUserReview?.id}
+                displayName={currentUserReview?.handle}
+                handle={currentUserReview?.handle}
+                reviews={currentUserReview?.review}
+                userIcon={currentUserReview?.icon}
               />
             ) : (
               <div className="m-20">Submit your review</div>

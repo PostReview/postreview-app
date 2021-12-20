@@ -4,19 +4,22 @@ import Header from "app/core/components/Header"
 import { ReviewList } from "app/core/components/ReviewList"
 import getArticle from "app/queries/getArticle"
 import { Suspense, useState } from "react"
-import Popup from "app/core/components/Popup"
 import PopupReview from "app/core/components/PopupReview"
 import hasUserSunmittedReview from "app/queries/hasUserSubmittedReview"
 import { useCurrentUser } from "app/core/hooks/useCurrentUser"
 import { Footer } from "app/core/components/Footer"
 import Article from "app/core/components/Article"
+import { Dialog } from "@mui/material"
 
 const ArticleDetails = () => {
   const articleId = useParam("articleId", "string") as string
   const [article] = useQuery(getArticle, articleId)
-  const [isOpen, setIsOpen] = useState(false)
-  const togglePopup = () => {
-    setIsOpen(!isOpen)
+  const [isReviewDialogOpen, setIsReviewDialogOpen] = useState(false)
+  const openReviewDialog = () => {
+    setIsReviewDialogOpen(true)
+  }
+  const closeReviewDialog = () => {
+    setIsReviewDialogOpen(false)
   }
   const currentUser = useCurrentUser()
   const [defaultUserHasReview] = useQuery(hasUserSunmittedReview, {
@@ -29,11 +32,11 @@ const ArticleDetails = () => {
   }
   const ActionButton = () => {
     return userHasReview ? (
-      <Button variant="contained" onClick={toggleEditWindow}>
+      <Button variant="contained" onClick={openReviewDialog}>
         Edit Your Rating
       </Button>
     ) : (
-      <Button variant="contained" onClick={togglePopup}>
+      <Button variant="contained" onClick={openReviewDialog}>
         Rate This Paper
       </Button>
     )
@@ -51,19 +54,13 @@ const ArticleDetails = () => {
         </div>
         <ActionButton />
         <ReviewList article={article} />
-        {isOpen && (
-          <Popup
-            content={
-              <PopupReview
-                article={article}
-                handleClose={togglePopup}
-                setUserHasReview={setUserHasReview}
-              />
-            }
-            handleClose={togglePopup}
-            xbutton={false}
+        <Dialog open={isReviewDialogOpen} onClose={closeReviewDialog}>
+          <PopupReview
+            article={article}
+            handleClose={closeReviewDialog}
+            setUserHasReview={setUserHasReview}
           />
-        )}
+        </Dialog>
       </main>
       <Footer />
     </div>

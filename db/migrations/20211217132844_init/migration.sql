@@ -13,7 +13,7 @@ CREATE TABLE "User" (
     "role" "Role" NOT NULL DEFAULT E'USER',
     "icon" TEXT,
 
-    PRIMARY KEY ("id")
+    CONSTRAINT "User_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
@@ -29,7 +29,7 @@ CREATE TABLE "Session" (
     "privateData" TEXT,
     "userId" INTEGER,
 
-    PRIMARY KEY ("id")
+    CONSTRAINT "Session_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
@@ -43,7 +43,7 @@ CREATE TABLE "Token" (
     "sentTo" TEXT NOT NULL,
     "userId" INTEGER NOT NULL,
 
-    PRIMARY KEY ("id")
+    CONSTRAINT "Token_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
@@ -58,7 +58,7 @@ CREATE TABLE "Article" (
     "journal" TEXT NOT NULL,
     "authorString" TEXT NOT NULL,
 
-    PRIMARY KEY ("id")
+    CONSTRAINT "Article_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
@@ -73,7 +73,7 @@ CREATE TABLE "Author" (
     "articleId" TEXT,
     "userId" INTEGER,
 
-    PRIMARY KEY ("id")
+    CONSTRAINT "Author_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
@@ -87,7 +87,7 @@ CREATE TABLE "ReviewAnswers" (
     "questionId" INTEGER NOT NULL,
     "isAnonymous" BOOLEAN NOT NULL DEFAULT false,
 
-    PRIMARY KEY ("id")
+    CONSTRAINT "ReviewAnswers_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
@@ -103,50 +103,50 @@ CREATE TABLE "ReviewQuestions" (
     "maxLabel" TEXT,
     "questionCategory" TEXT,
 
-    PRIMARY KEY ("questionId")
+    CONSTRAINT "ReviewQuestions_pkey" PRIMARY KEY ("questionId")
 );
 
 -- CreateIndex
-CREATE UNIQUE INDEX "User.handle_unique" ON "User"("handle");
+CREATE UNIQUE INDEX "User_handle_key" ON "User"("handle");
 
 -- CreateIndex
-CREATE UNIQUE INDEX "User.email_unique" ON "User"("email");
+CREATE UNIQUE INDEX "User_email_key" ON "User"("email");
 
 -- CreateIndex
-CREATE UNIQUE INDEX "Session.handle_unique" ON "Session"("handle");
+CREATE UNIQUE INDEX "Session_handle_key" ON "Session"("handle");
 
 -- CreateIndex
-CREATE UNIQUE INDEX "Token.hashedToken_type_unique" ON "Token"("hashedToken", "type");
+CREATE UNIQUE INDEX "Token_hashedToken_type_key" ON "Token"("hashedToken", "type");
 
 -- CreateIndex
-CREATE UNIQUE INDEX "Article.doi_unique" ON "Article"("doi");
+CREATE UNIQUE INDEX "Article_doi_key" ON "Article"("doi");
 
 -- CreateIndex
-CREATE UNIQUE INDEX "Author.orcid_unique" ON "Author"("orcid");
+CREATE UNIQUE INDEX "Author_orcid_key" ON "Author"("orcid");
 
 -- CreateIndex
-CREATE UNIQUE INDEX "ReviewAnswers.articleId_questionId_userId_unique" ON "ReviewAnswers"("articleId", "questionId", "userId");
+CREATE UNIQUE INDEX "ReviewAnswers_articleId_questionId_userId_key" ON "ReviewAnswers"("articleId", "questionId", "userId");
 
 -- AddForeignKey
-ALTER TABLE "Session" ADD FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE SET NULL ON UPDATE CASCADE;
+ALTER TABLE "Session" ADD CONSTRAINT "Session_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE SET NULL ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "Token" ADD FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE "Token" ADD CONSTRAINT "Token_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "Article" ADD FOREIGN KEY ("addedById") REFERENCES "User"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE "Article" ADD CONSTRAINT "Article_addedById_fkey" FOREIGN KEY ("addedById") REFERENCES "User"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "Author" ADD FOREIGN KEY ("articleId") REFERENCES "Article"("id") ON DELETE SET NULL ON UPDATE CASCADE;
+ALTER TABLE "Author" ADD CONSTRAINT "Author_articleId_fkey" FOREIGN KEY ("articleId") REFERENCES "Article"("id") ON DELETE SET NULL ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "Author" ADD FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE SET NULL ON UPDATE CASCADE;
+ALTER TABLE "Author" ADD CONSTRAINT "Author_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE SET NULL ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "ReviewAnswers" ADD FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE "ReviewAnswers" ADD CONSTRAINT "ReviewAnswers_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "ReviewAnswers" ADD FOREIGN KEY ("articleId") REFERENCES "Article"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE "ReviewAnswers" ADD CONSTRAINT "ReviewAnswers_articleId_fkey" FOREIGN KEY ("articleId") REFERENCES "Article"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "ReviewAnswers" ADD FOREIGN KEY ("questionId") REFERENCES "ReviewQuestions"("questionId") ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE "ReviewAnswers" ADD CONSTRAINT "ReviewAnswers_questionId_fkey" FOREIGN KEY ("questionId") REFERENCES "ReviewQuestions"("questionId") ON DELETE RESTRICT ON UPDATE CASCADE;
