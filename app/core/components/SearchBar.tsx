@@ -4,15 +4,13 @@ import React from "react"
 
 export const SearchBar = () => {
   return (
-    <>
-      <Input
-        id="search-input"
-        startAdornment={
-          <InputAdornment position="start">
-            <Search />
-          </InputAdornment>
-        }
-      />
-    </>
+    <Input
+      id="search-input"
+      startAdornment={
+        <InputAdornment position="start">
+          <Search />
+        </InputAdornment>
+      }
+    />
   )
 }
