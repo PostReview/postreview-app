@@ -15,7 +15,6 @@ export const ReviewQuestion = (props) => {
     }
     onReviewUpdate(questionId, newData)
   }
-  console.log(question)
   return (
     <div
       className="
@@ -26,7 +25,7 @@ export const ReviewQuestion = (props) => {
     py-2
     rounded-full"
     >
-      <h1 className="text-center font-bold">{question.questionCategory}</h1>
+      <div className="text-center font-bold">{question.questionCategory}</div>
       <div id="question-header" className="text-center mb-2">
         {question.questionText}
       </div>
