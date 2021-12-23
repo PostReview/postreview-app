@@ -30,6 +30,11 @@ export default function PopupReview(prop) {
     reviewAnswerQueryParams
   )
   const [reviewAnswers, setReviewAnswers] = useState(defaultReviewAnswers)
+  const [isAnonymous, setIsAnonymous] = useState(false)
+  const handleChangeAnonymous = () => {
+    if (isAnonymous) setIsAnonymous(false)
+    if (!isAnonymous) setIsAnonymous(true)
+  }
 
   const defaultUserHasReview = !!defaultReviewAnswers?.length
 
@@ -42,15 +47,20 @@ export default function PopupReview(prop) {
   }
   const [addReviewMutation] = useMutation(addReview)
   const handleReviewSubmit = async () => {
-    await invoke(addReviewMutation, [...reviewAnswers])
+    await invoke(addReviewMutation, [...reviewAnswersToDb])
     handleClose()
     setUserHasReview(true)
     window.location.reload()
   }
+  const reviewAnswersToDb = reviewAnswers.map((answer) =>
+    Object.assign(answer, { isAnonymous: isAnonymous })
+  )
+  console.log(reviewAnswersToDb)
+  console.log(isAnonymous)
   return (
     <>
       <DialogTitle>
-        <h1 className="text-center">What are your thoughs about this paper?</h1>
+        <div className="text-center">What are your thoughs about this paper?</div>
       </DialogTitle>
       <DialogContent>
         <div id="title-container" className="text-center">
@@ -74,7 +84,7 @@ export default function PopupReview(prop) {
       <DialogActions>
         <span>
           Submit anonymously
-          <Switch />
+          <Switch onClick={handleChangeAnonymous} />
           <Tooltip title="If you submit your review anonymously, your handle and display name will be hidden from others.">
             <HelpOutlineIcon />
           </Tooltip>
