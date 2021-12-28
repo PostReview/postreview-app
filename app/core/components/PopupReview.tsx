@@ -6,7 +6,16 @@ import Button from "@mui/material/Button"
 import { useCurrentUser } from "../hooks/useCurrentUser"
 import addReview from "app/mutations/addReview"
 import getReviewAnswersByArticleAndUserIds from "app/queries/getReviewAnswersByArticleAndUserIds"
-import { DialogActions, DialogContent, DialogTitle } from "@mui/material"
+import {
+  DialogActions,
+  DialogContent,
+  DialogTitle,
+  FormControlLabel,
+  FormGroup,
+  Switch,
+  Tooltip,
+} from "@mui/material"
+import HelpOutlineIcon from "@mui/icons-material/HelpOutline"
 
 export default function PopupReview(prop) {
   const { article, handleClose, setUserHasReview } = prop
@@ -21,6 +30,11 @@ export default function PopupReview(prop) {
     reviewAnswerQueryParams
   )
   const [reviewAnswers, setReviewAnswers] = useState(defaultReviewAnswers)
+  const [isAnonymous, setIsAnonymous] = useState(false)
+  const handleChangeAnonymous = () => {
+    if (isAnonymous) setIsAnonymous(false)
+    if (!isAnonymous) setIsAnonymous(true)
+  }
 
   const defaultUserHasReview = !!defaultReviewAnswers?.length
 
@@ -33,23 +47,25 @@ export default function PopupReview(prop) {
   }
   const [addReviewMutation] = useMutation(addReview)
   const handleReviewSubmit = async () => {
-    await invoke(addReviewMutation, [...reviewAnswers])
+    await invoke(addReviewMutation, [...reviewAnswersToDb])
     handleClose()
     setUserHasReview(true)
     window.location.reload()
   }
+  const reviewAnswersToDb = reviewAnswers.map((answer) =>
+    Object.assign(answer, { isAnonymous: isAnonymous })
+  )
+  console.log(reviewAnswersToDb)
+  console.log(isAnonymous)
   return (
     <>
-      <DialogTitle>{"Submit Your Rating"}</DialogTitle>
+      <DialogTitle>
+        <div className="text-center">What are your thoughs about this paper?</div>
+      </DialogTitle>
       <DialogContent>
-        <div className="text-xs text-gray-50">ID: {article.id}</div>
-        <div>
-          <strong>{article.title} </strong>
-        </div>
-        <div>{article.authorString}</div>
-        <div>
+        <div id="title-container" className="text-center">
           <a href={`https://doi.org/${article.doi}`} target="_blank" rel="noreferrer">
-            {article.doi}
+            <strong>{article.title} </strong>
           </a>
         </div>
         <div id="question-container" className="flex flex-col">
@@ -62,10 +78,17 @@ export default function PopupReview(prop) {
                 onReviewUpdate={updateRating}
               />
             )
-          })}{" "}
+          })}
         </div>
       </DialogContent>
       <DialogActions>
+        <span>
+          Submit anonymously
+          <Switch onClick={handleChangeAnonymous} />
+          <Tooltip title="If you submit your review anonymously, your handle and display name will be hidden from others.">
+            <HelpOutlineIcon />
+          </Tooltip>
+        </span>
         <Button variant="text" onClick={handleClose}>
           Cancel
         </Button>

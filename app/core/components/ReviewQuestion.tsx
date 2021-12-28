@@ -18,13 +18,16 @@ export const ReviewQuestion = (props) => {
   return (
     <div
       className="
-      border-gray-400 p-4
-    bg-green-50
+      border-gray-400
+    bg-gray-200
     m-3
-    rounded-md"
+    px-6
+    py-2
+    rounded-full"
     >
-      <div id="question-header" className="mb-2">
-        {question.questionId}. {question.questionText}
+      <div className="text-center font-bold">{question.questionCategory}</div>
+      <div id="question-header" className="text-center mb-2">
+        {question.questionText}
       </div>
       <div
         id="response-options"
@@ -39,6 +42,7 @@ export const ReviewQuestion = (props) => {
         ></div>
         <div id="rating-container" className="flex flex-col">
           <Rating
+            size="large"
             name="customized-10"
             max={question.maxValue}
             onChange={(event, newValue) => {

@@ -8,6 +8,7 @@ const AddReview = z.array(
     articleId: z.string(),
     questionId: z.number(),
     response: z.number(),
+    isAnonymous: z.boolean(),
   })
 )
 
