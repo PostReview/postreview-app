@@ -15,7 +15,7 @@ export default passportAuth({
           callbackURL:
             process.env.NODE_ENV === "production"
               ? // deployment target
-                "https://example.com/api/auth/google/callback"
+                "https://postreview-app.herokuapp.com/api/auth/google/callback"
               : "http://localhost:3000/api/auth/google/callback",
           scope: ["email", "profile"],
         },
