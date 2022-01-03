@@ -51,7 +51,7 @@ const Profile = () => {
     <div className="flex flex-col min-h-screen">
       <Header />
       <main className="flex-grow">
-        <div id="user-info-card" className="bg-gray-100 p-4">
+        <div id="user-info-card" className="bg-gray-200 p-4">
           <div className="flex flex-row items-center">
             <div id="user-icon-container" className="m-2">
               <AccountCircleIcon color="disabled" fontSize="large" />
@@ -110,14 +110,13 @@ const Profile = () => {
             <a href="#">Public profile view</a>
           </div>
           <Box>
-            <Button
-              variant="text"
-              className="m-6 focus:outline-none"
-              color="error"
+            <div
+              id="delete-account"
+              className="m-2 font-semibold hover:cursor-pointer text-red-400"
               onClick={openDeactivateAccountDialog}
             >
               Deactivate your account
-            </Button>
+            </div>
             <Dialog open={isDeactivateAccountDialogOpen} onClose={closeDeactivateAccountDialog}>
               <DialogTitle id="deactivate-account">{"Deactivating Your Account"}</DialogTitle>
               <DialogContent>
