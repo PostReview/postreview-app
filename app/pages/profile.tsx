@@ -1,4 +1,4 @@
-import { BlitzPage, useQuery } from "blitz"
+import { BlitzPage, invoke, useQuery, useRouter } from "blitz"
 import EditIcon from "@mui/icons-material/Edit"
 import AccountCircleIcon from "@mui/icons-material/AccountCircle"
 import {
@@ -18,6 +18,7 @@ import { Suspense, useState } from "react"
 import { MyReviewsTable } from "app/core/components/MyReviewsTable"
 import { MyReviewsEmptyState } from "app/core/components/MyReviewsEmptyState"
 import { Footer } from "app/core/components/Footer"
+import deleteUser from "app/mutations/deleteUser"
 
 const Profile = () => {
   const currentUser = useCurrentUser()
@@ -38,6 +39,12 @@ const Profile = () => {
   }
   const closeDeactivateAccountDialog = () => {
     setIsDeactivateAccountDialogOpen(false)
+  }
+
+  const router = useRouter()
+  const handleDeleteUser = async () => {
+    await invoke(deleteUser, currentUser?.id)
+    router.push("/")
   }
 
   return (
@@ -121,7 +128,7 @@ const Profile = () => {
                 <Button onClick={closeDeactivateAccountDialog} autoFocus>
                   Cancel
                 </Button>
-                <Button variant="contained" color="error" onClick={closeDeactivateAccountDialog}>
+                <Button variant="contained" color="error" onClick={handleDeleteUser}>
                   Deactivate
                 </Button>
               </DialogActions>
