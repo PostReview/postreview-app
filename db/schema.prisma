@@ -76,7 +76,7 @@ model Article {
   createdAt     DateTime        @default(now())
   updatedAt     DateTime        @updatedAt
   addedBy       User?           @relation(fields: [addedById], references: [id])
-  addedById     Int
+  addedById     Int?
   doi           String          @unique
   title         String
   publishedYear Int
