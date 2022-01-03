@@ -75,7 +75,7 @@ model Article {
   id            String          @id @default(uuid())
   createdAt     DateTime        @default(now())
   updatedAt     DateTime        @updatedAt
-  addedBy       User            @relation(fields: [addedById], references: [id])
+  addedBy       User?           @relation(fields: [addedById], references: [id])
   addedById     Int
   doi           String          @unique
   title         String
