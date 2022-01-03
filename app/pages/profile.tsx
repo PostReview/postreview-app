@@ -2,6 +2,7 @@ import { BlitzPage, invoke, useQuery, useRouter } from "blitz"
 import EditIcon from "@mui/icons-material/Edit"
 import AccountCircleIcon from "@mui/icons-material/AccountCircle"
 import {
+  Avatar,
   Button,
   Dialog,
   DialogActions,
@@ -54,7 +55,13 @@ const Profile = () => {
         <div id="user-info-card" className="bg-gray-200 p-4">
           <div className="flex flex-row items-center">
             <div id="user-icon-container" className="m-2">
-              <AccountCircleIcon color="disabled" fontSize="large" />
+              <Button id="user-avatar" className="focus:outline-none" onClick={undefined}>
+                {currentUser?.icon ? (
+                  <Avatar alt={currentUser.handle} src={currentUser.icon!} />
+                ) : (
+                  <Avatar>{currentUser?.handle?.[0]}</Avatar>
+                )}
+              </Button>{" "}
             </div>
             <div id="handle-field-container">
               <TextField
