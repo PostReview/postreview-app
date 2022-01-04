@@ -47,8 +47,8 @@ const Profile = () => {
   const [logoutMutation] = useMutation(logout)
   const handleDeleteUser = async () => {
     await invoke(deleteUser, currentUser?.id)
-    await logoutMutation()
     router.push("/")
+    await logoutMutation()
   }
 
   return (
