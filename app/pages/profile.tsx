@@ -1,4 +1,4 @@
-import { BlitzPage, invoke, useQuery, useRouter } from "blitz"
+import { BlitzPage, invoke, useMutation, useQuery, useRouter } from "blitz"
 import EditIcon from "@mui/icons-material/Edit"
 import AccountCircleIcon from "@mui/icons-material/AccountCircle"
 import {
@@ -20,6 +20,7 @@ import { MyReviewsTable } from "app/core/components/MyReviewsTable"
 import { MyReviewsEmptyState } from "app/core/components/MyReviewsEmptyState"
 import { Footer } from "app/core/components/Footer"
 import deleteUser from "app/mutations/deleteUser"
+import logout from "app/auth/mutations/logout"
 
 const Profile = () => {
   const currentUser = useCurrentUser()
@@ -43,8 +44,10 @@ const Profile = () => {
   }
 
   const router = useRouter()
+  const [logoutMutation] = useMutation(logout)
   const handleDeleteUser = async () => {
     await invoke(deleteUser, currentUser?.id)
+    await logoutMutation()
     router.push("/")
   }
 
@@ -116,14 +119,14 @@ const Profile = () => {
           <div id="public-view-container" className="m-2 text-blue-500 font-semibold">
             <a href="#">Public profile view</a>
           </div>
+          <div
+            id="delete-account"
+            className="m-2 font-semibold hover:cursor-pointer text-red-400"
+            onClick={openDeactivateAccountDialog}
+          >
+            Deactivate your account
+          </div>
           <Box>
-            <div
-              id="delete-account"
-              className="m-2 font-semibold hover:cursor-pointer text-red-400"
-              onClick={openDeactivateAccountDialog}
-            >
-              Deactivate your account
-            </div>
             <Dialog open={isDeactivateAccountDialogOpen} onClose={closeDeactivateAccountDialog}>
               <DialogTitle id="deactivate-account">{"Deactivating Your Account"}</DialogTitle>
               <DialogContent>
