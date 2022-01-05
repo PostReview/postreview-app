@@ -1,7 +1,8 @@
-import { BlitzPage, useQuery } from "blitz"
+import { BlitzPage, invoke, useMutation, useQuery, useRouter } from "blitz"
 import EditIcon from "@mui/icons-material/Edit"
 import AccountCircleIcon from "@mui/icons-material/AccountCircle"
 import {
+  Avatar,
   Button,
   Dialog,
   DialogActions,
@@ -18,6 +19,8 @@ import { Suspense, useState } from "react"
 import { MyReviewsTable } from "app/core/components/MyReviewsTable"
 import { MyReviewsEmptyState } from "app/core/components/MyReviewsEmptyState"
 import { Footer } from "app/core/components/Footer"
+import deleteUser from "app/mutations/deleteUser"
+import logout from "app/auth/mutations/logout"
 
 const Profile = () => {
   const currentUser = useCurrentUser()
@@ -40,14 +43,28 @@ const Profile = () => {
     setIsDeactivateAccountDialogOpen(false)
   }
 
+  const router = useRouter()
+  const [logoutMutation] = useMutation(logout)
+  const handleDeleteUser = async () => {
+    await invoke(deleteUser, currentUser?.id)
+    router.push("/")
+    await logoutMutation()
+  }
+
   return (
     <div className="flex flex-col min-h-screen">
       <Header />
       <main className="flex-grow">
-        <div id="user-info-card" className="bg-gray-100 p-4">
+        <div id="user-info-card" className="bg-gray-200 p-4">
           <div className="flex flex-row items-center">
             <div id="user-icon-container" className="m-2">
-              <AccountCircleIcon color="disabled" fontSize="large" />
+              <Button id="user-avatar" className="focus:outline-none" onClick={undefined}>
+                {currentUser?.icon ? (
+                  <Avatar alt={currentUser.handle} src={currentUser.icon!} />
+                ) : (
+                  <Avatar>{currentUser?.handle?.[0]}</Avatar>
+                )}
+              </Button>{" "}
             </div>
             <div id="handle-field-container">
               <TextField
@@ -102,15 +119,14 @@ const Profile = () => {
           <div id="public-view-container" className="m-2 text-blue-500 font-semibold">
             <a href="#">Public profile view</a>
           </div>
+          <div
+            id="delete-account"
+            className="m-2 font-semibold hover:cursor-pointer text-red-400"
+            onClick={openDeactivateAccountDialog}
+          >
+            Deactivate your account
+          </div>
           <Box>
-            <Button
-              variant="text"
-              className="m-6 focus:outline-none"
-              color="error"
-              onClick={openDeactivateAccountDialog}
-            >
-              Deactivate your account
-            </Button>
             <Dialog open={isDeactivateAccountDialogOpen} onClose={closeDeactivateAccountDialog}>
               <DialogTitle id="deactivate-account">{"Deactivating Your Account"}</DialogTitle>
               <DialogContent>
@@ -121,7 +137,7 @@ const Profile = () => {
                 <Button onClick={closeDeactivateAccountDialog} autoFocus>
                   Cancel
                 </Button>
-                <Button variant="contained" color="error" onClick={closeDeactivateAccountDialog}>
+                <Button variant="contained" color="error" onClick={handleDeleteUser}>
                   Deactivate
                 </Button>
               </DialogActions>
