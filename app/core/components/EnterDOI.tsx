@@ -1,37 +1,28 @@
-import React, { useEffect, useState, createContext } from "react"
-import { useQuery, invoke, useMutation } from "blitz"
+import React, { useState } from "react"
+import { invoke, useMutation } from "blitz"
 import addArticle from "../../mutations/addArticle"
-import deleteArticle from "../../mutations/deleteArticle"
-import getArticles from "../../queries/getArticles"
 import isArticlePresent from "../../queries/isArticlePresent"
 import PopupDuplicateArticle from "../components/PopupDuplicateArticle"
 import axios from "axios"
 import { useCurrentUser } from "app/core/hooks/useCurrentUser"
 
 import { v4 as uuidv4 } from "uuid"
-import Popup from "./Popup"
-
-export const ArticleContext = createContext([] as any)
+import { Dialog } from "@mui/material"
 
 export default function EnterDOI() {
   const currentUser = useCurrentUser()
   const defaultDoi = "10.3390/publications7020040"
   const [doi, setDoi] = useState(defaultDoi)
-  const [articles, setArticles] = useState([] as any)
   // Popup
   const [isOpen, setIsOpen] = useState(false)
-  const togglePopup = () => {
-    setIsOpen(!isOpen)
+  const handleClickOpen = () => {
+    setIsOpen(true)
   }
-  const [defaultArticles] = useQuery(getArticles, undefined)
+  const handleClose = () => {
+    setIsOpen(false)
+  }
 
   const [addArticleMutation] = useMutation(addArticle)
-  const [deleteArticleMutation] = useMutation(deleteArticle)
-
-  // Get the database data when the page is loaded
-  useEffect(() => {
-    setArticles(defaultArticles)
-  }, [])
 
   async function getArticleMetadata() {
     try {
@@ -70,25 +61,15 @@ export default function EnterDOI() {
   async function handleArticleAdd() {
     const newArticleMetadata = await getArticleMetadata()
     if (!newArticleMetadata) return null
-
     const newArticle = await parseArticleMetadata(newArticleMetadata)
     // Is article already in the database?
     const alreadyInDb = await invoke(isArticlePresent, newArticle.doi)
-    if (alreadyInDb) return togglePopup()
+    if (alreadyInDb) return handleClickOpen()
     // push to database
     await invoke(addArticleMutation, { ...newArticle })
     window.location.reload()
-
-    // read from database
-    // setArticles([newArticle, ...articles])
-
     // add authors - implement with Nested Writes in the future
     // https://www.prisma.io/docs/concepts/components/prisma-client/relation-queries#nested-writes
-  }
-
-  async function handleArticleDelete(id) {
-    setArticles(articles.filter((article) => article.id !== id))
-    await invoke(deleteArticleMutation, id)
   }
 
   function handleArticleNotFound() {
@@ -113,7 +94,9 @@ export default function EnterDOI() {
           Add Article
         </button>
       </div>
-      {isOpen && <Popup content={<PopupDuplicateArticle />} handleClose={togglePopup} />}
+      <Dialog open={isOpen} onClose={handleClose}>
+        <PopupDuplicateArticle handleClose={handleClose} />
+      </Dialog>
     </div>
   )
 }
