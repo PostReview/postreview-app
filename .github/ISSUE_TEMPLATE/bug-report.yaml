@@ -25,6 +25,15 @@ body:
       placeholder: You can upload screenshot or screen recording here.
     validations:
       required: true
+  - type: textarea
+  id: steps-to-reproduce
+  attributes:
+    label: Steps to reproduce
+    description: How can we reproduce the issue?
+    placeholder: |
+        1. XXXXX
+        2. XXXXX
+        3. XXXXX
   - type: dropdown
     id: browsers
     attributes:
