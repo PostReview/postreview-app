@@ -26,11 +26,11 @@ body:
     validations:
       required: true
   - type: textarea
-  id: steps-to-reproduce
-  attributes:
-    label: Steps to reproduce
-    description: How can we reproduce the issue?
-    placeholder: |
+    id: steps-to-reproduce
+    attributes:
+      label: Steps to reproduce
+      description: How can we reproduce the issue?
+      placeholder: |
         1. XXXXX
         2. XXXXX
         3. XXXXX
