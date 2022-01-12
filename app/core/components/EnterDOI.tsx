@@ -1,27 +1,16 @@
 import React, { useState } from "react"
-import { invoke, useMutation } from "blitz"
+import { invoke, useMutation, useRouter } from "blitz"
 import addArticle from "../../mutations/addArticle"
-import isArticlePresent from "../../queries/isArticlePresent"
-import PopupDuplicateArticle from "../components/PopupDuplicateArticle"
+import getArticleByDoi from "../../queries/getArticleByDoi"
 import axios from "axios"
 import { useCurrentUser } from "app/core/hooks/useCurrentUser"
 
 import { v4 as uuidv4 } from "uuid"
-import { Dialog } from "@mui/material"
 
 export default function EnterDOI() {
   const currentUser = useCurrentUser()
   const defaultDoi = "10.3390/publications7020040"
   const [doi, setDoi] = useState(defaultDoi)
-  // Popup
-  const [isOpen, setIsOpen] = useState(false)
-  const handleClickOpen = () => {
-    setIsOpen(true)
-  }
-  const handleClose = () => {
-    setIsOpen(false)
-  }
-
   const [addArticleMutation] = useMutation(addArticle)
 
   async function getArticleMetadata() {
@@ -58,13 +47,14 @@ export default function EnterDOI() {
     return newArticle
   }
 
+  const router = useRouter()
   async function handleArticleAdd() {
     const newArticleMetadata = await getArticleMetadata()
     if (!newArticleMetadata) return null
     const newArticle = await parseArticleMetadata(newArticleMetadata)
     // Is article already in the database?
-    const alreadyInDb = await invoke(isArticlePresent, newArticle.doi)
-    if (alreadyInDb) return handleClickOpen()
+    const existingArticle = await invoke(getArticleByDoi, newArticle.doi)
+    if (existingArticle) return router.push("articles/" + existingArticle.id)
     // push to database
     await invoke(addArticleMutation, { ...newArticle })
     window.location.reload()
@@ -94,9 +84,6 @@ export default function EnterDOI() {
           Add Article
         </button>
       </div>
-      <Dialog open={isOpen} onClose={handleClose}>
-        <PopupDuplicateArticle handleClose={handleClose} />
-      </Dialog>
     </div>
   )
 }
