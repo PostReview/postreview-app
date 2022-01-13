@@ -60,9 +60,11 @@ representative at an online or offline event.
 ## Enforcement
 
 Instances of abusive, harassing, or otherwise unacceptable behavior may be
-reported to the community leaders responsible for enforcement at
-[coglebed@gmail.com; see also the entire team: https://postreview.org/about/].
+reported to the community leaders responsible for enforcement (listed below).
 All complaints will be reviewed and investigated promptly and fairly.
+
+- Naoyuki Sunami (naoyuki.sunami@gmail.com)
+- Anton Lebed (coglebed@gmail.com)
 
 All community leaders are obligated to respect the privacy and security of the
 reporter of any incident.
