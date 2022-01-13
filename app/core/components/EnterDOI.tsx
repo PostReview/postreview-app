@@ -6,6 +6,8 @@ import axios from "axios"
 import { useCurrentUser } from "app/core/hooks/useCurrentUser"
 
 import { v4 as uuidv4 } from "uuid"
+import { Input, InputAdornment } from "@mui/material"
+import { Search } from "@mui/icons-material"
 
 export default function EnterDOI() {
   const currentUser = useCurrentUser()
@@ -68,15 +70,17 @@ export default function EnterDOI() {
 
   return (
     <div>
-      <div className="m-1 p-6 bg-green-50 rounded-md">
-        <input
+      <div className="m-1 p-6 rounded-md">
+        <Input
           placeholder="Enter DOI"
-          className="border border-transparent focus:outline-none focus:ring-2 rounded-md shadow-md w-60"
-          type="text"
-          name="doi"
           value={doi}
           onChange={(e) => setDoi(e.target.value)}
-        ></input>
+          startAdornment={
+            <InputAdornment position="start">
+              <Search />
+            </InputAdornment>
+          }
+        ></Input>
         <button
           className="bg-yellow-500 hover:bg-yellow-600 mx-2 px-2 border rounded-md"
           onClick={handleArticleAdd}
