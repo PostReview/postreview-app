@@ -61,7 +61,7 @@ representative at an online or offline event.
 
 Instances of abusive, harassing, or otherwise unacceptable behavior may be
 reported to the community leaders responsible for enforcement at
-[INSERT CONTACT METHOD].
+[coglebed@gmail.com; see also the entire team: https://postreview.org/about/].
 All complaints will be reviewed and investigated promptly and fairly.
 
 All community leaders are obligated to respect the privacy and security of the
@@ -112,6 +112,8 @@ individual, or aggression toward or disparagement of classes of individuals.
 
 **Consequence**: A permanent ban from any sort of public interaction within the
 community.
+
+## [ADD reporting procedure, report reviewing protocol, appeal procedure]
 
 ## Attribution
 
