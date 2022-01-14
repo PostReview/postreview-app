@@ -1,7 +1,6 @@
 import React from "react"
-import { SearchBar } from "./SearchBar"
 import { HeaderUserButton } from "./HeaderUserButton"
-import { Button } from "@mui/material"
+import EnterDOI from "./EnterDOI"
 
 export default function Header() {
   return (
@@ -11,12 +10,9 @@ export default function Header() {
           <a href="/">PostReview</a>
         </div>
         <div id="search-bar-container" className="flex flex-grow justify-end">
-          <SearchBar />
+          <EnterDOI />
         </div>
-        <div id="buttons-container" className="mx-4 flex flex-row">
-          <Button id="add-paper-button" variant="contained" className="mx-6">
-            Rate a paper
-          </Button>
+        <div id="buttons-container" className="mr-4 flex flex-row">
           <HeaderUserButton />
         </div>
       </header>
