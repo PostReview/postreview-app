@@ -16,6 +16,7 @@ export default function EnterDOI() {
   const [addArticleMutation] = useMutation(addArticle)
 
   async function getArticleMetadata() {
+    if (!doi) return handleArticleNotFound()
     try {
       const doiURL = "https://api.crossref.org/works/" + doi
       const response = await axios.get(doiURL)
@@ -56,7 +57,7 @@ export default function EnterDOI() {
     const newArticle = await parseArticleMetadata(newArticleMetadata)
     // Is article already in the database?
     const existingArticle = await invoke(getArticleByDoi, newArticle.doi)
-    if (existingArticle) return router.push("articles/" + existingArticle.id)
+    if (existingArticle) return router.push("/articles/" + existingArticle.id)
     // push to database
     await invoke(addArticleMutation, { ...newArticle })
     window.location.reload()
@@ -69,9 +70,10 @@ export default function EnterDOI() {
   }
 
   return (
-    <div>
-      <div className="m-1 p-6 rounded-md">
+    <div className="m-1 rounded-md flex flex-row items-center min-w-full justify-end">
+      <div className="w-2/5">
         <Input
+          fullWidth={true}
           placeholder="Enter DOI"
           value={doi}
           onChange={(e) => setDoi(e.target.value)}
@@ -81,13 +83,13 @@ export default function EnterDOI() {
             </InputAdornment>
           }
         ></Input>
-        <button
-          className="bg-yellow-500 hover:bg-yellow-600 mx-2 px-2 border rounded-md"
-          onClick={handleArticleAdd}
-        >
-          Add Article
-        </button>
       </div>
+      <button
+        className="bg-indigo-500 hover:bg-indigo-700 text-white mx-2 p-2 px-3 border rounded-md"
+        onClick={handleArticleAdd}
+      >
+        Rate a Paper
+      </button>
     </div>
   )
 }
