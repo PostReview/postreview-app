@@ -8,7 +8,8 @@ export default function ArticleList() {
 
   if (!defaultArticles) return null
   return (
-    <div>
+    <div className="mt-10">
+      <h1 className="text-xl">Trending Papers</h1>
       {defaultArticles?.map((article) => {
         return (
           <Suspense fallback="loading" key={article.id}>
