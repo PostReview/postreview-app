@@ -1,39 +1,22 @@
-import React, { useEffect, useState, createContext } from "react"
-import { useQuery, invoke, useMutation } from "blitz"
+import React, { useState } from "react"
+import { invoke, useMutation, useRouter } from "blitz"
 import addArticle from "../../mutations/addArticle"
-import deleteArticle from "../../mutations/deleteArticle"
-import getArticles from "../../queries/getArticles"
-import isArticlePresent from "../../queries/isArticlePresent"
-import PopupDuplicateArticle from "../components/PopupDuplicateArticle"
+import getArticleByDoi from "../../queries/getArticleByDoi"
 import axios from "axios"
 import { useCurrentUser } from "app/core/hooks/useCurrentUser"
 
 import { v4 as uuidv4 } from "uuid"
-import Popup from "./Popup"
-
-export const ArticleContext = createContext([] as any)
+import { Input, InputAdornment } from "@mui/material"
+import { Search } from "@mui/icons-material"
 
 export default function EnterDOI() {
   const currentUser = useCurrentUser()
   const defaultDoi = "10.3390/publications7020040"
   const [doi, setDoi] = useState(defaultDoi)
-  const [articles, setArticles] = useState([] as any)
-  // Popup
-  const [isOpen, setIsOpen] = useState(false)
-  const togglePopup = () => {
-    setIsOpen(!isOpen)
-  }
-  const [defaultArticles] = useQuery(getArticles, undefined)
-
   const [addArticleMutation] = useMutation(addArticle)
-  const [deleteArticleMutation] = useMutation(deleteArticle)
-
-  // Get the database data when the page is loaded
-  useEffect(() => {
-    setArticles(defaultArticles)
-  }, [])
 
   async function getArticleMetadata() {
+    if (!doi) return handleArticleNotFound()
     try {
       const doiURL = "https://api.crossref.org/works/" + doi
       const response = await axios.get(doiURL)
@@ -67,28 +50,19 @@ export default function EnterDOI() {
     return newArticle
   }
 
+  const router = useRouter()
   async function handleArticleAdd() {
     const newArticleMetadata = await getArticleMetadata()
     if (!newArticleMetadata) return null
-
     const newArticle = await parseArticleMetadata(newArticleMetadata)
     // Is article already in the database?
-    const alreadyInDb = await invoke(isArticlePresent, newArticle.doi)
-    if (alreadyInDb) return togglePopup()
+    const existingArticle = await invoke(getArticleByDoi, newArticle.doi)
+    if (existingArticle) return router.push("/articles/" + existingArticle.id)
     // push to database
     await invoke(addArticleMutation, { ...newArticle })
     window.location.reload()
-
-    // read from database
-    // setArticles([newArticle, ...articles])
-
     // add authors - implement with Nested Writes in the future
     // https://www.prisma.io/docs/concepts/components/prisma-client/relation-queries#nested-writes
-  }
-
-  async function handleArticleDelete(id) {
-    setArticles(articles.filter((article) => article.id !== id))
-    await invoke(deleteArticleMutation, id)
   }
 
   function handleArticleNotFound() {
@@ -96,24 +70,26 @@ export default function EnterDOI() {
   }
 
   return (
-    <div>
-      <div className="m-1 p-6 bg-green-50 rounded-md">
-        <input
+    <div className="m-1 rounded-md flex flex-row items-center min-w-full justify-end">
+      <div className="w-2/5">
+        <Input
+          fullWidth={true}
           placeholder="Enter DOI"
-          className="border border-transparent focus:outline-none focus:ring-2 rounded-md shadow-md w-60"
-          type="text"
-          name="doi"
           value={doi}
           onChange={(e) => setDoi(e.target.value)}
-        ></input>
-        <button
-          className="bg-yellow-500 hover:bg-yellow-600 mx-2 px-2 border rounded-md"
-          onClick={handleArticleAdd}
-        >
-          Add Article
-        </button>
+          startAdornment={
+            <InputAdornment position="start">
+              <Search />
+            </InputAdornment>
+          }
+        ></Input>
       </div>
-      {isOpen && <Popup content={<PopupDuplicateArticle />} handleClose={togglePopup} />}
+      <button
+        className="bg-indigo-500 hover:bg-indigo-700 text-white mx-2 p-2 px-3 border rounded-md"
+        onClick={handleArticleAdd}
+      >
+        Rate a Paper
+      </button>
     </div>
   )
 }

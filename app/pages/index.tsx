@@ -31,11 +31,20 @@ const UserInfo = () => {
   if (currentUser) {
     return (
       <>
-        <EnterDOI />
+        <ArticleList />
       </>
     )
   } else {
-    return <></>
+    return (
+      <>
+        <Hero />
+        <Features />
+        <HowItWorks />
+        <SignUpButton />
+        <Visions />
+        <ArticleList />
+      </>
+    )
   }
 }
 
@@ -46,21 +55,9 @@ const Home: BlitzPage = () => {
         <Header />
       </Suspense>
       <main className="flex-grow flex flex-col items-center">
-        <Hero />
-        <Features />
-        <HowItWorks />
-        <SignUpButton />
-        <Visions />
         <Suspense fallback="Loading...">
-          <ArticleList />
+          <UserInfo />
         </Suspense>
-        <div>
-          <div className="mx-2">
-            <Suspense fallback="Loading...">
-              <UserInfo />
-            </Suspense>
-          </div>
-        </div>
       </main>
       <Footer />
     </div>
