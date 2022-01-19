@@ -6,15 +6,7 @@ import Button from "@mui/material/Button"
 import { useCurrentUser } from "../hooks/useCurrentUser"
 import addReview from "app/mutations/addReview"
 import getReviewAnswersByArticleAndUserIds from "app/queries/getReviewAnswersByArticleAndUserIds"
-import {
-  DialogActions,
-  DialogContent,
-  DialogTitle,
-  FormControlLabel,
-  FormGroup,
-  Switch,
-  Tooltip,
-} from "@mui/material"
+import { DialogActions, DialogContent, DialogTitle, Switch, Tooltip } from "@mui/material"
 import HelpOutlineIcon from "@mui/icons-material/HelpOutline"
 
 export default function PopupReview(prop) {
