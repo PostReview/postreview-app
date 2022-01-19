@@ -3,18 +3,11 @@ import getReviewQuestions from "app/queries/getReviewQuestions"
 import React, { useState } from "react"
 import { ReviewQuestion } from "./ReviewQuestion"
 import Button from "@mui/material/Button"
+import LoadingButton from "@mui/lab/LoadingButton"
 import { useCurrentUser } from "../hooks/useCurrentUser"
 import addReview from "app/mutations/addReview"
 import getReviewAnswersByArticleAndUserIds from "app/queries/getReviewAnswersByArticleAndUserIds"
-import {
-  DialogActions,
-  DialogContent,
-  DialogTitle,
-  FormControlLabel,
-  FormGroup,
-  Switch,
-  Tooltip,
-} from "@mui/material"
+import { DialogActions, DialogContent, DialogTitle, Switch, Tooltip } from "@mui/material"
 import HelpOutlineIcon from "@mui/icons-material/HelpOutline"
 
 export default function PopupReview(prop) {
@@ -47,16 +40,15 @@ export default function PopupReview(prop) {
   }
   const [addReviewMutation] = useMutation(addReview)
   const handleReviewSubmit = async () => {
+    setLoading(true)
     await invoke(addReviewMutation, [...reviewAnswersToDb])
-    handleClose()
     setUserHasReview(true)
     window.location.reload()
   }
   const reviewAnswersToDb = reviewAnswers.map((answer) =>
     Object.assign(answer, { isAnonymous: isAnonymous })
   )
-  console.log(reviewAnswersToDb)
-  console.log(isAnonymous)
+  const [loading, setLoading] = useState(false)
   return (
     <>
       <DialogTitle>
@@ -93,9 +85,9 @@ export default function PopupReview(prop) {
           Cancel
         </Button>
         {/* Need "Are you sure?" Confirmation */}
-        <Button variant="contained" onClick={handleReviewSubmit}>
+        <LoadingButton loading={loading} variant="contained" onClick={handleReviewSubmit}>
           Submit
-        </Button>
+        </LoadingButton>
       </DialogActions>
     </>
   )
