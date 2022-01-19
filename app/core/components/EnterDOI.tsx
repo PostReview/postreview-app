@@ -59,8 +59,9 @@ export default function EnterDOI() {
     const existingArticle = await invoke(getArticleByDoi, newArticle.doi)
     if (existingArticle) return router.push("/articles/" + existingArticle.id)
     // push to database
-    await invoke(addArticleMutation, { ...newArticle })
-    window.location.reload()
+    const addedArticle = await invoke(addArticleMutation, { ...newArticle })
+    // go to the added article
+    router.push(`/articles/${addedArticle.id}`)
     // add authors - implement with Nested Writes in the future
     // https://www.prisma.io/docs/concepts/components/prisma-client/relation-queries#nested-writes
   }
