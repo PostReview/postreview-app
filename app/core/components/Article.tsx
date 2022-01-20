@@ -42,7 +42,9 @@ export default function Article(props) {
             <div className="article__DOI ml-2 text-gray-700">
               <a rel="noreferrer" target="_blank">
                 <FaBook className="inline mr-2" />
-                {doi}
+                <a href={`https://dx.doi.org/${doi}`} rel="noreferrer" target="_blank">
+                  {doi}
+                </a>
               </a>
             </div>
           </div>
