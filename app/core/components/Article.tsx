@@ -8,7 +8,7 @@ import getArticleScoresById from "app/queries/getArticleScoresById"
 import getQuestionCategories from "app/queries/getQuestionCategories"
 
 export default function Article(props) {
-  const { id, authorString, doi, title, disabled, usersWithReview } = props
+  const { id, authorString, doi, title } = props
 
   const [articleScores] = useQuery(getArticleScoresById, {
     articleId: id,
