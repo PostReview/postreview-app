@@ -11,7 +11,7 @@ export default function Article(props) {
   const { id, authorString, doi, title, disabled, usersWithReview } = props
 
   const [articleScores] = useQuery(getArticleScoresById, {
-    currentArticleId: id,
+    articleId: id,
   })
 
   const [questionCategories] = useQuery(getQuestionCategories, undefined)
