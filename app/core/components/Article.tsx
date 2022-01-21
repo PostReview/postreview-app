@@ -8,10 +8,10 @@ import getArticleScoresById from "app/queries/getArticleScoresById"
 import getQuestionCategories from "app/queries/getQuestionCategories"
 
 export default function Article(props) {
-  const { id, authorString, doi, title, disabled, usersWithReview } = props
+  const { id, authorString, doi, title } = props
 
   const [articleScores] = useQuery(getArticleScoresById, {
-    currentArticleId: id,
+    articleId: id,
   })
 
   const [questionCategories] = useQuery(getQuestionCategories, undefined)
@@ -39,10 +39,12 @@ export default function Article(props) {
               <FaUser className="inline mr-2" />
               {authorString}
             </div>
-            <div className="article__DOI ml-2 text-gray-700">
+            <div className="article__DOI ml-2 text-gray-700 whitespace-nowrap">
               <a rel="noreferrer" target="_blank">
                 <FaBook className="inline mr-2" />
-                {doi}
+                <a href={`https://dx.doi.org/${doi}`} rel="noreferrer" target="_blank">
+                  {doi}
+                </a>
               </a>
             </div>
           </div>
