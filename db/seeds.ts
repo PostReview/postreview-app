@@ -1,7 +1,5 @@
 import db from "./index"
-import { reviewAnswers } from "./reviewAnswers"
 import { reviewQuestions } from "./reviewQuestions"
-import { users } from "./users"
 
 /*
  * This seed function is executed when you run `blitz db seed`.
