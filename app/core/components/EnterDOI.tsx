@@ -11,7 +11,7 @@ import { Search } from "@mui/icons-material"
 
 export default function EnterDOI() {
   const currentUser = useCurrentUser()
-  const defaultDoi = "10.3390/publications7020040"
+  const defaultDoi = ""
   const [doi, setDoi] = useState(defaultDoi)
   const [addArticleMutation] = useMutation(addArticle)
 

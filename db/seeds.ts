@@ -61,6 +61,7 @@ const seed = async () => {
         maxLabel: "Completely",
       },
     ],
+    skipDuplicates: true,
   })
 
   // Seed users
