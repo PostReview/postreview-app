@@ -34,7 +34,10 @@ export const MyReviewsTable = (props) => {
               <div className="text-sm text-gray-500">{article.doi}</div>
             </div>
             <div id="review-metadata" className="text-xs">
-              <div id="submitter">Submitted by: {currentUser.name}</div>
+              <div id="submitter">
+                Submitted by:{" "}
+                {currentUser.displayName ? currentUser.displayName : currentUser.handle}
+              </div>
               <div id="submitted-on">
                 Submitted: {article.review[0]?.createdAt.toISOString().split("T")[0]}
               </div>

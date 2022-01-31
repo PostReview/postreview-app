@@ -6,13 +6,11 @@ export default async function getReviewAnswersByUserId(props) {
     where: {
       review: {
         some: {},
-        every: {
-          userId: currentUserId,
-        },
       },
     },
     include: {
       review: {
+        where: { userId: currentUserId },
         include: {
           question: true,
         },

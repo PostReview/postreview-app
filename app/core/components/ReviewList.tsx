@@ -1,14 +1,14 @@
 import React from "react"
 import { useQuery } from "blitz"
 import { useCurrentUser } from "../hooks/useCurrentUser"
-import getReviewAnswers from "app/queries/getReviewAnswers"
+import getUssersWithReviewsByArticleId from "app/queries/getUsersWithReviewsByArticleId"
 import { Review } from "./Review"
 
 export const ReviewList = (prop) => {
   const { article } = prop
   const currentUser = useCurrentUser()
 
-  const [usersWithReview] = useQuery(getReviewAnswers, {
+  const [usersWithReview] = useQuery(getUssersWithReviewsByArticleId, {
     currentArticleId: article?.id,
   })
 
