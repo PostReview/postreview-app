@@ -14,7 +14,7 @@ import {
 import { Box } from "@mui/system"
 import Header from "app/core/components/Header"
 import { useCurrentUser } from "app/core/hooks/useCurrentUser"
-import getArticleWithReviewByUserId from "app/queries/getReviewAnswersByUserId"
+import getReviewAnswersByUserId from "app/queries/getReviewAnswersByUserId"
 import { Suspense, useState } from "react"
 import { MyReviewsTable } from "app/core/components/MyReviewsTable"
 import { MyReviewsEmptyState } from "app/core/components/MyReviewsEmptyState"
@@ -24,7 +24,7 @@ import logout from "app/auth/mutations/logout"
 
 const Profile = () => {
   const currentUser = useCurrentUser()
-  const [articleWithReview] = useQuery(getArticleWithReviewByUserId, currentUser?.id)
+  const [articleWithReview] = useQuery(getReviewAnswersByUserId, { currentUserId: currentUser?.id })
   const [handleDisabled, setHandleDisabled] = useState(true)
   const [isDeactivateAccountDialogOpen, setIsDeactivateAccountDialogOpen] = useState(false)
   const changeHandle = () => {
