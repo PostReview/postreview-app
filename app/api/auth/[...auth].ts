@@ -16,7 +16,9 @@ export default passportAuth({
             process.env.NODE_ENV === "production"
               ? // deployment target
                 "https://postreview-app.herokuapp.com/api/auth/google/callback"
-              : process.env.GOOGLE_CALLBACK_URL,
+              : process.env.GOOGLE_CALLBACK_URL
+              ? process.env.GOOGLE_CALLBACK_URL
+              : `https://${process.env.HEROKU_APP_NAME}.herokuapp.com/api/auth/google/callback`,
           scope: ["email", "profile"],
         },
         async function (_token, _tokenSecret, profile, done) {
