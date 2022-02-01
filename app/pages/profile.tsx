@@ -24,7 +24,9 @@ import logout from "app/auth/mutations/logout"
 
 const Profile = () => {
   const currentUser = useCurrentUser()
-  const [articleWithReview] = useQuery(getReviewAnswersByUserId, { currentUserId: currentUser?.id })
+  const [myArticlesWithReview] = useQuery(getReviewAnswersByUserId, {
+    currentUserId: currentUser?.id,
+  })
   const [handleDisabled, setHandleDisabled] = useState(true)
   const [isDeactivateAccountDialogOpen, setIsDeactivateAccountDialogOpen] = useState(false)
   const changeHandle = () => {
@@ -111,8 +113,8 @@ const Profile = () => {
         <div id="my-reviews-container" className="m-3">
           <h1 className="text-3xl">Reviews You Posted</h1>
           <div className="m-6">
-            {articleWithReview.length === 0 && <MyReviewsEmptyState />}
-            <MyReviewsTable articleWithReview={articleWithReview} currentUser={currentUser} />
+            {myArticlesWithReview.length === 0 && <MyReviewsEmptyState />}
+            <MyReviewsTable articleWithReview={myArticlesWithReview} currentUser={currentUser} />
           </div>
         </div>
         <div>

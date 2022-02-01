@@ -5,7 +5,7 @@ export default async function getReviewAnswersByUserId(props) {
   return await db.article.findMany({
     where: {
       review: {
-        some: {},
+        some: { userId: currentUserId },
       },
     },
     include: {
