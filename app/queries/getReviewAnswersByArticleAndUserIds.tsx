@@ -4,7 +4,7 @@ export default async function getReviewAnswersByArticleAndUserIds(props) {
   const { currentArticleId, currentUserId } = props
   return await db.reviewAnswers.findMany({
     where: {
-      id: currentUserId,
+      userId: currentUserId,
       articleId: currentArticleId,
     },
   })
