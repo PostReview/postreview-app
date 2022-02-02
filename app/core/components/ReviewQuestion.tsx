@@ -3,7 +3,7 @@ import Rating from "@mui/material/Rating"
 import { useCurrentUser } from "../hooks/useCurrentUser"
 
 export const ReviewQuestion = (props) => {
-  const { article, question, onReviewUpdate, reviewAnswers } = props
+  const { article, question, onReviewUpdate, reviewAnswers, setIsChangeMade } = props
   const currentUser = useCurrentUser()
   const handleRatingChange = (questionId, newValue) => {
     const newData = {
@@ -48,6 +48,7 @@ export const ReviewQuestion = (props) => {
             max={question.maxValue}
             onChange={(event, newValue) => {
               handleRatingChange(question.questionId, newValue)
+              setIsChangeMade(true)
             }}
             value={currentAnswer?.response}
           />
