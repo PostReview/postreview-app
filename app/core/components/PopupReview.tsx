@@ -41,7 +41,7 @@ export default function PopupReview(prop) {
   const [addReviewMutation] = useMutation(addReview)
   const handleReviewSubmit = async () => {
     setLoading(true)
-    await invoke(addReviewMutation, [...reviewAnswersToDb])
+    await invoke(addReviewMutation, reviewAnswersToDb)
     setUserHasReview(true)
     window.location.reload()
   }

@@ -49,7 +49,7 @@ export const ReviewQuestion = (props) => {
             onChange={(event, newValue) => {
               handleRatingChange(question.questionId, newValue)
             }}
-            value={currentAnswer.response}
+            value={currentAnswer?.response}
           />
         </div>
         <div
