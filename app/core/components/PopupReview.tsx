@@ -68,6 +68,7 @@ export default function PopupReview(prop) {
                 key={question?.questionId}
                 question={question}
                 onReviewUpdate={updateRating}
+                reviewAnswers={reviewAnswers}
               />
             )
           })}
