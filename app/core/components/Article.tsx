@@ -3,6 +3,7 @@ import { FaBook, FaUser } from "react-icons/fa"
 import { Link } from "next/link"
 import { Rating } from "@mui/material"
 import Chip from "@mui/material/Chip"
+import StarIcon from "@mui/icons-material/Star"
 import { useQuery } from "blitz"
 import getArticleScoresById from "app/queries/getArticleScoresById"
 import getQuestionCategories from "app/queries/getQuestionCategories"
@@ -57,14 +58,15 @@ export default function Article(props) {
         <div id="total" className="px-3 border-r-2 text-center">
           <div id="total-rating">
             <Rating
-              disabled
+              readOnly
               defaultValue={totalRating / 5}
               precision={0.1}
               max={1}
               sx={{
                 fontSize: 100,
-                color: "red",
+                color: "#FF5733",
               }}
+              emptyIcon={<StarIcon style={{ opacity: 0.55 }} fontSize="inherit" />}
             />
           </div>
           Total
@@ -72,13 +74,15 @@ export default function Article(props) {
         {articleScores.map((score) => (
           <div key={score.questionId} className="text-center">
             <Rating
-              disabled
+              readOnly
               defaultValue={score._avg.response! / 5}
               precision={0.1}
               max={1}
               sx={{
                 fontSize: 100,
+                color: "#FFC300",
               }}
+              emptyIcon={<StarIcon style={{ opacity: 0.55 }} fontSize="inherit" />}
             />
             <div>
               {
