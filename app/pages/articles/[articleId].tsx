@@ -24,7 +24,9 @@ const ArticleDetails = () => {
   const openReviewDialog = () => {
     setIsReviewDialogOpen(true)
   }
+  const [isChangeMade, setIsChangeMade] = useState(false)
   const closeReviewDialog = () => {
+    if (!isChangeMade) return setIsReviewDialogOpen(false)
     setIsConfirmDialogOpen(true)
   }
   const handleConfirmDiscard = () => {
@@ -67,6 +69,7 @@ const ArticleDetails = () => {
             article={article}
             handleClose={closeReviewDialog}
             setUserHasReview={setUserHasReview}
+            setIsChangeMade={setIsChangeMade}
           />
         </Dialog>
         <Dialog open={isConfirmDialogOpen} onClose={closeConfirmDialog}>

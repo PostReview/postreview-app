@@ -1,10 +1,9 @@
 import React from "react"
-import Button from "@mui/material/Button"
 import Rating from "@mui/material/Rating"
 import { useCurrentUser } from "../hooks/useCurrentUser"
 
 export const ReviewQuestion = (props) => {
-  const { article, question, onReviewUpdate } = props
+  const { article, question, onReviewUpdate, reviewAnswers, setIsChangeMade } = props
   const currentUser = useCurrentUser()
   const handleRatingChange = (questionId, newValue) => {
     const newData = {
@@ -15,6 +14,8 @@ export const ReviewQuestion = (props) => {
     }
     onReviewUpdate(questionId, newData)
   }
+  const currentAnswer = reviewAnswers.find((answer) => answer.questionId == question.questionId)
+
   return (
     <div
       className="
@@ -47,7 +48,9 @@ export const ReviewQuestion = (props) => {
             max={question.maxValue}
             onChange={(event, newValue) => {
               handleRatingChange(question.questionId, newValue)
+              setIsChangeMade(true)
             }}
+            value={currentAnswer?.response}
           />
         </div>
         <div

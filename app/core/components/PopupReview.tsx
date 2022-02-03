@@ -11,7 +11,7 @@ import { DialogActions, DialogContent, DialogTitle, Switch, Tooltip } from "@mui
 import HelpOutlineIcon from "@mui/icons-material/HelpOutline"
 
 export default function PopupReview(prop) {
-  const { article, handleClose, setUserHasReview } = prop
+  const { article, handleClose, setUserHasReview, setIsChangeMade } = prop
   const [reviewQuestions] = useQuery(getReviewQuestions, undefined)
   const currentUser = useCurrentUser()
   const reviewAnswerQueryParams = {
@@ -29,8 +29,6 @@ export default function PopupReview(prop) {
     if (!isAnonymous) setIsAnonymous(true)
   }
 
-  const defaultUserHasReview = !!defaultReviewAnswers?.length
-
   const updateRating = (questionId, newRating) => {
     const newAnswers = [...reviewAnswers]
     const index = newAnswers.findIndex((r) => r?.questionId === questionId)
@@ -41,7 +39,7 @@ export default function PopupReview(prop) {
   const [addReviewMutation] = useMutation(addReview)
   const handleReviewSubmit = async () => {
     setLoading(true)
-    await invoke(addReviewMutation, [...reviewAnswersToDb])
+    await invoke(addReviewMutation, reviewAnswersToDb)
     setUserHasReview(true)
     window.location.reload()
   }
@@ -68,6 +66,8 @@ export default function PopupReview(prop) {
                 key={question?.questionId}
                 question={question}
                 onReviewUpdate={updateRating}
+                reviewAnswers={reviewAnswers}
+                setIsChangeMade={setIsChangeMade}
               />
             )
           })}

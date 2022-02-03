@@ -40,11 +40,9 @@ export default function Article(props) {
               {authorString}
             </div>
             <div className="article__DOI ml-2 text-gray-700 whitespace-nowrap">
-              <a rel="noreferrer" target="_blank">
+              <a href={`https://dx.doi.org/${doi}`} rel="noreferrer" target="_blank">
                 <FaBook className="inline mr-2" />
-                <a href={`https://dx.doi.org/${doi}`} rel="noreferrer" target="_blank">
-                  {doi}
-                </a>
+                {doi}
               </a>
             </div>
           </div>

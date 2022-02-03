@@ -19,7 +19,25 @@ export default async function addReview(input: z.infer<typeof AddReview>, ctx: C
   if (!ctx.session.userId) {
     throw new AuthorizationError()
   }
-  // update or create records
-  const review = await db.reviewAnswers.createMany({ data })
+  // Update records if existing, if not create records
+  const review = await db.$transaction(
+    data.map((latest) =>
+      db.reviewAnswers.upsert({
+        where: {
+          articleId_questionId_userId: {
+            articleId: latest.articleId,
+            questionId: latest.questionId,
+            userId: latest.userId,
+          },
+        },
+        update: {
+          response: latest.response,
+        },
+        create: {
+          ...latest,
+        },
+      })
+    )
+  )
   return review
 }
