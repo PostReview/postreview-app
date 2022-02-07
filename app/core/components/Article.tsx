@@ -55,41 +55,77 @@ export default function Article(props) {
       >
         <div id="total" className="px-3 border-r-2 text-center">
           <div id="total-rating">
-            <Rating
-              readOnly
-              defaultValue={totalRating / 5}
-              precision={0.1}
-              max={1}
-              sx={{
-                fontSize: 100,
-                color: "#FF5733",
-              }}
-              emptyIcon={<StarIcon style={{ opacity: 0.55 }} fontSize="inherit" />}
-            />
+            {ratingsCount === 0 ? ( // When no ratings, show a placeholder
+              <div className="flex items-center justify-center">
+                <div className="absolute text-gray-500 z-50">N/A</div>
+                <Rating
+                  readOnly
+                  value={0}
+                  precision={0.1}
+                  max={1}
+                  sx={{
+                    fontSize: 100,
+                    color: "#FF5733",
+                  }}
+                  emptyIcon={<StarIcon style={{ opacity: 0.2 }} fontSize="inherit" />}
+                />
+              </div>
+            ) : (
+              <Rating
+                readOnly
+                value={totalRating / 5}
+                precision={0.1}
+                max={1}
+                sx={{
+                  fontSize: 100,
+                  color: "#FF5733",
+                }}
+                emptyIcon={<StarIcon style={{ opacity: 0.55 }} fontSize="inherit" />}
+              />
+            )}
           </div>
           Total
         </div>
-        {articleScores.map((score) => (
-          <div key={score.questionId} className="text-center">
-            <Rating
-              readOnly
-              defaultValue={score._avg.response! / 5}
-              precision={0.1}
-              max={1}
-              sx={{
-                fontSize: 100,
-                color: "#FFC300",
-              }}
-              emptyIcon={<StarIcon style={{ opacity: 0.55 }} fontSize="inherit" />}
-            />
-            <div>
-              {
-                questionCategories.find((category) => category.questionId === score.questionId)
-                  ?.questionCategory
-              }
+        {questionCategories.map((category) =>
+          articleScores.find((score) => score.questionId === category.questionId)?._avg
+            .response! ? (
+            <div key={category.questionId} className="text-center">
+              <Rating
+                readOnly
+                value={
+                  articleScores.find((score) => score.questionId === category.questionId)?._avg
+                    .response! / 5
+                }
+                precision={0.1}
+                max={1}
+                sx={{
+                  fontSize: 100,
+                  color: "#FFC300",
+                }}
+                emptyIcon={<StarIcon style={{ opacity: 0.55 }} fontSize="inherit" />}
+              />
+              <div>{category.questionCategory}</div>
             </div>
-          </div>
-        ))}
+          ) : (
+            <div key={category.questionId} className="text-center">
+              <div className="flex items-center justify-center">
+                <div className="absolute text-gray-500 z-50">N/A</div>
+                <Rating
+                  readOnly
+                  value={0}
+                  precision={0.1}
+                  max={1}
+                  sx={{
+                    fontSize: 100,
+                    color: "#FF5733",
+                  }}
+                  emptyIcon={<StarIcon style={{ opacity: 0.2 }} fontSize="inherit" />}
+                />
+              </div>
+              <div>{category.questionCategory}</div>
+            </div>
+          )
+        )}
       </div>
     </div>
   )
