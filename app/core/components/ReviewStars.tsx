@@ -3,7 +3,9 @@ import { RatingTotal } from "./RatingTotal"
 import { ReviewCategoryAnswer } from "./ReviewCategoryAnswer"
 
 export const ReviewStars = (props) => {
-  const { ratingScaleMax, reviews, questionCategories } = props
+  const { reviews, questionCategories } = props
+  const ratingScaleMax = 5
+
   return (
     <div
       id="ratings-container"
@@ -25,14 +27,14 @@ export const ReviewStars = (props) => {
         return currentReview ? (
           <ReviewCategoryAnswer
             key={currentReview.id}
-            ratingScaleMax={5}
+            ratingScaleMax={category.maxValue}
             response={currentReview.response}
             questionCategory={currentReview.question.questionCategory}
           />
         ) : (
           <ReviewCategoryAnswer
             key={category.id}
-            ratingScaleMax={5}
+            ratingScaleMax={category.maxValue}
             norating
             questionCategory={category.questionCategory}
           />
