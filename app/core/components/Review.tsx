@@ -6,7 +6,6 @@ export const Review = (props) => {
   const { displayName, reviews, userIcon, questionCategories } = props
   const submittedAt = reviews[0]?.createdAt?.toISOString().split("T")[0]
   const updatedAt = reviews[0]?.updatedAt.toISOString().split("T")[0]
-  const ratingScaleMax = 5
   const isAnonymous = reviews[0]?.isAnonymous
   const submittedBy = isAnonymous ? "Anonymous" : displayName
   const submittedByIcon = userIcon
@@ -29,11 +28,7 @@ export const Review = (props) => {
         className="bg-gray-50 p-4 border-gray-600 border-2
           flex flex-col  max-w-5xl"
       >
-        <ReviewStars
-          ratingScaleMax={ratingScaleMax}
-          reviews={reviews}
-          questionCategories={questionCategories}
-        />
+        <ReviewStars reviews={reviews} questionCategories={questionCategories} />
       </div>
     </div>
   )
