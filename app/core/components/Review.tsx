@@ -4,7 +4,7 @@ import { RatingTotal } from "./RatingTotal"
 import { ReviewCategoryAnswer } from "./ReviewCategoryAnswer"
 
 export const Review = (props) => {
-  const { handle, displayName, reviews, userIcon } = props
+  const { displayName, reviews, userIcon, questionCategories } = props
   const submittedAt = reviews[0]?.createdAt?.toISOString().split("T")[0]
   const updatedAt = reviews[0]?.updatedAt.toISOString().split("T")[0]
   const ratingScaleMax = 5
@@ -47,14 +47,26 @@ export const Review = (props) => {
               />
             </div>
           </div>
-          {reviews.map((review) => (
-            <ReviewCategoryAnswer
-              key={review.id}
-              ratingScaleMax={5}
-              response={review.response}
-              questionCategory={review.question.questionCategory}
-            />
-          ))}
+          {questionCategories.map((category) => {
+            const currentReview = reviews.find(
+              (review) => review.questionId === category.questionId
+            )
+            return currentReview ? (
+              <ReviewCategoryAnswer
+                key={currentReview.id}
+                ratingScaleMax={5}
+                response={currentReview.response}
+                questionCategory={currentReview.question.questionCategory}
+              />
+            ) : (
+              <ReviewCategoryAnswer
+                key={category.id}
+                ratingScaleMax={5}
+                norating
+                questionCategory={category.questionCategory}
+              />
+            )
+          })}
         </div>
       </div>
     </div>
