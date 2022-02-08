@@ -26,14 +26,14 @@ export const ReviewStars = (props) => {
         const currentReview = reviews.find((review) => review.questionId === category.questionId)
         return currentReview ? (
           <ReviewCategoryAnswer
-            key={currentReview.id}
+            key={category.questionId}
             ratingScaleMax={category.maxValue}
             response={currentReview.response}
             questionCategory={currentReview.question.questionCategory}
           />
         ) : (
           <ReviewCategoryAnswer
-            key={category.id}
+            key={category.questionId}
             ratingScaleMax={category.maxValue}
             norating
             questionCategory={category.questionCategory}
