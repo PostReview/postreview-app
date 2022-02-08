@@ -7,7 +7,7 @@ export const ReviewCategoryAnswer = (props) => {
   return norating ? (
     <div className="m-2 text-center">
       {questionCategory}
-      <div id="rating" className="text-gray-500 font-semibold text-sm mb-1">
+      <div id="rating" className="text-gray-500 text-sm mb-1 mx-8">
         N/A
       </div>
     </div>
