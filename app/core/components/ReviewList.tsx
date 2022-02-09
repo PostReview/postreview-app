@@ -3,6 +3,7 @@ import { useQuery } from "blitz"
 import { useCurrentUser } from "../hooks/useCurrentUser"
 import getUssersWithReviewsByArticleId from "app/queries/getUsersWithReviewsByArticleId"
 import { Review } from "./Review"
+import getQuestionCategories from "app/queries/getQuestionCategories"
 
 export const ReviewList = (prop) => {
   const { article } = prop
@@ -11,6 +12,8 @@ export const ReviewList = (prop) => {
   const [usersWithReview] = useQuery(getUssersWithReviewsByArticleId, {
     currentArticleId: article?.id,
   })
+
+  const [questionCategories] = useQuery(getQuestionCategories, undefined)
 
   const currentUserReview = usersWithReview.find((user) => user.id == currentUser?.id)
   const currentUserHasReview = currentUserReview?.review.length
@@ -31,6 +34,7 @@ export const ReviewList = (prop) => {
                 handle={currentUserReview?.handle}
                 reviews={currentUserReview?.review}
                 userIcon={currentUserReview?.icon}
+                questionCategories={questionCategories}
               />
             ) : (
               <div className="m-20">Submit your review</div>
@@ -48,6 +52,7 @@ export const ReviewList = (prop) => {
                 displayName={user.handle}
                 handle={user.handle}
                 reviews={user.review}
+                questionCategories={questionCategories}
               />
             ))
           ) : (

@@ -1,10 +1,13 @@
 import { Rating } from "@mui/material"
 import React from "react"
 import { styled } from "@mui/material/styles"
+import { ReviewStars } from "./ReviewStars"
+import { useQuery } from "blitz"
+import getQuestionCategories from "app/queries/getQuestionCategories"
 
 export const MyReviewsTable = (props) => {
   const { articleWithReview, currentUser } = props
-  const ratingScaleMax = 5
+  const [questionCategories] = useQuery(getQuestionCategories, undefined)
 
   const RatingTotal = styled(Rating)({
     "& .MuiRating-iconFilled": {
@@ -50,28 +53,7 @@ export const MyReviewsTable = (props) => {
             id="ratings-container"
             className="flex lg:flex-row flex-col items-center justify-evenly text-xs mx-6"
           >
-            <div id="total" className="px-3 border-r-2 text-center">
-              Total
-              <div id="total-rating">
-                <RatingTotal
-                  size="small"
-                  readOnly
-                  max={ratingScaleMax}
-                  value={
-                    article.review.reduce((prev, current) => prev + current.response, 0) /
-                    article.review.length
-                  }
-                />
-              </div>
-            </div>
-            {article.review.map((answer) => (
-              <div key={answer.id} className="m-2 text-center">
-                {answer.question.questionCategory}
-                <div id="rating">
-                  <Rating size="small" readOnly max={ratingScaleMax} value={answer.response} />
-                </div>
-              </div>
-            ))}
+            <ReviewStars reviews={article.review} questionCategories={questionCategories} />
           </div>
         </div>
       ))}
