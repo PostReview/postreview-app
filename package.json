@@ -2,7 +2,7 @@
   "name": "postreview-app",
   "version": "1.0.0",
   "engines": {
-    "node": ">=16.0.0"
+    "node": "16.14.0"
   },
   "scripts": {
     "start:production": "blitz start --port $PORT",
