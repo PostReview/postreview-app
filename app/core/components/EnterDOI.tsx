@@ -33,7 +33,7 @@ export default function EnterDOI() {
       title: newArticleMetadata.title[0],
       doi: newArticleMetadata.DOI,
       publishedYear: newArticleMetadata.created["date-parts"][0][0],
-      journal: newArticleMetadata["short-container-title"][0],
+      journal: newArticleMetadata["container-title"][0],
       addedBy: currentUser?.handle,
       addedById: currentUser?.id,
       authorString: newArticleMetadata.author
@@ -55,6 +55,7 @@ export default function EnterDOI() {
     const newArticleMetadata = await getArticleMetadata()
     if (!newArticleMetadata) return null
     const newArticle = await parseArticleMetadata(newArticleMetadata)
+    console.log(newArticleMetadata)
     // Is article already in the database?
     const existingArticle = await invoke(getArticleByDoi, newArticle.doi)
     if (existingArticle) return router.push("/articles/" + existingArticle.id)
