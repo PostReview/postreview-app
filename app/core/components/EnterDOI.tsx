@@ -45,7 +45,8 @@ export default function EnterDOI() {
             return `${author.family}, ${author.given}; `
           }
         })
-        .toString(),
+        .toString()
+        .replace(/,/g, ""),
     }
     return newArticle
   }
