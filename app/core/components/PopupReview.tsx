@@ -9,6 +9,7 @@ import addReview from "app/mutations/addReview"
 import getReviewAnswersByArticleAndUserIds from "app/queries/getReviewAnswersByArticleAndUserIds"
 import { DialogActions, DialogContent, DialogTitle, Switch, Tooltip } from "@mui/material"
 import HelpOutlineIcon from "@mui/icons-material/HelpOutline"
+import { FaBook, FaUser } from "react-icons/fa"
 
 export default function PopupReview(prop) {
   const { article, handleClose, setUserHasReview, setIsChangeMade } = prop
@@ -54,8 +55,16 @@ export default function PopupReview(prop) {
       </DialogTitle>
       <DialogContent>
         <div id="title-container" className="text-center">
+          <strong>{article.title} </strong>
+          <div>
+            <FaUser className="inline mr-2 text-gray-700" /> {article.authorString} (
+            {article.publishedYear})
+          </div>
           <a href={`https://doi.org/${article.doi}`} target="_blank" rel="noreferrer">
-            <strong>{article.title} </strong>
+            <div className="text-violet-600">
+              <FaBook className="inline mr-2" />
+              {`https://doi.org/${article.doi}`}
+            </div>
           </a>
         </div>
         <div id="question-container" className="flex flex-col">
