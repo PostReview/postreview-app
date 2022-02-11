@@ -33,7 +33,7 @@ export default function EnterDOI() {
       title: newArticleMetadata.title[0],
       doi: newArticleMetadata.DOI,
       publishedYear: newArticleMetadata.created["date-parts"][0][0],
-      journal: newArticleMetadata["short-container-title"][0],
+      journal: newArticleMetadata["container-title"][0],
       addedBy: currentUser?.handle,
       addedById: currentUser?.id,
       authorString: newArticleMetadata.author
@@ -45,7 +45,7 @@ export default function EnterDOI() {
             return `${author.family}, ${author.given}; `
           }
         })
-        .toString(),
+        .join(""),
     }
     return newArticle
   }
