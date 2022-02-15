@@ -15,7 +15,7 @@ import { styled } from "@mui/material/styles"
 import { ReviewStars } from "./ReviewStars"
 import { invoke, useQuery, useRouter } from "blitz"
 import getQuestionCategories from "app/queries/getQuestionCategories"
-import { MoreHoriz } from "@mui/icons-material"
+import { MoreHoriz, VisibilityOff } from "@mui/icons-material"
 import deleteReview from "app/mutations/deleteReview"
 
 export const MyReviewsTable = (props) => {
@@ -61,7 +61,8 @@ export const MyReviewsTable = (props) => {
           className="bg-gray-50 m-6 p-4 border-gray-600 border-2
           flex flex-col  max-w-5xl"
         >
-          <div id="metadata-container" className="mx-4 flex flex-row justify-between">
+          <div id="metadata-container" className="mx-4 flex flex-row justify-between items-center">
+            {article.review[0].isAnonymous && <VisibilityOff />}
             <div id="article-metadata" className="m-2">
               <a href={`articles/${article.id}`}>
                 <h2 className="font-bold">{article.title}</h2>
@@ -114,7 +115,11 @@ export const MyReviewsTable = (props) => {
               <div id="review-metadata" className="text-xs">
                 <div id="submitter">
                   Submitted by:{" "}
-                  {currentUser.displayName ? currentUser.displayName : currentUser.handle}
+                  {article.review[0].isAnonymous
+                    ? "Anonymous"
+                    : currentUser.displayName
+                    ? currentUser.displayName
+                    : currentUser.handle}
                 </div>
                 <div id="submitted-on">
                   Submitted: {article.review[0]?.createdAt.toISOString().split("T")[0]}
