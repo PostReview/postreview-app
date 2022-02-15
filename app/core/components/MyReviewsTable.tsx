@@ -1,4 +1,15 @@
-import { IconButton, Menu, MenuItem, Rating } from "@mui/material"
+import {
+  Box,
+  Button,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogTitle,
+  IconButton,
+  Menu,
+  MenuItem,
+  Rating,
+} from "@mui/material"
 import React, { useState } from "react"
 import { styled } from "@mui/material/styles"
 import { ReviewStars } from "./ReviewStars"
@@ -33,6 +44,13 @@ export const MyReviewsTable = (props) => {
   const handleDeleteReview = async (currentArticleId) => {
     await invoke(deleteReview, currentArticleId)
     router.reload()
+  }
+  const [isDeleteReviewDialogOpen, setIsDeleteReviewDialogOpen] = useState(false)
+  const closeDeleteReviewDialog = () => {
+    setIsDeleteReviewDialogOpen(false)
+  }
+  const openDeleteReviewDialog = () => {
+    setIsDeleteReviewDialogOpen(true)
   }
 
   return (
@@ -69,8 +87,29 @@ export const MyReviewsTable = (props) => {
                 >
                   <MenuItem onClick={handleClose}>Edit</MenuItem>
                   <MenuItem onClick={handleClose}>Make Anonymous</MenuItem>
-                  <MenuItem onClick={() => handleDeleteReview(article.id)}>Delete</MenuItem>
+                  <MenuItem onClick={openDeleteReviewDialog}>Delete</MenuItem>
                 </Menu>
+                <Box>
+                  <Dialog open={isDeleteReviewDialogOpen} onClose={closeDeleteReviewDialog}>
+                    <DialogTitle id="deactivate-account">{"Deleting Your Review"}</DialogTitle>
+                    <DialogContent>
+                      Doing this will delete all of your submitted reviews for this article:{" "}
+                      <div className="font-bold">{article.title}</div>
+                    </DialogContent>
+                    <DialogActions>
+                      <Button onClick={closeDeleteReviewDialog} autoFocus>
+                        Cancel
+                      </Button>
+                      <Button
+                        variant="contained"
+                        color="error"
+                        onClick={() => handleDeleteReview(article.id)}
+                      >
+                        Delete My Reviews
+                      </Button>
+                    </DialogActions>
+                  </Dialog>
+                </Box>
               </div>
               <div id="review-metadata" className="text-xs">
                 <div id="submitter">
