@@ -117,17 +117,18 @@ const Profile = () => {
             <MyReviewsTable articleWithReview={myArticlesWithReview} currentUser={currentUser} />
           </div>
         </div>
-        <div>
-          <div id="public-view-container" className="m-2 text-blue-500 font-semibold">
+        <div className="m-6">
+          <Button id="public-view-container" className="m-2 text-blue-500 font-semibold">
             <a href="#">Public profile view</a>
-          </div>
-          <div
+          </Button>
+          <Button
             id="delete-account"
             className="m-2 font-semibold hover:cursor-pointer text-red-400"
             onClick={openDeactivateAccountDialog}
+            color="error"
           >
             Deactivate your account
-          </div>
+          </Button>
           <Box>
             <Dialog open={isDeactivateAccountDialogOpen} onClose={closeDeactivateAccountDialog}>
               <DialogTitle id="deactivate-account">{"Deactivating Your Account"}</DialogTitle>
