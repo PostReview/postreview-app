@@ -1,9 +1,11 @@
-import { Rating } from "@mui/material"
-import React from "react"
+import { IconButton, Menu, MenuItem, Rating } from "@mui/material"
+import React, { useState } from "react"
 import { styled } from "@mui/material/styles"
 import { ReviewStars } from "./ReviewStars"
-import { useQuery } from "blitz"
+import { invoke, useQuery, useRouter } from "blitz"
 import getQuestionCategories from "app/queries/getQuestionCategories"
+import { MoreHoriz } from "@mui/icons-material"
+import deleteReview from "app/mutations/deleteReview"
 
 export const MyReviewsTable = (props) => {
   const { articleWithReview, currentUser } = props
@@ -17,6 +19,21 @@ export const MyReviewsTable = (props) => {
       color: "#ff3d47",
     },
   })
+
+  const [anchorEl, setAnchorEl] = useState(null)
+  const actionOpen = Boolean(anchorEl)
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget)
+  }
+  const handleClose = () => {
+    setAnchorEl(null)
+  }
+
+  const router = useRouter()
+  const handleDeleteReview = async (currentArticleId) => {
+    await invoke(deleteReview, currentArticleId)
+    router.reload()
+  }
 
   return (
     <>
@@ -36,16 +53,36 @@ export const MyReviewsTable = (props) => {
               </div>
               <div className="text-sm text-gray-500">{article.doi}</div>
             </div>
-            <div id="review-metadata" className="text-xs">
-              <div id="submitter">
-                Submitted by:{" "}
-                {currentUser.displayName ? currentUser.displayName : currentUser.handle}
+            <div className="flex flex-col">
+              <div id="action-menu" className="self-end text-gray-500">
+                <IconButton onClick={handleClick}>
+                  <MoreHoriz />
+                </IconButton>
+                <Menu
+                  id="action-menu"
+                  anchorEl={anchorEl}
+                  open={actionOpen}
+                  onClose={handleClose}
+                  MenuListProps={{
+                    "aria-labelledby": "basic-button",
+                  }}
+                >
+                  <MenuItem onClick={handleClose}>Edit</MenuItem>
+                  <MenuItem onClick={handleClose}>Make Anonymous</MenuItem>
+                  <MenuItem onClick={() => handleDeleteReview(article.id)}>Delete</MenuItem>
+                </Menu>
               </div>
-              <div id="submitted-on">
-                Submitted: {article.review[0]?.createdAt.toISOString().split("T")[0]}
-              </div>
-              <div id="last-updated-on">
-                Last updated: {article.review[0]?.updatedAt.toISOString().split("T")[0]}
+              <div id="review-metadata" className="text-xs">
+                <div id="submitter">
+                  Submitted by:{" "}
+                  {currentUser.displayName ? currentUser.displayName : currentUser.handle}
+                </div>
+                <div id="submitted-on">
+                  Submitted: {article.review[0]?.createdAt.toISOString().split("T")[0]}
+                </div>
+                <div id="last-updated-on">
+                  Last updated: {article.review[0]?.updatedAt.toISOString().split("T")[0]}
+                </div>
               </div>
             </div>
           </div>
