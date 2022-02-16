@@ -32,6 +32,7 @@ export default async function addReview(input: z.infer<typeof AddReview>, ctx: C
         },
         update: {
           response: latest.response,
+          isAnonymous: latest.isAnonymous,
         },
         create: {
           ...latest,
