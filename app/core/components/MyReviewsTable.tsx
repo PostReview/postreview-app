@@ -17,6 +17,7 @@ import { invoke, useQuery, useRouter } from "blitz"
 import getQuestionCategories from "app/queries/getQuestionCategories"
 import { MoreHoriz, VisibilityOff } from "@mui/icons-material"
 import deleteReview from "app/mutations/deleteReview"
+import PopupReview from "app/core/components/PopupReview"
 
 export const MyReviewsTable = (props) => {
   const { articleWithReview, currentUser } = props
@@ -53,6 +54,17 @@ export const MyReviewsTable = (props) => {
     setIsDeleteReviewDialogOpen(true)
   }
 
+  const handleOpenReviewDialog = () => {
+    handleClose()
+    setIsReviewDialogOpen(true)
+  }
+  const [isReviewDialogOpen, setIsReviewDialogOpen] = useState(false)
+  const closeReviewDialog = () => {
+    setIsReviewDialogOpen(false)
+  }
+  const [userHasReview, setUserHasReview] = useState(true)
+  const [isChangeMade, setIsChangeMade] = useState(false)
+
   return (
     <>
       {articleWithReview.map((article) => (
@@ -86,10 +98,18 @@ export const MyReviewsTable = (props) => {
                     "aria-labelledby": "basic-button",
                   }}
                 >
-                  <MenuItem onClick={handleClose}>Edit</MenuItem>
-                  <MenuItem onClick={handleClose}>Make Anonymous</MenuItem>
+                  <MenuItem onClick={handleOpenReviewDialog}>Edit</MenuItem>
                   <MenuItem onClick={openDeleteReviewDialog}>Delete</MenuItem>
                 </Menu>
+                <Dialog open={isReviewDialogOpen} onClose={closeReviewDialog}>
+                  <PopupReview
+                    article={article}
+                    handleClose={closeReviewDialog}
+                    setUserHasReview={setUserHasReview}
+                    setIsChangeMade={setIsChangeMade}
+                  />
+                </Dialog>
+
                 <Box>
                   <Dialog open={isDeleteReviewDialogOpen} onClose={closeDeleteReviewDialog}>
                     <DialogTitle id="deactivate-account">{"Deleting Your Review"}</DialogTitle>
