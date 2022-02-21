@@ -79,7 +79,7 @@ const Profile = () => {
                 onChange={handleHandleChange}
               />
               <IconButton onClick={changeHandle}>
-                <EditIcon></EditIcon>
+                <EditIcon />
               </IconButton>
             </div>
             <div id="user-name-container" className="m-2">
@@ -92,7 +92,7 @@ const Profile = () => {
                 size="small"
               />
               <IconButton>
-                <EditIcon></EditIcon>
+                <EditIcon />
               </IconButton>
             </div>
             <div id="user-email-container" className="m-2">
@@ -105,7 +105,7 @@ const Profile = () => {
                 size="small"
               />
               <IconButton>
-                <EditIcon></EditIcon>
+                <EditIcon />
               </IconButton>
             </div>
           </div>
