@@ -12,7 +12,7 @@ import HelpOutlineIcon from "@mui/icons-material/HelpOutline"
 import { FaBook, FaUser } from "react-icons/fa"
 
 export default function PopupReview(prop) {
-  const { article, handleClose, setUserHasReview, setIsChangeMade } = prop
+  const { article, handleClose, setUserHasReview, setIsChangeMade, userHasReview } = prop
   const [reviewQuestions] = useQuery(getReviewQuestions, undefined)
   const currentUser = useCurrentUser()
   const reviewAnswerQueryParams = {
@@ -36,12 +36,13 @@ export default function PopupReview(prop) {
   }
 
   const updateRating = (questionId, newRating) => {
-    const newAnswers = [...reviewAnswers]
+    const newAnswers = reviewAnswers
     const index = newAnswers.findIndex((r) => r?.questionId === questionId)
     if (index < 0) newAnswers[questionId - 1] = newRating
     if (index >= 0) newAnswers[index] = newRating
     setReviewAnswers(newAnswers)
   }
+
   const [addReviewMutation] = useMutation(addReview)
   const handleReviewSubmit = async () => {
     setLoading(true)
@@ -79,6 +80,7 @@ export default function PopupReview(prop) {
                 onReviewUpdate={updateRating}
                 reviewAnswers={reviewAnswers}
                 setIsChangeMade={setIsChangeMade}
+                isAnonymous={isAnonymous}
               />
             )
           })}
@@ -97,7 +99,7 @@ export default function PopupReview(prop) {
         </Button>
         {/* Need "Are you sure?" Confirmation */}
         <LoadingButton loading={loading} variant="contained" onClick={handleReviewSubmit}>
-          Submit
+          {userHasReview ? "Update" : "Submit"}
         </LoadingButton>
       </DialogActions>
     </>
