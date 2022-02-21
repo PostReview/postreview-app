@@ -105,6 +105,7 @@ export const MyReviewsTable = (props) => {
                   <PopupReview
                     article={article}
                     handleClose={closeReviewDialog}
+                    userHasReview={userHasReview}
                     setUserHasReview={setUserHasReview}
                     setIsChangeMade={setIsChangeMade}
                   />
