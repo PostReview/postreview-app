@@ -11,7 +11,16 @@ export const Footer = () => {
         <div className="m-3 mx-6 flex-grow">PostReview {datetime.getFullYear()}</div>
         <ul className="mx-6">
           <li className="inline mx-4">Terms</li>
-          <li className="inline mx-4">About us</li>
+          <li className="inline mx-4">
+            <a
+              href="https://github.com/nsunami/postreview-app/blob/main/CODE_OF_CONDUCT.md"
+              target="_blank"
+              rel="noreferrer"
+            >
+              Code of Conduct
+            </a>
+          </li>
+          <li className="inline mx-4">About Us</li>
         </ul>
         <ul className="mx-6">
           <li className="inline mx-4">
