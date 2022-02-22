@@ -91,7 +91,6 @@ export const MyReviewsTable = (props) => {
               id="metadata-container"
               className="mx-4 flex flex-row justify-between items-center"
             >
-              {isAnonymous && <VisibilityOff />}
               <div id="article-metadata" className="m-2">
                 <a href={`articles/${article.id}`}>
                   <h2 className="font-bold">{article.title}</h2>
@@ -109,6 +108,8 @@ export const MyReviewsTable = (props) => {
               </div>
               <div className="flex flex-col">
                 <div id="action-menu" className="self-end text-gray-500">
+                  {isAnonymous && <VisibilityOff className="mr-2" />}
+
                   <IconButton onClick={handleClick}>
                     <MoreHoriz />
                   </IconButton>
@@ -136,7 +137,6 @@ export const MyReviewsTable = (props) => {
                       setIsChangeMade={setIsChangeMade}
                     />
                   </Dialog>
-
                   <Box>
                     <Dialog open={isDeleteReviewDialogOpen} onClose={closeDeleteReviewDialog}>
                       <DialogTitle id="deactivate-account">{"Deleting Your Review"}</DialogTitle>
