@@ -19,6 +19,7 @@ import { MoreHoriz, VisibilityOff } from "@mui/icons-material"
 import deleteReview from "app/mutations/deleteReview"
 import PopupReview from "app/core/components/PopupReview"
 import changeReviewAnonimity from "app/mutations/changeReivewAnonimity"
+import { FaBook, FaUser } from "react-icons/fa"
 
 export const MyReviewsTable = (props) => {
   const { articleWithReview, currentUser } = props
@@ -95,10 +96,16 @@ export const MyReviewsTable = (props) => {
                 <a href={`articles/${article.id}`}>
                   <h2 className="font-bold">{article.title}</h2>
                 </a>
-                <div id="author" className="text-sm">
-                  {article.authorString}
+                <div id="author" className="text-sm text-gray-700">
+                  <FaUser className="inline mr-2" />
+                  {article.authorString} ({article.publishedYear})
                 </div>
-                <div className="text-sm text-gray-500">{article.doi}</div>
+                <div className="text-sm text-gray-700">
+                  <FaBook className="inline mr-2" />
+                  <a href={`https://doi.org/${article.doi}`} target="_blank" rel="noreferrer">
+                    {article.doi}
+                  </a>
+                </div>
               </div>
               <div className="flex flex-col">
                 <div id="action-menu" className="self-end text-gray-500">
@@ -116,7 +123,7 @@ export const MyReviewsTable = (props) => {
                   >
                     <MenuItem onClick={handleOpenReviewDialog}>Edit</MenuItem>
                     <MenuItem onClick={() => handleChangeAnonymous(article)}>
-                      {isAnonymous ? "Show Your Name" : "Make Anonymous"}
+                      {isAnonymous ? "Make Identifiable" : "Make Anonymous"}
                     </MenuItem>
                     <MenuItem onClick={openDeleteReviewDialog}>Delete</MenuItem>
                   </Menu>
