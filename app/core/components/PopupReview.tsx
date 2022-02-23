@@ -12,7 +12,7 @@ import HelpOutlineIcon from "@mui/icons-material/HelpOutline"
 import { FaBook, FaUser } from "react-icons/fa"
 
 export default function PopupReview(prop) {
-  const { article, handleClose, setUserHasReview, setIsChangeMade } = prop
+  const { article, handleClose, setUserHasReview, setIsChangeMade, userHasReview } = prop
   const [reviewQuestions] = useQuery(getReviewQuestions, undefined)
   const currentUser = useCurrentUser()
   const reviewAnswerQueryParams = {
@@ -24,29 +24,32 @@ export default function PopupReview(prop) {
     reviewAnswerQueryParams
   )
   const [reviewAnswers, setReviewAnswers] = useState(defaultReviewAnswers)
-  const [isAnonymous, setIsAnonymous] = useState(false)
-  const handleChangeAnonymous = () => {
-    if (isAnonymous) setIsAnonymous(false)
-    if (!isAnonymous) setIsAnonymous(true)
+  const [isAnonymous, setIsAnonymous] = useState(
+    reviewAnswers[0]?.isAnonymous ? reviewAnswers[0]?.isAnonymous : false
+  )
+  const handleChangeAnonymous = (event) => {
+    setIsAnonymous(event.target.checked)
+    const newReviewAnswers = reviewAnswers.map((answer) => {
+      return { ...answer, isAnonymous: event.target.checked }
+    })
+    setReviewAnswers(newReviewAnswers)
   }
 
   const updateRating = (questionId, newRating) => {
-    const newAnswers = [...reviewAnswers]
+    const newAnswers = reviewAnswers
     const index = newAnswers.findIndex((r) => r?.questionId === questionId)
     if (index < 0) newAnswers[questionId - 1] = newRating
     if (index >= 0) newAnswers[index] = newRating
     setReviewAnswers(newAnswers)
   }
+
   const [addReviewMutation] = useMutation(addReview)
   const handleReviewSubmit = async () => {
     setLoading(true)
-    await invoke(addReviewMutation, reviewAnswersToDb)
+    await invoke(addReviewMutation, reviewAnswers)
     setUserHasReview(true)
     window.location.reload()
   }
-  const reviewAnswersToDb = reviewAnswers.map((answer) =>
-    Object.assign(answer, { isAnonymous: isAnonymous })
-  )
   const [loading, setLoading] = useState(false)
   return (
     <>
@@ -77,6 +80,7 @@ export default function PopupReview(prop) {
                 onReviewUpdate={updateRating}
                 reviewAnswers={reviewAnswers}
                 setIsChangeMade={setIsChangeMade}
+                isAnonymous={isAnonymous}
               />
             )
           })}
@@ -85,7 +89,7 @@ export default function PopupReview(prop) {
       <DialogActions>
         <span>
           Submit anonymously
-          <Switch onClick={handleChangeAnonymous} />
+          <Switch checked={isAnonymous} onClick={handleChangeAnonymous} />
           <Tooltip title="If you submit your review anonymously, your handle and display name will be hidden from others.">
             <HelpOutlineIcon />
           </Tooltip>
@@ -95,7 +99,7 @@ export default function PopupReview(prop) {
         </Button>
         {/* Need "Are you sure?" Confirmation */}
         <LoadingButton loading={loading} variant="contained" onClick={handleReviewSubmit}>
-          Submit
+          {userHasReview ? "Update" : "Submit"}
         </LoadingButton>
       </DialogActions>
     </>

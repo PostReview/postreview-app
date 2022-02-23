@@ -3,7 +3,7 @@ import Rating from "@mui/material/Rating"
 import { useCurrentUser } from "../hooks/useCurrentUser"
 
 export const ReviewQuestion = (props) => {
-  const { article, question, onReviewUpdate, reviewAnswers, setIsChangeMade } = props
+  const { article, question, onReviewUpdate, reviewAnswers, setIsChangeMade, isAnonymous } = props
   const currentUser = useCurrentUser()
   const handleRatingChange = (questionId, newValue) => {
     const newData = {
@@ -11,6 +11,7 @@ export const ReviewQuestion = (props) => {
       articleId: article.id,
       response: newValue,
       questionId: questionId,
+      isAnonymous: isAnonymous,
     }
     onReviewUpdate(questionId, newData)
   }
