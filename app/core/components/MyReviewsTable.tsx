@@ -116,7 +116,6 @@ export const MyReviewsTable = (props) => {
               />
               <div className="flex flex-col">
                 <div id="action-menu" className="self-end text-gray-500">
-                  {isAnonymous && <VisibilityOff className="mr-2" />}
                   <IconButton onClick={handleClick}>
                     <MoreHoriz />
                   </IconButton>
