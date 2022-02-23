@@ -83,7 +83,10 @@ const howItWorks = [
 
 export const HowItWorks = () => {
   return (
-    <div className="flex flex-col items-start min-h-screen justify-evenly mt-24">
+    <div
+      id="how-it-works-container"
+      className="flex flex-col items-start min-h-screen justify-evenly mt-32 max-w-2xl"
+    >
       <div className="self-center text-4xl">How it Works</div>
       <div className="mt-12 mb-6 text-2xl">1. Pick a paper</div>
       <div className="self-center">
