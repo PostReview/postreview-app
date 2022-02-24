@@ -12,7 +12,6 @@ import {
 } from "@mui/material"
 import React, { useState } from "react"
 import { styled } from "@mui/material/styles"
-import { ReviewStars } from "./ReviewStars"
 import { invoke, useQuery, useRouter } from "blitz"
 import getQuestionCategories from "app/queries/getQuestionCategories"
 import { MoreHoriz } from "@mui/icons-material"
@@ -85,7 +84,7 @@ export const MyReviewsTable = (props) => {
         return (
           <div
             key={article.id}
-            className="bg-gray-50 m-6 p-4 border-gray-600 border-2
+            className="bg-gray-50 m-6 p-4 border-gray-200 border-2
             flex flex-col  max-w-5xl"
           >
             <div
@@ -110,7 +109,7 @@ export const MyReviewsTable = (props) => {
             </div>
             <div className="flex flex-row justify-center items-center">
               <Review
-                displayname={currentUser.displayName}
+                displayName={currentUser.displayName}
                 reviews={article.review}
                 userIcon={currentUser.icon}
                 questionCategories={questionCategories}
