@@ -1,6 +1,5 @@
 import { BlitzPage, invoke, useMutation, useQuery, useRouter } from "blitz"
 import EditIcon from "@mui/icons-material/Edit"
-import AccountCircleIcon from "@mui/icons-material/AccountCircle"
 import {
   Avatar,
   Button,

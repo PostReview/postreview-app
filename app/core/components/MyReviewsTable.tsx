@@ -12,7 +12,6 @@ import {
 } from "@mui/material"
 import React, { useState } from "react"
 import { styled } from "@mui/material/styles"
-import { ReviewStars } from "./ReviewStars"
 import { invoke, useQuery, useRouter } from "blitz"
 import getQuestionCategories from "app/queries/getQuestionCategories"
 import { MoreHoriz, VisibilityOff } from "@mui/icons-material"
@@ -20,6 +19,7 @@ import deleteReview from "app/mutations/deleteReview"
 import PopupReview from "app/core/components/PopupReview"
 import changeReviewAnonimity from "app/mutations/changeReivewAnonimity"
 import { FaBook, FaUser } from "react-icons/fa"
+import { Review } from "app/core/components/Review"
 
 export const MyReviewsTable = (props) => {
   const { articleWithReview, currentUser } = props
@@ -84,7 +84,7 @@ export const MyReviewsTable = (props) => {
         return (
           <div
             key={article.id}
-            className="bg-gray-50 m-6 p-4 border-gray-600 border-2
+            className="bg-gray-50 m-6 p-4 border-gray-200 border-2
             flex flex-col  max-w-5xl"
           >
             <div
@@ -106,10 +106,17 @@ export const MyReviewsTable = (props) => {
                   </a>
                 </div>
               </div>
+            </div>
+            <div className="flex flex-row justify-center items-center">
+              <Review
+                displayName={currentUser.displayName}
+                reviews={article.review}
+                userIcon={currentUser.icon}
+                questionCategories={questionCategories}
+              />
               <div className="flex flex-col">
                 <div id="action-menu" className="self-end text-gray-500">
                   {isAnonymous && <VisibilityOff className="mr-2" />}
-
                   <IconButton onClick={handleClick}>
                     <MoreHoriz />
                   </IconButton>
@@ -159,29 +166,7 @@ export const MyReviewsTable = (props) => {
                     </Dialog>
                   </Box>
                 </div>
-                <div id="review-metadata" className="text-xs">
-                  <div id="submitter">
-                    Submitted by:{" "}
-                    {article.review[0].isAnonymous
-                      ? "Anonymous"
-                      : currentUser.displayName
-                      ? currentUser.displayName
-                      : currentUser.handle}
-                  </div>
-                  <div id="submitted-on">
-                    Submitted: {article.review[0]?.createdAt.toISOString().split("T")[0]}
-                  </div>
-                  <div id="last-updated-on">
-                    Last updated: {article.review[0]?.updatedAt.toISOString().split("T")[0]}
-                  </div>
-                </div>
               </div>
-            </div>
-            <div
-              id="ratings-container"
-              className="flex lg:flex-row flex-col items-center justify-evenly text-xs mx-6"
-            >
-              <ReviewStars reviews={article.review} questionCategories={questionCategories} />
             </div>
           </div>
         )
