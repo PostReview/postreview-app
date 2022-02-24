@@ -14,6 +14,15 @@
         "design",
         "bug"
       ]
+    },
+    {
+      "login": "chartgerink",
+      "name": "Chris Hartgerink",
+      "avatar_url": "https://avatars.githubusercontent.com/u/2946344?v=4",
+      "profile": "https://chjh.nl",
+      "contributions": [
+        "mentoring"
+      ]
     }
   ],
   "contributorsPerLine": 7,
