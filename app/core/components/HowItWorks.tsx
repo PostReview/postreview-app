@@ -12,28 +12,28 @@ export const HowItWorks = () => {
   return (
     <div
       id="how-it-works-container"
-      className="flex flex-col items-start min-h-screen justify-evenly mt-32 max-w-2xl"
+      className="flex flex-col items-start min-h-screen justify-evenly mt-32 max-w-2xl m-12"
     >
-      <div className="self-center text-4xl">How it Works</div>
-      <div className="mt-12 mb-6 text-2xl">1. Pick a paper</div>
+      <div className="self-center text-4xl font-bold">How it Works</div>
+      <div className="mt-12 mb-6 text-2xl font-bold">1. Pick a paper</div>
       <div className="self-center">
         <Image src={articleScreenshot} alt="A card showing an article with ratings across users" />
       </div>
-      <div className="mt-12 mb-6 text-2xl">2. Rate the paper</div>
-      <div className="self-center">
+      <div className="mt-12 mb-6 text-2xl font-bold">2. Rate the paper</div>
+      <div className="self-center max-w-md">
         <Image
           src={popupReviewScreenshot}
           alt="A screen recording where the user is choosing ratings for the article"
         />
       </div>
-      <div className="mt-12 mb-6 text-2xl">3. Your rating is recorded</div>
+      <div className="mt-12 mb-6 text-2xl font-bold">3. Your rating is recorded</div>
       <div className="self-center">
         <Image
           src={reviewAnswerScreenshot}
           alt="A card showing ratings for the article by one user"
         />
       </div>
-      <div className="mt-12 mb-6 text-2xl">4. We combine everyone&apos;s ratings</div>
+      <div className="mt-12 mb-6 text-2xl font-bold">4. We combine everyone&apos;s ratings</div>
       <div className="self-center">
         <Image src={articleScreenshot} alt="A card showing an article with ratings across users" />
       </div>
