@@ -1,4 +1,5 @@
 import React from "react"
+import { HeaderUserButton } from "./HeaderUserButton"
 
 export const Hero = () => {
   return (
@@ -8,14 +9,7 @@ export const Hero = () => {
         Share your thoughts with those who care—Opinions in science have never been this accessible
       </div>
       <div id="action-container" className="mb-6 mt-12">
-        <input
-          type="text"
-          className="rounded-full placeholder-gray-500 px-12 bg-gray-100 h-8"
-          placeholder="Article title / DOI"
-        />
-        <button className="bg-blue-400 mx-2 rounded-full h-8 w-auto px-4 text-white">
-          Start Browsing
-        </button>
+        <HeaderUserButton />
       </div>
     </div>
   )
