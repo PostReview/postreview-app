@@ -26,13 +26,15 @@ export default function Article(props) {
 
   return (
     <div
-      className="bg-gray-50 m-6 p-4 border-gray-600 border-2
+      className="bg-gray-50 m-3 p-4 border-gray-600 border-2
     flex flex-col  max-w-5xl"
     >
       <div>
-        <div id="article-header" className="flex flex-row">
-          <Chip label={ratingsCount} className="mr-2" />
-          <div id="title" className="font-semibold inline">
+        <div id="article-header" className="flex md:flex-row flex-col">
+          <div id="chip-container" className="self-center">
+            <Chip label={ratingsCount} className="w-8" />
+          </div>
+          <div id="title" className="font-semibold inline ml-3">
             <Link href={`/articles/${id}`}>{title}</Link>
           </div>
           <div>
@@ -51,9 +53,9 @@ export default function Article(props) {
       </div>
       <div
         id="ratings-container"
-        className="flex lg:flex-row flex-col items-center justify-evenly text-xs mx-6"
+        className="flex md:flex-row flex-col items-center justify-evenly text-xs mx-6"
       >
-        <div id="total" className="px-3 border-r-2 text-center">
+        <div id="total" className="px-3 md:border-r-2 md:border-b-0 border-b-2 text-center">
           <div id="total-rating">
             {ratingsCount === 0 ? ( // When no ratings, show a placeholder
               <div className="flex items-center justify-center">
