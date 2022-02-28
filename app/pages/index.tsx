@@ -40,9 +40,9 @@ const UserInfo = () => {
         <Hero />
         <Features />
         <HowItWorks />
-        <SignUpButton />
         <Visions />
         <ArticleList />
+        <SignUpButton />
       </>
     )
   }
