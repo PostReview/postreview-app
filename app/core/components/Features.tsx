@@ -27,7 +27,9 @@ export const Features = () => {
   return (
     <div id="feature-cols" className="flex flex-col lg:flex-row items-center m-6 max-w-5xl">
       <div id="feature-image" className="flex-1">
-        <h1 className="text-3xl self-center m-6">Unlocking the power of community in science</h1>
+        <h1 className="text-2xl self-center m-6 font-bold">
+          Unlocking the power of community in science
+        </h1>
         <Image src={communityImage} alt="community image" layout="responsive" />
       </div>
       <div id="features-container" className="flex flex-col flex-1">
