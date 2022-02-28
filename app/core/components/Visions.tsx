@@ -28,12 +28,12 @@ const visions = [
 
 export const Visions = () => {
   return (
-    <div className="flex flex-col justify-evenly">
-      <h1 className="text-2xl self-center m-6">Together, we can make science more:</h1>
-      <div className="flex flex-row mx-20">
+    <div className="flex flex-col my-12">
+      <h1 className="text-2xl self-center m-6 font-bold">Together, we can make science more:</h1>
+      <div className="flex max-w-7xl md:flex-row flex-col m-3">
         {visions.map((vision) => (
-          <div key={vision.name} className="flex-1 mx-6">
-            <h2 className="text-xl">{vision.name}</h2>
+          <div key={vision.name} className="flex-1 m-6">
+            <h2 className="text-xl font-bold">{vision.name}</h2>
             <div className="text-gray-600">{vision.description}</div>
             <div className="text-center">
               <Image src={vision.image} alt={vision.name} layout="responsive" />
