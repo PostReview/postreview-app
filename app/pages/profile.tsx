@@ -23,9 +23,11 @@ import logout from "app/auth/mutations/logout"
 
 const Profile = () => {
   const currentUser = useCurrentUser()
-  const [myArticlesWithReview] = useQuery(getReviewAnswersByUserId, {
+  const [defaultMyArticlesWithReview] = useQuery(getReviewAnswersByUserId, {
     currentUserId: currentUser?.id,
   })
+
+  const [myArticlesWithReview, setMyArticlesWithReview] = useState(defaultMyArticlesWithReview)
   const [handleDisabled, setHandleDisabled] = useState(true)
   const [isDeactivateAccountDialogOpen, setIsDeactivateAccountDialogOpen] = useState(false)
   const changeHandle = () => {
