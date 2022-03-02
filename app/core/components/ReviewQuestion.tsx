@@ -16,7 +16,7 @@ export const ReviewQuestion = (props) => {
     onReviewUpdate(questionId, newData)
   }
   const defaultCurrentAnswer = reviewAnswers.find(
-    (answer) => answer.questionId == question.questionId
+    (answer) => answer?.questionId == question.questionId
   )
   const [currentAnswer, setCurrentAnswer] = useState(defaultCurrentAnswer)
 
