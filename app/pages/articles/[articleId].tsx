@@ -14,10 +14,8 @@ import { Dialog, DialogActions, DialogContent, DialogTitle } from "@mui/material
 const ArticleDetails = () => {
   const articleId = useParam("articleId", "string") as string
   const [article] = useQuery(getArticle, articleId)
-  const articleHasReview = !!article._count.review
-  const [isReviewDialogOpen, setIsReviewDialogOpen] = useState(!articleHasReview)
+  const [isReviewDialogOpen, setIsReviewDialogOpen] = useState(false)
   const [isConfirmDialogOpen, setIsConfirmDialogOpen] = useState(false)
-  const router = useRouter()
   const closeConfirmDialog = () => {
     setIsConfirmDialogOpen(false)
   }
@@ -32,7 +30,6 @@ const ArticleDetails = () => {
   const handleConfirmDiscard = () => {
     setIsConfirmDialogOpen(false)
     setIsReviewDialogOpen(false)
-    if (!articleHasReview) router.push("/")
   }
   const currentUser = useCurrentUser()
   const [defaultUserHasReview] = useQuery(hasUserSunmittedReview, {
