@@ -32,7 +32,6 @@ const ArticleDetails = () => {
   const handleConfirmDiscard = () => {
     setIsConfirmDialogOpen(false)
     setIsReviewDialogOpen(false)
-    if (!articleHasReview) router.push("/")
   }
   const currentUser = useCurrentUser()
   const [defaultUserHasReview] = useQuery(hasUserSunmittedReview, {
