@@ -20,23 +20,28 @@ import { MyReviewsEmptyState } from "app/core/components/MyReviewsEmptyState"
 import { Footer } from "app/core/components/Footer"
 import deleteUser from "app/mutations/deleteUser"
 import logout from "app/auth/mutations/logout"
+import changeUserHandle from "app/mutations/changeUserHandle"
 
 const Profile = () => {
   const currentUser = useCurrentUser()
   const [defaultMyArticlesWithReview] = useQuery(getReviewAnswersByUserId, {
     currentUserId: currentUser?.id,
   })
+  const [myHandle, setMyHandle] = useState(currentUser?.handle)
 
   const [myArticlesWithReview, setMyArticlesWithReview] = useState(defaultMyArticlesWithReview)
   const [handleDisabled, setHandleDisabled] = useState(true)
   const [isDeactivateAccountDialogOpen, setIsDeactivateAccountDialogOpen] = useState(false)
   const changeHandle = () => {
-    if (!handleDisabled) setHandleDisabled(true)
+    if (!handleDisabled) {
+      invoke(changeUserHandle, { id: currentUser?.id, handle: myHandle })
+      setHandleDisabled(true)
+    }
     if (handleDisabled) setHandleDisabled(false)
   }
 
   const handleHandleChange = (event) => {
-    console.log(event.target.value)
+    setMyHandle(event.target.value)
   }
 
   const openDeactivateAccountDialog = () => {
@@ -75,7 +80,7 @@ const Profile = () => {
                 id="outlined-basic"
                 label="Handle"
                 variant="filled"
-                defaultValue={currentUser?.handle}
+                defaultValue={myHandle}
                 size="small"
                 onChange={handleHandleChange}
               />
