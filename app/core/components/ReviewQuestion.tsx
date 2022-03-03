@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useState } from "react"
 import Rating from "@mui/material/Rating"
 import { useCurrentUser } from "../hooks/useCurrentUser"
 
@@ -15,7 +15,10 @@ export const ReviewQuestion = (props) => {
     }
     onReviewUpdate(questionId, newData)
   }
-  const currentAnswer = reviewAnswers.find((answer) => answer.questionId == question.questionId)
+  const defaultCurrentAnswer = reviewAnswers.find(
+    (answer) => answer?.questionId == question.questionId
+  )
+  const [currentAnswer, setCurrentAnswer] = useState(defaultCurrentAnswer)
 
   return (
     <div
@@ -48,6 +51,7 @@ export const ReviewQuestion = (props) => {
             name="customized-10"
             max={question.maxValue}
             onChange={(event, newValue) => {
+              setCurrentAnswer({ ...currentAnswer, response: newValue })
               handleRatingChange(question.questionId, newValue)
               setIsChangeMade(true)
             }}
