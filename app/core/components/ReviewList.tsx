@@ -30,7 +30,7 @@ export const ReviewList = (prop) => {
             {currentUserHasReview ? (
               <Review
                 key={currentUserReview?.id}
-                displayName={currentUserReview?.handle}
+                displayName={currentUserReview?.displayName}
                 handle={currentUserReview?.handle}
                 reviews={currentUserReview?.review}
                 userIcon={currentUserReview?.icon}
@@ -49,7 +49,7 @@ export const ReviewList = (prop) => {
             otherUserReview.map((user) => (
               <Review
                 key={user.id}
-                displayName={user.handle}
+                displayName={user.displayName}
                 handle={user.handle}
                 reviews={user.review}
                 questionCategories={questionCategories}
