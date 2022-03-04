@@ -8,6 +8,7 @@ import {
   DialogContent,
   DialogTitle,
   IconButton,
+  InputAdornment,
   TextField,
 } from "@mui/material"
 import { Box } from "@mui/system"
@@ -95,6 +96,9 @@ const Profile = () => {
                 defaultValue={myHandle}
                 size="small"
                 onChange={handleHandleChange}
+                InputProps={{
+                  startAdornment: <InputAdornment position="start">@</InputAdornment>,
+                }}
               />
               <IconButton onClick={changeHandle}>
                 <EditIcon />
@@ -123,9 +127,10 @@ const Profile = () => {
                 defaultValue={currentUser?.email}
                 size="small"
               />
-              <IconButton>
+              {/* Commenting out the email change function for now */}
+              {/* <IconButton>
                 <EditIcon />
-              </IconButton>
+              </IconButton> */}
             </div>
           </div>
         </div>
