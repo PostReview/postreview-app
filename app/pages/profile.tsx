@@ -21,6 +21,7 @@ import { Footer } from "app/core/components/Footer"
 import deleteUser from "app/mutations/deleteUser"
 import logout from "app/auth/mutations/logout"
 import changeUserHandle from "app/mutations/changeUserHandle"
+import changeDisplayName from "app/mutations/changeDisplayName"
 
 const Profile = () => {
   const currentUser = useCurrentUser()
@@ -28,9 +29,12 @@ const Profile = () => {
     currentUserId: currentUser?.id,
   })
   const [myHandle, setMyHandle] = useState(currentUser?.handle)
+  const [myDisplayName, setMyDisplayName] = useState(currentUser?.displayName)
 
   const [myArticlesWithReview, setMyArticlesWithReview] = useState(defaultMyArticlesWithReview)
   const [handleDisabled, setHandleDisabled] = useState(true)
+  const [myDisplayNameDisabled, setMyDisplayNameDisabled] = useState(true)
+
   const [isDeactivateAccountDialogOpen, setIsDeactivateAccountDialogOpen] = useState(false)
   const changeHandle = () => {
     if (!handleDisabled) {
@@ -38,6 +42,14 @@ const Profile = () => {
       setHandleDisabled(true)
     }
     if (handleDisabled) setHandleDisabled(false)
+  }
+
+  const handleChangeDisplayName = () => {
+    if (!myDisplayNameDisabled) {
+      invoke(changeDisplayName, { id: currentUser?.id, displayName: myDisplayName })
+      setMyDisplayNameDisabled(true)
+    }
+    if (myDisplayNameDisabled) setMyDisplayNameDisabled(false)
   }
 
   const handleHandleChange = (event) => {
@@ -90,14 +102,15 @@ const Profile = () => {
             </div>
             <div id="user-name-container" className="m-2">
               <TextField
-                disabled
+                disabled={myDisplayNameDisabled}
                 id="user-name"
                 label="Display Name (optional)"
                 variant="filled"
-                defaultValue={currentUser?.displayName}
+                defaultValue={myDisplayName}
                 size="small"
+                onChange={(event) => setMyDisplayName(event.target.value)}
               />
-              <IconButton>
+              <IconButton onClick={handleChangeDisplayName}>
                 <EditIcon />
               </IconButton>
             </div>
