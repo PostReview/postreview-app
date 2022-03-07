@@ -1,10 +1,10 @@
 import db from "db"
 
 export default async function getArticleScoresById(props) {
-  const { articleId } = props
+  const { currentArticleId } = props
   return await db.reviewAnswers.groupBy({
     by: ["articleId", "questionId"],
-    where: { articleId: articleId },
+    where: { articleId: currentArticleId },
     _avg: {
       response: true,
     },
