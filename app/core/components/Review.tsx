@@ -3,11 +3,11 @@ import React from "react"
 import { ReviewStars } from "./ReviewStars"
 
 export const Review = (props) => {
-  const { displayName, reviews, userIcon, questionCategories } = props
+  const { displayName, handle, reviews, userIcon, questionCategories } = props
   const submittedAt = reviews[0]?.createdAt?.toISOString().split("T")[0]
   const updatedAt = reviews[0]?.updatedAt.toISOString().split("T")[0]
   const isAnonymous = reviews[0]?.isAnonymous
-  const submittedBy = isAnonymous ? "Anonymous" : displayName
+  const submittedBy = isAnonymous ? "Anonymous" : displayName ? displayName : `@${handle}`
   const submittedByIcon = userIcon
   const tooltipText = `Submitted by: ${submittedBy} | Submitted: ${submittedAt} | Last updated: ${updatedAt} `
 
