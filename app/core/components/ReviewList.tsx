@@ -6,7 +6,7 @@ import { Review } from "./Review"
 import getQuestionCategories from "app/queries/getQuestionCategories"
 
 export const ReviewList = (prop) => {
-  const { article } = prop
+  const { article, ActionButton } = prop
   const currentUser = useCurrentUser()
 
   const [usersWithReview] = useQuery(getUssersWithReviewsByArticleId, {
@@ -28,16 +28,30 @@ export const ReviewList = (prop) => {
           </div>
           <div className="flex flex-col items-center">
             {currentUserHasReview ? (
-              <Review
-                key={currentUserReview?.id}
-                displayName={currentUserReview?.displayName}
-                handle={currentUserReview?.handle}
-                reviews={currentUserReview?.review}
-                userIcon={currentUserReview?.icon}
-                questionCategories={questionCategories}
-              />
+              <>
+                <Review
+                  key={currentUserReview?.id}
+                  displayName={currentUserReview?.displayName}
+                  handle={currentUserReview?.handle}
+                  reviews={currentUserReview?.review}
+                  userIcon={currentUserReview?.icon}
+                  questionCategories={questionCategories}
+                />
+                <ActionButton state="edit" />
+              </>
             ) : (
-              <div className="m-20">Submit your review</div>
+              <div className="m-20">
+                {currentUser ? (
+                  <ActionButton state="submit" />
+                ) : (
+                  <div>
+                    <a href="/api/auth/google" className="text-purple-400">
+                      Login
+                    </a>{" "}
+                    to submit a review
+                  </div>
+                )}
+              </div>
             )}
           </div>
         </div>

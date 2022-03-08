@@ -37,16 +37,19 @@ const ArticleDetails = () => {
     articleId: articleId,
   })
   const [userHasReview, setUserHasReview] = useState(defaultUserHasReview)
-  const ActionButton = () => {
-    return userHasReview ? (
-      <Button variant="contained" onClick={openReviewDialog}>
-        Edit Your Rating
-      </Button>
-    ) : (
-      <Button variant="contained" onClick={openReviewDialog}>
-        Rate This Paper
-      </Button>
-    )
+  const ActionButton = ({ state }) => {
+    if (state == "edit")
+      return (
+        <Button variant="contained" onClick={openReviewDialog}>
+          Edit Your Rating
+        </Button>
+      )
+    if (state == "submit")
+      return (
+        <Button variant="contained" onClick={openReviewDialog}>
+          Rate This Paper
+        </Button>
+      )
   }
 
   return (
@@ -59,8 +62,7 @@ const ArticleDetails = () => {
         <div id="article-container " className="flex flex-col items-center">
           <Article {...article} />
         </div>
-        <ActionButton />
-        <ReviewList article={article} />
+        <ReviewList article={article} ActionButton={ActionButton} />
         <Dialog open={isReviewDialogOpen} onClose={closeReviewDialog}>
           <PopupReview
             article={article}
