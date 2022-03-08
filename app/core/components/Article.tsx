@@ -12,6 +12,8 @@ import getUssersWithReviewsByArticleId from "app/queries/getUsersWithReviewsByAr
 export default function Article(props) {
   const { id, authorString, doi, title } = props
 
+  const ratingScaleMax = 5
+
   const [articleScores] = useQuery(getArticleScoresById, {
     currentArticleId: id,
   })
@@ -78,17 +80,22 @@ export default function Article(props) {
                 />
               </div>
             ) : (
-              <Rating
-                readOnly
-                value={totalRating / 5}
-                precision={0.1}
-                max={1}
-                sx={{
-                  fontSize: 100,
-                  color: "#FF5733",
-                }}
-                emptyIcon={<StarIcon style={{ opacity: 0.55 }} fontSize="inherit" />}
-              />
+              <div className="flex items-center justify-center">
+                <div className="absolute text-white font-semibold text-base z-50">
+                  {totalRating.toFixed(1)}
+                </div>
+                <Rating
+                  readOnly
+                  value={totalRating / ratingScaleMax}
+                  precision={0.1}
+                  max={1}
+                  sx={{
+                    fontSize: 100,
+                    color: "#FF5733",
+                  }}
+                  emptyIcon={<StarIcon style={{ opacity: 0.55 }} fontSize="inherit" />}
+                />
+              </div>
             )}
           </div>
           Total
@@ -97,20 +104,27 @@ export default function Article(props) {
           articleScores.find((score) => score.questionId === category.questionId)?._avg
             .response! ? (
             <div key={category.questionId} className="text-center">
-              <Rating
-                readOnly
-                value={
-                  articleScores.find((score) => score.questionId === category.questionId)?._avg
-                    .response! / 5
-                }
-                precision={0.1}
-                max={1}
-                sx={{
-                  fontSize: 100,
-                  color: "#FFC300",
-                }}
-                emptyIcon={<StarIcon style={{ opacity: 0.55 }} fontSize="inherit" />}
-              />
+              <div className="flex items-center justify-center">
+                <div className="absolute text-white font-semibold text-base z-50">
+                  {articleScores
+                    .find((score) => score.questionId === category.questionId)
+                    ?._avg.response!.toFixed(1)}
+                </div>
+                <Rating
+                  readOnly
+                  value={
+                    articleScores.find((score) => score.questionId === category.questionId)?._avg
+                      .response! / ratingScaleMax
+                  }
+                  precision={0.1}
+                  max={1}
+                  sx={{
+                    fontSize: 100,
+                    color: "#FFC300",
+                  }}
+                  emptyIcon={<StarIcon style={{ opacity: 0.55 }} fontSize="inherit" />}
+                />
+              </div>
               <div>{category.questionCategory}</div>
             </div>
           ) : (
