@@ -1,6 +1,7 @@
 import React from "react"
 import TwitterIcon from "@mui/icons-material/Twitter"
 import GitHubIcon from "@mui/icons-material/GitHub"
+import { FaDiscord } from "react-icons/fa"
 
 const datetime = new Date()
 
@@ -23,6 +24,11 @@ export const Footer = () => {
           <li className="inline mx-4">About Us</li>
         </ul>
         <ul className="mx-6">
+          <li className="inline mx-4">
+            <a href="https://discord.com/invite/gZ4Hn2VryK" target="_blank" rel="noreferrer">
+              <FaDiscord className="inline text-2xl" />
+            </a>
+          </li>
           <li className="inline mx-4">
             <a href="https://twitter.com/PostReviewOrg" target="_blank" rel="noreferrer">
               <TwitterIcon />
