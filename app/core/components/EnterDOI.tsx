@@ -8,6 +8,18 @@ import { useCurrentUser } from "app/core/hooks/useCurrentUser"
 import { v4 as uuidv4 } from "uuid"
 import { Input, InputAdornment } from "@mui/material"
 import { Search } from "@mui/icons-material"
+import { Autocomplete } from "./Autocomplete"
+import { getAlgoliaResults } from "@algolia/autocomplete-js"
+import algoliasearch from "algoliasearch"
+import SearchResultArticle from "./SearchResultArticle"
+import "@algolia/autocomplete-theme-classic"
+
+// const searchClient = algoliasearch(process.env.ALGOLIA_APP_ID!, process.env.ALGOLIA_API_SEARCH_KEY!)
+
+const searchClient = algoliasearch(
+  process.env.ALGOLIA_APP_ID as string,
+  process.env.ALGOLIA_API_SEARCH_KEY as string
+)
 
 export default function EnterDOI() {
   const currentUser = useCurrentUser()
@@ -72,25 +84,52 @@ export default function EnterDOI() {
 
   return (
     <div className="m-1 rounded-md flex flex-row items-center min-w-full justify-end">
-      <div className="w-2/5">
-        <Input
-          fullWidth={true}
-          placeholder="Enter DOI"
-          value={doi}
-          onChange={(e) => setDoi(e.target.value)}
-          startAdornment={
-            <InputAdornment position="start">
-              <Search />
-            </InputAdornment>
-          }
-        ></Input>
-      </div>
-      <button
-        className="bg-indigo-500 hover:bg-indigo-700 text-white mx-2 p-2 px-3 border rounded-md"
-        onClick={handleArticleAdd}
-      >
-        Rate a Paper
-      </button>
+      <Autocomplete
+        className="h-full"
+        openOnFocus={true}
+        getSources={({ query }) => [
+          {
+            sourceId: "products",
+            async onSelect(params) {
+              const { item, setQuery } = params
+              if (item.objectID) {
+                router.push(`/articles/${item.objectID}`)
+              }
+            },
+            getItems() {
+              return getAlgoliaResults({
+                searchClient,
+                queries: [
+                  {
+                    indexName: `${process.env.ALGOLIA_PREFIX}_articles`,
+                    query,
+                  },
+                ],
+              })
+            },
+            templates: {
+              item({ item, components }) {
+                return (
+                  <>
+                    {item.__autocomplete_indexName.match(/articles/g) ? (
+                      <SearchResultArticle item={item} />
+                    ) : (
+                      <div className="my-1 mx-1 flex">
+                        <div className="mr-2">{item.name}</div>
+                        <div>
+                          <p className="text-md font-normal leading-4 text-gray-500 dark:text-gray-400">
+                            asdfasdfas
+                          </p>
+                        </div>
+                      </div>
+                    )}
+                  </>
+                )
+              },
+            },
+          },
+        ]}
+      />
     </div>
   )
 }
