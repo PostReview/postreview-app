@@ -28,6 +28,8 @@
     ]
   },
   "dependencies": {
+    "@algolia/autocomplete-js": "1.5.3",
+    "@algolia/autocomplete-theme-classic": "1.5.3",
     "@emotion/react": "11.4.1",
     "@emotion/styled": "11.3.0",
     "@mui/icons-material": "5.0.4",
