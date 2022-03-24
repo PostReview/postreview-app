@@ -13,7 +13,7 @@ const About: BlitzPage = () => {
       </Suspense>
       <main className="flex-grow flex flex-col items-center mb-12">
         <h1 className="text-6xl font-bold my-12">About us</h1>
-        <div className="flex flex-col items-center max-w-3xl my-12">
+        <div className="flex flex-col items-center max-w-3xl my-12 mx-4">
           <h2 className="text-4xl font-bold">Our mission</h2>
           <div className="my-6">
             We love science and sharing opinions. Our goal is to streamline the opinion-sharing
@@ -22,7 +22,7 @@ const About: BlitzPage = () => {
           </div>
         </div>
         <Visions />
-        <div id="team" className="flex flex-col items-center max-w-3xl my-12">
+        <div id="team" className="flex flex-col items-center max-w-3xl my-12 mx-4">
           <h2 className="text-4xl font-bold">Our team</h2>
           <div className="my-6">
             PostReview is developed by a small group of scientists passionate about improving
