@@ -2,6 +2,7 @@ import React from "react"
 import TwitterIcon from "@mui/icons-material/Twitter"
 import GitHubIcon from "@mui/icons-material/GitHub"
 import { FaDiscord } from "react-icons/fa"
+import { Link } from "blitz"
 
 const datetime = new Date()
 
@@ -21,7 +22,9 @@ export const Footer = () => {
               Code of Conduct
             </a>
           </li>
-          <li className="inline mx-4">About Us</li>
+          <li className="inline mx-4">
+            <Link href="/about">About Us</Link>
+          </li>
         </ul>
         <ul className="mx-6">
           <li className="inline mx-4">
