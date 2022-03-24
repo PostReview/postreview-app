@@ -43,7 +43,7 @@ const Home: BlitzPage = () => {
       <Suspense fallback="Loading...">
         <Header />
       </Suspense>
-      <main className="flex-grow flex flex-col items-center">
+      <main className="flex-grow flex flex-col items-center mb-4">
         <Suspense fallback="Loading...">
           <UserInfo />
         </Suspense>
