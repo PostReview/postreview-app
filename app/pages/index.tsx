@@ -29,7 +29,6 @@ const UserInfo = () => {
       <>
         <Hero />
         <HowItWorks />
-        <ArticleList />
         <Features />
         <SignUpButton />
       </>
