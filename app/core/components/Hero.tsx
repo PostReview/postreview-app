@@ -1,5 +1,4 @@
 import React from "react"
-import { HeaderUserButton } from "./HeaderUserButton"
 
 export const Hero = () => {
   return (
