@@ -1,8 +1,3 @@
-import { Button, Rating } from "@mui/material"
-import { SearchBar } from "./SearchBar"
-import DescriptionIcon from "@mui/icons-material/Description"
-import ArticleSample from "./ArticleSample"
-import { ReviewSample } from "./ReviewSample"
 import { Image } from "blitz"
 import articleScreenshot from "public/steps-screenshots/article.png"
 import popupReviewScreenshot from "public/steps-screenshots/popup-review.gif"
