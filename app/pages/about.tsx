@@ -30,7 +30,7 @@ const About: BlitzPage = () => {
           </div>
           <div className="flex flex-col items-center">
             <div id="picture">
-              <PeopleOutlineIcon className="text-9xl" />
+              <PeopleOutlineIcon sx={{ fontSize: 100 }} />
             </div>
             <div id="out-team-description" className="flex flex-row">
               <div className="m-4">

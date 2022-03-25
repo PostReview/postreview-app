@@ -8,20 +8,20 @@ const visions = [
     name: "Transparency",
     description:
       "We believe in the power of transparency for creating a fair and accurate consensus in research.",
-    icon: <VolunteerActivismIcon className="text-6xl" />,
+    icon: <VolunteerActivismIcon sx={{ fontSize: 60 }} />,
   },
   {
     name: "Diversity",
     description:
       "We want to amplify the voices of underrepresented groups and identities in science, \
       for truly unlocking the wisdom of the community",
-    icon: <GroupsIcon className="text-6xl" />,
+    icon: <GroupsIcon sx={{ fontSize: 60 }} />,
   },
   {
     name: "Accountability",
     description:
       "By being open to give and receive healthy feedback, we can correct errors in science.",
-    icon: <AssignmentTurnedInIcon className="text-6xl" />,
+    icon: <AssignmentTurnedInIcon sx={{ fontSize: 60 }} />,
   },
 ]
 
