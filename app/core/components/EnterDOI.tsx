@@ -115,7 +115,7 @@ export default function EnterDOI() {
                 noResults() {
                   return (
                     <div>
-                      No results.
+                      No results.{" "}
                       <a
                         className="text-violet-500 hover:cursor-pointer"
                         onClick={() => setPaperPopupOpen(true)}
