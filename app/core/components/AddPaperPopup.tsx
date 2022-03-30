@@ -88,6 +88,7 @@ export default function AddPaperPopup(prop) {
         <div className="text-center w-96 m-4 mx-20">
           <Autocomplete
             debug={false}
+            placeholder="Search by title, author, keyword"
             getSources={({ query }) => {
               return fetch(
                 `https://api.crossref.org/works/?query=${query}&select=title,author,published,DOI&rows=5`
