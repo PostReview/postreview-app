@@ -34,6 +34,15 @@ export default function AddPaperPopup(prop) {
     }
   }
 
+  const parseAuthors = (author, i, authors) => {
+    if (authors.length - 1 === i) {
+      /* If last author, do not print the semicolon */
+      return `${author.family}, ${author.given}`
+    } else {
+      return `${author.family}, ${author.given}; `
+    }
+  }
+
   async function parseArticleMetadata(newArticleMetadata) {
     const newArticle = {
       id: uuidv4(),
@@ -44,16 +53,7 @@ export default function AddPaperPopup(prop) {
       addedBy: currentUser?.handle,
       addedById: currentUser?.id,
       authorString: newArticleMetadata?.author
-        ? newArticleMetadata?.author
-            .map((author, i, authors) => {
-              if (authors.length - 1 === i) {
-                /* If last author, do not print the semicolon */
-                return `${author.family}, ${author.given}`
-              } else {
-                return `${author.family}, ${author.given}; `
-              }
-            })
-            .join("")
+        ? newArticleMetadata?.author.map(parseAuthors).join("")
         : "",
     }
     return newArticle
@@ -159,7 +159,7 @@ export default function AddPaperPopup(prop) {
             </div>
           </div>
         ) : (
-          <div className="text-center text-gray-400 my-12">Select a paper</div>
+          <></>
         )}
       </DialogContent>
       <DialogActions>
