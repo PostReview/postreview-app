@@ -103,7 +103,7 @@ export default function AddPaperPopup(prop) {
                         const currentItem = {
                           title: item?.title?.[0],
                           publishedYear: item?.published?.["date-parts"]?.[0]?.[0],
-                          authors: item?.author?.[0]?.family,
+                          authors: item?.author ? item?.author.map(parseAuthors).join("") : "",
                         }
                         setSelectedPaper(currentItem)
                         setDoi(item.DOI)
@@ -119,9 +119,8 @@ export default function AddPaperPopup(prop) {
                           const currentItem = {
                             title: item?.title?.[0],
                             publishedYear: item?.published?.["date-parts"]?.[0]?.[0],
-                            authors: item?.author?.[0]?.family,
+                            authors: item?.author ? item?.author.map(parseAuthors).join("") : "",
                           }
-                          console.log(currentItem)
                           return (
                             <div className="my-1 mx-1 flex">
                               <div className="mr-2">{currentItem.title}</div>
