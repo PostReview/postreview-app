@@ -17,3 +17,8 @@
 .description {
   @apply text-center;
 }
+
+/* Show Algolia results on top of the MUI elements */
+.aa-Panel {
+  z-index: 9999;
+}
