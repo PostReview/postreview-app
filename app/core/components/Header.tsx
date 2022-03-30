@@ -11,7 +11,7 @@ export default function Header() {
         <div className="mx-6 text-2xl">
           <a href="/">PostReview</a>
         </div>
-        <div id="search-bar-container" className="flex flex-grow justify-end">
+        <div id="search-bar-container" className="flex flex-grow justify-center">
           {currentUser && <EnterDOI />}
         </div>
         <div id="buttons-container" className="mr-4 flex flex-row">
