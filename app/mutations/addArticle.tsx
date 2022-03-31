@@ -7,7 +7,7 @@ import algoliasearch from "algoliasearch"
 const client = algoliasearch(process.env.ALGOLIA_APP_ID!, process.env.ALGOLIA_API_ADMIN_KEY!)
 const index = client.initIndex(`${process.env.ALGOLIA_PREFIX}_articles`)
 
-// Vaidate data
+// Validate data
 const AddArticle = z.object({
   title: z.string(),
   doi: z.string(),
