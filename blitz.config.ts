@@ -7,6 +7,12 @@ const config: BlitzConfig = {
       isAuthorized: simpleRolesIsAuthorized,
     }),
   ],
+  // Add environment variables for the client
+  env: {
+    ALGOLIA_APP_ID: process.env.ALGOLIA_APP_ID,
+    ALGOLIA_API_SEARCH_KEY: process.env.ALGOLIA_API_SEARCH_KEY,
+    ALGOLIA_PREFIX: process.env.ALGOLIA_PREFIX,
+  },
   /* Uncomment this to customize the webpack config
   webpack: (config, { buildId, dev, isServer, defaultLoaders, webpack }) => {
     // Note: we provide webpack above so you should not `require` it

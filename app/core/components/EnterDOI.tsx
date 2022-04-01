@@ -6,13 +6,25 @@ import axios from "axios"
 import { useCurrentUser } from "app/core/hooks/useCurrentUser"
 
 import { v4 as uuidv4 } from "uuid"
-import { Input, InputAdornment } from "@mui/material"
-import { Search } from "@mui/icons-material"
+import { Button, Dialog } from "@mui/material"
+import { Autocomplete } from "./Autocomplete"
+import { getAlgoliaResults } from "@algolia/autocomplete-js"
+import algoliasearch from "algoliasearch"
+import SearchResultArticle from "./SearchResultArticle"
+import "@algolia/autocomplete-theme-classic"
+import AddPaperPopup from "./AddPaperPopup"
+
+const searchClient = algoliasearch(
+  process.env.ALGOLIA_APP_ID as string,
+  process.env.ALGOLIA_API_SEARCH_KEY as string
+)
 
 export default function EnterDOI() {
   const currentUser = useCurrentUser()
   const defaultDoi = ""
   const [doi, setDoi] = useState(defaultDoi)
+  const [isPaperPopupOpen, setPaperPopupOpen] = useState(false)
+
   const [addArticleMutation] = useMutation(addArticle)
 
   async function getArticleMetadata() {
@@ -71,26 +83,63 @@ export default function EnterDOI() {
   }
 
   return (
-    <div className="m-1 rounded-md flex flex-row items-center min-w-full justify-end">
-      <div className="w-2/5">
-        <Input
-          fullWidth={true}
-          placeholder="Enter DOI"
-          value={doi}
-          onChange={(e) => setDoi(e.target.value)}
-          startAdornment={
-            <InputAdornment position="start">
-              <Search />
-            </InputAdornment>
-          }
-        ></Input>
-      </div>
-      <button
-        className="bg-indigo-500 hover:bg-indigo-700 text-white mx-2 p-2 px-3 border rounded-md"
-        onClick={handleArticleAdd}
+    <div className="m-1 rounded-md flex flex-row items-center flex-grow max-w-7xl justify-end">
+      <Autocomplete
+        openOnFocus={true}
+        getSources={({ query }) => {
+          return [
+            {
+              sourceId: "products",
+              async onSelect(params) {
+                const { item, setQuery } = params
+                if (item.objectID) {
+                  router.push(`/articles/${item.objectID}`)
+                }
+              },
+              getItems() {
+                return getAlgoliaResults({
+                  searchClient,
+                  queries: [
+                    {
+                      indexName: `${process.env.ALGOLIA_PREFIX}_articles`,
+                      query,
+                    },
+                  ],
+                })
+              },
+
+              templates: {
+                item({ item, components }) {
+                  return <SearchResultArticle item={item} components={components} />
+                },
+                noResults() {
+                  return (
+                    <div>
+                      No results.{" "}
+                      <a
+                        className="text-violet-500 hover:cursor-pointer"
+                        onClick={() => setPaperPopupOpen(true)}
+                      >
+                        Add a new paper
+                      </a>
+                    </div>
+                  )
+                },
+              },
+            },
+          ]
+        }}
+      />
+      <Button
+        className="bg-indigo-500 hover:bg-indigo-700 text-white mx-2 rounded-md text-sm w-40 py-3"
+        onClick={() => setPaperPopupOpen(true)}
       >
-        Rate a Paper
-      </button>
+        + Add Paper
+      </Button>
+
+      <Dialog open={isPaperPopupOpen} onClose={() => setPaperPopupOpen(false)}>
+        <AddPaperPopup setPaperPopupOpen={setPaperPopupOpen} />
+      </Dialog>
     </div>
   )
 }
