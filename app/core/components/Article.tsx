@@ -7,7 +7,7 @@ import StarIcon from "@mui/icons-material/Star"
 import { useQuery } from "blitz"
 import getArticleScoresById from "app/queries/getArticleScoresById"
 import getQuestionCategories from "app/queries/getQuestionCategories"
-import getUssersWithReviewsByArticleId from "app/queries/getUsersWithReviewsByArticleId"
+import getUsersWithReviewsByArticleId from "app/queries/getUsersWithReviewsByArticleId"
 
 export default function Article(props) {
   const { id, authorString, doi, title } = props
@@ -20,7 +20,7 @@ export default function Article(props) {
 
   const [questionCategories] = useQuery(getQuestionCategories, undefined)
 
-  const [usersWithReview] = useQuery(getUssersWithReviewsByArticleId, {
+  const [usersWithReview] = useQuery(getUsersWithReviewsByArticleId, {
     currentArticleId: id,
   })
   const ratingsCount = usersWithReview.length

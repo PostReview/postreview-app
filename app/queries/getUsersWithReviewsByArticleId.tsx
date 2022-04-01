@@ -1,6 +1,6 @@
 import db from "db"
 
-export default async function getUssersWithReviewsByArticleId(props) {
+export default async function getUsersWithReviewsByArticleId(props) {
   const { currentArticleId } = props
   return await db.user.findMany({
     where: {
