@@ -1,4 +1,6 @@
 import React from "react"
+import { Autocomplete } from "./Autocomplete"
+import EnterDOI from "./EnterDOI"
 import { HeaderUserButton } from "./HeaderUserButton"
 
 export const Hero = () => {
@@ -11,7 +13,7 @@ export const Hero = () => {
         Share your thoughts with those who care—Opinions in science have never been this accessible
       </div>
       <div id="action-container" className="mb-6 mt-12">
-        <HeaderUserButton />
+        <EnterDOI /> <HeaderUserButton />
       </div>
     </div>
   )
