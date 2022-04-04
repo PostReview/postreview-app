@@ -1,43 +1,40 @@
 import React from "react"
-import transparentImage from "public/markus-spiske-JO_CBLe4qA4-unsplash.jpg"
-import diverseImage from "public/clay-banks-LjqARJaJotc-unsplash.jpg"
-import accountableImage from "public/christina-wocintechchat-com-c6wbSBaYxkY-unsplash.jpg"
-
-import Image from "next/image"
+import VolunteerActivismIcon from "@mui/icons-material/VolunteerActivism"
+import GroupsIcon from "@mui/icons-material/Groups"
+import AssignmentTurnedInIcon from "@mui/icons-material/AssignmentTurnedIn"
 
 const visions = [
   {
-    name: "Tranparent",
+    name: "Transparency",
     description:
-      "Traditional reviews are usualy not available publicly. Here, you can make your opinions open for everyone.",
-    image: transparentImage,
+      "We believe in the power of transparency for creating a fair and accurate consensus in research.",
+    icon: <VolunteerActivismIcon sx={{ fontSize: 60 }} />,
   },
   {
-    name: "Diverse",
+    name: "Diversity",
     description:
-      "Acadmia lacks diversity. We want to amplify voices of members of underrepresented groups and identities in science.",
-    image: diverseImage,
+      "We want to amplify the voices of underrepresented groups and identities in science, \
+      for truly unlocking the wisdom of the community",
+    icon: <GroupsIcon sx={{ fontSize: 60 }} />,
   },
   {
-    name: "Accountable",
+    name: "Accountability",
     description:
-      "Poor writing hinders translation of findings. Together, we can look out for each other to be better writers.",
-    image: accountableImage,
+      "By being open to give and receive healthy feedback, we can correct errors in science.",
+    icon: <AssignmentTurnedInIcon sx={{ fontSize: 60 }} />,
   },
 ]
 
 export const Visions = () => {
   return (
     <div className="flex flex-col my-12">
-      <h1 className="text-2xl self-center m-6 font-bold">Together, we can make science more:</h1>
-      <div className="flex max-w-7xl md:flex-row flex-col m-3">
+      <h1 className="text-4xl self-center m-6 font-bold">Our principles</h1>
+      <div className="flex max-w-7xl sm:flex-row flex-col m-3">
         {visions.map((vision) => (
-          <div key={vision.name} className="flex-1 m-6">
+          <div key={vision.name} className="flex-1 m-6 flex flex-col items-center">
+            <div className=""> {vision.icon}</div>
             <h2 className="text-xl font-bold">{vision.name}</h2>
             <div className="text-gray-600">{vision.description}</div>
-            <div className="text-center">
-              <Image src={vision.image} alt={vision.name} layout="responsive" />
-            </div>
           </div>
         ))}
       </div>
