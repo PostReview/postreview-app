@@ -34,6 +34,11 @@ blitz dev
 
 4. Open [http://localhost:3000](http://localhost:3000) with your browser to access the app.
 
+## Managing App on Heroku
+
+- To reset the database, run `heroku pg:reset`
+- To seed the database, run `heroku run blitz db seed` 
+
 
 ## Contributors ✨
 
