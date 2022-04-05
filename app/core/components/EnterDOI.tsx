@@ -130,13 +130,16 @@ export default function EnterDOI() {
           ]
         }}
       />
-      <Button
-        className="bg-indigo-500 hover:bg-indigo-700 text-white mx-2 rounded-md text-sm w-40 py-3"
+      {currentUser ? (
+        <button
+          className="bg-indigo-500 hover:bg-indigo-700 text-white font-semibold mx-2 rounded-md text-sm w-32 py-3"
         onClick={() => setPaperPopupOpen(true)}
       >
         + Add Paper
-      </Button>
-
+        </button>
+      ) : (
+        ""
+      )}
       <Dialog open={isPaperPopupOpen} onClose={() => setPaperPopupOpen(false)}>
         <AddPaperPopup setPaperPopupOpen={setPaperPopupOpen} />
       </Dialog>
