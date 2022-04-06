@@ -1,10 +1,11 @@
 import { useMutation } from "next/data-client"
 import { Link } from "next/link"
-import { Avatar, Button, Menu, MenuItem } from "@mui/material"
+import { Avatar, Menu, MenuItem } from "@mui/material"
 import logout from "app/auth/mutations/logout"
 import React, { useState } from "react"
 import { useCurrentUser } from "../hooks/useCurrentUser"
 import GoogleButton from "./GoogleButton"
+import { Button } from "./Button"
 
 export const HeaderUserButton = () => {
   const currentUser = useCurrentUser()
@@ -28,13 +29,13 @@ export const HeaderUserButton = () => {
   return (
     <div>
       {currentUser ? (
-        <Button id="user-avatar" className="focus:outline-none" onClick={handleClick}>
+        <button id="user-avatar" className="" onClick={handleClick}>
           {currentUser.icon ? (
             <Avatar alt={currentUser.handle} src={currentUser.icon!} />
           ) : (
             <Avatar>{currentUser?.handle?.[0]}</Avatar>
           )}
-        </Button>
+        </button>
       ) : (
         <Button
           id="login-button"
