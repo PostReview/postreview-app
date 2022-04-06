@@ -27,7 +27,7 @@ export const HeaderUserButton = () => {
   }
 
   return (
-    <div>
+    <div className="flex items-center">
       {currentUser ? (
         <button
           id="user-avatar"
