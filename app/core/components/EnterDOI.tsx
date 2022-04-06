@@ -8,6 +8,7 @@ import algoliasearch from "algoliasearch"
 import SearchResultArticle from "./SearchResultArticle"
 import "@algolia/autocomplete-theme-classic"
 import AddPaperPopup from "./AddPaperPopup"
+import { Button } from "./Button"
 
 const searchClient = algoliasearch(
   process.env.ALGOLIA_APP_ID as string,
@@ -67,16 +68,7 @@ export default function EnterDOI() {
           ]
         }}
       />
-      {currentUser ? (
-        <button
-          className="bg-indigo-500 hover:bg-indigo-700 text-white font-semibold mx-2 rounded-md text-sm w-32 py-3"
-          onClick={() => setPaperPopupOpen(true)}
-        >
-          + Add Paper
-        </button>
-      ) : (
-        ""
-      )}
+      {currentUser ? <Button onClick={() => setPaperPopupOpen(true)}>+ Add Paper</Button> : ""}
       <Dialog open={isPaperPopupOpen} onClose={() => setPaperPopupOpen(false)}>
         <AddPaperPopup setPaperPopupOpen={setPaperPopupOpen} />
       </Dialog>
