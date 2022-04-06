@@ -6,6 +6,7 @@ import React, { useState } from "react"
 import { useCurrentUser } from "../hooks/useCurrentUser"
 import GoogleButton from "./GoogleButton"
 import { Button } from "./Button"
+import { Image } from "blitz"
 
 export const HeaderUserButton = () => {
   const currentUser = useCurrentUser()
@@ -35,7 +36,7 @@ export const HeaderUserButton = () => {
           onClick={handleClick}
         >
           {currentUser.icon ? (
-            <Avatar alt={currentUser.handle} src={currentUser.icon!} />
+            <Image layout="fill" alt={currentUser.handle} src={currentUser.icon!} />
           ) : (
             <Avatar>{currentUser?.handle?.[0]}</Avatar>
           )}
