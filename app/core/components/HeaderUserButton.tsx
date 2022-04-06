@@ -29,7 +29,11 @@ export const HeaderUserButton = () => {
   return (
     <div>
       {currentUser ? (
-        <button id="user-avatar" className="" onClick={handleClick}>
+        <button
+          id="user-avatar"
+          className="relative w-10 h-10 overflow-hidden rounded-full"
+          onClick={handleClick}
+        >
           {currentUser.icon ? (
             <Avatar alt={currentUser.handle} src={currentUser.icon!} />
           ) : (
@@ -37,12 +41,7 @@ export const HeaderUserButton = () => {
           )}
         </button>
       ) : (
-        <Button
-          id="login-button"
-          variant="contained"
-          className="focus:outline-none"
-          onClick={handleClick}
-        >
+        <Button id="login-button" onClick={handleClick}>
           Login / Signup
         </Button>
       )}
