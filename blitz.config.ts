@@ -13,6 +13,10 @@ const config: BlitzConfig = {
     ALGOLIA_API_SEARCH_KEY: process.env.ALGOLIA_API_SEARCH_KEY,
     ALGOLIA_PREFIX: process.env.ALGOLIA_PREFIX,
   },
+  images: {
+    domains: ["lh3.googleusercontent.com"],
+  },
+
   /* Uncomment this to customize the webpack config
   webpack: (config, { buildId, dev, isServer, defaultLoaders, webpack }) => {
     // Note: we provide webpack above so you should not `require` it
