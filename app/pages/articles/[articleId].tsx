@@ -1,5 +1,4 @@
-import { BlitzPage, useParam, useQuery, useRouter } from "blitz"
-import Button from "@mui/material/Button"
+import { BlitzPage, useParam, useQuery } from "blitz"
 import Header from "app/core/components/Header"
 import { ReviewList } from "app/core/components/ReviewList"
 import getArticle from "app/queries/getArticle"
@@ -10,6 +9,7 @@ import { useCurrentUser } from "app/core/hooks/useCurrentUser"
 import { Footer } from "app/core/components/Footer"
 import Article from "app/core/components/Article"
 import { Dialog, DialogActions, DialogContent, DialogTitle } from "@mui/material"
+import { Button } from "app/core/components/Button"
 
 const ArticleDetails = () => {
   const articleId = useParam("articleId", "string") as string
@@ -75,10 +75,10 @@ const ArticleDetails = () => {
           <DialogTitle>Are you sure?</DialogTitle>
           <DialogContent>Your changes will not be saved</DialogContent>
           <DialogActions>
-            <Button variant="text" onClick={closeConfirmDialog}>
+            <Button type="cancel" onClick={closeConfirmDialog}>
               Cancel
             </Button>
-            <Button variant="contained" color="error" onClick={handleConfirmDiscard}>
+            <Button type="error" onClick={handleConfirmDiscard}>
               Discard
             </Button>
           </DialogActions>
