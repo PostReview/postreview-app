@@ -2,7 +2,6 @@ import { BlitzPage, invoke, useMutation, useQuery, useRouter } from "blitz"
 import EditIcon from "@mui/icons-material/Edit"
 import {
   Avatar,
-  Button,
   Dialog,
   DialogActions,
   DialogContent,
@@ -23,6 +22,7 @@ import deleteUser from "app/mutations/deleteUser"
 import logout from "app/auth/mutations/logout"
 import changeUserHandle from "app/mutations/changeUserHandle"
 import changeDisplayName from "app/mutations/changeDisplayName"
+import { Button } from "app/core/components/Button"
 
 const Profile = () => {
   const currentUser = useCurrentUser()
@@ -68,8 +68,8 @@ const Profile = () => {
   const [logoutMutation] = useMutation(logout)
   const handleDeleteUser = async () => {
     await invoke(deleteUser, currentUser?.id)
-    router.push("/")
     await logoutMutation()
+    router.push("/")
   }
 
   return (
@@ -161,10 +161,10 @@ const Profile = () => {
                 you posted.
               </DialogContent>
               <DialogActions>
-                <Button onClick={closeDeactivateAccountDialog} autoFocus>
+                <Button type="cancel" onClick={closeDeactivateAccountDialog}>
                   Cancel
                 </Button>
-                <Button variant="contained" color="error" onClick={handleDeleteUser}>
+                <Button type="error" onClick={handleDeleteUser}>
                   Deactivate
                 </Button>
               </DialogActions>
