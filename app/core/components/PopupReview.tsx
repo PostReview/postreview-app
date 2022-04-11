@@ -2,14 +2,13 @@ import { useQuery, useMutation, invoke } from "blitz"
 import getReviewQuestions from "app/queries/getReviewQuestions"
 import React, { useState } from "react"
 import { ReviewQuestion } from "./ReviewQuestion"
-import Button from "@mui/material/Button"
-import LoadingButton from "@mui/lab/LoadingButton"
 import { useCurrentUser } from "../hooks/useCurrentUser"
 import addReview from "app/mutations/addReview"
 import getReviewAnswersByArticleAndUserIds from "app/queries/getReviewAnswersByArticleAndUserIds"
 import { DialogActions, DialogContent, DialogTitle, Switch, Tooltip } from "@mui/material"
 import HelpOutlineIcon from "@mui/icons-material/HelpOutline"
 import { FaBook, FaUser } from "react-icons/fa"
+import { Button } from "./Button"
 
 export default function PopupReview(prop) {
   const { article, handleClose, setUserHasReview, setIsChangeMade, userHasReview } = prop
@@ -94,13 +93,12 @@ export default function PopupReview(prop) {
             <HelpOutlineIcon />
           </Tooltip>
         </span>
-        <Button variant="text" onClick={handleClose}>
+        <Button type="cancel" onClick={handleClose}>
           Cancel
         </Button>
-        {/* Need "Are you sure?" Confirmation */}
-        <LoadingButton loading={loading} variant="contained" onClick={handleReviewSubmit}>
+        <Button loading={loading} onClick={handleReviewSubmit}>
           {userHasReview ? "Update" : "Submit"}
-        </LoadingButton>
+        </Button>
       </DialogActions>
     </>
   )

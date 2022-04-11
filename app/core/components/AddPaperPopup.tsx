@@ -1,18 +1,19 @@
 import { useMutation, invoke, useRouter } from "blitz"
 import React, { useState } from "react"
-import Button from "@mui/material/Button"
 import { useCurrentUser } from "../hooks/useCurrentUser"
-import { DialogActions, DialogContent, DialogTitle, Switch, Tooltip } from "@mui/material"
+import { DialogActions, DialogContent, DialogTitle } from "@mui/material"
 import { FaBook, FaUser } from "react-icons/fa"
 import addArticle from "app/mutations/addArticle"
 import getArticleByDoi from "app/queries/getArticleByDoi"
 import { v4 as uuidv4 } from "uuid"
 import axios from "axios"
 import { Autocomplete } from "./Autocomplete"
+import { Button } from "./Button"
 
 export default function AddPaperPopup(prop) {
   const { setPaperPopupOpen } = prop
   const currentUser = useCurrentUser()
+  const [loading, setLoading] = useState(false)
   const defaultDoi = ""
   const [doi, setDoi] = useState(defaultDoi)
   const [addArticleMutation] = useMutation(addArticle)
@@ -65,6 +66,7 @@ export default function AddPaperPopup(prop) {
 
   const router = useRouter()
   async function handleArticleAdd() {
+    setLoading(true)
     const newArticleMetadata = await getArticleMetadata()
     if (!newArticleMetadata) return null
     const newArticle = await parseArticleMetadata(newArticleMetadata)
@@ -77,6 +79,7 @@ export default function AddPaperPopup(prop) {
     setPaperPopupOpen(false)
     // go to the added article
     router.push(`/articles/${addedArticle.id}`)
+    setLoading(false)
   }
 
   return (
@@ -164,11 +167,11 @@ export default function AddPaperPopup(prop) {
         )}
       </DialogContent>
       <DialogActions>
-        <Button variant="contained" onClick={handleArticleAdd}>
-          Add Paper
-        </Button>
-        <Button variant="text" onClick={() => setPaperPopupOpen(false)}>
+        <Button type="cancel" onClick={() => setPaperPopupOpen(false)}>
           Cancel
+        </Button>
+        <Button loading={loading} onClick={handleArticleAdd}>
+          Add Paper
         </Button>
       </DialogActions>
     </>
