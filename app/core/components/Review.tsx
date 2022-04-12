@@ -1,6 +1,7 @@
 import { Avatar, Button, Tooltip } from "@mui/material"
 import React from "react"
 import { ReviewStars } from "./ReviewStars"
+import { Icon } from "@iconify/react"
 
 export const Review = (props) => {
   const { displayName, handle, reviews, userIcon, questionCategories } = props
@@ -17,7 +18,9 @@ export const Review = (props) => {
         <Tooltip title={tooltipText} placement="top" arrow>
           <Button id="user-avatar" className="focus:outline-none" onClick={undefined}>
             {isAnonymous ? (
-              <Avatar alt={submittedBy} />
+              <Avatar alt={submittedBy} sx={{ "background-color": "rgb(217 119 6)" }}>
+                <Icon icon="mdi:incognito" className="" />
+              </Avatar>
             ) : (
               <Avatar alt={submittedBy} src={submittedByIcon} />
             )}
