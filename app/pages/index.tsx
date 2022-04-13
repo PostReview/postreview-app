@@ -31,7 +31,7 @@ const UserInfo = () => {
         <Features />
         <button
           className="bg-indigo-500 hover:bg-indigo-700 text-white mx-2 p-2 px-3 border rounded-md my-12"
-          onClick={undefined}
+          onClick={() => router.push("browse")}
         >
           Start Browsing
         </button>
