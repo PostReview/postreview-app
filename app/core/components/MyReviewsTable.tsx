@@ -1,7 +1,6 @@
 import React from "react"
 import { useQuery } from "blitz"
 import getQuestionCategories from "app/queries/getQuestionCategories"
-import { VisibilityOff } from "@mui/icons-material"
 import { FaBook, FaUser } from "react-icons/fa"
 import { Review } from "app/core/components/Review"
 import { ArticleAction } from "./ArticleAction"
@@ -50,7 +49,6 @@ export const MyReviewsTable = (props) => {
               />
               <div className="flex flex-col">
                 <div id="action-menu" className="self-end text-gray-500">
-                  {isAnonymous && <VisibilityOff className="mr-2" />}
                   <ArticleAction curentUser={currentUser} article={article} />
                 </div>
               </div>
