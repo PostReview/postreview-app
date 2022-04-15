@@ -24,11 +24,12 @@ export default async function getReviewAnswersByUserId(props) {
     where: {
       review: {
         some: { userId: currentUserId },
+        none: { isAnonymous: true },
       },
     },
     include: {
       review: {
-        where: { userId: currentUserId, isAnonymous: false },
+        where: { userId: currentUserId },
         include: {
           question: true,
         },
