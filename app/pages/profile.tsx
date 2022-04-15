@@ -31,6 +31,7 @@ const Profile = () => {
     includeAnonymous: true,
   })
   const [myHandle, setMyHandle] = useState(currentUser?.handle)
+  const [publicProfileLink, setPublicProfileLink] = useState(`profiles/${currentUser?.handle}`)
   const [myDisplayName, setMyDisplayName] = useState(currentUser?.displayName)
 
   const [myArticlesWithReview, setMyArticlesWithReview] = useState(defaultMyArticlesWithReview)
@@ -41,6 +42,7 @@ const Profile = () => {
   const changeHandle = () => {
     if (!handleDisabled) {
       invoke(changeUserHandle, { id: currentUser?.id, handle: myHandle })
+      setPublicProfileLink(`profiles/${myHandle}`)
       setHandleDisabled(true)
     }
     if (handleDisabled) setHandleDisabled(false)
@@ -82,9 +84,9 @@ const Profile = () => {
             <div id="user-icon-container" className="m-2">
               <Button id="user-avatar" className="focus:outline-none" onClick={undefined}>
                 {currentUser?.icon ? (
-                  <Avatar alt={currentUser.handle} src={currentUser.icon!} />
+                  <Avatar alt={myHandle} src={currentUser.icon!} />
                 ) : (
-                  <Avatar>{currentUser?.handle?.[0]}</Avatar>
+                  <Avatar>{myHandle}</Avatar>
                 )}
               </Button>{" "}
             </div>
@@ -144,7 +146,7 @@ const Profile = () => {
         </div>
         <div className="m-6">
           <Button id="public-view-container" className="m-2 text-blue-500 font-semibold">
-            <a href={`profiles/${currentUser?.id}`}>Public profile view</a>
+            <a href={publicProfileLink}>Public profile view</a>
           </Button>
           <Button
             id="delete-account"
