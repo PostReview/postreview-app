@@ -9,11 +9,11 @@ import getUserInfo from "app/queries/getUserInfo"
 import { MyReviewsTable } from "app/core/components/MyReviewsTable"
 
 const PublicProfileDetails = () => {
-  const userId = useParam("handle", "string") as String
+  const userHandle = useParam("handle", "string") as String
+  const [userInfo] = useQuery(getUserInfo, { userHandle })
   const [defaultArticlesWithReview] = useQuery(getReviewAnswersByUserId, {
-    currentUserId: userId,
+    currentUserId: userInfo?.id,
   })
-  const [userInfo] = useQuery(getUserInfo, { userId })
 
   return (
     <div className="flex flex-col min-h-screen">
