@@ -28,6 +28,7 @@ const Profile = () => {
   const currentUser = useCurrentUser()
   const [defaultMyArticlesWithReview] = useQuery(getReviewAnswersByUserId, {
     currentUserId: currentUser?.id,
+    includeAnonymous: true,
   })
   const [myHandle, setMyHandle] = useState(currentUser?.handle)
   const [myDisplayName, setMyDisplayName] = useState(currentUser?.displayName)
@@ -143,7 +144,7 @@ const Profile = () => {
         </div>
         <div className="m-6">
           <Button id="public-view-container" className="m-2 text-blue-500 font-semibold">
-            <a href="#">Public profile view</a>
+            <a href={`profiles/${currentUser?.id}`}>Public profile view</a>
           </Button>
           <Button
             id="delete-account"
