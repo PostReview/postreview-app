@@ -56,17 +56,6 @@ const Profile = () => {
     if (myDisplayNameDisabled) setMyDisplayNameDisabled(false)
   }
 
-  const handleHandleChange = (event) => {
-    setMyHandle(event.target.value)
-  }
-
-  const openDeactivateAccountDialog = () => {
-    setIsDeactivateAccountDialogOpen(true)
-  }
-  const closeDeactivateAccountDialog = () => {
-    setIsDeactivateAccountDialogOpen(false)
-  }
-
   const router = useRouter()
   const [logoutMutation] = useMutation(logout)
   const handleDeleteUser = async () => {
@@ -98,7 +87,7 @@ const Profile = () => {
                 variant="filled"
                 defaultValue={myHandle}
                 size="small"
-                onChange={handleHandleChange}
+                onChange={(e) => setMyHandle(e.target.value)}
                 InputProps={{
                   startAdornment: <InputAdornment position="start">@</InputAdornment>,
                 }}
@@ -151,20 +140,23 @@ const Profile = () => {
           <Button
             id="delete-account"
             className="m-2 font-semibold hover:cursor-pointer text-red-400"
-            onClick={openDeactivateAccountDialog}
+            onClick={() => setIsDeactivateAccountDialogOpen(true)}
             color="error"
           >
             Deactivate your account
           </Button>
           <Box>
-            <Dialog open={isDeactivateAccountDialogOpen} onClose={closeDeactivateAccountDialog}>
+            <Dialog
+              open={isDeactivateAccountDialogOpen}
+              onClose={() => setIsDeactivateAccountDialogOpen(false)}
+            >
               <DialogTitle id="deactivate-account">{"Deactivating Your Account"}</DialogTitle>
               <DialogContent>
                 We&apos;re sorry to see you go! We will delete your information and the review that
                 you posted.
               </DialogContent>
               <DialogActions>
-                <Button type="cancel" onClick={closeDeactivateAccountDialog}>
+                <Button type="cancel" onClick={() => setIsDeactivateAccountDialogOpen(false)}>
                   Cancel
                 </Button>
                 <Button type="error" onClick={handleDeleteUser}>
