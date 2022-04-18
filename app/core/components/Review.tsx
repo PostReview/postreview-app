@@ -19,7 +19,7 @@ export const Review = (props) => {
         <Tooltip title={tooltipText} placement="top" arrow>
           <Button id="user-avatar" className="focus:outline-none">
             {isAnonymous ? (
-              <Avatar alt={submittedBy} sx={{ "background-color": "rgb(217 119 6)" }}>
+              <Avatar alt={submittedBy} sx={{ backgroundColor: "rgb(217 119 6)" }}>
                 <Icon icon="mdi:incognito" className="" />
               </Avatar>
             ) : (
