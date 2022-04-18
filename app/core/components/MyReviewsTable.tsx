@@ -6,13 +6,12 @@ import { Review } from "app/core/components/Review"
 import { ArticleAction } from "./ArticleAction"
 
 export const MyReviewsTable = (props) => {
-  const { articleWithReview, currentUser } = props
+  const { articleWithReview, currentUser, publicProfile } = props
   const [questionCategories] = useQuery(getQuestionCategories, undefined)
 
   return (
     <>
       {articleWithReview.map((article) => {
-        const isAnonymous = article.review[0].isAnonymous
         return (
           <div
             key={article.id}
@@ -24,7 +23,7 @@ export const MyReviewsTable = (props) => {
               className="mx-4 flex flex-row justify-between items-center"
             >
               <div id="article-metadata" className="m-2">
-                <a href={`articles/${article.id}`}>
+                <a href={`/articles/${article.id}`}>
                   <h2 className="font-bold">{article.title}</h2>
                 </a>
                 <div id="author" className="text-sm text-gray-700">
@@ -47,11 +46,15 @@ export const MyReviewsTable = (props) => {
                 userIcon={currentUser.icon}
                 questionCategories={questionCategories}
               />
-              <div className="flex flex-col">
-                <div id="action-menu" className="self-end text-gray-500">
-                  <ArticleAction curentUser={currentUser} article={article} />
+              {publicProfile ? (
+                ""
+              ) : (
+                <div className="flex flex-col">
+                  <div id="action-menu" className="self-end text-gray-500">
+                    <ArticleAction curentUser={currentUser} article={article} />
+                  </div>
                 </div>
-              </div>
+              )}
             </div>
           </div>
         )

@@ -28,8 +28,10 @@ const Profile = () => {
   const currentUser = useCurrentUser()
   const [defaultMyArticlesWithReview] = useQuery(getReviewAnswersByUserId, {
     currentUserId: currentUser?.id,
+    includeAnonymous: true,
   })
   const [myHandle, setMyHandle] = useState(currentUser?.handle)
+  const [publicProfileLink, setPublicProfileLink] = useState(`profiles/${currentUser?.handle}`)
   const [myDisplayName, setMyDisplayName] = useState(currentUser?.displayName)
 
   const [myArticlesWithReview, setMyArticlesWithReview] = useState(defaultMyArticlesWithReview)
@@ -40,6 +42,7 @@ const Profile = () => {
   const changeHandle = () => {
     if (!handleDisabled) {
       invoke(changeUserHandle, { id: currentUser?.id, handle: myHandle })
+      setPublicProfileLink(`profiles/${myHandle}`)
       setHandleDisabled(true)
     }
     if (handleDisabled) setHandleDisabled(false)
@@ -51,17 +54,6 @@ const Profile = () => {
       setMyDisplayNameDisabled(true)
     }
     if (myDisplayNameDisabled) setMyDisplayNameDisabled(false)
-  }
-
-  const handleHandleChange = (event) => {
-    setMyHandle(event.target.value)
-  }
-
-  const openDeactivateAccountDialog = () => {
-    setIsDeactivateAccountDialogOpen(true)
-  }
-  const closeDeactivateAccountDialog = () => {
-    setIsDeactivateAccountDialogOpen(false)
   }
 
   const router = useRouter()
@@ -81,9 +73,9 @@ const Profile = () => {
             <div id="user-icon-container" className="m-2">
               <Button id="user-avatar" className="focus:outline-none" onClick={undefined}>
                 {currentUser?.icon ? (
-                  <Avatar alt={currentUser.handle} src={currentUser.icon!} />
+                  <Avatar alt={myHandle} src={currentUser.icon!} />
                 ) : (
-                  <Avatar>{currentUser?.handle?.[0]}</Avatar>
+                  <Avatar>{myHandle}</Avatar>
                 )}
               </Button>{" "}
             </div>
@@ -95,7 +87,7 @@ const Profile = () => {
                 variant="filled"
                 defaultValue={myHandle}
                 size="small"
-                onChange={handleHandleChange}
+                onChange={(e) => setMyHandle(e.target.value)}
                 InputProps={{
                   startAdornment: <InputAdornment position="start">@</InputAdornment>,
                 }}
@@ -143,25 +135,28 @@ const Profile = () => {
         </div>
         <div className="m-6">
           <Button id="public-view-container" className="m-2 text-blue-500 font-semibold">
-            <a href="#">Public profile view</a>
+            <a href={publicProfileLink}>Public profile view</a>
           </Button>
           <Button
             id="delete-account"
             className="m-2 font-semibold hover:cursor-pointer text-red-400"
-            onClick={openDeactivateAccountDialog}
+            onClick={() => setIsDeactivateAccountDialogOpen(true)}
             color="error"
           >
             Deactivate your account
           </Button>
           <Box>
-            <Dialog open={isDeactivateAccountDialogOpen} onClose={closeDeactivateAccountDialog}>
+            <Dialog
+              open={isDeactivateAccountDialogOpen}
+              onClose={() => setIsDeactivateAccountDialogOpen(false)}
+            >
               <DialogTitle id="deactivate-account">{"Deactivating Your Account"}</DialogTitle>
               <DialogContent>
                 We&apos;re sorry to see you go! We will delete your information and the review that
                 you posted.
               </DialogContent>
               <DialogActions>
-                <Button type="cancel" onClick={closeDeactivateAccountDialog}>
+                <Button type="cancel" onClick={() => setIsDeactivateAccountDialogOpen(false)}>
                   Cancel
                 </Button>
                 <Button type="error" onClick={handleDeleteUser}>
