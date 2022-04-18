@@ -170,7 +170,7 @@ export default function AddPaperPopup(prop) {
         <Button type="cancel" onClick={() => setPaperPopupOpen(false)}>
           Cancel
         </Button>
-        <Button loading={loading} onClick={handleArticleAdd}>
+        <Button loading={loading ? 1 : 0} onClick={handleArticleAdd}>
           Add Paper
         </Button>
       </DialogActions>
