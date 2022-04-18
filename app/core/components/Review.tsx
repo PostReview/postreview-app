@@ -24,7 +24,7 @@ export const Review = (props) => {
               </Avatar>
             ) : (
               <Link href={`/profiles/${handle}`}>
-                <Avatar alt={submittedBy} src={submittedByIcon} />
+                <Avatar alt={displayName ? displayName : handle} src={submittedByIcon} />
               </Link>
             )}
           </Button>
