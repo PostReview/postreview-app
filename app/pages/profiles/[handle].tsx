@@ -23,11 +23,10 @@ const PublicProfileDetails = () => {
           <div className="flex flex-row items-center">
             <div id="user-icon-container" className="m-2">
               <Button id="user-avatar" className="focus:outline-none" onClick={undefined}>
-                {userInfo?.icon ? (
-                  <Avatar alt={userInfo.handle} src={userInfo.icon!} />
-                ) : (
-                  <Avatar>{userInfo?.handle?.[0]}</Avatar>
-                )}
+                <Avatar
+                  alt={userInfo?.displayName ? userInfo.displayName : userInfo?.handle}
+                  src={userInfo?.icon!}
+                />
               </Button>
             </div>
             <div className="flex flex-col">
