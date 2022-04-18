@@ -2,6 +2,7 @@ import { Avatar, Button, Tooltip } from "@mui/material"
 import React from "react"
 import { ReviewStars } from "./ReviewStars"
 import { Icon } from "@iconify/react"
+import { Link } from "blitz"
 
 export const Review = (props) => {
   const { displayName, handle, reviews, userIcon, questionCategories } = props
@@ -16,13 +17,15 @@ export const Review = (props) => {
     <div className="flex lg:flex-row flex-col items-center m-6">
       <div className="">
         <Tooltip title={tooltipText} placement="top" arrow>
-          <Button id="user-avatar" className="focus:outline-none" onClick={undefined}>
+          <Button id="user-avatar" className="focus:outline-none">
             {isAnonymous ? (
               <Avatar alt={submittedBy} sx={{ "background-color": "rgb(217 119 6)" }}>
                 <Icon icon="mdi:incognito" className="" />
               </Avatar>
             ) : (
-              <Avatar alt={submittedBy} src={submittedByIcon} />
+              <Link href={`/profiles/${handle}`}>
+                <Avatar alt={submittedBy} src={submittedByIcon} />
+              </Link>
             )}
           </Button>
         </Tooltip>
