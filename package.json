@@ -32,6 +32,7 @@
     "@algolia/autocomplete-theme-classic": "1.5.3",
     "@emotion/react": "11.4.1",
     "@emotion/styled": "11.3.0",
+    "@headlessui/react": "1.5.0",
     "@mui/icons-material": "5.0.4",
     "@mui/lab": "5.0.0-alpha.65",
     "@mui/material": "5.0.1",
