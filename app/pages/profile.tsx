@@ -73,7 +73,7 @@ const Profile = () => {
             <div id="user-icon-container" className="m-2">
               <Button id="user-avatar" className="focus:outline-none" onClick={undefined}>
                 {currentUser?.icon ? (
-                  <Avatar alt={myHandle} src={currentUser.icon!} />
+                  <Avatar alt={myDisplayName ? myDisplayName : myHandle} src={currentUser.icon!} />
                 ) : (
                   <Avatar>{myHandle}</Avatar>
                 )}
