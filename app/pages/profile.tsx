@@ -1,4 +1,4 @@
-import { BlitzPage, invoke, useMutation, useQuery, useRouter } from "blitz"
+import { BlitzPage, invoke, Link, useMutation, useQuery, useRouter } from "blitz"
 import EditIcon from "@mui/icons-material/Edit"
 import {
   Avatar,
@@ -135,7 +135,7 @@ const Profile = () => {
         </div>
         <div className="m-6">
           <Button id="public-view-container" className="m-2 text-blue-500 font-semibold">
-            <a href={publicProfileLink}>Public profile view</a>
+            <Link href={publicProfileLink}>Public profile view</Link>
           </Button>
           <Button
             id="delete-account"
