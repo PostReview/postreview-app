@@ -66,6 +66,7 @@ export const ReviewList = (prop) => {
                 displayName={user.displayName}
                 handle={user.handle}
                 reviews={user.review}
+                userIcon={user.icon}
                 questionCategories={questionCategories}
               />
             ))
