@@ -32,7 +32,9 @@ export const HowItWorks = () => {
           alt="A card showing ratings for the article by one user"
         />
       </div>
-      <div className="mt-12 mb-6 text-2xl font-bold">4. We combine everyone&apos;s ratings</div>
+        <div className="text-center mt-14 mb-6 text-2xl font-bold">
+          Everyone&apos;s ratings, combined
+        </div>
       <div className="self-center">
         <Image src={articleScreenshot} alt="A card showing an article with ratings across users" />
       </div>
