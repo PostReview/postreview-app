@@ -1,6 +1,7 @@
 import { useRouter } from "blitz"
 import React from "react"
 import { Button } from "./Button"
+import EnterDOI from "./EnterDOI"
 
 export const Hero = () => {
   const router = useRouter()
@@ -11,8 +12,11 @@ export const Hero = () => {
       <div className="text-xl text-slate-700 mt-6">
         Share your thoughts with those who care—Opinions in science have never been this accessible
       </div>
-      <div id="action-container" className="my-6">
-        <Button onClick={() => router.push("browse")}>Start Browsing</Button>
+      <div id="action-container" className="my-6 flex flex-row w-full lg:w-1/2">
+        <EnterDOI />
+        <Button additionalClass="my-4" onClick={() => router.push("browse")}>
+          Start Browsing
+        </Button>
       </div>
     </div>
   )
