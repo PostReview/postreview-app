@@ -1,8 +1,7 @@
 import { Image } from "blitz"
 import articleScreenshot from "public/steps-screenshots/article.png"
-import enterDoiScreenshot from "public/steps-screenshots/enter-doi.png"
 import popupReviewScreenshot from "public/steps-screenshots/popup-review.gif"
-import reviewAnswerScreenshot from "public/steps-screenshots/review-answer.png"
+import enterTitleScreenshot from "public/steps-screenshots/enter-title.png"
 
 export const HowItWorks = () => {
   return (
@@ -12,6 +11,10 @@ export const HowItWorks = () => {
     >
         <div className="text-center mb-6 text-2xl font-bold ">Enter the title of the paper</div>
         <div className="max-w-xl">
+          <Image
+            src={enterTitleScreenshot}
+            alt="A card showing an article with ratings across users"
+          />
       </div>
       <div className="mt-12 mb-6 text-2xl font-bold">2. Rate the paper</div>
       <div className="self-center max-w-md">
