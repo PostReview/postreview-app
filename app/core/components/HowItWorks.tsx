@@ -1,6 +1,7 @@
 import { Image } from "blitz"
 import articleScreenshot from "public/steps-screenshots/article.png"
 import popupReviewScreenshot from "public/steps-screenshots/popup-review.gif"
+import reviewAnswersScreenshot from "public/steps-screenshots/review-answers.png"
 import enterTitleScreenshot from "public/steps-screenshots/enter-title.png"
 
 export const HowItWorks = () => {
@@ -22,10 +23,12 @@ export const HowItWorks = () => {
           alt="A screen recording where the user is choosing ratings for the article"
         />
       </div>
-      <div className="mt-12 mb-6 text-2xl font-bold">3. Your rating is recorded</div>
-      <div className="self-center">
+        <div className="text-center mb-6 text-2xl font-bold">
+          You can browse others&apos; ratings
+        </div>
+        <div className="max-w-full">
         <Image
-          src={reviewAnswerScreenshot}
+            src={reviewAnswersScreenshot}
           alt="A card showing ratings for the article by one user"
         />
       </div>
