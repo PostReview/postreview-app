@@ -54,12 +54,24 @@ export default function EnterDOI() {
                   return (
                     <div>
                       No results.{" "}
-                      <a
-                        className="text-violet-500 hover:cursor-pointer"
-                        onClick={() => setPaperPopupOpen(true)}
-                      >
-                        Add a new paper
-                      </a>
+                      {currentUser ? (
+                        <a
+                          className="text-violet-500 hover:cursor-pointer"
+                          onClick={() => setPaperPopupOpen(true)}
+                        >
+                          Add a new paper
+                        </a>
+                      ) : (
+                        <span>
+                          <a
+                            className="text-violet-500 hover:cursor-pointer"
+                            href={"/api/auth/google"}
+                          >
+                            Login or create an account
+                          </a>{" "}
+                          to add papers.
+                        </span>
+                      )}
                     </div>
                   )
                 },
