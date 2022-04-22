@@ -16,8 +16,7 @@ export const HowItWorks = () => {
             alt="A card showing an article with ratings across users"
           />
       </div>
-      <div className="mt-12 mb-6 text-2xl font-bold">2. Rate the paper</div>
-      <div className="self-center max-w-md">
+        <div className="max-w-xl">
         <Image
           src={popupReviewScreenshot}
           alt="A screen recording where the user is choosing ratings for the article"
