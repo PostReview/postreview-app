@@ -8,7 +8,7 @@ export const HowItWorks = () => {
   return (
     <div
       id="how-it-works-container"
-      className="flex flex-col items-center min-h-screen justify-evenly my-12 max-w-4xl m-12 mb-24 space-y-32"
+      className="flex flex-col items-center min-h-screen justify-evenly my-12 max-w-4xl m-12 mb-24 space-y-20"
     >
       <div className="text-4xl font-bold">How it works</div>
       <div>
@@ -41,9 +41,7 @@ export const HowItWorks = () => {
         </div>
       </div>
       <div>
-        <div className="text-center mt-14 mb-6 text-2xl font-bold">
-          Everyone&apos;s ratings, combined
-        </div>
+        <div className="text-center mb-6 text-2xl font-bold">Everyone&apos;s ratings, combined</div>
         <div className="self-center">
           <Image
             src={articleScreenshot}
