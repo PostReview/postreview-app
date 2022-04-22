@@ -10,10 +10,8 @@ export const HowItWorks = () => {
       id="how-it-works-container"
       className="flex flex-col items-start min-h-screen justify-evenly my-12 max-w-2xl m-12"
     >
-      <div className="self-center text-4xl font-bold">How it works</div>
-      <div className="mt-12 mb-6 text-2xl font-bold">1. Enter DOI of the paper</div>
-      <div className="self-center">
-        <Image src={enterDoiScreenshot} alt="A card showing an article with ratings across users" />
+        <div className="text-center mb-6 text-2xl font-bold ">Enter the title of the paper</div>
+        <div className="max-w-xl">
       </div>
       <div className="mt-12 mb-6 text-2xl font-bold">2. Rate the paper</div>
       <div className="self-center max-w-md">
