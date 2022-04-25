@@ -1,37 +1,53 @@
 import { Image } from "blitz"
 import articleScreenshot from "public/steps-screenshots/article.png"
-import enterDoiScreenshot from "public/steps-screenshots/enter-doi.png"
 import popupReviewScreenshot from "public/steps-screenshots/popup-review.gif"
-import reviewAnswerScreenshot from "public/steps-screenshots/review-answer.png"
+import reviewAnswersScreenshot from "public/steps-screenshots/review-answers.png"
+import enterTitleScreenshot from "public/steps-screenshots/enter-title.png"
 
 export const HowItWorks = () => {
   return (
     <div
       id="how-it-works-container"
-      className="flex flex-col items-start min-h-screen justify-evenly my-12 max-w-2xl m-12"
+      className="flex flex-col items-center min-h-screen justify-evenly my-12 max-w-4xl m-12 mb-24 space-y-20"
     >
-      <div className="self-center text-4xl font-bold">How it works</div>
-      <div className="mt-12 mb-6 text-2xl font-bold">1. Enter DOI of the paper</div>
-      <div className="self-center">
-        <Image src={enterDoiScreenshot} alt="A card showing an article with ratings across users" />
+      <div className="text-4xl font-bold">How it works</div>
+      <div>
+        <div className="text-center mb-6 text-2xl font-bold ">Enter the title of the paper</div>
+        <div className="max-w-xl">
+          <Image
+            src={enterTitleScreenshot}
+            alt="A card showing an article with ratings across users"
+          />
+        </div>
       </div>
-      <div className="mt-12 mb-6 text-2xl font-bold">2. Rate the paper</div>
-      <div className="self-center max-w-md">
-        <Image
-          src={popupReviewScreenshot}
-          alt="A screen recording where the user is choosing ratings for the article"
-        />
+      <div>
+        <div className="text-center mb-6 text-2xl font-bold">Rate the paper</div>
+        <div className="max-w-xl">
+          <Image
+            src={popupReviewScreenshot}
+            alt="A screen recording where the user is choosing ratings for the article"
+          />
+        </div>
       </div>
-      <div className="mt-12 mb-6 text-2xl font-bold">3. Your rating is recorded</div>
-      <div className="self-center">
-        <Image
-          src={reviewAnswerScreenshot}
-          alt="A card showing ratings for the article by one user"
-        />
+      <div>
+        <div className="text-center mb-6 text-2xl font-bold">
+          You can browse others&apos; ratings
+        </div>
+        <div className="max-w-full">
+          <Image
+            src={reviewAnswersScreenshot}
+            alt="A card showing ratings for the article by one user"
+          />
+        </div>
       </div>
-      <div className="mt-12 mb-6 text-2xl font-bold">4. We combine everyone&apos;s ratings</div>
-      <div className="self-center">
-        <Image src={articleScreenshot} alt="A card showing an article with ratings across users" />
+      <div>
+        <div className="text-center mb-6 text-2xl font-bold">Everyone&apos;s ratings, combined</div>
+        <div className="self-center">
+          <Image
+            src={articleScreenshot}
+            alt="A card showing an article with ratings across users"
+          />
+        </div>
       </div>
     </div>
   )
