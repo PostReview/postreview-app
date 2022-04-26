@@ -45,6 +45,7 @@
     "formik": "2.2.9",
     "passport-google-oauth20": "2.0.0",
     "postcss": "8.3.6",
+    "postmark": "3.0.1",
     "prisma": "3.12.0",
     "react": "18.0.0-alpha-67222f044-20210915",
     "react-dom": "18.0.0-alpha-67222f044-20210915",
