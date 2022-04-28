@@ -22,3 +22,7 @@
 .aa-Panel {
   z-index: 9999;
 }
+
+.aa-Autocomplete:not(:first-child) {
+  display: none;
+}
