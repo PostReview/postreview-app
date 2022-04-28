@@ -1,4 +1,4 @@
-import { BlitzPage, invoke, Link, useMutation, useQuery, useRouter } from "blitz"
+import { BlitzPage, invoke, Link, useMutation, useQuery, useRouter, useSession } from "blitz"
 import EditIcon from "@mui/icons-material/Edit"
 import {
   Avatar,
@@ -26,6 +26,8 @@ import { Button } from "app/core/components/Button"
 
 const Profile = () => {
   const currentUser = useCurrentUser()
+  const router = useRouter()
+
   const [defaultMyArticlesWithReview] = useQuery(getReviewAnswersByUserId, {
     currentUserId: currentUser?.id,
     includeAnonymous: true,
@@ -56,13 +58,21 @@ const Profile = () => {
     if (myDisplayNameDisabled) setMyDisplayNameDisabled(false)
   }
 
-  const router = useRouter()
   const [logoutMutation] = useMutation(logout)
   const handleDeleteUser = async () => {
     await invoke(deleteUser, currentUser?.id)
     await logoutMutation()
     router.push("/")
   }
+
+  // // Redirect when not logged in
+  // const session = useSession()
+  // console.log(session.userId)
+  // useEffect(() => {
+  //   if (!session.userId) {
+  //     router.push("/")
+  //   }
+  // })
 
   return (
     <div className="flex flex-col min-h-screen">
@@ -179,5 +189,6 @@ const ProfilePage: BlitzPage = () => {
     </Suspense>
   )
 }
+ProfilePage.authenticate = true
 
 export default ProfilePage

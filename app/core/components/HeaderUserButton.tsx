@@ -6,10 +6,12 @@ import React, { useState } from "react"
 import { useCurrentUser } from "../hooks/useCurrentUser"
 import GoogleButton from "./GoogleButton"
 import { Button } from "./Button"
+import { Routes, useRouter } from "blitz"
 
 export const HeaderUserButton = () => {
   const currentUser = useCurrentUser()
   const [logoutMutation] = useMutation(logout)
+  const router = useRouter()
 
   const [anchorEl, setAnchorEl] = useState(null)
   const open = Boolean(anchorEl)
@@ -41,9 +43,18 @@ export const HeaderUserButton = () => {
           )}
         </button>
       ) : (
-        <Button id="login-button" onClick={handleClick}>
-          Login / Signup
-        </Button>
+        <>
+          <Button
+            id="login-button"
+            addstyles="bg-gray-400"
+            onClick={() => router.push(Routes.LoginPage())}
+          >
+            Login
+          </Button>
+          <Button id="login-button" onClick={() => router.push(Routes.SignupPage())}>
+            Sign Up
+          </Button>
+        </>
       )}
       {currentUser ? (
         <Menu anchorEl={anchorEl} open={open} onClose={handleClose}>

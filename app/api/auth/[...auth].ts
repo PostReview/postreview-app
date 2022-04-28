@@ -4,6 +4,7 @@ import db from "db"
 import { Strategy as GoogleStrategy } from "passport-google-oauth20"
 
 export default passportAuth({
+  // TODO: If success, pass the email, icon, displayname to the success redirectURL?
   successRedirectUrl: "/",
   errorRedirectUrl: "/",
   strategies: [
@@ -19,6 +20,7 @@ export default passportAuth({
               : process.env.GOOGLE_CALLBACK_URL,
           scope: ["email", "profile"],
         },
+        // TODO: Ask users to set their own handle,
         async function (_token, _tokenSecret, profile, done) {
           const email = profile.emails && profile.emails[0]?.value
           const user = await db.user.upsert({

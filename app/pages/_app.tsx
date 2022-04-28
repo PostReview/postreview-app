@@ -6,6 +6,7 @@ import {
   AuthorizationError,
   ErrorFallbackProps,
   useQueryErrorResetBoundary,
+  Router,
 } from "blitz"
 import LoginForm from "app/auth/components/LoginForm"
 
@@ -26,7 +27,9 @@ export default function App({ Component, pageProps }: AppProps) {
 
 function RootErrorFallback({ error, resetErrorBoundary }: ErrorFallbackProps) {
   if (error instanceof AuthenticationError) {
-    return <LoginForm onSuccess={resetErrorBoundary} />
+    Router.push("/login")
+    resetErrorBoundary()
+    return null
   } else if (error instanceof AuthorizationError) {
     return (
       <ErrorComponent
