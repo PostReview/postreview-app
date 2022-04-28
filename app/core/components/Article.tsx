@@ -26,8 +26,6 @@ export default function Article(props) {
   const ratingsCount = usersWithReview.length
 
   const totalRating = articleScores.reduce((prev, current) => {
-    // console.log("prev: " + prev)
-    // console.log("current: " + current._avg.response)
     return prev + current._avg.response! / articleScores.length
   }, 0)
 
@@ -36,7 +34,6 @@ export default function Article(props) {
       className="bg-gray-50 m-3 p-4 border-gray-600 border-2
     flex flex-col  max-w-5xl"
     >
-      <div>
         <div id="article-header" className="flex md:flex-row flex-col">
           <div id="chip-container" className="self-center">
             <Chip label={ratingsCount} className="w-8" />
