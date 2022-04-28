@@ -34,10 +34,11 @@ export default function Article(props) {
       className="bg-gray-50 m-3 p-4 border-gray-600 border-2
     flex flex-col  max-w-5xl"
     >
-        <div id="article-header" className="flex md:flex-row flex-col">
-          <div id="chip-container" className="self-center">
-            <Chip label={ratingsCount} className="w-8" />
-          </div>
+      <div id="article-header" className="flex md:flex-row flex-col">
+        <div id="chip-container" className="self-center">
+          <Chip label={ratingsCount} className="w-8" />
+        </div>
+        <div id="article-metadata" className="w-full flex md:flex-row flex-col  justify-between">
           <div id="title" className="font-semibold inline ml-3">
             <Link href={`/articles/${id}`}>{title}</Link>
           </div>
@@ -46,7 +47,7 @@ export default function Article(props) {
               <FaUser className="inline mr-2" />
               {authorString}
             </div>
-            <div className="article__DOI ml-2 text-gray-700 whitespace-nowrap">
+            <div className="article__DOI ml-2 text-violet-600 whitespace-nowrap">
               <a href={`https://dx.doi.org/${doi}`} rel="noreferrer" target="_blank">
                 <FaBook className="inline mr-2" />
                 {doi}
