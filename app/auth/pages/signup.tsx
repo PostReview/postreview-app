@@ -7,6 +7,7 @@ import { Formik } from "formik"
 import GoogleButton from "app/core/components/GoogleButton"
 import getUserInfo from "app/queries/getUserInfo"
 import signup from "../mutations/signup"
+import { Button } from "app/core/components/Button"
 
 const SignupPage: BlitzPage = () => {
   const router = useRouter()
@@ -126,13 +127,9 @@ const SignupPage: BlitzPage = () => {
                   onBlur={handleBlur}
                   value={values.passwordVerify}
                 />
-                <button
-                  className="bg-blue-600 rounded-md py-1 my-4"
-                  type="submit"
-                  disabled={isSubmitting}
-                >
+                <Button addstyles="my-4" type="submit" disabled={isSubmitting}>
                   Sign Up
-                </button>
+                </Button>
               </form>
             )}
           </Formik>
