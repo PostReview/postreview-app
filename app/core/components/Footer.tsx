@@ -12,6 +12,9 @@ export const Footer = () => {
       <div className="h-16 flex flex-row items-center sm:w-full lg:w-5/6 mx-auto">
         <div className="m-3 mx-6 flex-grow">PostReview {datetime.getFullYear()}</div>
         <ul className="mx-6">
+          <li className="inline mx-4">
+            <Link href="/how-it-works">How It Works</Link>
+          </li>
           <li className="inline mx-4">Terms</li>
           <li className="inline mx-4">
             <a
