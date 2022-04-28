@@ -1,6 +1,6 @@
 import { useRouter, BlitzPage, invoke, useMutation } from "blitz"
 import Layout from "app/core/layouts/Layout"
-import { Suspense } from "react"
+import { Suspense, useState } from "react"
 import Header from "app/core/components/Header"
 import { Footer } from "app/core/components/Footer"
 import { Formik } from "formik"
@@ -12,6 +12,8 @@ import { Button } from "app/core/components/Button"
 const SignupPage: BlitzPage = () => {
   const router = useRouter()
   const [signupMutation] = useMutation(signup)
+  const [showError, setShowError] = useState(false)
+
   return (
     <div className="flex flex-col min-h-screen">
       <Suspense fallback="Loading...">
@@ -48,7 +50,7 @@ const SignupPage: BlitzPage = () => {
               })
             }}
             onSubmit={(values, { setSubmitting }) => {
-              signupMutation(values)
+              signupMutation(values).catch(() => setShowError(true))
               setTimeout(() => {
                 setSubmitting(false)
               }, 400)
@@ -62,9 +64,13 @@ const SignupPage: BlitzPage = () => {
               handleBlur,
               handleSubmit,
               isSubmitting,
-              /* and other goodies */
             }) => (
               <form onSubmit={handleSubmit} className="flex flex-col">
+                {showError && (
+                  <div className="bg-red-500 bg-opacity-50 rounded-md text-center p-3">
+                    This email is already used
+                  </div>
+                )}
                 <label className="mt-4">
                   Email
                   <span className="text-orange-400 inline">
