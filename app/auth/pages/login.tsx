@@ -6,6 +6,7 @@ import { Footer } from "app/core/components/Footer"
 import { Formik } from "formik"
 import GoogleButton from "app/core/components/GoogleButton"
 import login from "../mutations/login"
+import { Button } from "app/core/components/Button"
 
 const LoginPage: BlitzPage = () => {
   const router = useRouter()
@@ -95,14 +96,9 @@ const LoginPage: BlitzPage = () => {
                     <a className="text-gray-700">Forgot your password?</a>
                   </Link>
                 </div>
-
-                <button
-                  className="bg-blue-600 rounded-md py-1 my-4"
-                  type="submit"
-                  disabled={isSubmitting}
-                >
+                <Button addstyles="my-4" type="submit" disabled={isSubmitting}>
                   Login
-                </button>
+                </Button>
               </form>
             )}
           </Formik>
