@@ -5,6 +5,7 @@ import { Suspense } from "react"
 import Header from "app/core/components/Header"
 import { Footer } from "app/core/components/Footer"
 import { Formik } from "formik"
+import { Button } from "app/core/components/Button"
 
 const ForgotPasswordPage: BlitzPage = () => {
   const [forgotPasswordMutation, { isSuccess }] = useMutation(forgotPassword)
@@ -19,7 +20,7 @@ const ForgotPasswordPage: BlitzPage = () => {
         <div className="flex flex-col items-center bg-slate-200 py-6 px-12">
           {isSuccess ? (
             <div>
-              <h2>Request Submitted</h2>
+              <h2 className="text-center my-4 font-bold">Request Submitted</h2>
               <p>
                 If your email is in our system, you will receive instructions to reset your password
                 shortly.
@@ -69,13 +70,11 @@ const ForgotPasswordPage: BlitzPage = () => {
                     value={values.email}
                     className="px-1"
                   />
-                  <button
-                    className="bg-blue-600 rounded-md py-1 px-1 my-4"
-                    type="submit"
-                    disabled={isSubmitting}
-                  >
-                    Send Reset Password Instructions
-                  </button>
+                  <div className="my-4">
+                    <Button type="submit" disabled={isSubmitting}>
+                      Send Reset Password Instructions
+                    </Button>
+                  </div>
                 </form>
               )}
             </Formik>
