@@ -76,7 +76,7 @@ const LoginPage: BlitzPage = () => {
                   onChange={handleChange}
                   onBlur={handleBlur}
                   value={values.email}
-                  className="pl-1"
+                  className="px-1"
                 />
                 <label htmlFor="password" className="mt-4">
                   Password{" "}
@@ -90,6 +90,7 @@ const LoginPage: BlitzPage = () => {
                   onChange={handleChange}
                   onBlur={handleBlur}
                   value={values.password}
+                  className="px-1"
                 />
                 <div>
                   <Link href={Routes.ForgotPasswordPage()}>

@@ -91,7 +91,7 @@ const SignupPage: BlitzPage = () => {
                     @
                   </span>
                   <input
-                    className="rounded-r-md px-2"
+                    className="rounded-r-md px-1"
                     type="handle"
                     name="handle"
                     onChange={handleChange}
@@ -111,6 +111,7 @@ const SignupPage: BlitzPage = () => {
                   onChange={handleChange}
                   onBlur={handleBlur}
                   value={values.password}
+                  className="px-1"
                 />
                 <label htmlFor="passwordVerify" className="mt-4">
                   Verify Password{" "}
@@ -126,6 +127,7 @@ const SignupPage: BlitzPage = () => {
                   onChange={handleChange}
                   onBlur={handleBlur}
                   value={values.passwordVerify}
+                  className="px-1"
                 />
                 <Button addstyles="my-4" type="submit" disabled={isSubmitting}>
                   Sign Up
