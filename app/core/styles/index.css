@@ -26,3 +26,12 @@
 .aa-Autocomplete:not(:first-child) {
   display: none;
 }
+
+/* Tooltips  */
+.tooltip {
+  @apply invisible absolute;
+}
+
+.has-tooltip:hover .tooltip {
+  @apply visible z-50;
+}
