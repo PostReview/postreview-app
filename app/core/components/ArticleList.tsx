@@ -8,7 +8,7 @@ export default function ArticleList() {
 
   if (!defaultArticles) return null
   return (
-    <div className="mt-10">
+    <div className="mt-10 mx-2">
       <h1 className="text-xl">Trending Papers</h1>
       {defaultArticles?.map((article, index) => {
         return (
