@@ -14,7 +14,7 @@ import { Box } from "@mui/system"
 import Header from "app/core/components/Header"
 import { useCurrentUser } from "app/core/hooks/useCurrentUser"
 import getReviewAnswersByUserId from "app/queries/getReviewAnswersByUserId"
-import { Suspense, useState } from "react"
+import { Suspense, useEffect, useState } from "react"
 import { MyReviewsTable } from "app/core/components/MyReviewsTable"
 import { MyReviewsEmptyState } from "app/core/components/MyReviewsEmptyState"
 import { Footer } from "app/core/components/Footer"
@@ -23,6 +23,10 @@ import logout from "app/auth/mutations/logout"
 import changeUserHandle from "app/mutations/changeUserHandle"
 import changeDisplayName from "app/mutations/changeDisplayName"
 import { Button } from "app/core/components/Button"
+import { AiFillCheckCircle } from "react-icons/ai"
+import { MdError } from "react-icons/md"
+import Layout from "app/core/layouts/Layout"
+import resendVerification from "app/auth/mutations/resendVerification"
 
 const Profile = () => {
   const currentUser = useCurrentUser()
@@ -41,6 +45,9 @@ const Profile = () => {
   const [myDisplayNameDisabled, setMyDisplayNameDisabled] = useState(true)
 
   const [isDeactivateAccountDialogOpen, setIsDeactivateAccountDialogOpen] = useState(false)
+  const [resendVerificationMutation, { isSuccess }] = useMutation(resendVerification)
+  const [verificationSent, setVerificationSent] = useState(false)
+
   const changeHandle = () => {
     if (!handleDisabled) {
       invoke(changeUserHandle, { id: currentUser?.id, handle: myHandle })
@@ -65,14 +72,13 @@ const Profile = () => {
     router.push("/")
   }
 
-  // // Redirect when not logged in
-  // const session = useSession()
-  // console.log(session.userId)
-  // useEffect(() => {
-  //   if (!session.userId) {
-  //     router.push("/")
-  //   }
-  // })
+  // Redirect when not logged in
+  const session = useSession()
+  useEffect(() => {
+    if (!session.userId) {
+      router.push("/")
+    }
+  })
 
   return (
     <div className="flex flex-col min-h-screen">
@@ -120,7 +126,7 @@ const Profile = () => {
                 <EditIcon />
               </IconButton>
             </div>
-            <div id="user-email-container" className="m-2">
+            <div id="user-email-container" className="m-2 flex flex-row items-center">
               <TextField
                 disabled
                 id="user-email"
@@ -129,6 +135,21 @@ const Profile = () => {
                 defaultValue={currentUser?.email}
                 size="small"
               />
+              {currentUser?.emailIsVerified ? (
+                <div className="has-tooltip relative">
+                  <div className="tooltip bg-slate-300 rounded-md text-gray-700 -top-8 -left-4 px-2 py-1">
+                    Verified
+                  </div>
+                  <AiFillCheckCircle className="inline text-2xl mx-2 text-green-400" />
+                </div>
+              ) : (
+                <div className="has-tooltip relative">
+                  <div className="tooltip bg-slate-300 rounded-md text-gray-700 -top-8 -left-4 px-2 py-1">
+                    <span className="whitespace-nowrap">Not verified</span>
+                  </div>
+                  <MdError className="inline text-2xl mx-2 text-red-400" />
+                </div>
+              )}
               {/* Commenting out the email change function for now */}
               {/* <IconButton>
                 <EditIcon />
@@ -136,6 +157,29 @@ const Profile = () => {
             </div>
           </div>
         </div>
+        {!currentUser?.emailIsVerified && (
+          <div className="text-orange-800 max-w-3xl text-sm border-2 border-orange-400 rounded-md px-2 py-1 m-3 bg-orange-300">
+            Your email is not verified.{" "}
+            {verificationSent ? (
+              <span className="underline">Verification sent! Please check your mailbox.</span>
+            ) : (
+              <Button
+                onClick={({}) =>
+                  resendVerificationMutation()
+                    .then(() => {
+                      setVerificationSent(true)
+                    })
+                    .catch((error) => {
+                      alert(error)
+                    })
+                }
+              >
+                Resend verification
+              </Button>
+            )}
+          </div>
+        )}
+
         <div id="my-reviews-container" className="m-3">
           <h1 className="text-3xl">Reviews You Posted</h1>
           <div className="m-6">
@@ -190,5 +234,6 @@ const ProfilePage: BlitzPage = () => {
   )
 }
 ProfilePage.authenticate = true
+ProfilePage.getLayout = (page) => <Layout title="Profile">{page}</Layout>
 
 export default ProfilePage
