@@ -32,7 +32,7 @@ export const MyReviewsTable = (props) => {
                   <FaUser className="inline mr-2" />
                   {article.authorString} ({article.publishedYear})
                 </div>
-                <div className="text-sm text-gray-700">
+                <div className="text-sm text-violet-600">
                   <FaBook className="inline mr-2" />
                   <a href={`https://doi.org/${article.doi}`} target="_blank" rel="noreferrer">
                     {article.doi}
