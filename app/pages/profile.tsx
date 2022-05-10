@@ -88,12 +88,13 @@ const Profile = () => {
           <div className="flex flex-row items-center">
             <div id="user-icon-container" className="m-2">
               <Button id="user-avatar" className="focus:outline-none" onClick={undefined}>
-                {currentUser?.icon ? (
-                  <Avatar alt={myDisplayName ? myDisplayName : myHandle} src={currentUser.icon!} />
-                ) : (
-                  <Avatar>{myHandle}</Avatar>
-                )}
-              </Button>{" "}
+                <Avatar
+                  alt={myDisplayName ? myDisplayName : myHandle}
+                  src={`https://eu.ui-avatars.com/api/?name=${
+                    currentUser?.displayName ? currentUser?.displayName : currentUser?.handle
+                  }`}
+                />
+              </Button>
             </div>
             <div id="handle-field-container">
               <TextField
