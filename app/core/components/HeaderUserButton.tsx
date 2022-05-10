@@ -39,7 +39,12 @@ export const HeaderUserButton = () => {
           {currentUser.icon ? (
             <Avatar alt={currentUser.handle} src={currentUser.icon!} />
           ) : (
-            <Avatar>{currentUser?.handle?.[0]}</Avatar>
+            <Avatar
+              alt={currentUser.displayName ? currentUser.displayName : currentUser.handle}
+              src={`https://eu.ui-avatars.com/api/?name=${
+                currentUser.displayName ? currentUser.displayName : currentUser.handle
+              }`}
+            />
           )}
         </button>
       ) : (
@@ -56,20 +61,14 @@ export const HeaderUserButton = () => {
           </Button>
         </>
       )}
-      {currentUser ? (
+      {
         <Menu anchorEl={anchorEl} open={open} onClose={handleClose}>
           <MenuItem onClick={handleClose}>
             <Link href="/profile">Profile</Link>
           </MenuItem>
           <MenuItem onClick={handleLogout}>Logout</MenuItem>
         </Menu>
-      ) : (
-        <Menu anchorEl={anchorEl} open={open} onClose={handleClose}>
-          <MenuItem>
-            <GoogleButton />
-          </MenuItem>
-        </Menu>
-      )}
+      }
     </div>
   )
 }
