@@ -25,7 +25,13 @@ const PublicProfileDetails = () => {
               <Button id="user-avatar" className="focus:outline-none" onClick={undefined}>
                 <Avatar
                   alt={userInfo?.displayName ? userInfo.displayName : userInfo?.handle}
-                  src={userInfo?.icon!}
+                  src={
+                    userInfo?.icon
+                      ? userInfo?.icon
+                      : `https://eu.ui-avatars.com/api/?name=${
+                          userInfo?.displayName ? userInfo?.displayName : userInfo?.handle
+                        }`
+                  }
                 />
               </Button>
             </div>
