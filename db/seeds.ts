@@ -1,3 +1,4 @@
+import createReplica from "app/core/createReplica"
 import db from "./index"
 
 /*
@@ -64,10 +65,17 @@ const seed = async () => {
     skipDuplicates: true,
   })
 
+  // Create replica indices
+  await createReplica()
+    .catch((e) => console.log(e))
+    .then(() => console.log("Algolia: Successfully created replica indices"))
+
   // Seed users
   // await db.user.createMany({
   //   data: users,
   // })
+
+  // TODO: Seed articles
 
   // Seed review answers
   // await db.reviewAnswers.createMany({
