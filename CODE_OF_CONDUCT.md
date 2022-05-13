@@ -68,6 +68,7 @@ All complaints will be reviewed and investigated promptly and fairly.
 
 All community leaders are obligated to respect the privacy and security of the
 reporter of any incident.
+To report a Code of Conduct violation, please send an email to coc@postreview.org via the [report link](mailto:coc@postreview.org?subject=Code%20of%20Conduct%20report&body=Dear%20Code%20of%20Conduct%20committee%2C%0A%0AI%20would%20like%20to%20submit%20a%20code%20of%20conduct%20report%20regarding%20%5Breported%20person's%20name%2Fdescription%2C%20organizations%20also%20allowed%5D.%0A%0A%5Bdescription%20of%20the%20incident%5D%20%0A%0AThis%20happened%20on%20%5Bdate%20and%20time%5D%20at%20%5Blocation%5D.%20%0A%0AMy%20name%20is%20%5Breporter%20name%5D%20and%20you%20can%20reach%20me%20at%20%5Bcontact%20info%5D.%20%0A%0AAdditional%20witnesses%20for%20this%20report%20are%3A%20%5Boptional%20witness%20information%5D.).
 
 ## Enforcement Guidelines
 
@@ -115,7 +116,6 @@ individual, or aggression toward or disparagement of classes of individuals.
 **Consequence**: A permanent ban from any sort of public interaction within the
 community.
 
-## [ADD reporting procedure, report reviewing protocol, appeal procedure]
 
 ## Attribution
 
