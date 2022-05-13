@@ -32,7 +32,7 @@ export default function Article(props) {
   return (
     <div
       className="bg-gray-50 m-3 p-4 border-gray-600 border-2
-    flex flex-col  max-w-5xl"
+    flex flex-col w-full max-w-5xl"
     >
       <div id="article-header" className="flex md:flex-row flex-col">
         <div id="chip-container" className="self-center">
