@@ -51,6 +51,7 @@
     "react-dom": "18.0.0-alpha-67222f044-20210915",
     "react-final-form": "6.5.3",
     "react-icons": "4.2.0",
+    "react-instantsearch-hooks-web": "6.24.2",
     "react-likert-scale": "4.1.2",
     "survey-react": "1.8.68",
     "ts-node": "10.4.0",
