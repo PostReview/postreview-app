@@ -1,7 +1,7 @@
 import React from "react"
 import { useQuery } from "blitz"
 import { useCurrentUser } from "../hooks/useCurrentUser"
-import getUssersWithReviewsByArticleId from "app/queries/getUsersWithReviewsByArticleId"
+import getUsersWithReviewsByArticleId from "app/queries/getUsersWithReviewsByArticleId"
 import { Review } from "./Review"
 import getQuestionCategories from "app/queries/getQuestionCategories"
 
@@ -9,7 +9,7 @@ export const ReviewList = (prop) => {
   const { article, ActionButton } = prop
   const currentUser = useCurrentUser()
 
-  const [usersWithReview] = useQuery(getUssersWithReviewsByArticleId, {
+  const [usersWithReview] = useQuery(getUsersWithReviewsByArticleId, {
     currentArticleId: article?.id,
   })
 
@@ -36,6 +36,7 @@ export const ReviewList = (prop) => {
                   reviews={currentUserReview?.review}
                   userIcon={currentUserReview?.icon}
                   questionCategories={questionCategories}
+                  comment={currentUserReview?.reviewComments[0]?.comment}
                 />
                 <ActionButton state="edit" />
               </>
