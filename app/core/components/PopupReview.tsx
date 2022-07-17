@@ -9,6 +9,8 @@ import { DialogActions, DialogContent, DialogTitle, Switch, Tooltip } from "@mui
 import HelpOutlineIcon from "@mui/icons-material/HelpOutline"
 import { FaBook, FaUser } from "react-icons/fa"
 import { Button } from "./Button"
+import getReviewCommentByArticleAndUserIds from "app/queries/getReviewCommentByArticleAndUserIds"
+import addReviewComment from "app/mutations/addReviewComment"
 
 export default function PopupReview(prop) {
   const { article, handleClose, setUserHasReview, setIsChangeMade, userHasReview } = prop
@@ -23,6 +25,12 @@ export default function PopupReview(prop) {
     reviewAnswerQueryParams
   )
   const [reviewAnswers, setReviewAnswers] = useState(defaultReviewAnswers)
+  const [defaultReviewComment] = useQuery(
+    getReviewCommentByArticleAndUserIds,
+    reviewAnswerQueryParams
+  )
+  const [reviewComment, setReviewComment] = useState(defaultReviewComment)
+
   const [isAnonymous, setIsAnonymous] = useState(
     reviewAnswers[0]?.isAnonymous ? reviewAnswers[0]?.isAnonymous : false
   )
@@ -43,9 +51,17 @@ export default function PopupReview(prop) {
   }
 
   const [addReviewMutation] = useMutation(addReview)
+  const [addReviewCommentMutation] = useMutation(addReviewComment)
   const handleReviewSubmit = async () => {
     setLoading(true)
     await invoke(addReviewMutation, reviewAnswers)
+    await invoke(addReviewCommentMutation, {
+      userId: currentUser?.id,
+      articleId: article.id,
+      isAnonymous: isAnonymous,
+      comment: reviewComment?.comment,
+    })
+
     setUserHasReview(true)
     window.location.reload()
   }
@@ -83,6 +99,19 @@ export default function PopupReview(prop) {
               />
             )
           })}
+        </div>
+        <div id="review-comment" className="flex flex-col">
+          <div id="review-comment-header">
+            <span>Comment</span>
+            <span className="text-slate-400 mx-1">(optional)</span>
+          </div>
+          <textarea
+            className="w-full h-32 border-2 p-4"
+            onChange={(e) => {
+              setReviewComment({ comment: e.target.value })
+            }}
+            defaultValue={reviewComment?.comment}
+          />
         </div>
       </DialogContent>
       <DialogActions>
