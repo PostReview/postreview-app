@@ -51,8 +51,8 @@ export const ReviewQuestion = (props) => {
             name="customized-10"
             max={question.maxValue}
             onChange={(event, newValue) => {
-              setCurrentAnswer({ ...currentAnswer, response: newValue })
-              handleRatingChange(question.questionId, newValue)
+              setCurrentAnswer({ ...currentAnswer, response: newValue ? newValue : 0 })
+              handleRatingChange(question.questionId, newValue ? newValue : 0)
               setIsChangeMade(true)
             }}
             value={currentAnswer?.response}
