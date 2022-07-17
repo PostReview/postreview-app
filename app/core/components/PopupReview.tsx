@@ -59,7 +59,8 @@ export default function PopupReview(prop) {
       userId: currentUser?.id,
       articleId: article.id,
       isAnonymous: isAnonymous,
-      comment: reviewComment?.comment,
+      // When comment is blank, update it to a blank string
+      comment: reviewComment?.comment ? reviewComment?.comment : "",
     })
 
     setUserHasReview(true)
