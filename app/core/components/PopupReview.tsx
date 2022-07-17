@@ -53,7 +53,7 @@ export default function PopupReview(prop) {
   return (
     <>
       <DialogTitle>
-        <div className="text-center">What are your thoughs about this paper?</div>
+        <div className="text-center">What are your thoughts about this paper?</div>
       </DialogTitle>
       <DialogContent>
         <div id="title-container" className="text-center">
