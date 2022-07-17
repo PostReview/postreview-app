@@ -125,7 +125,7 @@ export default function PopupReview(prop) {
         <Button type="cancel" onClick={handleClose}>
           Cancel
         </Button>
-        <Button loading={loading ? loading : undefined} onClick={handleReviewSubmit}>
+        <Button loading={loading ? "true" : undefined} onClick={handleReviewSubmit}>
           {userHasReview ? "Update" : "Submit"}
         </Button>
       </DialogActions>
