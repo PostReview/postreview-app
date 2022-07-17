@@ -21,6 +21,9 @@ export default async function getUsersWithReviewsByArticleId(props) {
           question: true,
         },
       },
+      reviewComments: {
+        where: { articleId: currentArticleId },
+      },
     },
   })
 }
