@@ -5,7 +5,7 @@ import { Icon } from "@iconify/react"
 import { Link } from "blitz"
 
 export const Review = (props) => {
-  const { displayName, handle, reviews, userIcon, questionCategories } = props
+  const { displayName, handle, reviews, userIcon, questionCategories, comment } = props
   const submittedAt = reviews[0]?.createdAt?.toISOString().split("T")[0]
   const updatedAt = reviews[0]?.updatedAt.toISOString().split("T")[0]
   const isAnonymous = reviews[0]?.isAnonymous
@@ -15,7 +15,7 @@ export const Review = (props) => {
 
   return (
     <div className="flex lg:flex-row flex-col items-center m-6">
-      <div className="">
+      <div id="user-metadata">
         <Tooltip title={tooltipText} placement="top" arrow>
           <Button id="user-avatar" className="focus:outline-none">
             {isAnonymous ? (
@@ -35,9 +35,18 @@ export const Review = (props) => {
       </div>
       <div
         className="bg-gray-50 p-4 border-gray-600 border-2
-          flex flex-col  max-w-5xl"
+            max-w-5xl"
       >
-        <ReviewStars reviews={reviews} questionCategories={questionCategories} />
+        <div id="review-stars" className="flex flex-col">
+          <ReviewStars reviews={reviews} questionCategories={questionCategories} />
+        </div>
+        {comment ? (
+          <div id="comment-card" className="border-2 p-4 text-sm">
+            {comment}
+          </div>
+        ) : (
+          <></>
+        )}
       </div>
     </div>
   )
