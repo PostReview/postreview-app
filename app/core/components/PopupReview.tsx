@@ -5,7 +5,7 @@ import { ReviewQuestion } from "./ReviewQuestion"
 import { useCurrentUser } from "../hooks/useCurrentUser"
 import addReview from "app/mutations/addReview"
 import getReviewAnswersByArticleAndUserIds from "app/queries/getReviewAnswersByArticleAndUserIds"
-import { DialogActions, DialogContent, DialogTitle, Switch, Tooltip } from "@mui/material"
+import { Dialog, DialogActions, DialogContent, DialogTitle, Switch, Tooltip } from "@mui/material"
 import HelpOutlineIcon from "@mui/icons-material/HelpOutline"
 import { FaBook, FaUser } from "react-icons/fa"
 import { Button } from "./Button"
@@ -44,9 +44,14 @@ export default function PopupReview(prop) {
 
   const updateRating = (questionId, newRating) => {
     const newAnswers = reviewAnswers
-    const index = newAnswers.findIndex((r) => r?.questionId === questionId)
-    if (index < 0) newAnswers[questionId - 1] = newRating
-    if (index >= 0) newAnswers[index] = newRating
+    const foundAnswer = reviewAnswers.find((review) => review?.questionId === questionId)
+    // If the answer is not found, add the answer
+    if (!foundAnswer) newAnswers.push(newRating)
+    // If the answer is found, update the answer
+    if (foundAnswer) {
+      const index = newAnswers.findIndex((r) => r?.questionId === questionId)
+      newAnswers[index] = newRating
+    }
     setReviewAnswers(newAnswers)
   }
 
