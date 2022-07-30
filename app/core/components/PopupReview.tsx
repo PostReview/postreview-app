@@ -50,10 +50,14 @@ export default function PopupReview(prop) {
     setReviewAnswers(newAnswers)
   }
 
+  const [showReviewRequiredError, setShowReviewRequiredError] = useState(false)
+
   const [addReviewMutation] = useMutation(addReview)
   const [addReviewCommentMutation] = useMutation(addReviewComment)
   const handleReviewSubmit = async () => {
     setLoading(true)
+    // If there's no rating given, show the error message
+    if (reviewAnswers.length == 0) return setShowReviewRequiredError(true)
     await invoke(addReviewMutation, reviewAnswers)
     await invoke(addReviewCommentMutation, {
       userId: currentUser?.id,
@@ -130,6 +134,15 @@ export default function PopupReview(prop) {
           {userHasReview ? "Update" : "Submit"}
         </Button>
       </DialogActions>
+      <Dialog open={showReviewRequiredError} onClose={() => setShowReviewRequiredError(false)}>
+        <DialogTitle>Cannot submit a review without a rating</DialogTitle>
+        <DialogContent>To submit a review, give a rating for at least one category.</DialogContent>
+        <DialogActions>
+          <Button type="cancel" onClick={() => setShowReviewRequiredError(false)}>
+            Go back
+          </Button>
+        </DialogActions>
+      </Dialog>
     </>
   )
 }
