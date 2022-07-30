@@ -51,11 +51,13 @@ export const ReviewQuestion = (props) => {
             name="customized-10"
             max={question.maxValue}
             onChange={(event, newValue) => {
+              // If the star is blank, do nothing
+              if (newValue == null) return undefined
               setCurrentAnswer({ ...currentAnswer, response: newValue })
               handleRatingChange(question.questionId, newValue)
               setIsChangeMade(true)
             }}
-            value={currentAnswer?.response}
+            value={currentAnswer ? currentAnswer?.response : 0}
           />
         </div>
         <div

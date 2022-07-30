@@ -28,9 +28,10 @@ model User {
   sessions Session[]
   icon     String?
 
-  author  Author[]
-  review  ReviewAnswers[]
-  article Article[]
+  author         Author[]
+  review         ReviewAnswers[]
+  reviewComments ReviewComments[]
+  article        Article[]
 }
 
 model Session {
@@ -73,18 +74,19 @@ model Token {
 // }
 
 model Article {
-  id            String          @id @default(uuid())
-  createdAt     DateTime        @default(now())
-  updatedAt     DateTime        @updatedAt
-  addedBy       User?           @relation(fields: [addedById], references: [id], onDelete: SetNull)
+  id            String           @id @default(uuid())
+  createdAt     DateTime         @default(now())
+  updatedAt     DateTime         @updatedAt
+  addedBy       User?            @relation(fields: [addedById], references: [id], onDelete: SetNull)
   addedById     Int?
-  doi           String          @unique
+  doi           String           @unique
   title         String
   publishedYear Int
   journal       String
   authorString  String
   author        Author[]
   review        ReviewAnswers[]
+  reviewComment ReviewComments[]
 }
 
 model Author {
@@ -115,6 +117,24 @@ model ReviewAnswers {
   isAnonymous   Boolean         @default(false)
 
   @@unique([articleId, questionId, userId])
+}
+
+model ReviewComments {
+  id        String   @id @default(uuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  userId      Int?
+  writtenBy   User?   @relation(fields: [userId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  isAnonymous Boolean @default(false)
+
+  articleId     String
+  targetArticle Article? @relation(fields: [articleId], references: [id])
+
+  comment String
+
+  // Each user can have only one comment per article
+  @@unique([userId, articleId])
 }
 
 model ReviewQuestions {

@@ -47,6 +47,7 @@ export const MyReviewsTable = (props) => {
                 reviews={article?.review}
                 userIcon={currentUser?.icon}
                 questionCategories={questionCategories}
+                comment={article?.reviewComment[0]?.comment}
               />
               {publicProfile ? (
                 ""

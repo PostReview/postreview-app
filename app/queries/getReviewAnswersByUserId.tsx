@@ -17,6 +17,9 @@ export default async function getReviewAnswersByUserId(props) {
             question: true,
           },
         },
+        reviewComment: {
+          where: { userId: currentUserId },
+        },
       },
     })
 
@@ -33,6 +36,9 @@ export default async function getReviewAnswersByUserId(props) {
         include: {
           question: true,
         },
+      },
+      reviewComment: {
+        where: { userId: currentUserId },
       },
     },
   })
