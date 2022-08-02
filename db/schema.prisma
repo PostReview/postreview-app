@@ -82,7 +82,7 @@ model Article {
   doi           String           @unique
   title         String
   publishedYear Int
-  journal       String
+  journal       String?
   authorString  String
   author        Author[]
   review        ReviewAnswers[]
