@@ -1,5 +1,5 @@
 import { BlitzPage, useParam, useQuery } from "blitz"
-import Header from "app/core/components/Header"
+import Navbar from "app/core/components/Navbar"
 import { ReviewList } from "app/core/components/ReviewList"
 import getArticle from "app/queries/getArticle"
 import { Suspense, useState } from "react"
@@ -54,7 +54,7 @@ const ArticleDetails = () => {
 
   return (
     <div className="flex flex-col min-h-screen">
-      <Header />
+      <Navbar />
       <main className="m-6 flex-grow flex flex-col items-center">
         <div className="m-6 text-4xl text-center">
           <h1>Overall Score</h1>

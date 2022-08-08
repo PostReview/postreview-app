@@ -11,7 +11,7 @@ import {
   TextField,
 } from "@mui/material"
 import { Box } from "@mui/system"
-import Header from "app/core/components/Header"
+import Navbar from "app/core/components/Navbar"
 import { useCurrentUser } from "app/core/hooks/useCurrentUser"
 import getReviewAnswersByUserId from "app/queries/getReviewAnswersByUserId"
 import { Suspense, useEffect, useState } from "react"
@@ -82,7 +82,7 @@ const Profile = () => {
 
   return (
     <div className="flex flex-col min-h-screen">
-      <Header />
+      <Navbar />
       <main className="flex-grow">
         <div id="user-info-card" className="bg-gray-200 p-4">
           <div className="flex flex-row items-center">

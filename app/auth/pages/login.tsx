@@ -1,7 +1,7 @@
 import { useRouter, BlitzPage, useMutation, Link, Routes } from "blitz"
 import Layout from "app/core/layouts/Layout"
 import { Suspense, useState } from "react"
-import Header from "app/core/components/Header"
+import Navbar from "app/core/components/Navbar"
 import { Footer } from "app/core/components/Footer"
 import { Formik } from "formik"
 import GoogleButton from "app/core/components/GoogleButton"
@@ -16,7 +16,7 @@ const LoginPage: BlitzPage = () => {
   return (
     <div className="flex flex-col min-h-screen">
       <Suspense fallback="Loading...">
-        <Header />
+        <Navbar />
       </Suspense>
       <main className="flex-grow flex flex-col items-center justify-center">
         <h1 className="text-2xl font-bold my-4">Login to PostReview</h1>
