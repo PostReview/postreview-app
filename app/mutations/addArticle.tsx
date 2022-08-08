@@ -12,7 +12,7 @@ const AddArticle = z.object({
   title: z.string(),
   doi: z.string(),
   publishedYear: z.number().int(),
-  journal: z.string(),
+  journal: z.string().optional(),
   addedById: z.number().int(),
   authorString: z.string(),
 })
