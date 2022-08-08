@@ -6,6 +6,9 @@ module.exports = {
   darkMode: "media", // or 'media' or 'class'
   theme: {
     extend: {},
+    fontFamily: {
+      sans: ['"Fira Sans"', "sans-serif"],
+    },
   },
   variants: {
     extend: {},
