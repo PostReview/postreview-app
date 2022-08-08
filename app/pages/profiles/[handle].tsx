@@ -1,5 +1,5 @@
 import { BlitzPage, useParam, useQuery } from "blitz"
-import Header from "app/core/components/Header"
+import Navbar from "app/core/components/Navbar"
 import { Suspense } from "react"
 import { Footer } from "app/core/components/Footer"
 import { Avatar } from "@mui/material"
@@ -17,7 +17,7 @@ const PublicProfileDetails = () => {
 
   return (
     <div className="flex flex-col min-h-screen">
-      <Header />
+      <Navbar />
       <main className="flex-grow">
         <div id="user-info-card" className="bg-gray-200 p-4 flex flex-col items-center">
           <div className="flex flex-row items-center">

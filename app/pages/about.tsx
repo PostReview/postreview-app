@@ -1,5 +1,5 @@
 import { Footer } from "app/core/components/Footer"
-import Header from "app/core/components/Header"
+import Navbar from "app/core/components/Navbar"
 import { Visions } from "app/core/components/Visions"
 import { BlitzPage } from "blitz"
 import { Suspense } from "react"
@@ -9,7 +9,7 @@ const About: BlitzPage = () => {
   return (
     <div className="flex flex-col min-h-screen">
       <Suspense fallback="Loading...">
-        <Header />
+        <Navbar />
       </Suspense>
       <main className="flex-grow flex flex-col items-center mb-12">
         <h1 className="text-6xl font-bold my-12">About us</h1>

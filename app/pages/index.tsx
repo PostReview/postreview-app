@@ -4,7 +4,7 @@ import Layout from "app/core/layouts/Layout"
 import { useCurrentUser } from "app/core/hooks/useCurrentUser"
 
 // Components
-import Header from "../core/components/Header"
+import Navbar from "../core/components/Navbar"
 import { Footer } from "app/core/components/Footer"
 import { Hero } from "app/core/components/Hero"
 import { HowItWorks } from "app/core/components/HowItWorks"
@@ -44,7 +44,7 @@ const Home: BlitzPage = () => {
   return (
     <div className="flex flex-col min-h-screen">
       <Suspense fallback="Loading...">
-        <Header />
+        <Navbar />
       </Suspense>
       <main className="flex-grow flex flex-col items-center mb-4">
         <Suspense fallback="Loading...">

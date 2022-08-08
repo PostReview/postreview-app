@@ -4,7 +4,7 @@ import EnterDOI from "./EnterDOI"
 import { useCurrentUser } from "../hooks/useCurrentUser"
 import { Link, useRouter } from "blitz"
 
-export default function Header() {
+export default function Navbar() {
   const currentUser = useCurrentUser()
   const router = useRouter()
   return (
