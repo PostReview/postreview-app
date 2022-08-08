@@ -1,9 +1,12 @@
 import { autocomplete } from "@algolia/autocomplete-js"
+import { createRoot } from "react-dom"
+import type { Root } from "react-dom"
 import React, { createElement, Fragment, useEffect, useRef } from "react"
-import { render } from "react-dom"
 
 export function Autocomplete(props) {
-  const containerRef = useRef(null)
+  const containerRef = useRef<HTMLDivElement | null>(null)
+  const panelRootRef = useRef<Root | null>(null)
+  const rootRef = useRef<HTMLElement | null>(null)
 
   useEffect(() => {
     if (!containerRef.current) {
@@ -14,7 +17,14 @@ export function Autocomplete(props) {
       container: containerRef.current,
       renderer: { createElement, Fragment },
       render({ children }, root) {
-        render(children, root)
+        if (!panelRootRef.current || rootRef.current !== root) {
+          rootRef.current = root
+
+          panelRootRef.current?.unmount()
+          panelRootRef.current = createRoot(root)
+        }
+
+        panelRootRef.current.render(children)
       },
       ...props,
     })
