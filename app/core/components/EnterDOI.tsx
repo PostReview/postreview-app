@@ -21,13 +21,18 @@ export default function EnterDOI() {
   const [addArticleMutation] = useMutation(addArticle)
 
   async function handleArticleAdd(newArticle) {
-    // push to our database
+    // Check if the article already exists in our database
+    const existingArticle = await invoke(getArticleByDoi, newArticle.doi)
+    // If the article is already in there, go to the existing article
+    if (existingArticle) router.push(`/articles/${existingArticle.id}`)
+
+    // If the article is new, push to our database
     const addedArticle = await invoke(addArticleMutation, {
       addedById: currentUser?.id,
       authorString: newArticle.authors,
       ...newArticle,
     })
-    // go to the added article
+    // Go to the newly added article
     router.push(`/articles/${addedArticle.id}`)
   }
 
@@ -48,6 +53,10 @@ export default function EnterDOI() {
                 return [
                   {
                     sourceId: "undefined",
+                    onSelect() {
+                      const currentItem = cleanCrossRefItem(message)
+                      handleArticleAdd(currentItem)
+                    },
                     getItems() {
                       return [{ item: undefined }]
                     },
@@ -102,12 +111,7 @@ export default function EnterDOI() {
                   onSelect(params) {
                     const { item, setQuery } = params
                     const currentItem = cleanCrossRefItem(item)
-                    const foundPaper = invoke(getArticleByDoi, currentItem.doi).then((paper) => {
-                      // If the paper is not in our database, add the paper and then go to that paper
-                      if (!paper) return handleArticleAdd(currentItem)
-                      // If the paper is in our database, go to that paper
-                      router.push(`/articles/${paper.id}`)
-                    })
+                    handleArticleAdd(currentItem)
                   },
                   getItems() {
                     // Filter out items
