@@ -1,14 +1,11 @@
-import React, { useState } from "react"
-import { invoke, useMutation, useQuery, useRouter } from "blitz"
+import React from "react"
+import { invoke, useMutation, useRouter } from "blitz"
 import { useCurrentUser } from "app/core/hooks/useCurrentUser"
-import { Dialog } from "@mui/material"
 import { Autocomplete } from "./Autocomplete"
 import { getAlgoliaResults } from "@algolia/autocomplete-js"
 import algoliasearch from "algoliasearch"
 import SearchResultArticle from "./SearchResultArticle"
 import "@algolia/autocomplete-theme-classic"
-import AddPaperPopup from "./AddPaperPopup"
-import { Button } from "./Button"
 import { cleanCrossRefItem } from "../cleanCrossRefItem"
 import getArticleByDoi from "app/queries/getArticleByDoi"
 import addArticle from "app/mutations/addArticle"
@@ -20,7 +17,6 @@ const searchClient = algoliasearch(
 
 export default function EnterDOI() {
   const currentUser = useCurrentUser()
-  const [isPaperPopupOpen, setPaperPopupOpen] = useState(false)
   const router = useRouter()
   const [addArticleMutation] = useMutation(addArticle)
 
@@ -150,10 +146,6 @@ export default function EnterDOI() {
             })
         }}
       />
-      {currentUser ? <Button onClick={() => setPaperPopupOpen(true)}>+ Add Paper</Button> : ""}
-      <Dialog open={isPaperPopupOpen} onClose={() => setPaperPopupOpen(false)}>
-        <AddPaperPopup setPaperPopupOpen={setPaperPopupOpen} />
-      </Dialog>
     </div>
   )
 }
