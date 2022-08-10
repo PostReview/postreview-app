@@ -51,6 +51,7 @@ export default function EnterDOI() {
                 ]
               })
           }
+          // If the input is not a DOI, query the CrossRef endpoint
           return fetch(
             `https://api.crossref.org/works/?query=${encodeURIComponent(
               query
