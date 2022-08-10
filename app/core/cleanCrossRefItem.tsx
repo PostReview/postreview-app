@@ -1,7 +1,6 @@
 import { parseAuthors } from "./parseAuthors"
 
 export const cleanCrossRefItem = (item) => {
-  console.log(item)
   // Set the doi of the article
   const cleanedItem = {
     title: item?.title?.[0],
