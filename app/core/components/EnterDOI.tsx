@@ -27,9 +27,10 @@ export default function EnterDOI() {
         placeholder="Subject, title, author, keyword, DOI"
         openOnFocus={true}
         getSources={({ query }) => {
-          const matchedDOI = query.match(/10.\d{4,9}\/[-._;()\/:A-Z0-9]+$/i)
-          // `https://api.crossref.org/works/${matchedDOI}`
           // If the input is a DOI, return the specific paper
+          // `https://api.crossref.org/works/${matchedDOI}`
+          const matchedDOI = query?.match(/10.\d{4,9}\/[-._;()\/:A-Z0-9]+$/i)
+
           if (matchedDOI) {
             return fetch(`https://api.crossref.org/works/${encodeURIComponent(matchedDOI)}`)
               .then((response) => response.json())
