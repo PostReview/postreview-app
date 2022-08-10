@@ -30,10 +30,10 @@ const UserInfo = () => {
         <HowItWorks />
         <Features />
         <button
-          className="bg-indigo-500 hover:bg-indigo-700 text-white mx-2 p-2 px-3 border rounded-md my-12"
+          className="bg-green hover:bg-green-700 text-gray-darkest mx-2 p-2 px-3 border rounded-md my-12"
           onClick={() => router.push("browse")}
         >
-          Start Browsing
+          SIGN UP NOW
         </button>
       </>
     )
@@ -46,7 +46,7 @@ const Home: BlitzPage = () => {
       <Suspense fallback="Loading...">
         <Navbar />
       </Suspense>
-      <main className="flex-grow flex flex-col items-center mb-4">
+      <main className="flex-grow flex flex-col items-center mb-4 bg-white dark:bg-black">
         <Suspense fallback="Loading...">
           <UserInfo />
         </Suspense>
