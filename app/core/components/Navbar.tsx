@@ -9,7 +9,7 @@ export default function Navbar() {
   const router = useRouter()
   return (
     <>
-      <header className="bg-gray-100 flex flex-row items-center h-16">
+      <nav className="bg-gray-100 flex flex-row items-center h-16">
         <div className="mx-6 text-2xl">
           <Link href="/">PostReview</Link>
         </div>
@@ -19,7 +19,7 @@ export default function Navbar() {
         <div id="buttons-container" className="mr-4 flex flex-row">
           <HeaderUserButton />
         </div>
-      </header>
+      </nav>
     </>
   )
 }
