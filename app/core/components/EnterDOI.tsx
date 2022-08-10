@@ -1,5 +1,5 @@
 import React, { useState } from "react"
-import { useRouter } from "blitz"
+import { invoke, useMutation, useQuery, useRouter } from "blitz"
 import { useCurrentUser } from "app/core/hooks/useCurrentUser"
 import { Dialog } from "@mui/material"
 import { Autocomplete } from "./Autocomplete"
@@ -10,6 +10,8 @@ import "@algolia/autocomplete-theme-classic"
 import AddPaperPopup from "./AddPaperPopup"
 import { Button } from "./Button"
 import { cleanCrossRefItem } from "../cleanCrossRefItem"
+import getArticleByDoi from "app/queries/getArticleByDoi"
+import addArticle from "app/mutations/addArticle"
 
 const searchClient = algoliasearch(
   process.env.ALGOLIA_APP_ID as string,
@@ -20,6 +22,18 @@ export default function EnterDOI() {
   const currentUser = useCurrentUser()
   const [isPaperPopupOpen, setPaperPopupOpen] = useState(false)
   const router = useRouter()
+  const [addArticleMutation] = useMutation(addArticle)
+
+  async function handleArticleAdd(newArticle) {
+    // push to our database
+    const addedArticle = await invoke(addArticleMutation, {
+      addedById: currentUser?.id,
+      authorString: newArticle.authors,
+      ...newArticle,
+    })
+    // go to the added article
+    router.push(`/articles/${addedArticle.id}`)
+  }
 
   return (
     <div className="m-1 rounded-md flex flex-row items-center flex-grow max-w-7xl justify-end">
@@ -61,7 +75,7 @@ export default function EnterDOI() {
             .then(({ message }) => {
               return [
                 {
-                  // Look for papers in CrossRef by query
+                  // Look for papers already in our database
                   sourceId: "products",
                   async onSelect(params) {
                     const { item, setQuery } = params
@@ -87,20 +101,26 @@ export default function EnterDOI() {
                   },
                 },
                 {
-                  // Look for papers already in our database
+                  // Look for papers in CrossRef
                   sourceId: "message",
                   onSelect(params) {
                     const { item, setQuery } = params
                     const currentItem = cleanCrossRefItem(item)
-                    console.log(currentItem)
-                    // setSelectedPaper(currentItem)
-                    // setDoi(currentItem.doi)
+                    const foundPaper = invoke(getArticleByDoi, currentItem.doi).then((paper) => {
+                      // If the paper is not in our database, add the paper and then go to that paper
+                      if (!paper) return handleArticleAdd(currentItem)
+                      // If the paper is in our database, go to that paper
+                      router.push(`/articles/${paper.id}`)
+                    })
                   },
                   getItems() {
-                    // Filter out items without titles
-                    // Ex. "vegetab" would return items without titles
-                    const itemsWithTitle = message.items.filter((item) => item.title)
-                    return itemsWithTitle
+                    // Filter out items
+                    const filteredItems = message.items
+                      // filter out items without titles (Ex. "vegetab" returning items without titles)
+                      .filter((item) => item.title)
+                      // filter out items without published dates
+                      .filter((item) => item.published?.["date-parts"])
+                    return filteredItems
                   },
                   getItemInputValue({ item }) {
                     return item.description
