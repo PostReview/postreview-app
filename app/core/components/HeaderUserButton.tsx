@@ -41,9 +41,8 @@ export const HeaderUserButton = () => {
           ) : (
             <Avatar
               alt={currentUser.displayName ? currentUser.displayName : currentUser.handle}
-              src={`https://eu.ui-avatars.com/api/?name=${
-                currentUser.displayName ? currentUser.displayName : currentUser.handle
-              }`}
+              src={`https://eu.ui-avatars.com/api/?name=${currentUser.displayName ? currentUser.displayName : currentUser.handle
+                }`}
             />
           )}
         </button>
