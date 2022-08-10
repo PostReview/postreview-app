@@ -9,6 +9,7 @@ import { v4 as uuidv4 } from "uuid"
 import axios from "axios"
 import { Autocomplete } from "./Autocomplete"
 import { Button } from "./Button"
+import { parseAuthors } from "../parseAuthors"
 
 export default function AddPaperPopup(prop) {
   const { setPaperPopupOpen } = prop
@@ -32,15 +33,6 @@ export default function AddPaperPopup(prop) {
       return newArticleMetadata
     } catch {
       handleArticleNotFound()
-    }
-  }
-
-  const parseAuthors = (author, i, authors) => {
-    if (authors.length - 1 === i) {
-      /* If last author, do not print the semicolon */
-      return `${author.family}, ${author.given}`
-    } else {
-      return `${author.family}, ${author.given}; `
     }
   }
 

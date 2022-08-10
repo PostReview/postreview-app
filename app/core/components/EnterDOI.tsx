@@ -9,6 +9,7 @@ import SearchResultArticle from "./SearchResultArticle"
 import "@algolia/autocomplete-theme-classic"
 import AddPaperPopup from "./AddPaperPopup"
 import { Button } from "./Button"
+import { parseAuthors } from "../parseAuthors"
 
 const searchClient = algoliasearch(
   process.env.ALGOLIA_APP_ID as string,
