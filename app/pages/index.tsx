@@ -30,8 +30,8 @@ const UserInfo = () => {
         <HowItWorks />
         <Features />
         <button
-          className="bg-green hover:bg-green-700 text-gray-darkest mx-2 p-2 px-3 border rounded-md my-12"
-          onClick={() => router.push("browse")}
+          className="mb-12 px-4 py-4 text-xl text-green rounded-lg bg-gray-medium dark:bg-gray-medium hover:bg-gray-dark"
+          onClick={() => router.push("signup")}
         >
           SIGN UP NOW
         </button>
