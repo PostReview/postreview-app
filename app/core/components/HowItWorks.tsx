@@ -1,11 +1,10 @@
 import { Image } from "blitz"
-import articleScreenshot from "public/steps-screenshots/article.png"
-import postReviewLogoDarkMode from "public/logo-darkmode.png"
-import postReviewLogoLightMode from "public/logo-lightmode.png"
-import reviewIconDarkMode from "public/review-icon-darkmode.png"
-import reviewIconLightMode from "public/review-icon-lightmode.png"
-import submitIconDarkMode from "public/submit-icon-darkmode.png"
-import submitIconLightMode from "public/submit-icon-lightmode.png"
+import postReviewLogoDarkMode from "public/logo-darkmode.PNG"
+import postReviewLogoLightMode from "public/logo-lightmode.PNG"
+import reviewIconDarkMode from "public/review-icon-darkmode.PNG"
+import reviewIconLightMode from "public/review-icon-lightmode.PNG"
+import submitIconDarkMode from "public/submit-icon-darkmode.PNG"
+import submitIconLightMode from "public/submit-icon-lightmode.PNG"
 
 export const HowItWorks = () => {
   const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
