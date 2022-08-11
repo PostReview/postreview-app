@@ -5,10 +5,14 @@ import reviewIconDarkMode from "public/review-icon-darkmode.png"
 import reviewIconLightMode from "public/review-icon-lightmode.png"
 import submitIconDarkMode from "public/submit-icon-darkmode.png"
 import submitIconLightMode from "public/submit-icon-lightmode.png"
+import { useEffect, useState } from "react"
 
 export const HowItWorks = () => {
-  const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
-  const useDarkMode = mediaQuery.matches;
+  const [isDark, setIsDark] = useState(false)
+  useEffect(() => {
+    const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+    setIsDark(mediaQuery.matches)
+  }, [])
 
   return (
     <div
@@ -20,7 +24,7 @@ export const HowItWorks = () => {
         <div className="mt-20 mb-10 text-3xl font-bold text-green">Share what you think in 3 simple steps</div>
         <div className="mt-40 objectnone h-52 w-52">
           <Image
-            src={useDarkMode ? postReviewLogoDarkMode : postReviewLogoLightMode}
+            src={isDark ? postReviewLogoDarkMode : postReviewLogoLightMode}
             alt="An image of a magnifying glass wearing a fedora hat"
           />
         </div>
@@ -30,7 +34,7 @@ export const HowItWorks = () => {
         <div className="mb-3 text-xl text-gray-darkest dark:text-white">Search an article you want to review</div>
         <div className="mt-40 objectnone h-52 w-52">
           <Image
-            src={useDarkMode ? reviewIconDarkMode : reviewIconLightMode}
+            src={isDark ? reviewIconDarkMode : reviewIconLightMode}
             alt="A picture of a hand pointing at the middle of five stars"
           />
         </div>
@@ -40,7 +44,7 @@ export const HowItWorks = () => {
         <div className="mb-3 text-xl text-gray-darkest dark:text-white">Tell us what you think by inputting your review</div>
         <div className="mt-40 objectnone h-52 w-52">
           <Image
-            src={useDarkMode ? submitIconDarkMode : submitIconLightMode}
+            src={isDark ? submitIconDarkMode : submitIconLightMode}
             alt="A picture of a rectangle button. Inside the rectangle button is an arrow pointer in between a line on the left and two dots on the right"
           />
         </div>
