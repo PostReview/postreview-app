@@ -28,7 +28,6 @@ const UserInfo = () => {
       <>
         <Hero />
         <HowItWorks />
-        <Features />
         <button
           className="mb-12 px-4 py-4 text-xl text-green rounded-lg bg-gray-medium dark:bg-gray-medium hover:bg-gray-dark"
           onClick={() => router.push("signup")}
