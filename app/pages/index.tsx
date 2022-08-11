@@ -9,7 +9,6 @@ import { Footer } from "app/core/components/Footer"
 import { Hero } from "app/core/components/Hero"
 import { HowItWorks } from "app/core/components/HowItWorks"
 import ArticleList from "app/core/components/ArticleList"
-import { Features } from "app/core/components/Features"
 
 const UserInfo = () => {
   const currentUser = useCurrentUser()
