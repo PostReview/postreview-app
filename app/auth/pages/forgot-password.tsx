@@ -1,26 +1,44 @@
-import { BlitzPage, useMutation } from "blitz"
+import { BlitzPage, Image, useMutation } from "blitz"
 import Layout from "app/core/layouts/Layout"
 import forgotPassword from "app/auth/mutations/forgotPassword"
-import { Suspense } from "react"
+import { Suspense, useEffect, useState } from "react"
 import Navbar from "app/core/components/Navbar"
 import { Footer } from "app/core/components/Footer"
 import { Formik } from "formik"
 import { Button } from "app/core/components/Button"
+import forgotPictureDarkMode from "public/forgot-picture-darkmode.png"
+import forgotPictureLightMode from "public/forgot-picture-lightmode.png"
 
 const ForgotPasswordPage: BlitzPage = () => {
   const [forgotPasswordMutation, { isSuccess }] = useMutation(forgotPassword)
 
+  // handle darkmode
+  const [isDark, setIsDark] = useState(false)
+  useEffect(() => {
+    const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+    setIsDark(mediaQuery.matches)
+  }, [])
+
   return (
-    <div className="flex flex-col min-h-screen">
+    <div className="flex flex-col min-h-screen bg-white dark:bg-gray-darkest">
       <Suspense fallback="Loading...">
         <Navbar />
       </Suspense>
-      <main className="flex-grow flex flex-col items-center justify-center">
-        <h1 className="text-2xl font-bold my-4">Forgot your password?</h1>
-        <div className="flex flex-col items-center bg-slate-200 py-6 px-12">
+      <div className="contrast-100 mt-8 h-60 w-full flex justify-center">
+        <Image
+          src={isDark ? forgotPictureDarkMode : forgotPictureLightMode}
+          alt="A bust image of a person with three question marks on top of their head instead of hair"
+          width={180}
+          height={180}
+        />
+      </div>
+      <h1 className="text-3xl text-center font-bold my-4 text-gray-darkest dark:text-white">Forgot your password?</h1>
+      <h2 className="mb-8 text-md text-center text-gray-darkest dark:text-gray-light">We got your back!</h2>
+      <main className="mb-16 sm:mb-80 sm:mx-40 flex-grow flex flex-col items-center justify-center bg-gray-light dark:bg-gray-dark">
+        <div className="flex flex-col items-center py-2 px-2">
           {isSuccess ? (
             <div>
-              <h2 className="text-center my-4 font-bold">Request Submitted</h2>
+              <h2 className="my-4 text-gray-darkest dark:text-white">Request Submitted</h2>
               <p>
                 If your email is in our system, you will receive instructions to reset your password
                 shortly.
@@ -56,9 +74,9 @@ const ForgotPasswordPage: BlitzPage = () => {
                 /* and other goodies */
               }) => (
                 <form onSubmit={handleSubmit} className="flex flex-col">
-                  <label htmlFor="email" className="mt-4">
+                  <label htmlFor="email" className="mt-4 text-gray-darkest dark:text-white">
                     Email
-                    <span className="text-orange-400 inline">
+                    <span className="text-red inline">
                       {errors.email && touched.email && " - " + errors.email}
                     </span>
                   </label>
@@ -68,7 +86,7 @@ const ForgotPasswordPage: BlitzPage = () => {
                     onChange={handleChange}
                     onBlur={handleBlur}
                     value={values.email}
-                    className="px-1"
+                    className="px-1 bg-black text-gray-medium focus:outline-green/[.50]"
                   />
                   <div className="my-4">
                     <Button type="submit" disabled={isSubmitting}>
