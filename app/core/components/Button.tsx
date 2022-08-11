@@ -33,7 +33,7 @@ export const Button = (props) => {
     )
   return (
     <button
-      className={`bg-indigo-500 hover:bg-indigo-700 text-white mx-2 rounded-md px-3 py-2 whitespace-nowrap ${addstyles}`}
+      className={`bg-green hover:bg-green-dark text-gray-darkest mx-2 rounded-md px-3 py-2 whitespace-nowrap ${addstyles}`}
       {...props}
     >
       {props.children}

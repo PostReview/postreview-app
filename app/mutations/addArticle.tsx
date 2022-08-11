@@ -13,20 +13,13 @@ const AddArticle = z.object({
   doi: z.string(),
   publishedYear: z.number().int(),
   journal: z.string().optional(),
-  addedById: z.number().int(),
+  addedById: z.number().int().optional(),
   authorString: z.string(),
 })
 
 export default async function addArticle(input: z.infer<typeof AddArticle>, ctx: Ctx) {
   const data = AddArticle.parse(input)
-  ctx.session.$authorize()
-
-  if (!ctx.session.userId) {
-    throw new AuthorizationError()
-  }
-
   const article = await db.article.create({ data })
-
   const addedArticle = await db.article.findFirst({
     where: {
       doi: data.doi,
