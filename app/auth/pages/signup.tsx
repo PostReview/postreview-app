@@ -10,7 +10,6 @@ import signup from "../mutations/signup"
 import { Button } from "app/core/components/Button"
 import postReviewLogoDarkMode from "public/logo-darkmode.png"
 import postReviewLogoLightMode from "public/logo-lightmode.png"
-import { Divider, dividerClasses } from "@mui/material"
 
 const SignupPage: BlitzPage = () => {
   const router = useRouter()
@@ -151,19 +150,19 @@ const SignupPage: BlitzPage = () => {
                   onChange={handleChange}
                   onBlur={handleBlur}
                   value={values.passwordVerify}
-                  className="bg-black px-1 text-gray-medium focus:outline-green/[.50]"
+                  className="mb-4 bg-black px-1 text-gray-medium focus:outline-green/[.50]"
                 />
                 <Button addstyles="my-4" type="submit" disabled={isSubmitting}>
-                  SIGN UP
+                  Sign up
                 </Button>
               </form>
             )}
           </Formik>
           <div className="text-gray-darkest dark:text-white text-bold text-center my-4">Or</div>
-          <GoogleButton />
+          <GoogleButton type="sign-up" />
           <div className="my-4 text-gray-darkest dark:text-white">
             Already have an account?{" "}
-            <Link href={Routes.SignupPage()}>
+            <Link href={Routes.LoginPage()}>
               <a className="text-sm text-center underline italic text-gray-dark dark:text-white/70">Log in</a>
             </Link>
           </div>
