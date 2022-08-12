@@ -24,17 +24,17 @@ const ForgotPasswordPage: BlitzPage = () => {
       <Suspense fallback="Loading...">
         <Navbar />
       </Suspense>
-      <div className="contrast-100 mt-20 h-60 w-full flex justify-center">
-        <Image
-          src={isDark ? forgotPictureDarkMode : forgotPictureLightMode}
-          alt="A bust image of a person with three question marks on top of their head instead of hair"
-          width={180}
-          height={180}
-        />
-      </div>
-      <h1 className="text-3xl text-center font-bold my-4 text-gray-darkest dark:text-white">Forgot your password?</h1>
-      <h2 className="mb-8 text-md text-center text-gray-darkest dark:text-gray-light">We got your back!</h2>
-      <main className="flex-grow flex flex-col items-center justify-center">
+      <main className="flex-grow flex flex-col items-center justify-start">
+        <div className="contrast-100 mt-20 h-60 w-full flex justify-center">
+          <Image
+            src={isDark ? forgotPictureDarkMode : forgotPictureLightMode}
+            alt="A bust image of a person with three question marks on top of their head instead of hair"
+            width={180}
+            height={180}
+          />
+        </div>
+        <h1 className="text-3xl text-center font-bold my-4 text-gray-darkest dark:text-white">Forgot your password?</h1>
+        <h2 className="mb-8 text-md text-center text-gray-darkest dark:text-gray-light">We got your back!</h2>
         <div className="flex flex-col items-center py-6 px-20 bg-gray-light dark:bg-gray-dark">
           {isSuccess ? (
             <div>

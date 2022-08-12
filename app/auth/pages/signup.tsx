@@ -28,16 +28,16 @@ const SignupPage: BlitzPage = () => {
       <Suspense fallback="Loading...">
         <Navbar />
       </Suspense>
-      <div className="h-70 w-full flex mt-20 justify-center">
-        <Image
-          src={isDark ? postReviewLogoDarkMode : postReviewLogoLightMode}
-          alt="An image of a magnifying glass wearing a fedora hat"
-          width={200}
-          height={200}
-        />
-      </div>
-      <h1 className="mt-0 text-center text-4xl font-bold my-4 text-gray-darkest dark:text-white">Join PostReview</h1>
       <main className="flex-grow flex flex-col items-center justify-center">
+        <div className="h-70 w-full flex mt-20 justify-center">
+          <Image
+            src={isDark ? postReviewLogoDarkMode : postReviewLogoLightMode}
+            alt="An image of a magnifying glass wearing a fedora hat"
+            width={200}
+            height={200}
+          />
+        </div>
+        <h1 className="mt-0 text-center text-4xl font-bold my-4 text-gray-darkest dark:text-white">Join PostReview</h1>
         <div className="flex flex-col items-center py-6 px-20 bg-gray-light dark:bg-gray-dark">
           <Formik
             initialValues={{ email: "", password: "", passwordVerify: "", handle: "" }}

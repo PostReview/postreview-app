@@ -27,16 +27,16 @@ const LoginPage: BlitzPage = () => {
       <Suspense fallback="Loading...">
         <Navbar />
       </Suspense>
-      <div className="contrast-100 mt-20 h-60 w-full flex justify-center">
-        <Image
-          src={isDark ? detectiveDarkMode : detectiveLightMode}
-          alt="A bust image of a detective looking through a magnifying glass with their left eye"
-          width={180}
-          height={180}
-        />
-      </div>
-      <h1 className="text-4xl text-center font-bold my-4 text-gray-darkest dark:text-white">Welcome back!</h1>
       <main className="flex-grow flex flex-col items-center justify-center">
+        <div className="contrast-100 mt-20 h-60 w-full flex justify-center">
+          <Image
+            src={isDark ? detectiveDarkMode : detectiveLightMode}
+            alt="A bust image of a detective looking through a magnifying glass with their left eye"
+            width={180}
+            height={180}
+          />
+        </div>
+        <h1 className="text-4xl text-center font-bold my-4 text-gray-darkest dark:text-white">Welcome back!</h1>
         <div className="flex flex-col items-center py-6 px-20 bg-gray-light dark:bg-gray-dark">
           <Formik
             initialValues={{ email: "", password: "", handle: "" }}
