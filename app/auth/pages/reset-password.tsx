@@ -23,7 +23,7 @@ const ResetPasswordPage: BlitzPage = () => {
         <Navbar />
       </Suspense>
       <h1 className="mt-40 text-center text-4xl font-bold my-4 text-gray-darkest dark:text-white">Change Password</h1>
-      <main className="mb-16 sm:mb-80 flex-grow flex flex-col items-center justify-center">
+      <main className="flex-grow flex flex-col items-center justify-center">
         <div className="flex flex-col items-center py-6 px-20 bg-gray-light dark:bg-gray-dark text-gray-darkest dark:text-white">
           {isSuccess ? (
             <div>
