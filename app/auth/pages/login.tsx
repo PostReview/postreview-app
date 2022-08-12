@@ -114,7 +114,7 @@ const LoginPage: BlitzPage = () => {
                   </Link>
                 </div>
                 <Button addstyles="my-4" type="submit" disabled={isSubmitting}>
-                  LOG IN
+                  Log in
                 </Button>
               </form>
             )}
@@ -127,7 +127,7 @@ const LoginPage: BlitzPage = () => {
           </div>
 
           <div className="text-gray-darkest dark:text-white text-bold text-center my-4">Or</div>
-          <GoogleButton />
+          <GoogleButton type="log-in" />
         </div>
       </main>
       <Footer />
