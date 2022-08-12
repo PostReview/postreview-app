@@ -31,7 +31,7 @@ const LoginPage: BlitzPage = () => {
         <div className="contrast-100 mt-20 h-60 w-full flex justify-center">
           <Image
             src={isDark ? detectiveDarkMode : detectiveLightMode}
-            alt="A bust image of a detective looking through a magnifying glass with their left eye"
+            alt="An image of a detective looking through a magnifying glass with their left eye"
             width={180}
             height={180}
           />
@@ -92,7 +92,7 @@ const LoginPage: BlitzPage = () => {
                   onChange={handleChange}
                   onBlur={handleBlur}
                   value={values.email}
-                  className="px-1 bg-black text-gray-medium focus:outline-green/[.50]"
+                  className="p-2 bg-black text-white focus:outline-green/[.50]"
                 />
                 <label htmlFor="password" className="mt-4 text-gray-darkest dark:text-white">
                   Password{" "}
@@ -106,7 +106,7 @@ const LoginPage: BlitzPage = () => {
                   onChange={handleChange}
                   onBlur={handleBlur}
                   value={values.password}
-                  className="px-1 bg-black text-gray-medium focus:outline-green/[.50]"
+                  className="p-2 bg-black text-white focus:outline-green/[.50]"
                 />
                 <div>
                   <Link href={Routes.ForgotPasswordPage()}>

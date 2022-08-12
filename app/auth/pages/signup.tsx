@@ -101,7 +101,7 @@ const SignupPage: BlitzPage = () => {
                   onChange={handleChange}
                   onBlur={handleBlur}
                   value={values.email}
-                  className="pl-1 bg-black text-gray-medium focus:outline-green/[.50]"
+                  className="p-2 bg-black text-white focus:outline-green/[.50]"
                 />
                 <label htmlFor="handle" className="mt-4 text-gray-darkest dark:text-white">
                   Handle{" "}
@@ -114,7 +114,7 @@ const SignupPage: BlitzPage = () => {
                     @
                   </span>
                   <input
-                    className="px-1 bg-black text-gray-medium focus:outline-green/[.50]"
+                    className="p-2 bg-black text-white focus:outline-green/[.50]"
                     type="handle"
                     name="handle"
                     onChange={handleChange}
@@ -134,7 +134,7 @@ const SignupPage: BlitzPage = () => {
                   onChange={handleChange}
                   onBlur={handleBlur}
                   value={values.password}
-                  className="bg-black px-1 text-gray-medium focus:outline-green/[.50]"
+                  className="p-2 bg-black text-white focus:outline-green/[.50]"
                 />
                 <label htmlFor="passwordVerify" className="mt-4 text-gray-darkest dark:text-white">
                   Verify Password{" "}
@@ -150,7 +150,7 @@ const SignupPage: BlitzPage = () => {
                   onChange={handleChange}
                   onBlur={handleBlur}
                   value={values.passwordVerify}
-                  className="mb-4 bg-black px-1 text-gray-medium focus:outline-green/[.50]"
+                  className="mb-4 p-2 bg-black text-white focus:outline-green/[.50]"
                 />
                 <Button addstyles="my-4" type="submit" disabled={isSubmitting}>
                   Sign up

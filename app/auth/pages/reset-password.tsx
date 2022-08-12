@@ -84,7 +84,7 @@ const ResetPasswordPage: BlitzPage = () => {
                     onChange={handleChange}
                     onBlur={handleBlur}
                     value={values.password}
-                    className="px-1 bg-black text-gray-medium focus:outline-green/[.50]"
+                    className="p-2 bg-black text-white focus:outline-green/[.50]"
                   />
                   <label htmlFor="passwordConfirmation" className="mt-4 text-gray-darkest dark:text-white">
                     Confirm New Password
@@ -98,7 +98,7 @@ const ResetPasswordPage: BlitzPage = () => {
                     onChange={handleChange}
                     onBlur={handleBlur}
                     value={values.passwordConfirmation}
-                    className="mb-6 px-1 bg-black text-gray-medium focus:outline-green/[.50]"
+                    className="mb-6 p-2 bg-black text-white focus:outline-green/[.50]"
                   />
                   <div id="action-container" className="text-xl text-green rounded-lg bg-gray-medium dark:bg-gray-medium hover:bg-gray-darkest">
                     <button className="mx-2 my-2" onClick={() => router.push("signup")}>
