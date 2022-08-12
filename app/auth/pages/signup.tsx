@@ -110,7 +110,7 @@ const SignupPage: BlitzPage = () => {
                   </span>
                 </label>
                 <div className="flex">
-                  <span className="border-black border text-gray-darkest dark:text-white px-2">
+                  <span className="border-black border text-gray-darkest dark:text-white p-2">
                     @
                   </span>
                   <input
