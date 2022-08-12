@@ -28,7 +28,7 @@ const SignupPage: BlitzPage = () => {
       <Suspense fallback="Loading...">
         <Navbar />
       </Suspense>
-      <div className="h-70 w-full flex justify-center">
+      <div className="h-70 w-full flex mt-20 justify-center">
         <Image
           src={isDark ? postReviewLogoDarkMode : postReviewLogoLightMode}
           alt="An image of a magnifying glass wearing a fedora hat"

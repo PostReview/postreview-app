@@ -27,7 +27,7 @@ const LoginPage: BlitzPage = () => {
       <Suspense fallback="Loading...">
         <Navbar />
       </Suspense>
-      <div className="contrast-100 mt-8 h-60 w-full flex justify-center">
+      <div className="contrast-100 mt-20 h-60 w-full flex justify-center">
         <Image
           src={isDark ? detectiveDarkMode : detectiveLightMode}
           alt="A bust image of a detective looking through a magnifying glass with their left eye"
