@@ -6,7 +6,7 @@ export const Button = (props) => {
   if (type == "cancel")
     return (
       <button
-        className={`bg-slate-400 hover:bg-slate-600 text-white mx-2 rounded-md px-3 py-2 whitespace-nowrap ${addstyles}`}
+        className={`bg-gray-medium hover:bg-gray-dark text-white mx-2 rounded-md px-3 py-2 whitespace-nowrap ${addstyles}`}
         {...props}
       >
         {props.children}
@@ -15,7 +15,7 @@ export const Button = (props) => {
   if (type == "error")
     return (
       <button
-        className={`bg-red-500 hover:bg-red-600 text-white mx-2 rounded-md px-3 py-2 whitespace-nowrap ${addstyles}`}
+        className={`bg-red hover:bg-gray-dark text-white mx-2 rounded-md px-3 py-2 whitespace-nowrap ${addstyles}`}
         {...props}
       >
         {props.children}
@@ -24,7 +24,7 @@ export const Button = (props) => {
   if (loading)
     return (
       <button
-        className={`bg-slate-400 text-white mx-2 rounded-md px-3 py-2 whitespace-nowrap flex items-center justify-center ${addstyles}`}
+        className={`bg-dray-dark text-white mx-2 rounded-md px-3 py-2 whitespace-nowrap flex items-center justify-center ${addstyles}`}
         {...props}
       >
         <div className="opacity-0">{props.children}</div>
@@ -33,7 +33,7 @@ export const Button = (props) => {
     )
   return (
     <button
-      className={`bg-indigo-500 hover:bg-indigo-700 text-white mx-2 rounded-md px-3 py-2 whitespace-nowrap ${addstyles}`}
+      className={`font-semibold bg-green hover:bg-green-dark text-gray-darkest mx-2 rounded-md px-3 py-2 whitespace-nowrap ${addstyles}`}
       {...props}
     >
       {props.children}
