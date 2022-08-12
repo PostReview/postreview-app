@@ -1,4 +1,4 @@
-import { BlitzPage, useParam, useQuery } from "blitz"
+import { BlitzPage, Head, useParam, useQuery } from "blitz"
 import Navbar from "app/core/components/Navbar"
 import { ReviewList } from "app/core/components/ReviewList"
 import getArticle from "app/queries/getArticle"
@@ -54,6 +54,9 @@ const ArticleDetails = () => {
 
   return (
     <div className="flex flex-col min-h-screen">
+      <Head>
+        <title>{`${article.title} | PostReview`}</title>
+      </Head>
       <Navbar />
       <main className="m-6 flex-grow flex flex-col items-center">
         <div className="m-6 text-4xl text-center">
