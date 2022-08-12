@@ -18,18 +18,16 @@ const ResetPasswordPage: BlitzPage = () => {
   })
 
   return (
-    <div className="flex flex-col min-h-screen">
+    <div className="flex flex-col min-h-screen bg-white dark:bg-gray-darkest">
       <Suspense fallback="Loading...">
         <Navbar />
       </Suspense>
-
-      <main className="flex-grow flex flex-col items-center justify-center">
-        <h1 className="text-2xl font-bold my-4">Set a New Password</h1>
-
-        <div className="flex flex-col items-center bg-slate-200 py-6 px-12">
+      <h1 className="mt-40 text-center text-4xl font-bold my-4 text-gray-darkest dark:text-white">Change Password</h1>
+      <main className="mb-16 sm:mb-80 sm:mx-40 flex-grow flex flex-col items-center justify-center bg-gray-light dark:bg-gray-dark">
+        <div className="flex flex-col items-center py-6 px-2 text-gray-darkest dark:text-white">
           {isSuccess ? (
             <div>
-              <h2>Password Reset Successfully</h2>
+              <h2>Password changed successfully!</h2>
               <p>
                 Go to the <Link href={Routes.Home()}>homepage</Link>
               </p>
@@ -74,9 +72,9 @@ const ResetPasswordPage: BlitzPage = () => {
                 isSubmitting,
               }) => (
                 <form onSubmit={handleSubmit} className="flex flex-col">
-                  <label htmlFor="password" className="mt-4">
+                  <label htmlFor="password" className="mt-4 text-gray-darkest dark:text-white">
                     New Password
-                    <span className="text-orange-400 inline">
+                    <span className="text-red inline">
                       {errors.password && touched.password && " - " + errors.password}
                     </span>
                   </label>
@@ -86,9 +84,9 @@ const ResetPasswordPage: BlitzPage = () => {
                     onChange={handleChange}
                     onBlur={handleBlur}
                     value={values.password}
-                    className="px-1"
+                    className="px-1 bg-black text-gray-medium focus:outline-green/[.50]"
                   />
-                  <label htmlFor="passwordConfirmation" className="mt-4">
+                  <label htmlFor="passwordConfirmation" className="mt-4 text-gray-darkest dark:text-white">
                     Confirm New Password
                     <span className="text-orange-400 inline">
                       {errors.password && touched.password && " - " + errors.password}
@@ -100,11 +98,12 @@ const ResetPasswordPage: BlitzPage = () => {
                     onChange={handleChange}
                     onBlur={handleBlur}
                     value={values.passwordConfirmation}
-                    className="px-1"
+                    className="mb-6 px-1 bg-black text-gray-medium focus:outline-green/[.50]"
                   />
-                  <Button addstyles="my-4" type="submit" disabled={isSubmitting}>
-                    Reset Password
-                  </Button>
+                  <div id="action-container" className="text-xl text-green rounded-lg bg-gray-medium dark:bg-gray-medium hover:bg-gray-darkest">
+                    <button className="mx-2 my-2" onClick={() => router.push("signup")}>
+                      Change password
+                    </button></div>
                 </form>
               )}
             </Formik>
