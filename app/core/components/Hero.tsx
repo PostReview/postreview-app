@@ -17,7 +17,7 @@ export const Hero = () => {
         </div>
         <div id="action-container" className="text-xl text-green rounded-lg bg-gray-medium dark:bg-gray-medium hover:bg-gray-darkest">
           <button className="mx-4 my-4" onClick={() => router.push("signup")}>
-            GET STARTED
+            Get started
           </button></div>
       </div>
     </>
