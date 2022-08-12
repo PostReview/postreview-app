@@ -41,23 +41,22 @@ export const HeaderUserButton = () => {
           ) : (
             <Avatar
               alt={currentUser.displayName ? currentUser.displayName : currentUser.handle}
-              src={`https://eu.ui-avatars.com/api/?name=${
-                currentUser.displayName ? currentUser.displayName : currentUser.handle
-              }`}
+              src={`https://eu.ui-avatars.com/api/?name=${currentUser.displayName ? currentUser.displayName : currentUser.handle
+                }`}
             />
           )}
         </button>
       ) : (
         <>
-          <Button
+          <button
             id="login-button"
-            addstyles="bg-gray-400"
+            className="font-semibold mx-2 rounded-md px-3 py-2 whitespace-nowrap flex items-center justify-center text-gray-darkest dark:text-white bg-gray-light dark:bg-gray-medium hover:bg-gray-medium dark:hover:bg-gray-darkest hover:text-white"
             onClick={() => router.push(Routes.LoginPage())}
           >
-            Login
-          </Button>
+            Log in
+          </button>
           <Button id="login-button" onClick={() => router.push(Routes.SignupPage())}>
-            Sign Up
+            Sign up
           </Button>
         </>
       )}
