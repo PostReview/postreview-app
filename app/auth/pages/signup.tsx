@@ -1,4 +1,4 @@
-import { useRouter, BlitzPage, invoke, useMutation, Image } from "blitz"
+import { useRouter, BlitzPage, invoke, useMutation, Image, Link, Routes } from "blitz"
 import Layout from "app/core/layouts/Layout"
 import { Suspense, useEffect, useState } from "react"
 import Navbar from "app/core/components/Navbar"
@@ -10,6 +10,7 @@ import signup from "../mutations/signup"
 import { Button } from "app/core/components/Button"
 import postReviewLogoDarkMode from "public/logo-darkmode.png"
 import postReviewLogoLightMode from "public/logo-lightmode.png"
+import { Divider, dividerClasses } from "@mui/material"
 
 const SignupPage: BlitzPage = () => {
   const router = useRouter()
@@ -160,6 +161,13 @@ const SignupPage: BlitzPage = () => {
           </Formik>
           <div className="text-gray-darkest dark:text-white text-bold text-center my-4">Or</div>
           <GoogleButton />
+          <div className="my-4 text-gray-darkest dark:text-white">
+            Already have an account?{" "}
+            <Link href={Routes.SignupPage()}>
+              <a className="text-sm text-center underline italic text-gray-dark dark:text-white/70">Log in</a>
+            </Link>
+          </div>
+
         </div>
       </main>
       <Footer />
