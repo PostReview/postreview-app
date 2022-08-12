@@ -88,10 +88,10 @@ const ForgotPasswordPage: BlitzPage = () => {
                     value={values.email}
                     className="px-1 bg-black text-gray-medium focus:outline-green/[.50]"
                   />
-                  <div className="my-4">
-                    <Button type="submit" disabled={isSubmitting}>
-                      Send Reset Password Instructions
-                    </Button>
+                  <div className="my-4 font-semibold text-green rounded-lg bg-gray-medium dark:bg-gray-medium hover:bg-gray-darkest">
+                    <button type="submit" className="mx-4 my-4" disabled={isSubmitting}>
+                      Send change password instructions
+                    </button>
                   </div>
                 </form>
               )}
