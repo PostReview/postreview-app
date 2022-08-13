@@ -63,7 +63,7 @@ const ArticleDetails = (props) => {
         <div id="article-container " className="flex flex-col items-center">
           <Article {...article} />
         </div>
-        <ReviewList article={article} ActionButton={ActionButton} />
+        <ReviewList article={article} ActionButton={ActionButton} session={session} />
         <Dialog open={isReviewDialogOpen} onClose={closeReviewDialog}>
           <PopupReview
             article={article}
