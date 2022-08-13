@@ -56,8 +56,9 @@ const ArticleDetails = () => {
     <div className="flex flex-col min-h-screen bg-white dark:bg-gray-darkest">
       <Navbar />
       <main className="m-6 flex-grow flex flex-col items-center">
-        <div className="m-6 text-4xl text-center">
-          <h1>Overall Score</h1>
+        <div className="m-6 font-bold text-2xl text-left text-gray-darkest dark:text-white">
+          <h1>{article.title}</h1>
+        </div>
         </div>
         <div id="article-container " className="flex flex-col items-center">
           <Article {...article} />
