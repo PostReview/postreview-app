@@ -8,7 +8,6 @@ import { Footer } from "app/core/components/Footer"
 import { Hero } from "app/core/components/Hero"
 import { HowItWorks } from "app/core/components/HowItWorks"
 import ArticleList from "app/core/components/ArticleList"
-import { Features } from "app/core/components/Features"
 
 const UserInfo = () => {
   const router = useRouter()
@@ -25,12 +24,11 @@ const UserInfo = () => {
       <>
         <Hero />
         <HowItWorks />
-        <Features />
         <button
-          className="bg-indigo-500 hover:bg-indigo-700 text-white mx-2 p-2 px-3 border rounded-md my-12"
-          onClick={() => router.push("browse")}
+          className="mb-12 px-4 py-4 text-xl text-green rounded-lg bg-black/50 hover:bg-gray-darkest dark:bg-gray-medium dark:hover:bg-black/40"
+          onClick={() => router.push("signup")}
         >
-          Start Browsing
+          Sign up now
         </button>
       </>
     )
@@ -43,7 +41,7 @@ const Home: BlitzPage = () => {
       <Suspense fallback="Loading...">
         <Navbar />
       </Suspense>
-      <main className="flex-grow flex flex-col items-center mb-4">
+      <main className="flex-grow flex flex-col items-center mb-4 bg-white dark:bg-gray-darkest">
         <Suspense fallback="Loading...">
           <UserInfo />
         </Suspense>
