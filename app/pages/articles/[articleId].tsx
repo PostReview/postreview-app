@@ -10,6 +10,7 @@ import { Footer } from "app/core/components/Footer"
 import Article from "app/core/components/Article"
 import { Dialog, DialogActions, DialogContent, DialogTitle } from "@mui/material"
 import { Button } from "app/core/components/Button"
+import { FaCrown, FaBarcode } from "react-icons/fa"
 
 const ArticleDetails = () => {
   const articleId = useParam("articleId", "string") as string
@@ -58,6 +59,10 @@ const ArticleDetails = () => {
       <main className="m-6 flex-grow flex flex-col items-center">
         <div className="m-6 font-bold text-2xl text-left text-gray-darkest dark:text-white">
           <h1>{article.title}</h1>
+        </div>
+        <div className="article__author text-base text-gray-dark dark:text-gray-light">
+          <FaCrown className="inline m-2" />
+          {article.authorString}
         </div>
         </div>
         <div id="article-container " className="flex flex-col items-center">
