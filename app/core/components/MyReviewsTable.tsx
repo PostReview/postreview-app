@@ -40,15 +40,7 @@ export const MyReviewsTable = (props) => {
                 </div>
               </div>
             </div>
-            <div className="flex flex-row justify-center items-center">
-              <Review
-                displayName={currentUser?.displayName}
-                handle={currentUser?.handle}
-                reviews={article?.review}
-                userIcon={currentUser?.icon}
-                questionCategories={questionCategories}
-                comment={article?.reviewComment[0]?.comment}
-              />
+            <div className="bg-gray-dark">
               {publicProfile ? (
                 ""
               ) : (
@@ -58,6 +50,14 @@ export const MyReviewsTable = (props) => {
                   </div>
                 </div>
               )}
+              <Review
+                displayName={currentUser?.displayName}
+                handle={currentUser?.handle}
+                reviews={article?.review}
+                userIcon={currentUser?.icon}
+                questionCategories={questionCategories}
+                comment={article?.reviewComment[0]?.comment}
+              />
             </div>
           </div>
         )
