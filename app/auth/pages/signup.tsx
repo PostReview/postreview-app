@@ -169,6 +169,6 @@ const SignupPage: BlitzPage = () => {
 }
 
 SignupPage.redirectAuthenticatedTo = "/"
-SignupPage.getLayout = (page) => <Layout title="Sign Up">{page}</Layout>
+SignupPage.getLayout = (page) => <Layout title="Sign Up | PostReview">{page}</Layout>
 
 export default SignupPage
