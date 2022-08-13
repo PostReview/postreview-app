@@ -24,11 +24,21 @@
         "mentoring",
         "bug"
       ]
+    },
+    {
+      "login": "jazellemaira",
+      "name": "jazellemaira",
+      "avatar_url": "https://avatars.githubusercontent.com/u/42837484?v=4",
+      "profile": "https://github.com/jazellemaira",
+      "contributions": [
+        "code",
+        "design"
+      ]
     }
   ],
   "contributorsPerLine": 7,
   "projectName": "postreview-app",
-  "projectOwner": "nsunami",
+  "projectOwner": "PostReview",
   "repoType": "github",
   "repoHost": "https://github.com",
   "skipCi": true

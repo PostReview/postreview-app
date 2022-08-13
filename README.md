@@ -1,6 +1,6 @@
 
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-2-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-3-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 # PostReview
@@ -49,8 +49,9 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
 <!-- markdownlint-disable -->
 <table>
   <tr>
-    <td align="center"><a href="https://github.com/coglebed"><img src="https://avatars.githubusercontent.com/u/73071333?v=4?s=100" width="100px;" alt=""/><br /><sub><b>coglebed</b></sub></a><br /><a href="#design-coglebed" title="Design">🎨</a> <a href="https://github.com/nsunami/postreview-app/issues?q=author%3Acoglebed" title="Bug reports">🐛</a></td>
-    <td align="center"><a href="https://chjh.nl"><img src="https://avatars.githubusercontent.com/u/2946344?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Chris Hartgerink</b></sub></a><br /><a href="#mentoring-chartgerink" title="Mentoring">🧑‍🏫</a> <a href="https://github.com/nsunami/postreview-app/issues?q=author%3Achartgerink" title="Bug reports">🐛</a></td>
+    <td align="center"><a href="https://github.com/coglebed"><img src="https://avatars.githubusercontent.com/u/73071333?v=4?s=100" width="100px;" alt=""/><br /><sub><b>coglebed</b></sub></a><br /><a href="#design-coglebed" title="Design">🎨</a> <a href="https://github.com/PostReview/postreview-app/issues?q=author%3Acoglebed" title="Bug reports">🐛</a></td>
+    <td align="center"><a href="https://chjh.nl"><img src="https://avatars.githubusercontent.com/u/2946344?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Chris Hartgerink</b></sub></a><br /><a href="#mentoring-chartgerink" title="Mentoring">🧑‍🏫</a> <a href="https://github.com/PostReview/postreview-app/issues?q=author%3Achartgerink" title="Bug reports">🐛</a></td>
+    <td align="center"><a href="https://github.com/jazellemaira"><img src="https://avatars.githubusercontent.com/u/42837484?v=4?s=100" width="100px;" alt=""/><br /><sub><b>jazellemaira</b></sub></a><br /><a href="https://github.com/PostReview/postreview-app/commits?author=jazellemaira" title="Code">💻</a> <a href="#design-jazellemaira" title="Design">🎨</a></td>
   </tr>
 </table>
 
