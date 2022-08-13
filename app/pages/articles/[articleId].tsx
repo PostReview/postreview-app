@@ -2,7 +2,7 @@ import { BlitzPage, Head, Image, useParam, useQuery } from "blitz"
 import Navbar from "app/core/components/Navbar"
 import { ReviewList } from "app/core/components/ReviewList"
 import getArticle from "app/queries/getArticle"
-import { Suspense, useState } from "react"
+import { Suspense, useEffect, useState } from "react"
 import PopupReview from "app/core/components/PopupReview"
 import hasUserSunmittedReview from "app/queries/hasUserSubmittedReview"
 import { useCurrentUser } from "app/core/hooks/useCurrentUser"
@@ -14,8 +14,14 @@ import { Button } from "app/core/components/Button"
 import { FaCrown, FaBarcode, FaUsers } from "react-icons/fa"
 import sadFace from "public/sad-face.png"
 import getUsersWithReviewsByArticleId from "app/queries/getUsersWithReviewsByArticleId"
+import getQuestionCategories from "app/queries/getQuestionCategories"
+import getArticleScoresById from "app/queries/getArticleScoresById"
+import { color } from "@mui/system"
 
 const ArticleDetails = () => {
+  // The maximum rating
+  const ratingScaleMax = 5
+
   const articleId = useParam("articleId", "string") as string
   const [article] = useQuery(getArticle, articleId)
   const [isReviewDialogOpen, setIsReviewDialogOpen] = useState(false)
@@ -46,6 +52,16 @@ const ArticleDetails = () => {
     articleId: articleId,
   })
   const [userHasReview, setUserHasReview] = useState(defaultUserHasReview)
+
+  // handle darkmode
+  const [isDark, setIsDark] = useState(false)
+  useEffect(() => {
+    const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+    setIsDark(mediaQuery.matches)
+  }, [])
+  const smallStarColor = isDark ? "#d9d9d9" : "#737373"
+
+
   const ActionButton = ({ state }) => {
     if (state == "edit")
       return (
@@ -60,6 +76,20 @@ const ArticleDetails = () => {
         </Button>
       )
   }
+
+  // For rendering question summary scores
+  const [questionCategories] = useQuery(getQuestionCategories, undefined)
+  const [articleScores] = useQuery(getArticleScoresById, {
+    currentArticleId: article.id,
+  })
+
+  // Calculate total rating
+  const totalRating = articleScores.reduce((prev, current) => {
+    return prev + current._avg.response! / articleScores.length
+  }, 0)
+
+  // Track if the article has a review at all
+  const articleHasReview = usersWithReview.length === 0 ? false : true
 
   return (
     <div className="flex flex-col min-h-screen bg-white dark:bg-gray-darkest">
@@ -81,7 +111,7 @@ const ArticleDetails = () => {
             {article.doi}
           </a>
         </div>
-        {usersWithReview.length === 0 ?
+        {!articleHasReview ?
           <div id="no-rating" className="flex flex-col items-center">
             <div className="mt-16 w-56">
               <Image
@@ -94,18 +124,18 @@ const ArticleDetails = () => {
             <div id="with-rating-total">
               <div className="flex flex-row items-center">
                 <div className="py-8 text-7xl font-bold text-gray-darkest dark:text-white">
-                  5.0
+                  {totalRating.toFixed(1)}
                 </div>
                 <Rating
                   readOnly
-                  value={0}
+                  value={totalRating / ratingScaleMax}
                   precision={0.1}
                   max={1}
                   sx={{
                     fontSize: 120,
-                    color: "#FF5733",
+                    color: "#94ec01",
                   }}
-                  emptyIcon={<StarIcon style={{ opacity: 1, color: "#94ec01" }} fontSize="inherit" />}
+                  emptyIcon={<StarIcon style={{ opacity: .40, color: "#737373" }} fontSize="inherit" />}
                 />
               </div>
             </div>
@@ -113,19 +143,69 @@ const ArticleDetails = () => {
               <FaUsers className="inline mr-2 text-gray-darkest dark:text-white" />
               <span className="text-green">{usersWithReview.length} global ratings</span>
             </div>
+            {/* Render summary scores by question category */}
+            <div id="category-scores" className="flex flex-row mt-3">
+              {questionCategories.map((category) =>
+                articleScores.find((score) => score.questionId === category.questionId)?._avg
+                  .response! ? (
+                  <div key={category.questionId} className="text-center mx-2">
+                    <div className="flex items-center justify-center">
+                      {/* Rendering the score digits */}
+                      <div className="absolute text-gray-darkest font-semibold text-base z-50">
+                        {articleScores
+                          .find((score) => score.questionId === category.questionId)
+                          ?._avg.response!.toFixed(1)}
+                      </div>
+                      <Rating
+                        readOnly
+                        value={
+                          articleScores.find((score) => score.questionId === category.questionId)?._avg
+                            .response! / ratingScaleMax
+                        }
+                        precision={0.1}
+                        max={1}
+                        sx={{
+                          fontSize: 60,
+                          color: smallStarColor,
+                        }}
+                        emptyIcon={<StarIcon style={{ opacity: .40, color: "#737373" }} fontSize="inherit" />}
+                      />
+                    </div>
+                    <div className="w-10 text-xs text-gray-darkest dark:text-white">{category.questionCategory}</div>
+                  </div>
+                ) : (
+                  <div key={category.questionId} className="text-center">
+                    <div className="flex items-center justify-center">
+                      <div className="absolute text-gray-darkest z-50">N/A</div>
+                      <Rating
+                        readOnly
+                        value={0}
+                        precision={0.1}
+                        max={1}
+                        sx={{
+                          fontSize: 50,
+                          color: "#737373",
+                        }}
+                        emptyIcon={<StarIcon style={{ opacity: 0.40 }} fontSize="inherit" />}
+                      />
+                    </div>
+                    <div>{category.questionCategory}</div>
+                  </div>
+                )
+              )}
+            </div>
           </>
         }
-        <div className="m-20">
-          <button className="mb-12 px-4 py-4 text-2xl text-green rounded-lg bg-black/50 hover:bg-gray-darkest dark:bg-gray-medium dark:hover:bg-black/40"
+        <div className="m-16">
+          <button className="mb-12 px-4 py-4 text-xl text-green rounded-lg bg-black/50 hover:bg-gray-darkest dark:bg-gray-medium dark:hover:bg-black/40"
             onClick={openReviewDialog}
           >
             Add review
           </button>
         </div>
-        <div id="article-container " className="flex flex-col items-center">
-          <Article {...article} />
-        </div>
-        <ReviewList article={article} ActionButton={ActionButton} />
+        {articleHasReview &&
+          <ReviewList article={article} ActionButton={ActionButton} />
+        }
         <Dialog open={isReviewDialogOpen} onClose={closeReviewDialog}>
           <PopupReview
             article={article}
