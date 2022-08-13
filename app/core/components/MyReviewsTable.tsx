@@ -54,7 +54,7 @@ export const MyReviewsTable = (props) => {
               ) : (
                 <div className="flex flex-col">
                   <div id="action-menu" className="self-end text-gray-500">
-                    <ArticleAction curentUser={currentUser} article={article} />
+                    <ArticleAction currentUser={currentUser} article={article} />
                   </div>
                 </div>
               )}
