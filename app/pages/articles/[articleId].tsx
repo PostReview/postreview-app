@@ -64,6 +64,12 @@ const ArticleDetails = () => {
           <FaCrown className="inline m-2" />
           {article.authorString}
         </div>
+        <div className="article__barcode text-base text-green">
+          <a href={`https://dx.doi.org/${article.doi}`} rel="noreferrer" target="_blank">
+            <FaBarcode className="inline m-2" />
+            {article.doi}
+          </a>
+        </div>
         </div>
         <div id="article-container " className="flex flex-col items-center">
           <Article {...article} />
