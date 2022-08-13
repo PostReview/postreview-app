@@ -10,11 +10,16 @@ import signup from "../mutations/signup"
 import { Button } from "app/core/components/Button"
 import postReviewLogoDarkMode from "public/logo-darkmode.png"
 import postReviewLogoLightMode from "public/logo-lightmode.png"
+import { BsEye, BsEyeSlash } from "react-icons/bs"
 
 const SignupPage: BlitzPage = () => {
   const router = useRouter()
   const [signupMutation] = useMutation(signup)
   const [showError, setShowError] = useState(false)
+  const [isPasswordHidden, setIsPasswordHidden] = useState(true)
+  const togglePasswordHidden = () => {
+    setIsPasswordHidden(!isPasswordHidden)
+  }
 
   // handle darkmode
   const [isDark, setIsDark] = useState(false)
@@ -40,7 +45,7 @@ const SignupPage: BlitzPage = () => {
         <h1 className="mt-0 text-center text-4xl font-bold my-4 text-gray-darkest dark:text-white">Join PostReview</h1>
         <div className="flex flex-col items-center py-6 px-20 bg-gray-light dark:bg-gray-dark">
           <Formik
-            initialValues={{ email: "", password: "", passwordVerify: "", handle: "" }}
+            initialValues={{ email: "", password: "", handle: "" }}
             validate={(values) => {
               const existingUser = invoke(getUserInfo, { userHandle: values.handle })
               return existingUser.then((foundUser) => {
@@ -128,30 +133,19 @@ const SignupPage: BlitzPage = () => {
                     {errors.password && touched.password && " - " + errors.password}
                   </span>
                 </label>
-                <input
-                  type="password"
-                  name="password"
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                  value={values.password}
-                  className="p-2 bg-black text-white focus:outline-green/[.50]"
-                />
-                <label htmlFor="passwordVerify" className="mt-4 text-gray-darkest dark:text-white">
-                  Verify Password{" "}
-                  <span className="text-red inline">
-                    {errors.passwordVerify &&
-                      touched.passwordVerify &&
-                      " - " + errors.passwordVerify}
-                  </span>
-                </label>
-                <input
-                  type="password"
-                  name="passwordVerify"
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                  value={values.passwordVerify}
-                  className="mb-4 p-2 bg-black text-white focus:outline-green/[.50]"
-                />
+                <div className="relative">
+                  <input
+                    type={isPasswordHidden ? "password" : "text"}
+                    name="password"
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    value={values.password}
+                    className="w-full p-2 bg-black text-white focus:outline-green/[.50]"
+                  />
+                  <button type="button" onClick={togglePasswordHidden} className="text-white text-2xl absolute inline right-2 top-2">
+                    {isPasswordHidden ? <BsEyeSlash /> : <BsEye />}
+                  </button>
+                </div>
                 <Button addstyles="my-4" type="submit" disabled={isSubmitting}>
                   Sign up
                 </Button>
@@ -175,6 +169,6 @@ const SignupPage: BlitzPage = () => {
 }
 
 SignupPage.redirectAuthenticatedTo = "/"
-SignupPage.getLayout = (page) => <Layout title="Sign Up">{page}</Layout>
+SignupPage.getLayout = (page) => <Layout title="Sign Up | PostReview">{page}</Layout>
 
 export default SignupPage

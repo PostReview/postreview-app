@@ -5,7 +5,6 @@ import { Suspense, useEffect, useState } from "react"
 import Navbar from "app/core/components/Navbar"
 import { Footer } from "app/core/components/Footer"
 import { Formik } from "formik"
-import { Button } from "app/core/components/Button"
 import forgotPictureDarkMode from "public/forgot-picture-darkmode.png"
 import forgotPictureLightMode from "public/forgot-picture-lightmode.png"
 
@@ -39,7 +38,7 @@ const ForgotPasswordPage: BlitzPage = () => {
           {isSuccess ? (
             <div>
               <h2 className="my-4 text-gray-darkest dark:text-white">Request Submitted</h2>
-              <p>
+              <p className="my-4 dark:text-white">
                 If your email is in our system, you will receive instructions to reset your password
                 shortly.
               </p>
@@ -71,7 +70,6 @@ const ForgotPasswordPage: BlitzPage = () => {
                 handleBlur,
                 handleSubmit,
                 isSubmitting,
-                /* and other goodies */
               }) => (
                 <form onSubmit={handleSubmit} className="flex flex-col">
                   <label htmlFor="email" className="mt-4 text-gray-darkest dark:text-white">
