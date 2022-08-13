@@ -76,7 +76,6 @@ const LoginPage: BlitzPage = () => {
               handleBlur,
               handleSubmit,
               isSubmitting,
-              /* and other goodies */
             }) => (
               <form onSubmit={handleSubmit} className="flex flex-col w-full">
                 {showError && (
