@@ -40,7 +40,7 @@ export const ReviewList = (prop) => {
               </>
             ) : (
               <div className="m-20">
-                {session.userId ? (
+                {session?.userId ? (
                   <ActionButton state="submit" />
                 ) : (
                   <div>
