@@ -2,7 +2,6 @@ import { useQuery, useMutation, invoke } from "blitz"
 import getReviewQuestions from "app/queries/getReviewQuestions"
 import React, { useState } from "react"
 import { ReviewQuestion } from "./ReviewQuestion"
-import { useCurrentUser } from "../hooks/useCurrentUser"
 import addReview from "app/mutations/addReview"
 import getReviewAnswersByArticleAndUserIds from "app/queries/getReviewAnswersByArticleAndUserIds"
 import { Dialog, DialogActions, DialogContent, DialogTitle, Switch, Tooltip } from "@mui/material"
@@ -13,12 +12,11 @@ import getReviewCommentByArticleAndUserIds from "app/queries/getReviewCommentByA
 import addReviewComment from "app/mutations/addReviewComment"
 
 export default function PopupReview(prop) {
-  const { article, handleClose, setUserHasReview, setIsChangeMade, userHasReview } = prop
+  const { article, handleClose, setUserHasReview, setIsChangeMade, userHasReview, session } = prop
   const [reviewQuestions] = useQuery(getReviewQuestions, undefined)
-  const currentUser = useCurrentUser()
   const reviewAnswerQueryParams = {
     currentArticleId: article.id,
-    currentUserId: currentUser?.id,
+    currentUserId: session?.userId,
   }
   const [defaultReviewAnswers] = useQuery(
     getReviewAnswersByArticleAndUserIds,
@@ -65,7 +63,7 @@ export default function PopupReview(prop) {
     if (reviewAnswers.length == 0) return setShowReviewRequiredError(true)
     await invoke(addReviewMutation, reviewAnswers)
     await invoke(addReviewCommentMutation, {
-      userId: currentUser?.id,
+      userId: session?.userId,
       articleId: article.id,
       isAnonymous: isAnonymous,
       // When comment is blank, update it to a blank string
@@ -106,6 +104,7 @@ export default function PopupReview(prop) {
                 reviewAnswers={reviewAnswers}
                 setIsChangeMade={setIsChangeMade}
                 isAnonymous={isAnonymous}
+                session={session}
               />
             )
           })}
