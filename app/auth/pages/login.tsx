@@ -1,4 +1,4 @@
-import { useRouter, BlitzPage, useMutation, Link, Routes, Image } from "blitz"
+import { BlitzPage, useMutation, Link, Routes, Image } from "blitz"
 import Layout from "app/core/layouts/Layout"
 import { Suspense, useEffect, useState } from "react"
 import Navbar from "app/core/components/Navbar"
@@ -9,11 +9,16 @@ import login from "../mutations/login"
 import { Button } from "app/core/components/Button"
 import detectiveDarkMode from "public/detective-darkmode.png"
 import detectiveLightMode from "public/detective-lightmode.png"
+import { BsEye, BsEyeSlash } from "react-icons/bs"
 
 const LoginPage: BlitzPage = () => {
-  const router = useRouter()
   const [loginMutation] = useMutation(login)
   const [showError, setShowError] = useState(false)
+  const [isPasswordHidden, setIsPasswordHidden] = useState(true)
+  const togglePasswordHidden = () => {
+    setIsPasswordHidden(!isPasswordHidden)
+  }
+
 
   // handle darkmode
   const [isDark, setIsDark] = useState(false)
@@ -71,7 +76,6 @@ const LoginPage: BlitzPage = () => {
               handleBlur,
               handleSubmit,
               isSubmitting,
-              /* and other goodies */
             }) => (
               <form onSubmit={handleSubmit} className="flex flex-col w-full">
                 {showError && (
@@ -100,14 +104,19 @@ const LoginPage: BlitzPage = () => {
                     {errors.password && touched.password && " - " + errors.password}
                   </span>
                 </label>
-                <input
-                  type="password"
-                  name="password"
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                  value={values.password}
-                  className="p-2 bg-black text-white focus:outline-green/[.50]"
-                />
+                <div className="relative">
+                  <input
+                    type={isPasswordHidden ? "password" : "text"}
+                    name="password"
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    value={values.password}
+                    className="w-full p-2 bg-black text-white focus:outline-green/[.50]"
+                  />
+                  <button type="button" onClick={togglePasswordHidden} className="text-white text-2xl absolute inline right-2 top-2">
+                    {isPasswordHidden ? <BsEyeSlash /> : <BsEye />}
+                  </button>
+                </div>
                 <div>
                   <Link href={Routes.ForgotPasswordPage()}>
                     <a className="text-sm underline italic text-gray-dark dark:text-white/70">Forgot your password?</a>
@@ -136,6 +145,6 @@ const LoginPage: BlitzPage = () => {
 }
 
 LoginPage.redirectAuthenticatedTo = "/"
-LoginPage.getLayout = (page) => <Layout title="Log In">{page}</Layout>
+LoginPage.getLayout = (page) => <Layout title="Log In | PostReview">{page}</Layout>
 
 export default LoginPage
