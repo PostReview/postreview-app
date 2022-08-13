@@ -1,19 +1,21 @@
-import { BlitzPage, Head, useParam, useQuery } from "blitz"
+import { BlitzPage, Head, useParam, useQuery, useSession } from "blitz"
 import Navbar from "app/core/components/Navbar"
 import { ReviewList } from "app/core/components/ReviewList"
 import getArticle from "app/queries/getArticle"
 import { Suspense, useState } from "react"
 import PopupReview from "app/core/components/PopupReview"
 import hasUserSunmittedReview from "app/queries/hasUserSubmittedReview"
-import { useCurrentUser } from "app/core/hooks/useCurrentUser"
 import { Footer } from "app/core/components/Footer"
 import Article from "app/core/components/Article"
 import { Dialog, DialogActions, DialogContent, DialogTitle } from "@mui/material"
 import { Button } from "app/core/components/Button"
 
-const ArticleDetails = () => {
+const ArticleDetails = (props) => {
+  const { setCurrentTitle } = props
   const articleId = useParam("articleId", "string") as string
   const [article] = useQuery(getArticle, articleId)
+  setCurrentTitle(article.title)
+
   const [isReviewDialogOpen, setIsReviewDialogOpen] = useState(false)
   const [isConfirmDialogOpen, setIsConfirmDialogOpen] = useState(false)
   const closeConfirmDialog = () => {
@@ -31,9 +33,9 @@ const ArticleDetails = () => {
     setIsConfirmDialogOpen(false)
     setIsReviewDialogOpen(false)
   }
-  const currentUser = useCurrentUser()
+  const session = useSession()
   const [defaultUserHasReview] = useQuery(hasUserSunmittedReview, {
-    userId: currentUser?.id,
+    userId: session?.userId,
     articleId: articleId,
   })
   const [userHasReview, setUserHasReview] = useState(defaultUserHasReview)
@@ -53,11 +55,7 @@ const ArticleDetails = () => {
   }
 
   return (
-    <div className="flex flex-col min-h-screen">
-      <Head>
-        <title>{`${article.title} | PostReview`}</title>
-      </Head>
-      <Navbar />
+    <>
       <main className="m-6 flex-grow flex flex-col items-center">
         <div className="m-6 text-4xl text-center">
           <h1>Overall Score</h1>
@@ -87,16 +85,24 @@ const ArticleDetails = () => {
           </DialogActions>
         </Dialog>
       </main>
-      <Footer />
-    </div>
+    </>
   )
 }
 
 const ArticlePage: BlitzPage = () => {
+  const [currentTitle, setCurrentTitle] = useState()
+
   return (
-    <Suspense fallback="Loading...">
-      <ArticleDetails />
-    </Suspense>
+    <div className="flex flex-col min-h-screen">
+      <Head>
+        <title>{`${currentTitle} | PostReview`}</title>
+      </Head>
+      <Navbar />
+      <Suspense fallback="Loading...">
+        <ArticleDetails setCurrentTitle={setCurrentTitle} />
+      </Suspense>
+      <Footer />
+    </div>
   )
 }
 
