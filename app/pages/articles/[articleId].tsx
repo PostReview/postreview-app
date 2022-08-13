@@ -98,10 +98,6 @@ const ArticleDetails = (props) => {
 
   return (
     <div className="flex flex-col min-h-screen">
-      <Head>
-        <title>{`${article.title} | PostReview`}</title>
-      </Head>
-      <Navbar />
       <main className="m-6 flex-grow flex flex-col items-center">
         <div className="m-6 font-bold text-2xl text-left text-gray-darkest dark:text-white">
           <h1>{article.title}</h1>
@@ -254,12 +250,12 @@ const ArticlePage: BlitzPage = () => {
   const [currentTitle, setCurrentTitle] = useState()
 
   return (
-    <div className="flex flex-col min-h-screen">
+    <div className="flex flex-col min-h-screen bg-white dark:bg-gray-darkest">
       <Head>
         <title>{`${currentTitle} | PostReview`}</title>
       </Head>
-      <Navbar />
       <Suspense fallback="Loading...">
+        <Navbar />
         <ArticleDetails setCurrentTitle={setCurrentTitle} />
       </Suspense>
       <Footer />
