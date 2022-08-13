@@ -1,13 +1,19 @@
 import React, { useState } from "react"
 import Rating from "@mui/material/Rating"
-import { useCurrentUser } from "../hooks/useCurrentUser"
 
 export const ReviewQuestion = (props) => {
-  const { article, question, onReviewUpdate, reviewAnswers, setIsChangeMade, isAnonymous } = props
-  const currentUser = useCurrentUser()
+  const {
+    article,
+    question,
+    onReviewUpdate,
+    reviewAnswers,
+    setIsChangeMade,
+    isAnonymous,
+    session,
+  } = props
   const handleRatingChange = (questionId, newValue) => {
     const newData = {
-      userId: currentUser?.id,
+      userId: session?.userId,
       articleId: article.id,
       response: newValue,
       questionId: questionId,
@@ -23,12 +29,12 @@ export const ReviewQuestion = (props) => {
   return (
     <div
       className="
-      border-gray-400
+    border-gray-400
     bg-gray-200
-    m-3
-    px-6
-    py-2
-    rounded-full"
+      m-3
+      px-6
+      py-2
+      rounded-full"
     >
       <div className="text-center font-bold">{question.questionCategory}</div>
       <div id="question-header" className="text-center mb-2">
