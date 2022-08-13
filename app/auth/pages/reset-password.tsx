@@ -3,14 +3,23 @@ import Layout from "app/core/layouts/Layout"
 import resetPassword from "app/auth/mutations/resetPassword"
 import { Footer } from "app/core/components/Footer"
 import { Formik } from "formik"
-import { Button } from "app/core/components/Button"
-import { Suspense, useEffect } from "react"
+import { Suspense, useEffect, useState } from "react"
 import Navbar from "app/core/components/Navbar"
+import { BsEye, BsEyeSlash } from "react-icons/bs"
 
 const ResetPasswordPage: BlitzPage = () => {
   const query = useRouterQuery()
   const [resetPasswordMutation, { isSuccess }] = useMutation(resetPassword)
   const router = useRouter()
+
+  const [isPasswordHidden, setIsPasswordHidden] = useState(true)
+  const togglePasswordHidden = () => {
+    setIsPasswordHidden(!isPasswordHidden)
+  }
+  const [isConfirmationHidden, setIsConfirmationHidden] = useState(true)
+  const toggleConfirmationHidden = () => {
+    setIsConfirmationHidden(!isConfirmationHidden)
+  }
 
   // Redirect to home when no token is found
   useEffect(() => {
@@ -78,28 +87,38 @@ const ResetPasswordPage: BlitzPage = () => {
                       {errors.password && touched.password && " - " + errors.password}
                     </span>
                   </label>
-                  <input
-                    type="password"
-                    name="password"
-                    onChange={handleChange}
-                    onBlur={handleBlur}
-                    value={values.password}
-                    className="p-2 bg-black text-white focus:outline-green/[.50]"
-                  />
+                  <div id="password-card" className="relative">
+                    <input
+                      type={isPasswordHidden ? "password" : "text"}
+                      name="password"
+                      onChange={handleChange}
+                      onBlur={handleBlur}
+                      value={values.password}
+                      className="w-full p-2 bg-black text-white focus:outline-green/[.50]"
+                    />
+                    <button type="button" onClick={togglePasswordHidden} className="text-white text-2xl absolute inline right-2 top-2">
+                      {isPasswordHidden ? <BsEyeSlash /> : <BsEye />}
+                    </button>
+                  </div>
                   <label htmlFor="passwordConfirmation" className="mt-4 text-gray-darkest dark:text-white">
                     Confirm New Password
                     <span className="text-orange-400 inline">
                       {errors.password && touched.password && " - " + errors.password}
                     </span>
                   </label>
-                  <input
-                    type="password"
-                    name="passwordConfirmation"
-                    onChange={handleChange}
-                    onBlur={handleBlur}
-                    value={values.passwordConfirmation}
-                    className="mb-6 p-2 bg-black text-white focus:outline-green/[.50]"
-                  />
+                  <div id="conf-card" className="relative">
+                    <input
+                      type={isConfirmationHidden ? "password" : "text"}
+                      name="passwordConfirmation"
+                      onChange={handleChange}
+                      onBlur={handleBlur}
+                      value={values.passwordConfirmation}
+                      className="w-full mb-6 p-2 bg-black text-white focus:outline-green/[.50]"
+                    />
+                    <button type="button" onClick={toggleConfirmationHidden} className="text-white text-2xl absolute inline right-2 top-2">
+                      {isConfirmationHidden ? <BsEyeSlash /> : <BsEye />}
+                    </button>
+                  </div>
                   <div id="action-container" className="text-xl text-green rounded-lg bg-gray-medium dark:bg-gray-medium hover:bg-gray-darkest">
                     <button className="mx-2 my-2" onClick={() => router.push("signup")}>
                       Change password
