@@ -53,7 +53,7 @@ const ArticleDetails = () => {
   }
 
   return (
-    <div className="flex flex-col min-h-screen">
+    <div className="flex flex-col min-h-screen bg-white dark:bg-gray-darkest">
       <Navbar />
       <main className="m-6 flex-grow flex flex-col items-center">
         <div className="m-6 text-4xl text-center">
