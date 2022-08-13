@@ -140,7 +140,7 @@ const SignupPage: BlitzPage = () => {
                     onChange={handleChange}
                     onBlur={handleBlur}
                     value={values.password}
-                    className="p-2 bg-black text-white focus:outline-green/[.50] w-full"
+                    className="w-full p-2 bg-black text-white focus:outline-green/[.50]"
                   />
                   <button type="button" onClick={togglePasswordHidden} className="text-white text-2xl absolute inline right-2 top-2">
                     {isPasswordHidden ? <BsEyeSlash /> : <BsEye />}
