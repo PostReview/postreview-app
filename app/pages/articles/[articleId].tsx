@@ -8,10 +8,12 @@ import hasUserSunmittedReview from "app/queries/hasUserSubmittedReview"
 import { useCurrentUser } from "app/core/hooks/useCurrentUser"
 import { Footer } from "app/core/components/Footer"
 import Article from "app/core/components/Article"
-import { Dialog, DialogActions, DialogContent, DialogTitle } from "@mui/material"
+import { Dialog, DialogActions, DialogContent, DialogTitle, Rating } from "@mui/material"
+import StarIcon from "@mui/icons-material/Star"
 import { Button } from "app/core/components/Button"
-import { FaCrown, FaBarcode } from "react-icons/fa"
+import { FaCrown, FaBarcode, FaUsers } from "react-icons/fa"
 import sadFace from "public/sad-face.png"
+import getUsersWithReviewsByArticleId from "app/queries/getUsersWithReviewsByArticleId"
 
 const ArticleDetails = () => {
   const articleId = useParam("articleId", "string") as string
@@ -33,6 +35,11 @@ const ArticleDetails = () => {
     setIsConfirmDialogOpen(false)
     setIsReviewDialogOpen(false)
   }
+
+  const [usersWithReview] = useQuery(getUsersWithReviewsByArticleId, {
+    currentArticleId: article.id,
+  })
+
   const currentUser = useCurrentUser()
   const [defaultUserHasReview] = useQuery(hasUserSunmittedReview, {
     userId: currentUser?.id,
@@ -74,18 +81,46 @@ const ArticleDetails = () => {
             {article.doi}
           </a>
         </div>
-        <div id="no-rating" className="flex flex-col items-center">
-          <div className="mt-16 w-56">
-            <Image
-              src={sadFace}
-              alt="A picture of a sad face with a single teardrop"
-            />
-          </div>
-          <div className="m-20">
-            <button className="mb-12 px-4 py-4 text-xl text-green rounded-lg bg-gray-medium dark:bg-gray-medium hover:bg-gray-dark">
-              Add review
-            </button>
-          </div>
+        {usersWithReview.length === 0 ?
+          <div id="no-rating" className="flex flex-col items-center">
+            <div className="mt-16 w-56">
+              <Image
+                src={sadFace}
+                alt="A picture of a sad face with a single teardrop"
+              />
+            </div>
+          </div> :
+          <>
+            <div id="with-rating-total">
+              <div className="flex flex-row items-center">
+                <div className="py-8 text-7xl font-bold text-gray-darkest dark:text-white">
+                  5.0
+                </div>
+                <Rating
+                  readOnly
+                  value={0}
+                  precision={0.1}
+                  max={1}
+                  sx={{
+                    fontSize: 120,
+                    color: "#FF5733",
+                  }}
+                  emptyIcon={<StarIcon style={{ opacity: 1, color: "#94ec01" }} fontSize="inherit" />}
+                />
+              </div>
+            </div>
+            <div id="g-num-reviews">
+              <FaUsers className="inline mr-2 text-gray-darkest dark:text-white" />
+              <span className="text-green">{usersWithReview.length} global ratings</span>
+            </div>
+          </>
+        }
+        <div className="m-20">
+          <button className="mb-12 px-4 py-4 text-2xl text-green rounded-lg bg-black/50 hover:bg-gray-darkest dark:bg-gray-medium dark:hover:bg-black/40"
+            onClick={openReviewDialog}
+          >
+            Add review
+          </button>
         </div>
         <div id="article-container " className="flex flex-col items-center">
           <Article {...article} />
