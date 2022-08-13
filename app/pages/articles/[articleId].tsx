@@ -160,7 +160,9 @@ const ArticleDetails = () => {
                         emptyIcon={<StarIcon style={{ opacity: .40, color: "#737373" }} fontSize="inherit" />}
                       />
                     </div>
-                    <div className="w-10 text-xs text-gray-darkest dark:text-white">{category.questionCategory}</div>
+                    <div className="w-16 text-center text-[0.7rem] text-gray-darkest dark:text-white">
+                      {category.questionCategory}
+                    </div>
                   </div>
                 ) : (
                   <div key={category.questionId} className="text-center">
