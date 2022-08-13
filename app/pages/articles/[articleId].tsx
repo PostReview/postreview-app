@@ -1,4 +1,4 @@
-import { BlitzPage, useParam, useQuery } from "blitz"
+import { BlitzPage, Image, useParam, useQuery } from "blitz"
 import Navbar from "app/core/components/Navbar"
 import { ReviewList } from "app/core/components/ReviewList"
 import getArticle from "app/queries/getArticle"
@@ -11,6 +11,7 @@ import Article from "app/core/components/Article"
 import { Dialog, DialogActions, DialogContent, DialogTitle } from "@mui/material"
 import { Button } from "app/core/components/Button"
 import { FaCrown, FaBarcode } from "react-icons/fa"
+import sadFace from "public/sad-face.png"
 
 const ArticleDetails = () => {
   const articleId = useParam("articleId", "string") as string
@@ -70,6 +71,18 @@ const ArticleDetails = () => {
             {article.doi}
           </a>
         </div>
+        <div id="no-rating" className="flex flex-col items-center">
+          <div className="mt-16 w-56">
+            <Image
+              src={sadFace}
+              alt="A picture of a sad face with a single teardrop"
+            />
+          </div>
+          <div className="m-20">
+            <button className="mb-12 px-4 py-4 text-xl text-green rounded-lg bg-gray-medium dark:bg-gray-medium hover:bg-gray-dark">
+              Add review
+            </button>
+          </div>
         </div>
         <div id="article-container " className="flex flex-col items-center">
           <Article {...article} />
