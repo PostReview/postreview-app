@@ -1,4 +1,4 @@
-import { BlitzPage, Head, Image, useParam, useQuery } from "blitz"
+import { BlitzPage, Head, Image, Link, Routes, useParam, useQuery } from "blitz"
 import Navbar from "app/core/components/Navbar"
 import { ReviewList } from "app/core/components/ReviewList"
 import getArticle from "app/queries/getArticle"
@@ -7,8 +7,7 @@ import PopupReview from "app/core/components/PopupReview"
 import hasUserSunmittedReview from "app/queries/hasUserSubmittedReview"
 import { useCurrentUser } from "app/core/hooks/useCurrentUser"
 import { Footer } from "app/core/components/Footer"
-import Article from "app/core/components/Article"
-import { Dialog, DialogActions, DialogContent, DialogTitle, Rating } from "@mui/material"
+import { Dialog, DialogActions, DialogContent, DialogTitle, Rating, Snackbar, SnackbarOrigin } from "@mui/material"
 import StarIcon from "@mui/icons-material/Star"
 import { Button } from "app/core/components/Button"
 import { FaCrown, FaBarcode, FaUsers } from "react-icons/fa"
@@ -16,7 +15,6 @@ import sadFace from "public/sad-face.png"
 import getUsersWithReviewsByArticleId from "app/queries/getUsersWithReviewsByArticleId"
 import getQuestionCategories from "app/queries/getQuestionCategories"
 import getArticleScoresById from "app/queries/getArticleScoresById"
-import { color } from "@mui/system"
 
 const ArticleDetails = () => {
   // The maximum rating
@@ -29,9 +27,7 @@ const ArticleDetails = () => {
   const closeConfirmDialog = () => {
     setIsConfirmDialogOpen(false)
   }
-  const openReviewDialog = () => {
-    setIsReviewDialogOpen(true)
-  }
+
   const [isChangeMade, setIsChangeMade] = useState(false)
   const closeReviewDialog = () => {
     if (!isChangeMade) return setIsReviewDialogOpen(false)
@@ -61,6 +57,13 @@ const ArticleDetails = () => {
   }, [])
   const smallStarColor = isDark ? "#d9d9d9" : "#737373"
 
+  // Handle snackbar
+  const [snackbarOpen, setSnackbarOpen] = useState(false);
+  const openReviewDialog = () => {
+    // If the user is not logged in, show a snackbar
+    if (!currentUser) return setSnackbarOpen(true);
+    setIsReviewDialogOpen(true)
+  }
 
   const ActionButton = ({ state }) => {
     if (state == "edit")
@@ -105,13 +108,14 @@ const ArticleDetails = () => {
           <FaCrown className="inline m-2" />
           {article.authorString}
         </div>
-        <div className="article__barcode text-base text-green">
+        <div className="article__barcode text-base underline text-green">
           <a href={`https://dx.doi.org/${article.doi}`} rel="noreferrer" target="_blank">
             <FaBarcode className="inline m-2" />
             {article.doi}
           </a>
         </div>
         {!articleHasReview ?
+          // When the article does not have a review, render the sad face
           <div id="no-rating" className="flex flex-col items-center">
             <div className="mt-16 w-56">
               <Image
@@ -226,6 +230,21 @@ const ArticleDetails = () => {
             </Button>
           </DialogActions>
         </Dialog>
+        <Snackbar
+          anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
+          open={snackbarOpen}
+          onClose={() => setSnackbarOpen(false)}
+          message={
+            <div className="flex flex-row text-xl items-center">
+              <div className="flex-shrink">
+                You need an account to add a review
+              </div>
+              <div className="flex-none px-4 text-2xl ml-1 underline text-green">
+                <Link href={Routes.SignupPage()}><a>Sign up</a></Link>
+              </div>
+            </div>
+          }
+        />
       </main>
       <Footer />
     </div>
