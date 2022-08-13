@@ -90,9 +90,8 @@ const Profile = () => {
               <Button id="user-avatar" className="focus:outline-none" onClick={undefined}>
                 <Avatar
                   alt={myDisplayName ? myDisplayName : myHandle}
-                  src={`https://eu.ui-avatars.com/api/?name=${
-                    currentUser?.displayName ? currentUser?.displayName : currentUser?.handle
-                  }`}
+                  src={`https://eu.ui-avatars.com/api/?name=${currentUser?.displayName ? currentUser?.displayName : currentUser?.handle
+                    }`}
                 />
               </Button>
             </div>
@@ -165,7 +164,7 @@ const Profile = () => {
               <span className="underline">Verification sent! Please check your mailbox.</span>
             ) : (
               <Button
-                onClick={({}) =>
+                onClick={() =>
                   resendVerificationMutation()
                     .then(() => {
                       setVerificationSent(true)
