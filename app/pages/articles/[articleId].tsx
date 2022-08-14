@@ -84,14 +84,14 @@ const ArticleDetails = (props) => {
   return (
     <div className="flex flex-col min-h-screen">
       <main className="m-6 flex-grow flex flex-col items-center">
-        <div className="m-6 font-bold text-2xl text-left text-gray-darkest dark:text-white">
+        <div className="m-6 font-bold text-2xl text-left max-w-3xl text-gray-darkest dark:text-white">
           <h1>{article.title}</h1>
         </div>
-        <div className="article__author text-base text-gray-dark dark:text-gray-light">
+        <div className="article__author text-base text-center m-2 max-w-2xl text-gray-dark dark:text-gray-light">
           <FaCrown className="inline m-2" />
           {article.authorString}
         </div>
-        <div className="article__barcode text-base underline text-green">
+        <div className="article__barcode text-base underline max-w-2xl text-green">
           <a href={`https://dx.doi.org/${article.doi}`} rel="noreferrer" target="_blank">
             <FaBarcode className="inline m-2" />
             {article.doi}
