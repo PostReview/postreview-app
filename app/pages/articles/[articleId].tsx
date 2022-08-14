@@ -16,13 +16,13 @@ import getQuestionCategories from "app/queries/getQuestionCategories"
 import getArticleScoresById from "app/queries/getArticleScoresById"
 
 const ArticleDetails = (props) => {
-  const { setCurrentTitle } = props
   // The maximum rating
   const ratingScaleMax = 5
-
+  // Get article information
   const articleId = useParam("articleId", "string") as string
   const [article] = useQuery(getArticle, articleId)
-  setCurrentTitle(article.title)
+  // Article title
+  const [currentTitle, setCurrentTitle] = useState(article.title)
 
   const [isReviewDialogOpen, setIsReviewDialogOpen] = useState(false)
   const [isConfirmDialogOpen, setIsConfirmDialogOpen] = useState(false)
@@ -81,8 +81,12 @@ const ArticleDetails = (props) => {
   // Track if the article has a review at all
   const articleHasReview = usersWithReview.length === 0 ? false : true
 
+
   return (
     <div className="flex flex-col min-h-screen">
+      <Head>
+        <title>{`${currentTitle} | PostReview`}</title>
+      </Head>
       <main className="m-6 flex-grow flex flex-col items-center">
         <div className="m-6 font-bold text-2xl text-left max-w-3xl text-gray-darkest dark:text-white">
           <h1>{article.title}</h1>
@@ -194,7 +198,7 @@ const ArticleDetails = (props) => {
             </button>
           </div>}
         {articleHasReview &&
-          <ReviewList article={article} ratingScaleMax={ratingScaleMax} />
+          <ReviewList article={article} ratingScaleMax={ratingScaleMax} session={session} />
         }
         <Dialog open={isReviewDialogOpen} onClose={closeReviewDialog}>
           <PopupReview
@@ -202,6 +206,7 @@ const ArticleDetails = (props) => {
             handleClose={closeReviewDialog}
             setUserHasReview={setUserHasReview}
             setIsChangeMade={setIsChangeMade}
+            session={session}
           />
         </Dialog>
         <Dialog open={isConfirmDialogOpen} onClose={closeConfirmDialog}>
@@ -237,16 +242,12 @@ const ArticleDetails = (props) => {
 }
 
 const ArticlePage: BlitzPage = () => {
-  const [currentTitle, setCurrentTitle] = useState()
 
   return (
     <div className="flex flex-col min-h-screen bg-white dark:bg-gray-darkest">
-      <Head>
-        <title>{`${currentTitle} | PostReview`}</title>
-      </Head>
       <Suspense fallback="Loading...">
         <Navbar />
-        <ArticleDetails setCurrentTitle={setCurrentTitle} />
+        <ArticleDetails />
       </Suspense>
       <Footer />
     </div>
