@@ -67,7 +67,7 @@ export const Review = (props) => {
         </div>
       </div>
       <div id="expand"
-        className="mt-0 w-full h-4 bg-gray-medium hover:cursor-pointer"
+        className="mt-0 w-full h-4 mb-6 bg-gray-medium hover:cursor-pointer"
         onClick={undefined}>
         <div className="mt-1 w-10 h-2 rounded-xl bg-gray-darkest m-auto"></div>
       </div>
