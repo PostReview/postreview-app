@@ -6,6 +6,8 @@ import { Review } from "app/core/components/Review"
 import { ArticleAction } from "./ArticleAction"
 
 export const MyReviewsTable = (props) => {
+  // Rating scale max
+  const ratingScaleMax = 5
   const { articleWithReview, currentUser, publicProfile } = props
   const [questionCategories] = useQuery(getQuestionCategories, undefined)
 
@@ -57,6 +59,7 @@ export const MyReviewsTable = (props) => {
                 userIcon={currentUser?.icon}
                 questionCategories={questionCategories}
                 comment={article?.reviewComment[0]?.comment}
+                ratingScaleMax={ratingScaleMax}
               />
             </div>
           </div>
