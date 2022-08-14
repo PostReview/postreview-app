@@ -1,6 +1,5 @@
 import React from "react"
 import { invoke, useMutation, useRouter } from "blitz"
-import { useCurrentUser } from "app/core/hooks/useCurrentUser"
 import { Autocomplete } from "./Autocomplete"
 import { getAlgoliaResults } from "@algolia/autocomplete-js"
 import algoliasearch from "algoliasearch"
@@ -15,8 +14,8 @@ const searchClient = algoliasearch(
   process.env.ALGOLIA_API_SEARCH_KEY as string
 )
 
-export default function EnterDOI() {
-  const currentUser = useCurrentUser()
+export default function EnterDOI(props) {
+  const { session } = props
   const router = useRouter()
   const [addArticleMutation] = useMutation(addArticle)
 
@@ -28,7 +27,7 @@ export default function EnterDOI() {
 
     // If the article is new, push to our database
     const addedArticle = await invoke(addArticleMutation, {
-      addedById: currentUser?.id,
+      addedById: session?.userId || undefined,
       authorString: newArticle.authors,
       ...newArticle,
     })

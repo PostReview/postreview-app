@@ -1,13 +1,14 @@
 import React from "react"
 import { HeaderUserButton } from "./HeaderUserButton"
 import EnterDOI from "./EnterDOI"
-import { useCurrentUser } from "../hooks/useCurrentUser"
-import { Link, useRouter, Image } from "blitz"
+import { useRouter, Image, useSession } from "blitz"
 import postReviewIcon from "public/logo-darkmode.png"
 
 export default function Navbar() {
-  const currentUser = useCurrentUser()
+  const session = useSession()
   const router = useRouter()
+  const isAtRoot = router.pathname === "/"
+
   return (
     <>
       <nav className="bg-gradient-to-r from-gray-darkest to-gray-dark flex flex-row items-center h-16">
@@ -15,7 +16,11 @@ export default function Navbar() {
           <Image src={postReviewIcon} alt="A magnifier with a hat" />
         </button>
         <div id="search-bar-container" className="flex flex-grow justify-center">
-          {currentUser ? <EnterDOI /> : router.pathname != "/" ? <EnterDOI /> : ""}
+          {session?.userId ? (
+            <EnterDOI session={session} />
+          ) : (
+            !isAtRoot && <EnterDOI session={session} />
+          )}
         </div>
         <div id="buttons-container" className="mr-4 flex flex-row">
           <HeaderUserButton />

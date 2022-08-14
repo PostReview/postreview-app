@@ -1,11 +1,10 @@
-import { BlitzPage, Head, Image, Link, Routes, useParam, useQuery } from "blitz"
+import { BlitzPage, Head, Image, Link, Routes, useParam, useQuery, useSession } from "blitz"
 import Navbar from "app/core/components/Navbar"
 import { ReviewList } from "app/core/components/ReviewList"
 import getArticle from "app/queries/getArticle"
 import { Suspense, useEffect, useState } from "react"
 import PopupReview from "app/core/components/PopupReview"
 import hasUserSunmittedReview from "app/queries/hasUserSubmittedReview"
-import { useCurrentUser } from "app/core/hooks/useCurrentUser"
 import { Footer } from "app/core/components/Footer"
 import { Dialog, DialogActions, DialogContent, DialogTitle, Rating, Snackbar, SnackbarOrigin } from "@mui/material"
 import StarIcon from "@mui/icons-material/Star"
@@ -16,12 +15,15 @@ import getUsersWithReviewsByArticleId from "app/queries/getUsersWithReviewsByArt
 import getQuestionCategories from "app/queries/getQuestionCategories"
 import getArticleScoresById from "app/queries/getArticleScoresById"
 
-const ArticleDetails = () => {
+const ArticleDetails = (props) => {
+  const { setCurrentTitle } = props
   // The maximum rating
   const ratingScaleMax = 5
 
   const articleId = useParam("articleId", "string") as string
   const [article] = useQuery(getArticle, articleId)
+  setCurrentTitle(article.title)
+
   const [isReviewDialogOpen, setIsReviewDialogOpen] = useState(false)
   const [isConfirmDialogOpen, setIsConfirmDialogOpen] = useState(false)
   const closeConfirmDialog = () => {
@@ -42,9 +44,9 @@ const ArticleDetails = () => {
     currentArticleId: article.id,
   })
 
-  const currentUser = useCurrentUser()
+  const session = useSession()
   const [defaultUserHasReview] = useQuery(hasUserSunmittedReview, {
-    userId: currentUser?.id,
+    userId: session?.userId,
     articleId: articleId,
   })
   const [userHasReview, setUserHasReview] = useState(defaultUserHasReview)
@@ -61,7 +63,7 @@ const ArticleDetails = () => {
   const [snackbarOpen, setSnackbarOpen] = useState(false);
   const openReviewDialog = () => {
     // If the user is not logged in, show a snackbar
-    if (!currentUser) return setSnackbarOpen(true);
+    if (!session.userId) return setSnackbarOpen(true);
     setIsReviewDialogOpen(true)
   }
 
@@ -80,11 +82,7 @@ const ArticleDetails = () => {
   const articleHasReview = usersWithReview.length === 0 ? false : true
 
   return (
-    <div className="flex flex-col min-h-screen bg-white dark:bg-gray-darkest">
-      <Head>
-        <title>{`${article.title} | PostReview`}</title>
-      </Head>
-      <Navbar />
+    <div className="flex flex-col min-h-screen">
       <main className="m-6 flex-grow flex flex-col items-center">
         <div className="m-6 font-bold text-2xl text-left text-gray-darkest dark:text-white">
           <h1>{article.title}</h1>
@@ -234,16 +232,24 @@ const ArticleDetails = () => {
           }
         />
       </main>
-      <Footer />
     </div>
   )
 }
 
 const ArticlePage: BlitzPage = () => {
+  const [currentTitle, setCurrentTitle] = useState()
+
   return (
-    <Suspense fallback="Loading...">
-      <ArticleDetails />
-    </Suspense>
+    <div className="flex flex-col min-h-screen bg-white dark:bg-gray-darkest">
+      <Head>
+        <title>{`${currentTitle} | PostReview`}</title>
+      </Head>
+      <Suspense fallback="Loading...">
+        <Navbar />
+        <ArticleDetails setCurrentTitle={setCurrentTitle} />
+      </Suspense>
+      <Footer />
+    </div>
   )
 }
 

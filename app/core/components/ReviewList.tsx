@@ -1,13 +1,11 @@
 import React from "react"
 import { useQuery } from "blitz"
-import { useCurrentUser } from "../hooks/useCurrentUser"
 import getUsersWithReviewsByArticleId from "app/queries/getUsersWithReviewsByArticleId"
 import { Review } from "./Review"
 import getQuestionCategories from "app/queries/getQuestionCategories"
 
 export const ReviewList = (prop) => {
-  const { article, ratingScaleMax } = prop
-  const currentUser = useCurrentUser()
+  const { article, ratingScaleMax, session } = prop
 
   const [usersWithReview] = useQuery(getUsersWithReviewsByArticleId, {
     currentArticleId: article?.id,
@@ -15,9 +13,9 @@ export const ReviewList = (prop) => {
 
   const [questionCategories] = useQuery(getQuestionCategories, undefined)
 
-  const currentUserReview = usersWithReview.find((user) => user.id == currentUser?.id)
+  const currentUserReview = usersWithReview.find((user) => user.id == session?.userId)
   const currentUserHasReview = currentUserReview?.review.length
-  const otherUserReview = usersWithReview.filter((user) => user.id != currentUser?.id)
+  const otherUserReview = usersWithReview.filter((user) => user.id != session?.userId)
 
   return (
     <>

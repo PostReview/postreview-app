@@ -1,7 +1,6 @@
 import React, { Suspense } from "react"
 import { useRouter, useSession, BlitzPage } from "blitz"
 import Layout from "app/core/layouts/Layout"
-import { useCurrentUser } from "app/core/hooks/useCurrentUser"
 
 // Components
 import Navbar from "../core/components/Navbar"
@@ -11,12 +10,10 @@ import { HowItWorks } from "app/core/components/HowItWorks"
 import ArticleList from "app/core/components/ArticleList"
 
 const UserInfo = () => {
-  const currentUser = useCurrentUser()
-  // Redirect
   const router = useRouter()
   const session = useSession()
 
-  if (currentUser) {
+  if (session.userId) {
     return (
       <>
         <ArticleList />
