@@ -11,7 +11,12 @@ export const Review = (props) => {
   const updatedAt = reviews[0]?.updatedAt.toISOString().split("T")[0]
   const isAnonymous = reviews[0]?.isAnonymous
   const submittedBy = isAnonymous ? "Anonymous" : displayName ? displayName : `@${handle}`
-  const tooltipText = `Submitted by: ${submittedBy} | Submitted: ${submittedAt} | Last updated: ${updatedAt} `
+  const tooltipText =
+    <div className="fle flex-col">
+      <div>{`Submitted by: ${submittedBy}`}</div>
+      <div>{`Submitted: ${submittedAt}`}</div>
+      <div>{`Last updated: ${updatedAt}`}</div>
+    </div>
   const totalScore = reviews.reduce((prev, current) => prev + current.response, 0) / reviews.length
   const [open, setOpen] = useState(true);
 
