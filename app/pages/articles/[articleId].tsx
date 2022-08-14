@@ -163,22 +163,25 @@ const ArticleDetails = (props) => {
                     </div>
                   </div>
                 ) : (
-                  <div key={category.questionId} className="text-center">
+                  // When the category does not have a star (N/A)
+                  <div key={category.questionId} className="text-center mx-2">
                     <div className="flex items-center justify-center">
-                      <div className="absolute text-gray-darkest z-50">N/A</div>
+                      <div className="absolute text-gray-darkest font-semibold text-xs z-50">N/A</div>
                       <Rating
                         readOnly
                         value={0}
                         precision={0.1}
                         max={1}
                         sx={{
-                          fontSize: 50,
-                          color: "#737373",
+                          fontSize: 60,
+                          color: smallStarColor,
                         }}
-                        emptyIcon={<StarIcon style={{ opacity: 0.40 }} fontSize="inherit" />}
+                        emptyIcon={<StarIcon style={{ opacity: 0.40, color: "#737373" }} fontSize="inherit" />}
                       />
                     </div>
-                    <div>{category.questionCategory}</div>
+                    <div className="w-16 text-center text-[0.7rem] opacity-70 text-gray-darkest dark:text-white">
+                      {category.questionCategory}
+                    </div>
                   </div>
                 )
               )}
