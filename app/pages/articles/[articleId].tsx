@@ -198,7 +198,7 @@ const ArticleDetails = (props) => {
             </button>
           </div>}
         {articleHasReview &&
-          <ReviewList article={article} ratingScaleMax={ratingScaleMax} />
+          <ReviewList article={article} ratingScaleMax={ratingScaleMax} session={session} />
         }
         <Dialog open={isReviewDialogOpen} onClose={closeReviewDialog}>
           <PopupReview
