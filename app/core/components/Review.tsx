@@ -1,7 +1,7 @@
 import { Avatar, Rating, Tooltip } from "@mui/material"
 import React, { useState } from "react"
 import { Icon } from "@iconify/react"
-import { Link } from "blitz"
+import { useRouter } from "blitz"
 import StarIcon from "@mui/icons-material/Star"
 
 
@@ -15,6 +15,8 @@ export const Review = (props) => {
   const totalScore = reviews.reduce((prev, current) => prev + current.response, 0) / reviews.length
   const [open, setOpen] = useState(true);
 
+  const router = useRouter()
+
 
   return (
     <>
@@ -27,7 +29,7 @@ export const Review = (props) => {
                   <Icon icon="mdi:incognito" className="text-green" />
                 </Avatar>
               ) : (
-                <Link href={`/profiles/${handle}`}>
+                <button onClick={() => router.push(`/profiles/${handle}`)}>
                   <Avatar
                     alt={displayName ? displayName : handle}
                     sx={{
@@ -37,7 +39,7 @@ export const Review = (props) => {
                     variant="square"
                     src={`https://eu.ui-avatars.com/api/?name=${displayName ? displayName : handle}&color=94ec01&background=545454`}
                   />
-                </Link>
+                </button>
               )}
             </Tooltip>
           </div>
