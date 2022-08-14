@@ -1,6 +1,5 @@
-import { Avatar, Button, Rating, SwipeableDrawer, Tooltip } from "@mui/material"
+import { Avatar, Rating, Tooltip } from "@mui/material"
 import React, { useState } from "react"
-import { ReviewStars } from "./ReviewStars"
 import { Icon } from "@iconify/react"
 import { Link } from "blitz"
 import StarIcon from "@mui/icons-material/Star"
@@ -15,7 +14,6 @@ export const Review = (props) => {
   const tooltipText = `Submitted by: ${submittedBy} | Submitted: ${submittedAt} | Last updated: ${updatedAt} `
   const totalScore = reviews.reduce((prev, current) => prev + current.response, 0) / reviews.length
   const [open, setOpen] = useState(true);
-
 
 
   return (
