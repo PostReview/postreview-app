@@ -67,21 +67,6 @@ const ArticleDetails = (props) => {
     setIsReviewDialogOpen(true)
   }
 
-  const ActionButton = ({ state }) => {
-    if (state == "edit")
-      return (
-        <Button variant="contained" onClick={openReviewDialog}>
-          Edit Your Rating
-        </Button>
-      )
-    if (state == "submit")
-      return (
-        <Button variant="contained" onClick={openReviewDialog}>
-          Rate This Paper
-        </Button>
-      )
-  }
-
   // For rendering question summary scores
   const [questionCategories] = useQuery(getQuestionCategories, undefined)
   const [articleScores] = useQuery(getArticleScoresById, {
@@ -173,7 +158,9 @@ const ArticleDetails = (props) => {
                         emptyIcon={<StarIcon style={{ opacity: .40, color: "#737373" }} fontSize="inherit" />}
                       />
                     </div>
-                    <div className="w-10 text-xs text-gray-darkest dark:text-white">{category.questionCategory}</div>
+                    <div className="w-16 text-center text-[0.7rem] text-gray-darkest dark:text-white">
+                      {category.questionCategory}
+                    </div>
                   </div>
                 ) : (
                   <div key={category.questionId} className="text-center">
@@ -198,14 +185,17 @@ const ArticleDetails = (props) => {
             </div>
           </>
         }
-        <div className="m-16">
-          <button className="mb-12 px-4 py-4 text-xl text-green rounded-lg bg-black/50 hover:bg-gray-darkest dark:bg-gray-medium dark:hover:bg-black/40"
-            onClick={openReviewDialog}
-          >
-            Add review
-          </button>
-        </div>
-        <ReviewList article={article} ActionButton={ActionButton} />
+        {!userHasReview &&
+          <div className="m-16">
+            <button className="px-4 py-4 text-xl text-green rounded-lg bg-black/50 hover:bg-gray-darkest dark:bg-gray-medium dark:hover:bg-black/40"
+              onClick={openReviewDialog}
+            >
+              Add review
+            </button>
+          </div>}
+        {articleHasReview &&
+          <ReviewList article={article} ratingScaleMax={ratingScaleMax} />
+        }
         <Dialog open={isReviewDialogOpen} onClose={closeReviewDialog}>
           <PopupReview
             article={article}

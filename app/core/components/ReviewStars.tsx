@@ -11,7 +11,7 @@ export const ReviewStars = (props) => {
       id="ratings-container"
       className="flex lg:flex-row flex-col items-center justify-evenly text-xs mx-6"
     >
-      <div id="total" className="px-3 border-r-2 text-center">
+      <div id="total" className="px-3 border-r-2 text-center text-gray-darkest dark:text-white">
         Total
         <div id="total-rating">
           <RatingTotal
@@ -22,6 +22,7 @@ export const ReviewStars = (props) => {
           />
         </div>
       </div>
+
       {questionCategories.map((category) => {
         const currentReview = reviews.find((review) => review.questionId === category.questionId)
         return currentReview ? (
