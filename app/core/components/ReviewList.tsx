@@ -57,7 +57,7 @@ export const ReviewList = (prop) => {
               />
             ))
           ) : (
-            <div className="m-20">No other reviews</div>
+            <div className="m-20 opacity-80 text-gray-darkest dark:text-white">No other reviews</div>
           )}
         </div>
       </div>
