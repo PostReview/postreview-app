@@ -82,7 +82,6 @@ const Profile = () => {
 
   return (
     <div className="flex flex-col min-h-screen">
-      <Navbar />
       <main className="flex-grow">
         <div id="user-info-card" className="bg-gray-200 p-4">
           <div className="flex flex-row items-center">
@@ -221,19 +220,22 @@ const Profile = () => {
           </Box>
         </div>
       </main>
-      <Footer />
     </div>
   )
 }
 
 const ProfilePage: BlitzPage = () => {
   return (
-    <Suspense fallback="Loading...">
-      <Profile />
-    </Suspense>
+    <div className="flex flex-col min-h-screen">
+      <Suspense fallback="Loading...">
+        <Navbar />
+        <Profile />
+      </Suspense>
+      <Footer />
+    </div>
   )
 }
 ProfilePage.authenticate = true
-ProfilePage.getLayout = (page) => <Layout title="Profile">{page}</Layout>
+ProfilePage.getLayout = (page) => <Layout title="Profile | PostReview">{page}</Layout>
 
 export default ProfilePage
