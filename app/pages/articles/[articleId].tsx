@@ -6,7 +6,7 @@ import { Suspense, useEffect, useState } from "react"
 import PopupReview from "app/core/components/PopupReview"
 import hasUserSunmittedReview from "app/queries/hasUserSubmittedReview"
 import { Footer } from "app/core/components/Footer"
-import { Dialog, DialogActions, DialogContent, DialogTitle, Rating, Snackbar, SnackbarOrigin } from "@mui/material"
+import { Accordion, AccordionDetails, AccordionSummary, Dialog, DialogActions, DialogContent, DialogTitle, Rating, Snackbar, SnackbarOrigin, Typography } from "@mui/material"
 import StarIcon from "@mui/icons-material/Star"
 import { Button } from "app/core/components/Button"
 import { FaCrown, FaBarcode, FaUsers } from "react-icons/fa"
@@ -14,6 +14,7 @@ import sadFace from "public/sad-face.png"
 import getUsersWithReviewsByArticleId from "app/queries/getUsersWithReviewsByArticleId"
 import getQuestionCategories from "app/queries/getQuestionCategories"
 import getArticleScoresById from "app/queries/getArticleScoresById"
+import { width } from "@mui/system"
 
 const ArticleDetails = (props) => {
   // The maximum rating
@@ -59,6 +60,7 @@ const ArticleDetails = (props) => {
   }, [])
   const smallStarColor = isDark ? "#d9d9d9" : "#737373"
 
+
   // Handle snackbar
   const [snackbarOpen, setSnackbarOpen] = useState(false);
   const openReviewDialog = () => {
@@ -80,6 +82,12 @@ const ArticleDetails = (props) => {
 
   // Track if the article has a review at all
   const articleHasReview = usersWithReview.length === 0 ? false : true
+
+  // Track the accordion state
+  const [isAccordionOpen, setIsAccordionOpen] = useState(false)
+  const toggleAccordion = () => {
+    setIsAccordionOpen(!isAccordionOpen)
+  }
 
 
   return (
@@ -135,18 +143,119 @@ const ArticleDetails = (props) => {
               <span className="text-green">{usersWithReview.length} global ratings</span>
             </div>
             {/* Render summary scores by question category */}
-            <div id="category-scores" className="flex flex-row mt-3">
-              {questionCategories.map((category) =>
-                articleScores.find((score) => score.questionId === category.questionId)?._avg
-                  .response! ? (
-                  <div key={category.questionId} className="text-center mx-2">
-                    <div className="flex items-center justify-center">
-                      {/* Rendering the score digits */}
-                      <div className="absolute text-gray-darkest font-semibold text-base z-50">
-                        {articleScores
-                          .find((score) => score.questionId === category.questionId)
-                          ?._avg.response!.toFixed(1)}
+            {!isAccordionOpen &&
+              <div id="category-scores"
+                className="flex flex-row mt-3 hover:cursor-pointer"
+                onClick={() => toggleAccordion()}>
+                {questionCategories.map((category) =>
+                  articleScores.find((score) => score.questionId === category.questionId)?._avg
+                    .response! ? (
+                    <div key={category.questionId} className="text-center mx-2">
+                      <div className="flex items-center justify-center">
+                        {/* Rendering the score digits */}
+                        <div className="absolute text-gray-darkest font-semibold text-base z-50">
+                          {articleScores
+                            .find((score) => score.questionId === category.questionId)
+                            ?._avg.response!.toFixed(1)}
+                        </div>
+                        <Rating
+                          readOnly
+                          value={
+                            articleScores.find((score) => score.questionId === category.questionId)?._avg
+                              .response! / ratingScaleMax
+                          }
+                          precision={0.1}
+                          max={1}
+                          sx={{
+                            fontSize: 60,
+                            color: smallStarColor,
+                          }}
+                          emptyIcon={<StarIcon style={{ opacity: .40, color: "#737373" }} fontSize="inherit" />}
+                        />
                       </div>
+                      <div className="w-16 text-center text-[0.7rem] text-gray-darkest dark:text-white">
+                        {category.questionCategory}
+                      </div>
+                    </div>
+                  ) : (
+                    // When the category does not have a star (N/A)
+                    <div key={category.questionId} className="text-center mx-2">
+                      <div className="flex items-center justify-center">
+                        <div className="absolute text-gray-darkest font-semibold text-xs opacity-70 z-50">N/A</div>
+                        <Rating
+                          readOnly
+                          value={0}
+                          precision={0.1}
+                          max={1}
+                          sx={{
+                            fontSize: 60,
+                            color: smallStarColor,
+                          }}
+                          emptyIcon={<StarIcon style={{ opacity: 0.30, color: "#737373" }} fontSize="inherit" />}
+                        />
+                      </div>
+                      <div className="w-16 text-center text-[0.7rem] opacity-70 text-gray-darkest dark:text-white">
+                        {category.questionCategory}
+                      </div>
+                    </div>
+                  )
+                )}
+              </div>}
+          </>
+        }
+        <Accordion
+          expanded={isAccordionOpen}
+          onChange={() => toggleAccordion()}
+          sx={{
+            backgroundColor: "transparent",
+            display: "hidden",
+            border: 0,
+            borderColor: "transparent",
+            boxShadow: 0,
+            width: 'auto',
+            padding: 0,
+            transitionDelay: 0,
+            msTransitionDuration: 0,
+            ":before": {
+              display: "none",
+            }
+          }}
+          onClick={() => toggleAccordion()}
+        >
+          <AccordionSummary
+            expandIcon={undefined}
+            aria-controls="panel1a-content"
+            id="panel1a-header"
+            classes={{ root: "hidden" }}
+          >
+          </AccordionSummary>
+          <AccordionDetails>
+            <div className="flex flex-col hover:cursor-pointer">{questionCategories.map((category) =>
+              articleScores.find((score) => score.questionId === category.questionId)?._avg
+                .response! ? (
+                <div key={category.questionId} className="text-center my-4">
+                  <div className="flex flex-row items-center justify-between">
+                    {/* Rendering the score digits */}
+                    <div className="text-left">
+                      <div className="text-lg text-gray-darkest dark:text-white">
+                        {category.questionCategory}
+                      </div>
+                      <div id="g-num-reviews" className="text-left">
+                        <FaUsers className="inline mr-2 text-gray-darkest dark:text-white" />
+                        <span className="font-bold text-green-dark">
+                          {articleScores
+                            .find((score) => score.questionId === category.questionId)
+                            ?._count.response}
+                        </span>
+                      </div>
+                    </div>
+
+                    <div className="absolute pl-48 text-2xl font-semibold text-gray-darkest dark:text-white">
+                      {articleScores
+                        .find((score) => score.questionId === category.questionId)
+                        ?._avg.response!.toFixed(1)}
+                    </div>
+                    <div className="pl-24">
                       <Rating
                         readOnly
                         value={
@@ -162,15 +271,24 @@ const ArticleDetails = (props) => {
                         emptyIcon={<StarIcon style={{ opacity: .40, color: "#737373" }} fontSize="inherit" />}
                       />
                     </div>
-                    <div className="w-16 text-center text-[0.7rem] text-gray-darkest dark:text-white">
-                      {category.questionCategory}
-                    </div>
                   </div>
-                ) : (
-                  // When the category does not have a star (N/A)
-                  <div key={category.questionId} className="text-center mx-2">
-                    <div className="flex items-center justify-center">
-                      <div className="absolute text-gray-darkest font-semibold text-xs z-50">N/A</div>
+
+                </div>
+              ) : (
+                // When the category does not have a star (N/A)
+                <div key={category.questionId} className="text-center my-4">
+                  <div className="flex flex-row items-center justify-between">
+                    <div className="text-left">
+                      <div className="text-lg opacity-70 text-gray-darkest dark:text-white">
+                        {category.questionCategory}
+                      </div>
+                      <div id="g-num-reviews" className="text-left">
+                        <FaUsers className="inline mr-2 text-gray-darkest dark:text-white" />
+                        <span className="font-bold text-green-dark">0</span>
+                      </div>
+                    </div>
+                    <div className="absolute pl-48 text-xl text-gray-darkest dark:text-white opacity-70">N/A</div>
+                    <div className="pl-24">
                       <Rating
                         readOnly
                         value={0}
@@ -180,18 +298,16 @@ const ArticleDetails = (props) => {
                           fontSize: 60,
                           color: smallStarColor,
                         }}
-                        emptyIcon={<StarIcon style={{ opacity: 0.40, color: "#737373" }} fontSize="inherit" />}
+                        emptyIcon={<StarIcon style={{ opacity: 0.30, color: "#737373" }} fontSize="inherit" />}
                       />
                     </div>
-                    <div className="w-16 text-center text-[0.7rem] opacity-70 text-gray-darkest dark:text-white">
-                      {category.questionCategory}
-                    </div>
                   </div>
-                )
-              )}
-            </div>
-          </>
-        }
+                </div>
+              )
+            )}</div>
+          </AccordionDetails>
+        </Accordion>
+
         {!userHasReview &&
           <div className="m-16">
             <button className="px-4 py-4 text-xl text-green rounded-lg bg-black/50 hover:bg-gray-darkest dark:bg-gray-medium dark:hover:bg-black/40"
@@ -240,7 +356,7 @@ const ArticleDetails = (props) => {
           }
         />
       </main>
-    </div>
+    </div >
   )
 }
 
