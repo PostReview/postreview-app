@@ -4,7 +4,6 @@ import { Autocomplete } from "./Autocomplete"
 import { getAlgoliaResults } from "@algolia/autocomplete-js"
 import algoliasearch from "algoliasearch"
 import SearchResultArticle from "./SearchResultArticle"
-import "@algolia/autocomplete-theme-classic"
 import { cleanCrossRefItem } from "../cleanCrossRefItem"
 import getArticleByDoi from "app/queries/getArticleByDoi"
 import addArticle from "app/mutations/addArticle"
@@ -128,19 +127,7 @@ export default function EnterDOI(props) {
                     item({ item, components }) {
                       const currentItem = cleanCrossRefItem(item)
                       return (
-                        <div className="my-1 mx-1 flex">
-                          <div className="mr-2">
-                            {components && (
-                              <components.Highlight hit={currentItem} attribute="title" />
-                            )}
-                          </div>
-                          <div>
-                            <p className="text-md font-normal leading-4 text-gray-500 dark:text-gray-400">
-                              {currentItem?.authors}{" "}
-                              {currentItem.publishedYear && `(${currentItem.publishedYear})`}
-                            </p>
-                          </div>
-                        </div>
+                        <SearchResultArticle item={currentItem} components={components} />
                       )
                     },
                   },

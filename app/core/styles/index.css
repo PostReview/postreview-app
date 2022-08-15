@@ -35,3 +35,50 @@
 .has-tooltip:hover .tooltip {
   @apply visible z-50;
 }
+
+/* Customize the Algolia Autocomplete styles */
+/* Common Settings */
+:root {
+  /* Primary (icon) color */
+  --aa-primary-color-rgb: 255, 255, 255;
+  /* Muted color */
+  --aa-muted-color-rgb: 200, 200, 200;
+  /* Text color in the input box */
+  --aa-text-color-rgb: 255, 255, 255;
+  /* Search box bg = black */
+  --aa-input-background-color-rgb: 0, 0, 0;
+  /* Border color green */
+  --aa-panel-border-color-rgb: 148, 236, 1; /* green */
+  --aa-input-border-color-rgb: 148, 236, 1; /* green */
+}
+
+/* TODO: color the loading indicator background green */
+/* .aa-LoadingIndicator svg {
+  padding: 1.2rem;
+  background-color: #94ec01;
+  opacity: 0.2;
+  color: white;
+} */
+
+/* When in light mode */
+:root {
+  /* Search results BG = Black */
+  --aa-background-color-rgb: 46, 44, 44;
+}
+.aa-Panel {
+  --aa-text-color-rgb: 255, 255, 255;
+}
+
+/* When in dark mode */
+@media (prefers-color-scheme: dark) {
+  :root {
+    /* Search Results BG = White */
+    --aa-background-color-rgb: 255, 255, 255;
+    /* Selected color */
+    --aa-selected-color-rgb: 148, 236, 1; /* green */
+    --aa-description-highlight-background-color-rgb: 148, 236, 1;
+  }
+  .aa-Panel {
+    --aa-text-color-rgb: 0, 0, 0;
+  }
+}
