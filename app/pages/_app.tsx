@@ -8,8 +8,8 @@ import {
   useQueryErrorResetBoundary,
   Router,
 } from "blitz"
-import LoginForm from "app/auth/components/LoginForm"
-
+// Load algolia theme first then customize it in the css file
+import "@algolia/autocomplete-theme-classic"
 import "app/core/styles/index.css"
 
 export default function App({ Component, pageProps }: AppProps) {
