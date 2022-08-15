@@ -7,7 +7,7 @@ const SearchResultArticle = ({ item, components }) => {
         </div>
         <div>
           <p className="text-md font-normal leading-4 text-gray-500 dark:text-gray-400">
-            {item.authors} ({item.publishedYear})
+            {item?.authors} {item.publishedYear && `(${item.publishedYear})`}
           </p>
         </div>
       </div>
