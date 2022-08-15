@@ -68,7 +68,7 @@ export const ArticleAction = (props) => {
   return (
     <>
       <IconButton onClick={handleClick}>
-        <MoreHoriz />
+        <MoreHoriz className="text-gray-dark dark:text-gray-medium" />
       </IconButton>
       <Menu
         id="action-menu"
