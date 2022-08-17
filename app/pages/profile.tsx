@@ -121,7 +121,7 @@ const Profile = () => {
             )}
           </div>
         )}
-        <div id="photo-avatar-container" className="flex flex-row px-8 m-6">
+        <div id="photo-avatar-container" className="flex flex-row px-4 m-6">
           <div id="profile-picture" className="w-32 hover: cursor-pointer">
             <Image id="profile-photo" src={profilePhotoPlaceHolder} alt="An image of a detective"></Image>
           </div>
@@ -138,7 +138,7 @@ const Profile = () => {
               />
             </Button>
           </div>
-          <div id="user-pronouns" className="absolute pl-32 py-32 ml-4">
+          <div id="user-pronouns" className="absolute pl-32 py-32 ml-2">
             <ThemeProvider theme={theme}>
               <TextField
                 id="pronouns"
