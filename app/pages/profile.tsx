@@ -1,7 +1,8 @@
-import { BlitzPage, invoke, Link, useMutation, useQuery, useRouter, useSession } from "blitz"
+import { BlitzPage, Image, invoke, Link, useMutation, useQuery, useRouter, useSession } from "blitz"
 import EditIcon from "@mui/icons-material/Edit"
 import {
   Avatar,
+  createTheme,
   Dialog,
   DialogActions,
   DialogContent,
@@ -9,6 +10,7 @@ import {
   IconButton,
   InputAdornment,
   TextField,
+  ThemeProvider,
 } from "@mui/material"
 import { Box } from "@mui/system"
 import Navbar from "app/core/components/Navbar"
@@ -27,6 +29,9 @@ import { AiFillCheckCircle } from "react-icons/ai"
 import { MdError } from "react-icons/md"
 import Layout from "app/core/layouts/Layout"
 import resendVerification from "app/auth/mutations/resendVerification"
+import profilePhotoPlaceHolder from "public/profile-photo-placeholder.png"
+
+
 
 const Profile = () => {
   const currentUser = useCurrentUser()
@@ -80,71 +85,136 @@ const Profile = () => {
     }
   })
 
+  // Change color for text field
+  const theme = createTheme({
+
+    palette: {
+      success: {
+        main: '#d9d9d9',
+      },
+    },
+  });
+
   return (
-    <div className="flex flex-col min-h-screen">
-      <main className="flex-grow">
-        <div id="user-info-card" className="bg-gray-200 p-4">
-          <div className="flex flex-row items-center">
-            <div id="user-icon-container" className="m-2">
-              <Button id="user-avatar" className="focus:outline-none" onClick={undefined}>
-                <Avatar
-                  alt={myDisplayName ? myDisplayName : myHandle}
-                  src={`https://eu.ui-avatars.com/api/?name=${currentUser?.displayName ? currentUser?.displayName : currentUser?.handle
-                    }`}
-                />
-              </Button>
-            </div>
-            <div id="handle-field-container">
-              <TextField
-                disabled={handleDisabled}
-                id="outlined-basic"
-                label="Handle"
-                variant="filled"
-                defaultValue={myHandle}
-                size="small"
-                onChange={(e) => setMyHandle(e.target.value)}
-                InputProps={{
-                  startAdornment: <InputAdornment position="start">@</InputAdornment>,
+    <main className="flex flex-col min-h-screen bg-white dark:bg-gray-darkest">
+      <div className="flex-grow items center m-2 mt-2">
+        {!currentUser?.emailIsVerified && (
+          <div className="flex flex-row m-6 max-w-sm items-center justify-evenly text-sm rounded-md px-8 py-1 border-2 border-gray-medium text-gray-darkest dark:text-white">
+            {!verificationSent && <>Your email is not verified.</>}{" "}
+            {verificationSent ? (
+              <span className="underline text-green-dark">Verification sent! Please check your mailbox.</span>
+            ) : (
+              <div id="action-container" className=" text-green rounded-md bg-gray-medium dark:bg-gray-medium hover:bg-gray-darkest dark:hover:bg-black/50">
+                <button className="m-2"
+                  onClick={() =>
+                    resendVerificationMutation()
+                      .then(() => {
+                        setVerificationSent(true)
+                      })
+                      .catch((error) => {
+                        alert(error)
+                      })
+                  }
+                >
+                  Resend verification
+                </button></div>
+            )}
+          </div>
+        )}
+        <div id="photo-avatar-container" className="flex flex-row px-8 m-6">
+          <div id="profile-picture" className="w-32 hover: cursor-pointer">
+            <Image id="profile-photo" src={profilePhotoPlaceHolder} alt="An image of a detective"></Image>
+          </div>
+          <div id="user-icon-container" className="absolute px-6 py-32">
+            <Button id="user-avatar" className="focus:outline-none" onClick={undefined}>
+              <Avatar
+                alt={myDisplayName ? myDisplayName : myHandle}
+                sx={{
+                  backgroundColor: "#545454",
+                  color: "#94ec01"
                 }}
+                variant="square"
+                src={`https://eu.ui-avatars.com/api/?name=${myDisplayName ? myDisplayName : myHandle}&color=94ec01&background=545454`}
               />
-              <IconButton onClick={changeHandle}>
-                <EditIcon />
-              </IconButton>
-            </div>
-            <div id="user-name-container" className="m-2">
+            </Button>
+          </div>
+          <div id="user-pronouns" className="absolute pl-32 py-32 ml-4">
+            <ThemeProvider theme={theme}>
               <TextField
-                disabled={myDisplayNameDisabled}
-                id="user-name"
-                label="Display Name (optional)"
-                variant="filled"
-                defaultValue={myDisplayName}
+                id="pronouns"
+                placeholder="(Pronouns)"
+                color="success"
+                variant="standard"
                 size="small"
-                onChange={(event) => setMyDisplayName(event.target.value)}
               />
+            </ThemeProvider>
+            <IconButton onClick={handleChangeDisplayName}>
+              <EditIcon />
+            </IconButton>
+          </div>
+        </div>
+        <div id="user-info-card" className="px-10 py-1">
+          <div className="flex flex-col max-w-lg px-4 py-4 bg-gray-medium/70 text-gray-darkest dark:text-white">
+            <div id="user-name-container" className="py-2 text-gray-darkest dark:text-white">
+              <ThemeProvider theme={theme}>
+                <TextField
+                  disabled={myDisplayNameDisabled}
+                  id="user-name"
+                  label="Display Name (optional)"
+                  color="success"
+                  variant="outlined"
+                  defaultValue={myDisplayName}
+                  size="small"
+                  onChange={(event) => setMyDisplayName(event.target.value)}
+                />
+              </ThemeProvider>
               <IconButton onClick={handleChangeDisplayName}>
                 <EditIcon />
               </IconButton>
             </div>
-            <div id="user-email-container" className="m-2 flex flex-row items-center">
-              <TextField
-                disabled
-                id="user-email"
-                label="Email"
-                variant="filled"
-                defaultValue={currentUser?.email}
-                size="small"
-              />
+            <div id="handle-field-container" className="py-2 text-gray-darkest dark:text-white">
+              <ThemeProvider theme={theme}>
+                <TextField
+                  disabled={handleDisabled}
+                  id="outlined-basic"
+                  label="Handle"
+                  color="success"
+                  variant="outlined"
+                  defaultValue={myHandle}
+                  size="small"
+                  onChange={(e) => setMyHandle(e.target.value)}
+                  InputProps={{
+                    startAdornment: <InputAdornment position="start">@</InputAdornment>,
+                  }}
+                />
+              </ThemeProvider>
+              <IconButton onClick={changeHandle}>
+                <EditIcon />
+              </IconButton>
+            </div>
+            <div id="user-email-container" className="flex flex-row items-center py-2 text-gray-darkest dark:text-white">
+              <ThemeProvider theme={theme}>
+                <TextField
+                  disabled
+                  id="user-email"
+                  label="Email"
+                  color="success"
+                  variant="filled"
+                  defaultValue={currentUser?.email}
+                  size="small"
+                />
+              </ThemeProvider>
               {currentUser?.emailIsVerified ? (
                 <div className="has-tooltip relative">
-                  <div className="tooltip bg-slate-300 rounded-md text-gray-700 -top-8 -left-4 px-2 py-1">
+                  <div className="tooltip bg-gray-medium rounded-md -top-8 -left-10 px-2 py-1 text-sm text-gray-darkest dark:text-white">
                     Verified
                   </div>
-                  <AiFillCheckCircle className="inline text-2xl mx-2 text-green-400" />
+                  <AiFillCheckCircle className="inline text-xl mx-2 text-green" />
                 </div>
               ) : (
                 <div className="has-tooltip relative">
-                  <div className="tooltip bg-slate-300 rounded-md text-gray-700 -top-8 -left-4 px-2 py-1">
-                    <span className="whitespace-nowrap">Not verified</span>
+                  <div className="tooltip bg-gray-medium text-gray-darkest rounded-md -top-8 -left-4 px-2 py-1">
+                    <span className="whitespace-nowrap text-gray-darkest">Not verified</span>
                   </div>
                   <MdError className="inline text-2xl mx-2 text-red-400" />
                 </div>
@@ -156,43 +226,21 @@ const Profile = () => {
             </div>
           </div>
         </div>
-        {!currentUser?.emailIsVerified && (
-          <div className="text-orange-800 max-w-3xl text-sm border-2 border-orange-400 rounded-md px-2 py-1 m-3 bg-orange-300">
-            Your email is not verified.{" "}
-            {verificationSent ? (
-              <span className="underline">Verification sent! Please check your mailbox.</span>
-            ) : (
-              <Button
-                onClick={() =>
-                  resendVerificationMutation()
-                    .then(() => {
-                      setVerificationSent(true)
-                    })
-                    .catch((error) => {
-                      alert(error)
-                    })
-                }
-              >
-                Resend verification
-              </Button>
-            )}
-          </div>
-        )}
 
-        <div id="my-reviews-container" className="m-3">
-          <h1 className="text-3xl">Reviews You Posted</h1>
-          <div className="m-6">
+        <div id="my-reviews-container" className="m-4 pt-8 flex-grow max-w-4xl">
+          <h1 className="text-3xl font-semibold ml-6 text-gray-darkest dark:text-white">Your Reviews</h1>
+          <div className=" text-gray-darkest dark:text-white">
             {myArticlesWithReview.length === 0 && <MyReviewsEmptyState />}
             <MyReviewsTable articleWithReview={myArticlesWithReview} currentUser={currentUser} />
           </div>
         </div>
         <div className="m-6">
-          <Button id="public-view-container" className="m-2 text-blue-500 font-semibold">
+          <Button id="public-view-container" className="m-2 underline text-md hover:cursor-pointer text-green-dark">
             <Link href={publicProfileLink}>Public profile view</Link>
           </Button>
           <Button
             id="delete-account"
-            className="m-2 font-semibold hover:cursor-pointer text-red-400"
+            className="m-2 underline hover:cursor-pointer text-gray-medium"
             onClick={() => setIsDeactivateAccountDialogOpen(true)}
             color="error"
           >
@@ -219,8 +267,8 @@ const Profile = () => {
             </Dialog>
           </Box>
         </div>
-      </main>
-    </div>
+      </div>
+    </main>
   )
 }
 
