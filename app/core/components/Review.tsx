@@ -3,11 +3,12 @@ import React, { useState } from "react"
 import { Icon } from "@iconify/react"
 import { useRouter } from "blitz"
 import StarIcon from "@mui/icons-material/Star"
+import { ArticleAction } from "./ArticleAction"
 import { ReviewStars } from "./ReviewStars"
 
 
 export const Review = (props) => {
-  const { displayName, handle, reviews, userIcon, questionCategories, comment, ratingScaleMax } = props
+  const { displayName, handle, reviews, userIcon, questionCategories, comment, ratingScaleMax, showArticleAction = false, article } = props
   const submittedAt = reviews[0]?.createdAt?.toISOString().split("T")[0]
   const updatedAt = reviews[0]?.updatedAt.toISOString().split("T")[0]
   const isAnonymous = reviews[0]?.isAnonymous
@@ -49,7 +50,11 @@ export const Review = (props) => {
 
   return (
     <>
-      <div id="review-summary" className="w-full p-2 flex flex-row items-center bg-gray-light dark:bg-gray-light/10 border-black">
+      <div id="review-summary" className="relative w-full h-32 p-2 flex flex-row items-center bg-gray-light dark:bg-gray-light/10  border-black">
+        {showArticleAction &&
+          <div className="absolute top-0 right-0">
+            <ArticleAction article={article} />
+          </div>}
         <div id="review-header-section" className="flex flex-row items-center relative">
           <div id="avatar" className="m-2 absolute hover:cursor-pointer">
             <Tooltip title={tooltipText} placement="top" arrow>
