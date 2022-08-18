@@ -16,7 +16,7 @@ export const ReviewStars = (props) => {
   return (
     <div
       id="expanded-review"
-      className="flex flex-row w-full items-center justify-evenly text-xs bg-gray-light dark:bg-gray-light dark:bg-opacity-10"
+      className="pb-4 flex flex-row w-full items-center justify-evenly text-xs bg-gray-light dark:bg-gray-light dark:bg-opacity-10"
       onClick={onClick}
     >
       {questionCategories.map((category) => {
