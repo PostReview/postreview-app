@@ -19,6 +19,7 @@ model User {
 
   handle          String  @unique
   displayName     String?
+  pronoun         String?
   email           String  @unique
   emailIsVerified Boolean @default(false)
   hashedPassword  String?
