@@ -51,7 +51,7 @@ export const Review = (props) => {
     <>
       <div id="review-summary" className="w-full p-2 flex flex-row items-center bg-gray-light dark:bg-gray-light/10 border-black">
         <div id="review-header-section" className="flex flex-row items-center relative">
-          <div id="avatar" className="m-2">
+          <div id="avatar" className="m-2 absolute hover:cursor-pointer">
             <Tooltip title={tooltipText} placement="top" arrow>
               {isAnonymous ? (
                 <Avatar alt={"Anonymous"} sx={{ backgroundColor: "#545454" }} variant="square">
