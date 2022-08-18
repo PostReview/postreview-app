@@ -3,6 +3,7 @@ import React, { useState } from "react"
 import { Icon } from "@iconify/react"
 import { useRouter } from "blitz"
 import StarIcon from "@mui/icons-material/Star"
+import { ReviewStars } from "./ReviewStars"
 
 
 export const Review = (props) => {
