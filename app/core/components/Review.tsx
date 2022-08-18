@@ -22,6 +22,9 @@ export const Review = (props) => {
 
   const router = useRouter()
 
+  const [isCardExpanded, setIsCardExpanded] = useState(false)
+  const [isCommentExpanded, setIsCommentExpanded] = useState(false)
+
   const TotalScoreCard = (props) => {
     const { fontSize = 50, textClass = "text-lg" } = props
     return (
@@ -88,7 +91,7 @@ export const Review = (props) => {
       </div>
       <div id="expand"
         className="mt-0 w-full h-4 mb-6 bg-gray-medium hover:cursor-pointer"
-        onClick={undefined}>
+        onClick={() => setIsCardExpanded(!isCardExpanded)}>
         <div className="mt-1 w-10 h-2 rounded-xl bg-gray-darkest m-auto"></div>
       </div>
     </>
