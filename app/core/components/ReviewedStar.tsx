@@ -13,7 +13,7 @@ export const ReviewedStar = (props) => {
         </div>
       </div>
       <div className="hover:cursor-pointer" onMouseOver={() => setOnHover(!onHover)} onMouseLeave={() => setOnHover(!onHover)}>
-        {currentReview ? (
+        {currentReview?.response ? (
           <Rating
             readOnly
             value={currentReview.response / ratingScaleMax}
@@ -40,7 +40,9 @@ export const ReviewedStar = (props) => {
         )}
       </div>
       <div className="-mt-3 h-7 w-min text-center font-semibold text-xl text-gray-light">
-        {currentReview.response}
+        {currentReview?.response ?
+          currentReview.response :
+          <span className="opacity-70 text-sm">N/A</span>}
       </div>
     </div>
   )
