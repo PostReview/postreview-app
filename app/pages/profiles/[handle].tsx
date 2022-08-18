@@ -16,7 +16,7 @@ const PublicProfileDetails = () => {
   })
 
   return (
-    <div className="flex flex-col min-h-screen">
+    <div className="flex flex-col min-h-screen bg-white dark:bg-gray-darkest">
       <Navbar />
       <main className="flex-grow">
         <div id="user-info-card" className="bg-gray-200 p-4 flex flex-col items-center">
@@ -28,9 +28,8 @@ const PublicProfileDetails = () => {
                   src={
                     userInfo?.icon
                       ? userInfo?.icon
-                      : `https://eu.ui-avatars.com/api/?name=${
-                          userInfo?.displayName ? userInfo?.displayName : userInfo?.handle
-                        }`
+                      : `https://eu.ui-avatars.com/api/?name=${userInfo?.displayName ? userInfo?.displayName : userInfo?.handle
+                      }`
                   }
                 />
               </Button>
