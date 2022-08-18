@@ -1,44 +1,36 @@
-import React from "react"
-import { RatingTotal } from "./RatingTotal"
-import { ReviewCategoryAnswer } from "./ReviewCategoryAnswer"
+import React, { useEffect, useState } from "react"
+import { ReviewedStar } from "./ReviewedStar"
 
 export const ReviewStars = (props) => {
-  const { reviews, questionCategories } = props
+  const { reviews, questionCategories, onClick } = props
   const ratingScaleMax = 5
+
+  // handle darkmode
+  const [isDark, setIsDark] = useState(false)
+  useEffect(() => {
+    const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)")
+    setIsDark(mediaQuery.matches)
+  }, [])
+  const smallStarColor = isDark ? "#d9d9d9" : "#737373"
 
   return (
     <div
-      id="ratings-container"
-      className="flex lg:flex-row flex-col items-center justify-evenly text-xs mx-6"
+      id="expanded-review"
+      className="pb-4 flex flex-row w-full items-center justify-evenly text-xs bg-gray-light dark:bg-gray-light dark:bg-opacity-10"
+      onClick={onClick}
     >
-      <div id="total" className="px-3 border-r-2 text-center text-gray-darkest dark:text-white">
-        Total
-        <div id="total-rating">
-          <RatingTotal
-            size="small"
-            readOnly
-            max={ratingScaleMax}
-            value={reviews.reduce((prev, current) => prev + current.response, 0) / reviews.length}
-          />
-        </div>
-      </div>
-
       {questionCategories.map((category) => {
         const currentReview = reviews.find((review) => review.questionId === category.questionId)
-        return currentReview ? (
-          <ReviewCategoryAnswer
-            key={category.questionId}
-            ratingScaleMax={category.maxValue}
-            response={currentReview.response}
-            questionCategory={currentReview.question.questionCategory}
-          />
-        ) : (
-          <ReviewCategoryAnswer
-            key={category.questionId}
-            ratingScaleMax={category.maxValue}
-            norating
-            questionCategory={category.questionCategory}
-          />
+        return (
+          <div key={category.questionId}>
+            <ReviewedStar
+              currentReview={currentReview}
+              ratingScaleMax={ratingScaleMax}
+              smallStarColor={smallStarColor}
+              fontSize={50}
+              category={category}
+            />
+          </div>
         )
       })}
     </div>

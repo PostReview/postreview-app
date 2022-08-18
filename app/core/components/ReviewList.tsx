@@ -19,7 +19,7 @@ export const ReviewList = (prop) => {
 
   return (
     <>
-      <div id="reviews-container" className="max-w-4xl">
+      <div id="reviews-container" className="min-w-full sm:min-w-min sm:w-96">
         {currentUserHasReview && (
           // Show the current user's review
           <div id="your-rating-wrapper" className="mt-6 mb-6">
@@ -60,7 +60,9 @@ export const ReviewList = (prop) => {
               />
             ))
           ) : (
-            <div className="m-20 opacity-80 text-gray-darkest dark:text-white">No other reviews</div>
+            <div className="m-20 opacity-80 text-gray-darkest dark:text-white">
+              No other reviews
+            </div>
           )}
         </div>
       </div>

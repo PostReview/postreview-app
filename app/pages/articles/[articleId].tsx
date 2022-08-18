@@ -6,7 +6,7 @@ import { Suspense, useEffect, useState } from "react"
 import PopupReview from "app/core/components/PopupReview"
 import hasUserSunmittedReview from "app/queries/hasUserSubmittedReview"
 import { Footer } from "app/core/components/Footer"
-import { Accordion, AccordionDetails, AccordionSummary, Dialog, DialogActions, DialogContent, DialogTitle, Rating, Snackbar, SnackbarOrigin, Typography } from "@mui/material"
+import { Accordion, AccordionDetails, AccordionSummary, Dialog, DialogActions, DialogContent, DialogTitle, Rating, Snackbar } from "@mui/material"
 import StarIcon from "@mui/icons-material/Star"
 import { Button } from "app/core/components/Button"
 import { FaCrown, FaBarcode, FaUsers } from "react-icons/fa"
@@ -14,7 +14,6 @@ import sadFace from "public/sad-face.png"
 import getUsersWithReviewsByArticleId from "app/queries/getUsersWithReviewsByArticleId"
 import getQuestionCategories from "app/queries/getQuestionCategories"
 import getArticleScoresById from "app/queries/getArticleScoresById"
-import { width } from "@mui/system"
 
 const ArticleDetails = (props) => {
   // The maximum rating
@@ -249,7 +248,6 @@ const ArticleDetails = (props) => {
                         </span>
                       </div>
                     </div>
-
                     <div className="absolute pl-48 text-2xl font-semibold text-gray-darkest dark:text-white">
                       {articleScores
                         .find((score) => score.questionId === category.questionId)
@@ -307,7 +305,6 @@ const ArticleDetails = (props) => {
             )}</div>
           </AccordionDetails>
         </Accordion>
-
         {!userHasReview &&
           <div className="m-16">
             <button className="px-4 py-4 text-xl text-green rounded-lg bg-black/50 hover:bg-gray-darkest dark:bg-gray-medium dark:hover:bg-black/40"
