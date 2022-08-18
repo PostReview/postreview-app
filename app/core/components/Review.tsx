@@ -80,16 +80,27 @@ export const Review = (props) => {
       {isCardExpanded && <ReviewStars reviews={reviews} questionCategories={questionCategories}
         onClick={() => setIsCardExpanded(!isCardExpanded)} />}
       {(isCardExpanded && comment) &&
+        <div className="p-4 bg-gray-light dark:bg-gray-light/10 text-gray-darkest dark:text-white">
+          <h2 className="font-semibold text-xl w-full">Comment</h2>
+          <p className="text-gray-medium dark:text-gray-light">
+            {comment.length < 500 ? comment :
+              isCommentExpanded ?
               <>
-                {comment.slice(0, 75)}...
+                  {comment}
                 <span className="underline ml-2 italic hover:cursor-pointer"
-                  onClick={undefined}>
+                    onClick={() => setIsCommentExpanded(!isCommentExpanded)}>
+                    See less
+                  </span>
+                </> :
+                <>
+                  {comment.slice(0, 500)}...
+                  <span className="underline ml-2 italic hover:cursor-pointer"
+                    onClick={() => setIsCommentExpanded(!isCommentExpanded)}>
                   See more
                 </span>
               </>}
-          </div>
-        </div>
-      </div>
+          </p>
+        </div>}
       <div id="expand"
         className="mt-0 w-full h-4 mb-6 bg-gray-medium hover:cursor-pointer"
         onClick={() => setIsCardExpanded(!isCardExpanded)}>
