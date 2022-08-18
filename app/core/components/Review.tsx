@@ -18,7 +18,6 @@ export const Review = (props) => {
       <div>{`Last updated: ${updatedAt}`}</div>
     </div>
   const totalScore = reviews.reduce((prev, current) => prev + current.response, 0) / reviews.length
-  const [open, setOpen] = useState(true);
 
   const router = useRouter()
 
