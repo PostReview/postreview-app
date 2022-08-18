@@ -76,7 +76,7 @@ export const Review = (props) => {
         <div className="m-auto">
           <TotalScoreCard textClass="text-4xl" />
         </div>
-          </div>
+      </div>
       {isCardExpanded && <ReviewStars reviews={reviews} questionCategories={questionCategories}
         onClick={() => setIsCardExpanded(!isCardExpanded)} />}
       {(isCardExpanded && comment) &&
@@ -85,9 +85,9 @@ export const Review = (props) => {
           <p className="text-gray-medium dark:text-gray-light">
             {comment.length < 500 ? comment :
               isCommentExpanded ?
-              <>
+                <>
                   {comment}
-                <span className="underline ml-2 italic hover:cursor-pointer"
+                  <span className="underline ml-2 italic hover:cursor-pointer"
                     onClick={() => setIsCommentExpanded(!isCommentExpanded)}>
                     See less
                   </span>
@@ -96,9 +96,9 @@ export const Review = (props) => {
                   {comment.slice(0, 500)}...
                   <span className="underline ml-2 italic hover:cursor-pointer"
                     onClick={() => setIsCommentExpanded(!isCommentExpanded)}>
-                  See more
-                </span>
-              </>}
+                    See more
+                  </span>
+                </>}
           </p>
         </div>}
       <div id="expand"
