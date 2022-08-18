@@ -22,6 +22,27 @@ export const Review = (props) => {
 
   const router = useRouter()
 
+  const TotalScoreCard = (props) => {
+    const { fontSize = 50, textClass = "text-lg" } = props
+    return (
+      <div className="flex flex-row items-center">
+        <div id="total-score" className={"ml-2 font-semibold text-gray-darkest dark:text-white " + textClass}>
+          {totalScore.toFixed(1)}</div>
+        <div id="total-star" className="mr-2">
+          <Rating
+            readOnly
+            value={totalScore / ratingScaleMax}
+            precision={0.1}
+            max={1}
+            sx={{
+              fontSize: fontSize,
+              color: "#94ec01",
+            }}
+            emptyIcon={<StarIcon style={{ opacity: .40, color: "#737373" }} fontSize="inherit" />}
+          />
+        </div>
+      </div>)
+  }
 
   return (
     <>
@@ -48,18 +69,10 @@ export const Review = (props) => {
               )}
             </Tooltip>
           </div>
-          <div id="total-star" className="mx-4">
-            <Rating
-              readOnly
-              value={totalScore / ratingScaleMax}
-              precision={0.1}
-              max={1}
-              sx={{
-                fontSize: 50,
-                color: "#94ec01",
-              }}
-              emptyIcon={<StarIcon style={{ opacity: .40, color: "#737373" }} fontSize="inherit" />}
-            />
+        </div>
+        <div className="m-auto">
+          <TotalScoreCard textClass="text-4xl" />
+        </div>
           </div>
           <div id="comment-snippet" className="break-words text-gray-darkest dark:text-white">
             {comment.length < 75 ? comment :
