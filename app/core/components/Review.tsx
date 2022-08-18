@@ -77,8 +77,9 @@ export const Review = (props) => {
           <TotalScoreCard textClass="text-4xl" />
         </div>
           </div>
-          <div id="comment-snippet" className="break-words text-gray-darkest dark:text-white">
-            {comment.length < 75 ? comment :
+      {isCardExpanded && <ReviewStars reviews={reviews} questionCategories={questionCategories}
+        onClick={() => setIsCardExpanded(!isCardExpanded)} />}
+      {(isCardExpanded && comment) &&
               <>
                 {comment.slice(0, 75)}...
                 <span className="underline ml-2 italic hover:cursor-pointer"
