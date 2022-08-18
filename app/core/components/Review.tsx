@@ -85,7 +85,7 @@ export const Review = (props) => {
       {isCardExpanded && <ReviewStars reviews={reviews} questionCategories={questionCategories}
         onClick={() => setIsCardExpanded(!isCardExpanded)} />}
       {(isCardExpanded && comment) &&
-        <div className="p-4 bg-gray-light dark:bg-gray-light/10 text-gray-darkest dark:text-white">
+        <div className="p-4 w-full bg-gray-light dark:bg-gray-light/10 text-gray-darkest dark:text-white">
           <h2 className="font-semibold text-xl w-full">Comment</h2>
           <p className="text-gray-medium dark:text-gray-light">
             {comment.length < 500 ? comment :
