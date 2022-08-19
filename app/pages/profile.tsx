@@ -18,8 +18,6 @@ import { MyReviewsEmptyState } from "app/core/components/MyReviewsEmptyState"
 import { Footer } from "app/core/components/Footer"
 import deleteUser from "app/mutations/deleteUser"
 import logout from "app/auth/mutations/logout"
-import changeUserHandle from "app/mutations/changeUserHandle"
-import changeDisplayName from "app/mutations/changeDisplayName"
 import { Button } from "app/core/components/Button"
 import Layout from "app/core/layouts/Layout"
 import resendVerification from "app/auth/mutations/resendVerification"
@@ -35,34 +33,13 @@ const Profile = () => {
     includeAnonymous: true,
   })
 
-  const [myHandle, setMyHandle] = useState(currentUser?.handle)
-  const [publicProfileLink, setPublicProfileLink] = useState(`profiles/${currentUser?.handle}`)
-  const [myDisplayName, setMyDisplayName] = useState(currentUser?.displayName)
+  const [userInfo, setUserInfo] = useState(currentUser)
 
   const [myArticlesWithReview, setMyArticlesWithReview] = useState(defaultMyArticlesWithReview)
-  const [handleDisabled, setHandleDisabled] = useState(true)
-  const [myDisplayNameDisabled, setMyDisplayNameDisabled] = useState(true)
 
   const [isDeactivateAccountDialogOpen, setIsDeactivateAccountDialogOpen] = useState(false)
   const [resendVerificationMutation, { isSuccess }] = useMutation(resendVerification)
   const [verificationSent, setVerificationSent] = useState(false)
-
-  const changeHandle = () => {
-    if (!handleDisabled) {
-      invoke(changeUserHandle, { id: currentUser?.id, handle: myHandle })
-      setPublicProfileLink(`profiles/${myHandle}`)
-      setHandleDisabled(true)
-    }
-    if (handleDisabled) setHandleDisabled(false)
-  }
-
-  const handleChangeDisplayName = () => {
-    if (!myDisplayNameDisabled) {
-      invoke(changeDisplayName, { id: currentUser?.id, displayName: myDisplayName })
-      setMyDisplayNameDisabled(true)
-    }
-    if (myDisplayNameDisabled) setMyDisplayNameDisabled(false)
-  }
 
   const [logoutMutation] = useMutation(logout)
   const handleDeleteUser = async () => {
@@ -122,7 +99,7 @@ const Profile = () => {
           <div id="profile-picture" className="flex flex-row">
             <Button id="user-avatar" className="focus:outline-none -mt-16" onClick={undefined}>
               <Avatar
-                alt={myDisplayName ? myDisplayName : myHandle}
+                alt={userInfo?.displayName ? userInfo?.displayName : userInfo?.handle}
                 sx={{
                   backgroundColor: "#545454",
                   color: "#94ec01",
@@ -131,35 +108,35 @@ const Profile = () => {
                 }}
                 variant="square"
                 src={`https://eu.ui-avatars.com/api/?name=${
-                  myDisplayName ? myDisplayName : myHandle
+                  userInfo?.displayName ? userInfo?.displayName : userInfo?.handle
                 }&color=94ec01&background=545454`}
               />
             </Button>
             <div id="user-pronouns" className="relative">
-              <span className="absolute bottom-0 ml-4"> {`(${currentUser?.pronoun})`}</span>
+              <span className="absolute bottom-0 ml-4"> {`(${userInfo?.pronoun})`}</span>
             </div>
           </div>
         </div>
         <div id="username-handle-card">
           <div className="flex flex-col max-w-lg my-2">
             <span id="display-name-container" className="text-2xl">
-              {myDisplayName}
+              {userInfo?.displayName}
             </span>
             <div id="handle-container">
-              <span>{`@${myHandle}`}</span>
+              <span>{`@${userInfo?.handle}`}</span>
             </div>
           </div>
         </div>
         <div id="about-me-card" className="mt-6">
-          {currentUser?.aboutMe}
+          {userInfo?.aboutMe}
         </div>
-        {currentUser?.website && (
+        {userInfo?.website && (
           <div id="website" className="mt-6">
             <span className="text-xs text-green-dark">
               <FaLink className="inline mr-1" />
-              <Link href={encodeURI(currentUser?.website)}>
+              <Link href={encodeURI(userInfo?.website)}>
                 <a target={"_blank"} className="">
-                  {encodeURI(currentUser?.website)}
+                  {encodeURI(userInfo?.website)}
                 </a>
               </Link>
             </span>
@@ -178,7 +155,7 @@ const Profile = () => {
           id="public-view-container"
           className="m-2 underline text-md hover:cursor-pointer text-green-dark"
         >
-          <Link href={publicProfileLink}>Public profile view</Link>
+          <Link href={`profiles/${currentUser?.handle}`}>Public profile view</Link>
         </Button>
         <Button
           id="delete-account"
@@ -208,7 +185,12 @@ const Profile = () => {
             </DialogActions>
           </Dialog>
         </Box>
-        <ProfileEditDialog open={open} setOpen={setOpen} />
+        <ProfileEditDialog
+          open={open}
+          setOpen={setOpen}
+          userInfo={userInfo}
+          setUserInfo={setUserInfo}
+        />
       </div>
     </main>
   )
