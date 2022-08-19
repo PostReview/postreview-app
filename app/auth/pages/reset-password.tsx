@@ -97,7 +97,7 @@ const ResetPasswordPage: BlitzPage = () => {
                       value={values.password}
                       className="w-80 p-2 bg-black text-white focus:outline-green/[.50]"
                     />
-                    <button type="button" onClick={togglePasswordHidden} className="text-white text-2xl absolute inline right-2 top-2">
+                    <button type="button" onClick={togglePasswordHidden} className="text-white text-2xl absolute inline right-5 top-2">
                       {isPasswordHidden ? <BsEyeSlash /> : <BsEye />}
                     </button>
                   </div>
@@ -117,7 +117,7 @@ const ResetPasswordPage: BlitzPage = () => {
                       value={values.passwordConfirmation}
                       className="w-80 mb-6 p-2 bg-black text-white focus:outline-green/[.50]"
                     />
-                    <button type="button" onClick={toggleConfirmationHidden} className="text-white text-2xl absolute inline right-2 top-2">
+                    <button type="button" onClick={toggleConfirmationHidden} className="text-white text-2xl absolute inline right-5 top-2">
                       {isConfirmationHidden ? <BsEyeSlash /> : <BsEye />}
                     </button>
                   </div>
