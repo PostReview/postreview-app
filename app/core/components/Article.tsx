@@ -72,52 +72,22 @@ export default function Article(props) {
                   emptyIcon={<StarIcon style={{ opacity: 0.55 }} fontSize="inherit" />}
                 />
               </div>
-            )}
-          </div>
-          Total
-        </div>
-        {questionCategories.map((category) =>
-          articleScores.find((score) => score.questionId === category.questionId)?._avg
-            .response! ? (
-            <div key={category.questionId} className="text-center">
-              <div className="flex items-center justify-center">
-                <div className="absolute text-white font-semibold text-base z-50">
-                  {articleScores
-                    .find((score) => score.questionId === category.questionId)
-                    ?._avg.response!.toFixed(1)}
-                </div>
-                <Rating
-                  readOnly
-                  value={
-                    articleScores.find((score) => score.questionId === category.questionId)?._avg
-                      .response! / ratingScaleMax
-                  }
-                  precision={0.1}
-                  max={1}
-                  sx={{
-                    fontSize: 100,
-                    color: "#FFC300",
-                  }}
-                  emptyIcon={<StarIcon style={{ opacity: 0.55 }} fontSize="inherit" />}
-                />
+      <div id="bottom-container" className="flex flex-row items-end justify-between">
+        <div id="g-ratings-container" className="text-gray-medium text-[0.8rem] whitespace-nowrap">
+          <FaUsers className="inline mr-2 text-gray-medium" />
+          {ratingsCount} global ratings
               </div>
-              <div>{category.questionCategory}</div>
+        <div id="author-doi-container" className="flex flex-col items-end">
+          <div className="text-[0.9rem] text-gray-medium">
+            <FaCrown className="inline mr-2" />
+            {authorString.length < 20 ? authorString :
+              authorString.slice(0, 20) + "..."} {publishedYear && publishedYearString}
             </div>
-          ) : (
-            <div key={category.questionId} className="text-center">
-              <div className="flex items-center justify-center">
-                <div className="absolute text-gray-500 z-50">N/A</div>
-                <Rating
-                  readOnly
-                  value={0}
-                  precision={0.1}
-                  max={1}
-                  sx={{
-                    fontSize: 100,
-                    color: "#FF5733",
-                  }}
-                  emptyIcon={<StarIcon style={{ opacity: 0.2 }} fontSize="inherit" />}
-                />
+          <div className="text-[0.8rem] text-green-dark/60 underline whitespace-nowrap">
+            <a href={`https://dx.doi.org/${doi}`} rel="noreferrer" target="_blank">
+              <FaBarcode className="inline mr-2 text-green-dark/60" />
+              {doi}
+            </a>
               </div>
               <div>{category.questionCategory}</div>
             </div>
