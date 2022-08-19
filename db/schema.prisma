@@ -24,6 +24,7 @@ model User {
   emailIsVerified Boolean @default(false)
   hashedPassword  String?
   role            Role    @default(USER)
+  aboutMe         String?
 
   tokens   Token[]
   sessions Session[]
