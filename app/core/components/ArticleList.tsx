@@ -41,16 +41,11 @@ export default function ArticleList() {
   )
 
   const targetScores = [
-    { label: "Number of Ratings", suffix: "ratingsCount" },
-    { label: "Total Rating", suffix: "ratingTotal" },
-    { label: "Research Question", suffix: "ratingRQ" },
-    { label: "Design", suffix: "ratingDesign" },
-    { label: "Findings", suffix: "ratingFindings" },
-    { label: "Interpretation", suffix: "ratingInterpretation" },
-    { label: "Significance", suffix: "ratingSignificance" },
+    { label: "Review score", suffix: "ratingTotal" },
+    { label: "Date added", suffix: "dateAdded" },
   ]
 
-  const defaultSortItem = [{ label: "Recent", value: `${process.env.ALGOLIA_PREFIX}_articles` }]
+  const defaultSortItem = [{ label: "Number of reviews", value: `${process.env.ALGOLIA_PREFIX}_articles` }]
   const sortItems = defaultSortItem.concat(
     targetScores.map((target) => {
       return {
