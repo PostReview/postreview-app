@@ -24,12 +24,11 @@ const ForgotPasswordPage: BlitzPage = () => {
         <Navbar />
       </Suspense>
       <main className="flex-grow flex flex-col items-center justify-start">
-        <div className="contrast-100 mt-20 h-60 w-full flex justify-center">
+        <div className="contrast-100 mt-6 h-48 w-full flex justify-center">
           <Image
             src={isDark ? forgotPictureDarkMode : forgotPictureLightMode}
             alt="A bust image of a person with three question marks on top of their head instead of hair"
-            width={180}
-            height={180}
+            width={160}
           />
         </div>
         <h1 className="text-3xl text-center font-bold my-4 text-gray-darkest dark:text-white">Forgot your password?</h1>
