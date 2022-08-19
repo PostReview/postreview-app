@@ -1,5 +1,5 @@
 import React, { Suspense } from "react"
-import { useRouter, useSession, BlitzPage } from "blitz"
+import { useRouter, useSession, BlitzPage, noSSR } from "blitz"
 import Layout from "app/core/layouts/Layout"
 import { useCurrentUser } from "app/core/hooks/useCurrentUser"
 
@@ -19,9 +19,17 @@ const UserInfo = () => {
 
   if (currentUser) {
     return (
-      <>
-        <ArticleList />
-      </>
+      <div className="w-full bg-black items-center">
+        <div id="header-category container" className="flex flex-col items-center">
+          <div id="reviews-header" className="mt-10 mb-2 items-center font-semibold text-5xl text-gray-darkest/80">
+            All Reviews
+          </div>
+          <div id="overall-reviews" className="items-center text-4xl font-bold text-white hover:cursor-pointer">
+            Overall
+          </div>
+          <ArticleList />
+        </div>
+      </div>
     )
   } else {
     return (
