@@ -119,7 +119,6 @@ const SignupPage: BlitzPage = () => {
                     @
                   </span>
                   <input
-                    className="p-2 bg-black text-white focus:outline-green/[.50]"
                     type="handle"
                     name="handle"
                     onChange={handleChange}
