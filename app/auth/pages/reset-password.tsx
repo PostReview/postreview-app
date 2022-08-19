@@ -81,7 +81,7 @@ const ResetPasswordPage: BlitzPage = () => {
                 isSubmitting,
               }) => (
                 <form onSubmit={handleSubmit} className="flex flex-col">
-                  <label htmlFor="password" className="mt-4 text-gray-darkest dark:text-white">
+                  <label htmlFor="password" className="mt-3 font-semibold text-gray-darkest dark:text-white">
                     New Password
                     <span className="text-red inline">
                       {errors.password && touched.password && " - " + errors.password}
@@ -100,7 +100,7 @@ const ResetPasswordPage: BlitzPage = () => {
                       {isPasswordHidden ? <BsEyeSlash /> : <BsEye />}
                     </button>
                   </div>
-                  <label htmlFor="passwordConfirmation" className="mt-4 text-gray-darkest dark:text-white">
+                  <label htmlFor="passwordConfirmation" className="mt-4 font-semibold text-gray-darkest dark:text-white">
                     Confirm New Password
                     <span className="text-orange-400 inline">
                       {errors.password && touched.password && " - " + errors.password}
