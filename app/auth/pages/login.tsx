@@ -96,7 +96,7 @@ const LoginPage: BlitzPage = () => {
                   onChange={handleChange}
                   onBlur={handleBlur}
                   value={values.email}
-                  className="p-2 bg-black text-white focus:outline-green/[.50]"
+                  className="p-2 w-80 bg-black text-white focus:outline-green/[.50]"
                 />
                 <label htmlFor="password" className="mt-4 font-semibold text-gray-darkest dark:text-white">
                   Password{" "}
@@ -111,7 +111,7 @@ const LoginPage: BlitzPage = () => {
                     onChange={handleChange}
                     onBlur={handleBlur}
                     value={values.password}
-                    className="w-full p-2 bg-black text-white focus:outline-green/[.50]"
+                    className="w-80 p-2 bg-black text-white focus:outline-green/[.50]"
                   />
                   <button type="button" onClick={togglePasswordHidden} className="text-white text-2xl absolute inline right-2 top-2">
                     {isPasswordHidden ? <BsEyeSlash /> : <BsEye />}
