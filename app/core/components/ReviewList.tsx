@@ -19,8 +19,9 @@ export const ReviewList = (prop) => {
 
   return (
     <>
-      <div id="reviews-container" className="max-w-4xl">
+      <div id="reviews-container" className="min-w-full sm:min-w-min sm:w-96">
         {currentUserHasReview && (
+          // Show the current user's review
           <div id="your-rating-wrapper" className="mt-6 mb-6">
             <div className="border-b m-6 text-2xl text-gray-darkest dark:text-white">
               <h1>Your review</h1>
@@ -35,6 +36,8 @@ export const ReviewList = (prop) => {
                 questionCategories={questionCategories}
                 comment={currentUserReview?.reviewComments[0]?.comment}
                 ratingScaleMax={ratingScaleMax}
+                showArticleAction={true}
+                article={{ ...article, review: { ...currentUserReview?.review } }}
               />
             </div>
           </div>
@@ -57,7 +60,9 @@ export const ReviewList = (prop) => {
               />
             ))
           ) : (
-            <div className="m-20 opacity-80 text-gray-darkest dark:text-white">No other reviews</div>
+            <div className="m-20 opacity-80 text-gray-darkest dark:text-white">
+              No other reviews
+            </div>
           )}
         </div>
       </div>
