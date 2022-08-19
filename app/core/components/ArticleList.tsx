@@ -19,7 +19,8 @@ const searchClient = algoliasearch(
 
 export default function ArticleList() {
   const [defaultArticles] = useQuery(getArticlesWithReview, undefined)
-  const Hit = ({ hit }) => (
+  const Hit = ({ hit }) => {
+    return (
     <Suspense fallback="loading" key={hit.objectID}>
       <Article
         key={hit.objectID}
@@ -27,6 +28,14 @@ export default function ArticleList() {
         authorString={hit.authors}
         doi={hit.doi}
         title={hit.name}
+          publishedYear={hit.publishedYear}
+          ratingTotal={hit.ratingTotal}
+          ratingRQ={hit.ratingRQ}
+          ratingDesign={hit.ratingDesign}
+          ratingFindings={hit.ratingFindings}
+          ratingInterpretation={hit.ratingInterpretation}
+          ratingSignificance={hit.ratingSignificance}
+          ratingsCount={hit.ratingsCount}
       />
     </Suspense>
   )
