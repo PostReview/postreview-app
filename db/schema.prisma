@@ -25,6 +25,7 @@ model User {
   hashedPassword  String?
   role            Role    @default(USER)
   aboutMe         String?
+  website         String?
 
   tokens   Token[]
   sessions Session[]
