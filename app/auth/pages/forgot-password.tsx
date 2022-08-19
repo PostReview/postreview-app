@@ -72,9 +72,9 @@ const ForgotPasswordPage: BlitzPage = () => {
                 isSubmitting,
               }) => (
                 <form onSubmit={handleSubmit} className="flex flex-col">
-                  <label htmlFor="email" className="mt-4 text-gray-darkest dark:text-white">
+                  <label htmlFor="email" className="mt-4 font-semibold text-gray-darkest dark:text-white">
                     Email
-                    <span className="text-red inline">
+                    <span className="text-xs inline font-normal text-red">
                       {errors.email && touched.email && " - " + errors.email}
                     </span>
                   </label>
