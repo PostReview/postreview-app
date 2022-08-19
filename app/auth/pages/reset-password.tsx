@@ -83,7 +83,7 @@ const ResetPasswordPage: BlitzPage = () => {
                 <form onSubmit={handleSubmit} className="flex flex-col">
                   <label htmlFor="password" className="mt-3 font-semibold text-gray-darkest dark:text-white">
                     New Password
-                    <span className="text-red inline">
+                  <span className="text-xs font-normal text-red">
                       {errors.password && touched.password && " - " + errors.password}
                     </span>
                   </label>
@@ -102,7 +102,7 @@ const ResetPasswordPage: BlitzPage = () => {
                   </div>
                   <label htmlFor="passwordConfirmation" className="mt-4 font-semibold text-gray-darkest dark:text-white">
                     Confirm New Password
-                    <span className="text-orange-400 inline">
+                  <span className="text-xs font-normal text-red">
                       {errors.password && touched.password && " - " + errors.password}
                     </span>
                   </label>
