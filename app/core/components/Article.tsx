@@ -34,9 +34,12 @@ export default function Article(props) {
       className="bg-gray-50 m-3 p-4 border-gray-600 border-2
     flex flex-col w-full max-w-5xl"
     >
-      <div id="article-header" className="flex md:flex-row flex-col">
-        <div id="chip-container" className="self-center">
-          <Chip label={ratingsCount} className="w-8" />
+      <div id="title-star-container" className="w-full flex md:flex-row flex-row justify-between">
+        <div id="title" className="font-semibold inline mr-3">
+          <Link href={`/articles/${id}`}>
+            {title.length < 70 ? title :
+              title.slice(0, 70) + "..."}
+          </Link>
         </div>
         <div id="with-rating-total">
           <div className="flex flex-row items-end">
