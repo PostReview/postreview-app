@@ -84,7 +84,7 @@ const ForgotPasswordPage: BlitzPage = () => {
                     onChange={handleChange}
                     onBlur={handleBlur}
                     value={values.email}
-                    className="p-2 bg-black text-white focus:outline-green/[.50]"
+                    className="p-2 w-80 bg-black text-white focus:outline-green/[.50]"
                   />
                   <div className="my-4 font-semibold text-green rounded-lg bg-gray-medium dark:bg-gray-medium hover:bg-gray-darkest">
                     <button type="submit" className="mx-4 my-4" disabled={isSubmitting}>
