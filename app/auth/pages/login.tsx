@@ -33,7 +33,7 @@ const LoginPage: BlitzPage = () => {
         <Navbar />
       </Suspense>
       <main className="flex-grow flex flex-col items-center justify-center">
-        <div className="contrast-100 mt-20 h-60 w-full flex justify-center">
+        <div className="contrast-100 mt-6 h-60 w-full flex justify-center">
           <Image
             src={isDark ? detectiveDarkMode : detectiveLightMode}
             alt="An image of a detective looking through a magnifying glass with their left eye"
@@ -42,7 +42,7 @@ const LoginPage: BlitzPage = () => {
           />
         </div>
         <h1 className="text-4xl text-center font-bold my-4 text-gray-darkest dark:text-white">Welcome back!</h1>
-        <div className="flex flex-col items-center py-6 px-20 bg-gray-light dark:bg-gray-dark">
+        <div className="flex flex-col items-center py-6 px-10 bg-gray-light dark:bg-gray-dark">
           <Formik
             initialValues={{ email: "", password: "", handle: "" }}
             validate={(values) => {
