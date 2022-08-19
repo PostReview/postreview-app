@@ -121,7 +121,7 @@ const ResetPasswordPage: BlitzPage = () => {
                       {isConfirmationHidden ? <BsEyeSlash /> : <BsEye />}
                     </button>
                   </div>
-                  <div id="action-container" className="text-xl text-green rounded-lg bg-gray-medium dark:bg-gray-medium hover:bg-gray-darkest">
+                  <div id="action-container" className="text-center text-green rounded-lg bg-gray-medium dark:bg-gray-medium hover:bg-gray-darkest">
                     <button className="mx-2 my-2" onClick={() => router.push("signup")}>
                       Change password
                     </button></div>
