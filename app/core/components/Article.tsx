@@ -38,43 +38,21 @@ export default function Article(props) {
         <div id="chip-container" className="self-center">
           <Chip label={ratingsCount} className="w-8" />
         </div>
-        <div id="article-metadata" className="w-full flex md:flex-row flex-col  justify-between">
-          <div id="title" className="font-semibold inline ml-3">
-            <Link href={`/articles/${id}`}>{title}</Link>
+        <div id="with-rating-total">
+          <div className="flex flex-row items-end">
+            <div className="text-5xl font-bold text-white">
+              {ratingTotal?.toFixed(1)}
           </div>
-          <div>
-            <div className="article__author ml-2 text-gray-700">
-              <FaUser className="inline mr-2" />
-              {authorString}
-            </div>
-            <div className="article__DOI ml-2 text-violet-600 whitespace-nowrap">
-              <a href={`https://dx.doi.org/${doi}`} rel="noreferrer" target="_blank">
-                <FaBook className="inline mr-2" />
-                {doi}
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div
-        id="ratings-container"
-        className="flex md:flex-row flex-col items-center justify-evenly text-xs mx-6"
-      >
-        <div id="total" className="px-3 md:border-r-2 md:border-b-0 border-b-2 text-center">
-          <div id="total-rating">
-            {ratingsCount === 0 ? ( // When no ratings, show a placeholder
-              <div className="flex items-center justify-center">
-                <div className="absolute text-gray-500 z-50">N/A</div>
                 <Rating
                   readOnly
-                  value={0}
+              value={ratingTotal / ratingScaleMax}
                   precision={0.1}
                   max={1}
                   sx={{
-                    fontSize: 100,
-                    color: "#FF5733",
+                fontSize: 70,
+                color: "#94ec01",
                   }}
-                  emptyIcon={<StarIcon style={{ opacity: 0.2 }} fontSize="inherit" />}
+              emptyIcon={<StarIcon style={{ opacity: .40, color: "#737373" }} fontSize="inherit" />}
                 />
               </div>
             ) : (
