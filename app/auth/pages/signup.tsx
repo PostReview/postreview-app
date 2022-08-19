@@ -95,7 +95,7 @@ const SignupPage: BlitzPage = () => {
                 )}
                 <label className="mt-4 font-semibold text-gray-darkest dark:text-white">
                   Email
-                  <span className="text-red inline">
+                  <span className="text-xs inline font-normal text-red">
                     {" "}
                     {errors.email && touched.email && " - " + errors.email}
                   </span>
@@ -110,7 +110,7 @@ const SignupPage: BlitzPage = () => {
                 />
                 <label htmlFor="handle" className="mt-4 font-semibold text-gray-darkest dark:text-white">
                   Handle{" "}
-                  <span className="text-red inline">
+                  <span className="text-xs inline font-normal text-red">
                     {errors.handle && touched.handle && " - " + errors.handle}
                   </span>
                 </label>
@@ -130,9 +130,9 @@ const SignupPage: BlitzPage = () => {
                 </div>
                 <label htmlFor="password" className="mt-4 font-semibold text-gray-darkest dark:text-white">
                   Password{" "}
-                  <span className="text-red inline">
+                  <div className="text-xs inline font-normal text-red">
                     {errors.password && touched.password && " - " + errors.password}
-                  </span>
+                  </div>
                 </label>
                 <div className="relative">
                   <input
