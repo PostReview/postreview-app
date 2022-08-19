@@ -24,6 +24,7 @@ import { Button } from "app/core/components/Button"
 import Layout from "app/core/layouts/Layout"
 import resendVerification from "app/auth/mutations/resendVerification"
 import { FaLink } from "react-icons/fa"
+import { ProfileEditDialog } from "app/core/components/ProfileEditDialog"
 
 const Profile = () => {
   const currentUser = useCurrentUser()
@@ -207,6 +208,7 @@ const Profile = () => {
             </DialogActions>
           </Dialog>
         </Box>
+        <ProfileEditDialog open={open} setOpen={setOpen} />
       </div>
     </main>
   )
