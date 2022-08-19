@@ -32,8 +32,13 @@ const ResetPasswordPage: BlitzPage = () => {
         <Navbar />
       </Suspense>
       <main className="flex-grow flex flex-col items-center justify-center">
-        <h1 className="mt-40 text-center text-4xl font-bold my-4 text-gray-darkest dark:text-white">Change Password</h1>
-        <div className="flex flex-col items-center py-6 px-20 bg-gray-light dark:bg-gray-dark text-gray-darkest dark:text-white">
+        <div className="h-40 w-full flex justify-center">
+          <Image
+            src={isDark ? resetPasswordDarkMode : resetPasswordLightMode}
+            alt="An image of a padlock with an encrypted password overlay"
+            width={140}
+          />
+        </div>
           {isSuccess ? (
             <div>
               <h2>Password changed successfully!</h2>
