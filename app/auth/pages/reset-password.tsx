@@ -21,6 +21,13 @@ const ResetPasswordPage: BlitzPage = () => {
     setIsConfirmationHidden(!isConfirmationHidden)
   }
 
+  // handle darkmode
+  const [isDark, setIsDark] = useState(false)
+  useEffect(() => {
+    const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+    setIsDark(mediaQuery.matches)
+  }, [])
+
   // Redirect to home when no token is found
   useEffect(() => {
     if (!query.token) router.push("/")
