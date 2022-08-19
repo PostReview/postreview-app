@@ -1,4 +1,4 @@
-import { BlitzPage, useRouterQuery, Link, useMutation, Routes, useRouter } from "blitz"
+import { BlitzPage, useRouterQuery, Link, useMutation, Routes, useRouter, Image } from "blitz"
 import Layout from "app/core/layouts/Layout"
 import resetPassword from "app/auth/mutations/resetPassword"
 import { Footer } from "app/core/components/Footer"
@@ -6,6 +6,8 @@ import { Formik } from "formik"
 import { Suspense, useEffect, useState } from "react"
 import Navbar from "app/core/components/Navbar"
 import { BsEye, BsEyeSlash } from "react-icons/bs"
+import resetPasswordDarkMode from "public/reset-password-darkmode.png"
+import resetPasswordLightMode from "public/reset-password-lightmode.png"
 
 const ResetPasswordPage: BlitzPage = () => {
   const query = useRouterQuery()
@@ -46,6 +48,8 @@ const ResetPasswordPage: BlitzPage = () => {
             width={140}
           />
         </div>
+        <h1 className=" text-center text-4xl font-bold my-4 text-gray-darkest dark:text-white">Change Password</h1>
+        <div className="flex flex-col items-center py-7 px-10 h-80 bg-gray-light dark:bg-gray-dark text-gray-darkest dark:text-white">
           {isSuccess ? (
             <div>
               <h2>Password changed successfully!</h2>
@@ -97,9 +101,8 @@ const ResetPasswordPage: BlitzPage = () => {
                     New Password
                   </label>
                   <span className="text-xs font-normal text-red">
-                      {errors.password && touched.password && " - " + errors.password}
-                    </span>
-                  </label>
+                    {errors.password && touched.password && " - " + errors.password}
+                  </span>
                   <div id="password-card" className="relative">
                     <input
                       type={isPasswordHidden ? "password" : "text"}
@@ -117,9 +120,8 @@ const ResetPasswordPage: BlitzPage = () => {
                     Confirm New Password
                   </label>
                   <span className="text-xs font-normal text-red">
-                      {errors.password && touched.password && " - " + errors.password}
-                    </span>
-                  </label>
+                    {errors.password && touched.password && " - " + errors.password}
+                  </span>
                   <div id="conf-card" className="relative">
                     <input
                       type={isConfirmationHidden ? "password" : "text"}
