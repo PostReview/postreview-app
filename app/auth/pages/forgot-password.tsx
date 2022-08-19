@@ -31,9 +31,9 @@ const ForgotPasswordPage: BlitzPage = () => {
             width={160}
           />
         </div>
-        <h1 className="text-3xl text-center font-bold my-4 text-gray-darkest dark:text-white">Forgot your password?</h1>
-        <h2 className="mb-8 text-md text-center text-gray-darkest dark:text-gray-light">We got your back!</h2>
-        <div className="flex flex-col items-center py-6 px-20 bg-gray-light dark:bg-gray-dark">
+        <h1 className="text-3xl text-center font-bold my-2 text-gray-darkest dark:text-white">Forgot your password?</h1>
+        <h2 className="mb-2 text-md text-center text-gray-darkest dark:text-gray-light">We got your back!</h2>
+        <div className="flex flex-col items-center py-6 px-10 bg-gray-light dark:bg-gray-dark">
           {isSuccess ? (
             <div>
               <h2 className="my-4 text-gray-darkest dark:text-white">Request Submitted</h2>
