@@ -135,7 +135,7 @@ const LoginPage: BlitzPage = () => {
             </Link>
           </div>
 
-          <div className="text-gray-darkest dark:text-white text-bold text-center my-4">Or</div>
+          <div className="text-gray-darkest dark:text-white text-bold text-center my-4">or</div>
           <GoogleButton type="log-in" />
         </div>
       </main>
