@@ -85,7 +85,7 @@ const LoginPage: BlitzPage = () => {
                 )}
                 <label htmlFor="email" className="mt-4 font-semibold text-gray-darkest dark:text-white">
                   Email
-                  <span className="text-red inline">
+                  <span className="text-xs inline font-normal text-red">
                     {" "}
                     {errors.email && touched.email && " - " + errors.email}
                   </span>
@@ -100,7 +100,7 @@ const LoginPage: BlitzPage = () => {
                 />
                 <label htmlFor="password" className="mt-4 font-semibold text-gray-darkest dark:text-white">
                   Password{" "}
-                  <span className="text-red">
+                  <span className="text-xs inline font-normal text-red">
                     {errors.password && touched.password && " - " + errors.password}
                   </span>
                 </label>
