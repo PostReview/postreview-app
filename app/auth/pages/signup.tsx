@@ -93,7 +93,7 @@ const SignupPage: BlitzPage = () => {
                     This email is already used
                   </div>
                 )}
-                <label className="mt-4 text-gray-darkest dark:text-white">
+                <label className="mt-4 font-semibold text-gray-darkest dark:text-white">
                   Email
                   <span className="text-red inline">
                     {" "}
@@ -108,14 +108,14 @@ const SignupPage: BlitzPage = () => {
                   value={values.email}
                   className="p-2 w-80 bg-black text-white focus:outline-green/[.50]"
                 />
-                <label htmlFor="handle" className="mt-4 text-gray-darkest dark:text-white">
+                <label htmlFor="handle" className="mt-4 font-semibold text-gray-darkest dark:text-white">
                   Handle{" "}
                   <span className="text-red inline">
                     {errors.handle && touched.handle && " - " + errors.handle}
                   </span>
                 </label>
                 <div className="flex">
-                  <span className="border-black border text-gray-darkest dark:text-white p-2">
+                  <span className="border-black border font-semibold text-gray-darkest dark:text-white p-2">
                     @
                   </span>
                   <input
@@ -128,7 +128,7 @@ const SignupPage: BlitzPage = () => {
                     className="p-2 w-72 bg-black text-white focus:outline-green/[.50]"
                   />
                 </div>
-                <label htmlFor="password" className="mt-4 text-gray-darkest dark:text-white">
+                <label htmlFor="password" className="mt-4 font-semibold text-gray-darkest dark:text-white">
                   Password{" "}
                   <span className="text-red inline">
                     {errors.password && touched.password && " - " + errors.password}
