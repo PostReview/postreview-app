@@ -4,9 +4,10 @@ const Dot = (props) => {
   return (
     <div
       {...props}
-      className={`${props.selected ? "w-5 h-5" : "w-3 h-3 hover:h-3 hover:w-3"}\
+      className={`${props.selected ? "w-5 h-5" : "w-3 h-3"}\
    ${props.category === "Overall" ? "bg-green" : "bg-white"} rounded-full \
     hover:cursor-pointer \
+    transition-all
     `}
     ></div>
   )
