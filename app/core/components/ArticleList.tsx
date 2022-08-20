@@ -1,21 +1,17 @@
 import React, { Suspense } from "react"
-import { Head, useQuery } from "blitz"
+import { useQuery } from "blitz"
 import Article from "./Article"
 import getArticlesWithReview from "app/queries/getArticlesWithReview"
 import algoliasearch from "algoliasearch"
-import {
-  InstantSearch,
-  SortBy,
-  Hits,
-  Configure,
-} from "react-instantsearch-hooks-web"
+import { InstantSearch, SortBy, Hits, Configure } from "react-instantsearch-hooks-web"
 
 const searchClient = algoliasearch(
   process.env.ALGOLIA_APP_ID as string,
   process.env.ALGOLIA_API_SEARCH_KEY as string
 )
 
-export default function ArticleList() {
+export default function ArticleList(props) {
+  const { questionCategory } = props
   const [defaultArticles] = useQuery(getArticlesWithReview, undefined)
   const Hit = ({ hit }) => {
     return (
@@ -34,18 +30,43 @@ export default function ArticleList() {
           ratingInterpretation={hit.ratingInterpretation}
           ratingSignificance={hit.ratingSignificance}
           ratingsCount={hit.ratingsCount}
+          questionCategory={questionCategory}
         />
       </Suspense>
     )
   }
 
+  // Determine Algolia suffixes
+  var ratingSuffix
+  switch (questionCategory) {
+    case "Overall":
+      ratingSuffix = "ratingTotal"
+      break
+    case "Research Question":
+      ratingSuffix = "ratingRQ"
+      break
+    case "Design":
+      ratingSuffix = "ratingDesign"
+      break
+    case "Findings":
+      ratingSuffix = "ratingFindings"
+      break
+    case "Interpretation":
+      ratingSuffix = "ratingInterpretation"
+      break
+    case "Significance":
+      ratingSuffix = "ratingSignificance"
+      break
+  }
 
   const targetScores = [
-    { label: "Review score", suffix: "ratingTotal" },
+    { label: "Review score", suffix: ratingSuffix },
     { label: "Date added", suffix: "dateAdded" },
   ]
 
-  const defaultSortItem = [{ label: "Number of reviews", value: `${process.env.ALGOLIA_PREFIX}_articles` }]
+  const defaultSortItem = [
+    { label: "Number of reviews", value: `${process.env.ALGOLIA_PREFIX}_articles` },
+  ]
   const sortItems = defaultSortItem.concat(
     targetScores.map((target) => {
       return {
