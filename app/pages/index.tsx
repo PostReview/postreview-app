@@ -17,10 +17,16 @@ const UserInfo = () => {
     return (
       <div className="w-full bg-black items-center">
         <div id="header-category container" className="flex flex-col items-center">
-          <div id="reviews-header" className="mt-10 mb-2 items-center font-semibold text-5xl text-gray-medium">
+          <div
+            id="reviews-header"
+            className="mt-10 mb-2 items-center font-semibold text-5xl text-gray-medium"
+          >
             All Reviews
           </div>
-          <div id="overall-reviews" className="items-center text-4xl font-bold text-white hover:cursor-pointer">
+          <div
+            id="overall-reviews"
+            className="items-center text-4xl font-bold text-white hover:cursor-pointer"
+          >
             Overall
           </div>
           <ArticleList />
@@ -33,7 +39,7 @@ const UserInfo = () => {
         <Hero />
         <HowItWorks />
         <button
-          className="mb-12 px-4 py-4 text-xl text-green rounded-lg bg-black/50 hover:bg-gray-darkest dark:bg-gray-medium dark:hover:bg-black/40"
+          className="my-12 px-4 py-4 text-xl text-green rounded-lg bg-black/50 hover:bg-gray-darkest dark:bg-gray-medium dark:hover:bg-black/40"
           onClick={() => router.push("signup")}
         >
           Sign up now
