@@ -177,6 +177,131 @@ const CodeOfConductPage: BlitzPage = () => {
               </p>
             </AccordionDetails>
           </Accordion>
+          <Accordion
+            className="bg-gray-dark dark:bg-black/30 text-black dark:text-white"
+            expanded={expanded === "panel4"}
+            onChange={handleChange("panel4")}
+          >
+            <AccordionSummary aria-controls="panel4d-content" id="panel4d-header">
+              <Typography className="font-bold text-2xl">Enforcement</Typography>
+            </AccordionSummary>
+            <AccordionDetails className="bg-gray-medium dark:bg-gray-dark text-black/80 dark:text-white/80">
+              <p className="mx-2 my-3 text-black/90 dark:text-white/90">
+                Instances of abusive, harassing, or otherwise unacceptable behavior may be reported
+                to the community leaders responsible for enforcement (listed below). All complaints
+                will be reviewed and investigated promptly and fairly.
+              </p>
+              <div className="ml-14 my-4 font-semibold text-black dark:text-white">
+                {" "}
+                Anton Lebed{" "}
+                <a
+                  className="underline font-thin text-green hover:text-green-dark"
+                  href="mailto:coglebed@gmail.com"
+                >
+                  (coglebed@gmail.com)
+                </a>
+              </div>
+              <div className="ml-14 my-4 font-semibold text-black dark:text-white">
+                {" "}
+                Naoyuki Sunami{" "}
+                <a
+                  className="underline font-thin text-green hover:text-green-dark"
+                  href="mailto:nsunami@pm.me"
+                >
+                  (nsunami@pm.me)
+                </a>
+              </div>
+              <p className="mx-2 my-3 text-black/90 dark:text-white/90">
+                All community leaders are obligated to respect the privacy and security of the
+                reporter of any incident. To report a Code of Conduct violation, please send an
+                email to{" "}
+                <a
+                  className="underline font-thin text-green hover:text-green-dark"
+                  href="mailto:coc@postreview.org"
+                >
+                  (coc@postreview.org)
+                </a>{" "}
+                via the
+                <a
+                  className="font-thin text-green hover:text-green-dark"
+                  href="mailto:coc@postreview.org"
+                >
+                  {" "}
+                  report link
+                </a>
+                .
+              </p>
+            </AccordionDetails>
+          </Accordion>
+          <Accordion
+            className="bg-gray-dark dark:bg-black/30 text-black dark:text-white"
+            expanded={expanded === "panel5"}
+            onChange={handleChange("panel5")}
+          >
+            <AccordionSummary aria-controls="panel5d-content" id="panel5d-header">
+              <Typography className="font-bold text-2xl">Enforcement Guidelines</Typography>
+            </AccordionSummary>
+            <AccordionDetails className="bg-gray-medium dark:bg-gray-dark text-black/80 dark:text-white/80">
+              <p className="mx-2 my-3 text-black/90 dark:text-white/90">
+                Community leaders will follow these Community Impact Guidelines in determining the
+                consequences for any action they deem in violation of this Code of Conduct:
+              </p>
+              <h1 className="mx-2 mt-6 font-semibold text-black/90 dark:text-white">
+                1. Correction
+              </h1>
+              <h2 className="ml-5 font-normal text-black/90 dark:text-white">Community Impact:</h2>
+              <p className="ml-5 mb-3 font-thin text-black/90 dark:text-white/90">
+                Use of inappropriate language or other behavior deemed unprofessional or unwelcome
+                in the community.
+              </p>
+              <h2 className="ml-5 font-normal text-black/90 dark:text-white">Consequence:</h2>
+              <p className="ml-5 mb-3 font-thin text-black/90 dark:text-white/90">
+                A private, written warning from community leaders, providing clarity around the
+                nature of the violation and an explanation of why the behavior was inappropriate. A
+                public apology may be requested.
+              </p>
+              <h1 className="mx-2 mt-6 font-semibold text-black/90 dark:text-white">2. Warning</h1>
+              <h2 className="ml-5 font-normal text-black/90 dark:text-white">Community Impact:</h2>
+              <p className="ml-5 mb-3 font-thin text-black/90 dark:text-white/90">
+                A violation through a single incident or series of actions.
+              </p>
+              <h2 className="ml-5 font-normal text-black/90 dark:text-white">Consequence:</h2>
+              <p className="ml-5 mb-5 font-thin text-black/90 dark:text-white/90">
+                A warning with consequences for continued behavior. No interaction with the people
+                involved, including unsolicited interaction with those enforcing the Code of
+                Conduct, for a specified period of time. This includes avoiding interactions in
+                community spaces as well as external channels like social media. Violating these
+                terms may lead to a temporary or permanent ban.
+              </p>
+              <h1 className="mx-2 mt-6 font-semibold text-black/90 dark:text-white">
+                3. Temporary Ban
+              </h1>
+              <h2 className="ml-5 font-normal text-black/90 dark:text-white">Community Impact:</h2>
+              <p className="ml-5 mb-3 font-thin text-black/90 dark:text-white/90">
+                A serious violation of community standards, including sustained inappropriate
+                behavior.
+              </p>
+              <h2 className="ml-5 font-normal text-black/90 dark:text-white">Consequence:</h2>
+              <p className="ml-5 mb-5 font-thin text-black/90 dark:text-white/90">
+                A temporary ban from any sort of interaction or public communication with the
+                community for a specified period of time. No public or private interaction with the
+                people involved, including unsolicited interaction with those enforcing the Code of
+                Conduct, is allowed during this period. Violating these terms may lead to a
+                permanent ban.
+              </p>
+              <h1 className="mx-2 mt-6 font-semibold text-black/90 dark:text-white">
+                4. Permanent Ban
+              </h1>
+              <h2 className="ml-5 font-normal text-black/90 dark:text-white">Community Impact:</h2>
+              <p className="ml-5 mb-3 font-thin text-black/90 dark:text-white/90">
+                Demonstrating a pattern of violation of community standards, including sustained
+                inappropriate behavior, harassment of an individual, or aggression toward or
+                disparagement of classes of individuals.
+              </p>
+              <h2 className="ml-5 font-normal text-black/90 dark:text-white">Consequence:</h2>
+              <p className="ml-5 mb-3 font-thin text-black/90 dark:text-white/90">
+                A permanent ban from any sort of public interaction within the community.
+              </p>
             </AccordionDetails>
           </Accordion>
 CodeOfConductPage.getLayout = (page) => <Layout title="Code of Conduct | PostReview">{page}</Layout>
