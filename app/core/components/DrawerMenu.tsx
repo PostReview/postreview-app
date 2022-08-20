@@ -65,7 +65,7 @@ export const DrawerMenu = () => {
           <div className="border border-gray-medium" />
           <List>
             <ListItemButton sx={{ ...hoverSx }}>
-              <ListItemText primary={"Home"} />
+              <ListItemText primary={"Home"} onClick={() => router.push("/")} />
             </ListItemButton>
             <Accordion>
               <AccordionSummary expandIcon={<ExpandMoreIcon />} sx={{ ...hoverSx }}>
