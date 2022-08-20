@@ -86,6 +86,7 @@ const CodeOfConductPage: BlitzPage = () => {
             inclusive, and healthy community.
           </p>
         </div>
+        <div id="code-of-conduct-content">
           <Accordion
             className="bg-gray-dark dark:bg-black/30 text-black dark:text-white"
             expanded={expanded === "panel1"}
@@ -304,6 +305,65 @@ const CodeOfConductPage: BlitzPage = () => {
               </p>
             </AccordionDetails>
           </Accordion>
+          <Accordion
+            className="bg-gray-dark dark:bg-black/30 text-black dark:text-white"
+            expanded={expanded === "panel6"}
+            onChange={handleChange("panel6")}
+          >
+            <AccordionSummary aria-controls="panel6d-content" id="panel6d-header">
+              <Typography className="font-bold text-2xl">Attribution</Typography>
+            </AccordionSummary>
+            <AccordionDetails className="bg-gray-medium dark:bg-gray-dark text-black/80 dark:text-white/80">
+              <p className="mx-2 my-3 text-black/90 dark:text-white/90">
+                This Code of Conduct is adapted from the
+                <a
+                  className="font-thin text-green hover:text-green-dark"
+                  href="https://contributor-covenant.org"
+                  rel="nofollow"
+                >
+                  {" "}
+                  Contributor Covenant
+                </a>
+                , version 2.1, available at{" "}
+                <a
+                  className="font-thin text-green hover:text-green-dark"
+                  href="https://www.contributor-covenant.org/version/2/1/code_of_conduct.html"
+                  rel="nofollow"
+                >
+                  https://www.contributor-covenant.org.version/2/1/code_of_conduct.html
+                </a>
+                .
+              </p>
+              <p className="mx-2 my-3 text-black/90 dark:text-white/90">
+                Community Impact Guidelines were inspired by{" "}
+                <a
+                  className="font-thin text-green hover:text-green-dark"
+                  href="https://github.com/mozilla/diversity"
+                >
+                  Mozilla&apos;s code of conduct enforcement ladder
+                </a>
+                .
+              </p>
+              <p className="mx-2 my-3 text-black/90 dark:text-white/90">
+                For answers to common questions about this code of conduct, see the FAQ at{" "}
+                <a
+                  className="font-thin text-green hover:text-green-dark"
+                  href="https://www.contributor-covenant.org/faq"
+                  rel="nofollow"
+                >
+                  https://www.contributor-covenant.org/faq
+                </a>
+                .
+              </p>
+            </AccordionDetails>
+          </Accordion>
+        </div>
+      </main>
+      <Footer />
+    </div>
+  )
+}
+
 CodeOfConductPage.getLayout = (page) => <Layout title="Code of Conduct | PostReview">{page}</Layout>
 
 export default CodeOfConductPage
