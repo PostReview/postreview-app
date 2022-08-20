@@ -129,7 +129,7 @@ const Profile = () => {
             </div>
           </div>
         </div>
-        <div id="about-me-card" className="mt-6">
+        <div id="about-me-card" className="w-80 sm:w-[35rem] mt-6">
           {userInfo?.aboutMe}
         </div>
         {userInfo?.website && (
