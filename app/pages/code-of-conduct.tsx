@@ -16,17 +16,17 @@ const Accordion = styled((props: AccordionProps) => (
   <MuiAccordion disableGutters elevation={0} square {...props} />
 ))(({ theme }) => ({
   border: `1px solid ${theme.palette.divider}`,
-  '&:not(:last-child)': {
+  "&:not(:last-child)": {
     borderBottom: 0,
   },
-  '&:before': {
-    display: 'none',
+  "&:before": {
+    display: "none",
   },
-}));
+}))
 
 const AccordionSummary = styled((props: AccordionSummaryProps) => (
   <MuiAccordionSummary
-    expandIcon={<ArrowForwardIosSharpIcon sx={{ fontSize: '0.9rem' }} />}
+    expandIcon={<ArrowForwardIosSharpIcon sx={{ fontSize: "0.9rem" }} />}
     {...props}
   />
 ))(({ theme }) => ({
