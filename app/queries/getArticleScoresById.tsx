@@ -8,6 +8,9 @@ export default async function getArticleScoresById(props) {
     _avg: {
       response: true,
     },
+    _count: {
+      response: true,
+    },
     orderBy: {
       questionId: "asc",
     },

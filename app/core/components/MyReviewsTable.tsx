@@ -6,6 +6,8 @@ import { Review } from "app/core/components/Review"
 import { ArticleAction } from "./ArticleAction"
 
 export const MyReviewsTable = (props) => {
+  // Rating scale max
+  const ratingScaleMax = 5
   const { articleWithReview, currentUser, publicProfile } = props
   const [questionCategories] = useQuery(getQuestionCategories, undefined)
 
@@ -40,7 +42,16 @@ export const MyReviewsTable = (props) => {
                 </div>
               </div>
             </div>
-            <div className="flex flex-row justify-center items-center">
+            <div className="bg-gray-dark">
+              {publicProfile ? (
+                ""
+              ) : (
+                <div className="flex flex-col">
+                  <div id="action-menu" className="self-end text-gray-500">
+                    <ArticleAction currentUser={currentUser} article={article} />
+                  </div>
+                </div>
+              )}
               <Review
                 displayName={currentUser?.displayName}
                 handle={currentUser?.handle}
@@ -48,16 +59,8 @@ export const MyReviewsTable = (props) => {
                 userIcon={currentUser?.icon}
                 questionCategories={questionCategories}
                 comment={article?.reviewComment[0]?.comment}
+                ratingScaleMax={ratingScaleMax}
               />
-              {publicProfile ? (
-                ""
-              ) : (
-                <div className="flex flex-col">
-                  <div id="action-menu" className="self-end text-gray-500">
-                    <ArticleAction curentUser={currentUser} article={article} />
-                  </div>
-                </div>
-              )}
             </div>
           </div>
         )
