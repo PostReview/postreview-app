@@ -16,7 +16,7 @@ import MuiAccordion, { AccordionProps } from "@mui/material/Accordion"
 import { alpha } from "@mui/material"
 
 import styled from "@emotion/styled"
-import { FaGithub, FaDiscord } from "react-icons/fa"
+import { FaGithub, FaDiscord, FaBars } from "react-icons/fa"
 import { AiFillTwitterCircle } from "react-icons/ai"
 
 export const DrawerMenu = () => {
@@ -27,6 +27,7 @@ export const DrawerMenu = () => {
     setOpen(!open)
   }
 
+  // Style the MUI components
   const Accordion = styled((props: AccordionProps) => (
     <MuiAccordion disableGutters elevation={0} square {...props} />
   ))(({}) => ({
@@ -39,18 +40,23 @@ export const DrawerMenu = () => {
       display: "none",
     },
   }))
-
   const hoverSx = {
     ":hover": {
       background: alpha("#94EC01", 0.25),
     },
   }
 
+  // Get date for automatically update the copyright year
   const datetime = new Date()
 
   return (
     <>
-      <Button onClick={() => toggleDrawer()}>{"asdf"}</Button>
+      <button
+        onClick={() => toggleDrawer()}
+        className={"fixed text-4xl top-4 left-4 text-gray-medium"}
+      >
+        <FaBars />
+      </button>
       <Drawer anchor={"left"} open={open} onClose={() => setOpen(false)}>
         <div className="w-full h-full bg-gray-light flex flex-col overflow-clip">
           <div id="logo-container" className="ml-8">
