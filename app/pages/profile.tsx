@@ -1,13 +1,5 @@
 import { BlitzPage, invoke, Link, useMutation, useQuery, useRouter, useSession } from "blitz"
-import EditIcon from "@mui/icons-material/Edit"
-import {
-  Avatar,
-  Dialog,
-  DialogActions,
-  DialogContent,
-  DialogTitle,
-  IconButton,
-} from "@mui/material"
+import { Dialog, DialogActions, DialogContent, DialogTitle } from "@mui/material"
 import { Box } from "@mui/system"
 import Navbar from "app/core/components/Navbar"
 import { useCurrentUser } from "app/core/hooks/useCurrentUser"
@@ -21,8 +13,9 @@ import logout from "app/auth/mutations/logout"
 import { Button } from "app/core/components/Button"
 import Layout from "app/core/layouts/Layout"
 import resendVerification from "app/auth/mutations/resendVerification"
-import { FaLink } from "react-icons/fa"
 import { ProfileEditDialog } from "app/core/components/ProfileEditDialog"
+import { ProfileBgImage } from "app/core/components/ProfileBgImage"
+import { ProfileInfo } from "app/core/components/ProfileInfo"
 
 const Profile = () => {
   const currentUser = useCurrentUser()
@@ -90,69 +83,8 @@ const Profile = () => {
           </div>
         )}
       </div>
-      <div id="user-bg-image" className="bg-black h-40 flex-shrink-0 w-full"></div>
-      <div id="user-info-container" className="relative mx-10 max-w-4xl">
-        <div className="absolute right-0 top-2">
-          <IconButton onClick={() => setOpen(!open)}>
-            <EditIcon className="text-4xl text-gray-dark dark:text-gray-medium" />
-          </IconButton>
-        </div>
-        <div id="photo-avatar-container" className="flex flex-row mt-6">
-          <div id="profile-picture" className="flex flex-row">
-            <Button id="user-avatar" className="focus:outline-none -mt-16" onClick={undefined}>
-              <Avatar
-                alt={userInfo?.displayName ? userInfo?.displayName : userInfo?.handle}
-                sx={{
-                  backgroundColor: "#545454",
-                  color: "#94ec01",
-                  height: "5rem",
-                  width: "5rem",
-                }}
-                variant="square"
-                src={`https://eu.ui-avatars.com/api/?name=${
-                  userInfo?.displayName ? userInfo?.displayName : userInfo?.handle
-                }&color=94ec01&background=545454`}
-              />
-            </Button>
-            <div id="user-pronouns" className="relative">
-              <span className="absolute bottom-0 ml-4">
-                {userInfo?.pronoun && `(${userInfo?.pronoun})`}
-              </span>
-            </div>
-          </div>
-        </div>
-        <div id="username-handle-card">
-          <div className="flex flex-col max-w-lg my-2">
-            <span id="display-name-container" className="text-2xl">
-              {userInfo?.displayName}
-            </span>
-            <div id="handle-container">
-              <span>{`@${userInfo?.handle}`}</span>
-            </div>
-          </div>
-        </div>
-        <div id="about-me-card" className="w-80 sm:w-[35rem] mt-6">
-          {userInfo?.aboutMe}
-        </div>
-        {userInfo?.website && (
-          <div id="website" className="mt-6">
-            <span className="text-xs text-green-dark">
-              <FaLink className="inline mr-1" />
-              <Link
-                href={
-                  /^http+/.test(userInfo?.website)
-                    ? encodeURI(userInfo?.website)
-                    : "https://" + userInfo?.website
-                }
-              >
-                <a target={"_blank"} className="">
-                  {encodeURI(userInfo?.website)}
-                </a>
-              </Link>
-            </span>
-          </div>
-        )}
-      </div>
+      <ProfileBgImage />
+      <ProfileInfo userInfo={userInfo} open={open} setOpen={setOpen} showEditButton={true} />
       <div id="my-reviews-container" className="m-4 mt-8 max-w-2xl">
         <h1 className="text-2xl font-semibold text-gray-darkest dark:text-white">Reviews</h1>
         <div className=" text-gray-darkest dark:text-white">
