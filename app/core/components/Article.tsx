@@ -46,6 +46,14 @@ export default function Article(props) {
   const ratingScaleMax = 5
   const publishedYearString = `(${publishedYear})`
 
+  // handle darkmode
+  const [isDark, setIsDark] = useState(false)
+  useEffect(() => {
+    const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)")
+    setIsDark(mediaQuery.matches)
+  }, [])
+  const smallStarColor = isDark ? "#d9d9d9" : "#737373"
+
   return (
     <div
       className="mx-6 my-2 p-2 bg-transparent border-gray-medium border-2
