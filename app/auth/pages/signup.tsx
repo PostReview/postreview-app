@@ -34,7 +34,7 @@ const SignupPage: BlitzPage = () => {
         <Navbar />
       </Suspense>
       <main className="flex-grow flex flex-col items-center justify-center">
-        <div className="h-70 w-full flex mt-20 justify-center">
+        <div id="postReviewLogo" className="h-70 w-full flex justify-center">
           <Image
             src={isDark ? postReviewLogoDarkMode : postReviewLogoLightMode}
             alt="An image of a magnifying glass wearing a fedora hat"
@@ -43,7 +43,7 @@ const SignupPage: BlitzPage = () => {
           />
         </div>
         <h1 className="mt-0 text-center text-4xl font-bold my-4 text-gray-darkest dark:text-white">Join PostReview</h1>
-        <div className="flex flex-col items-center py-6 px-20 bg-gray-light dark:bg-gray-dark">
+        <div className="flex flex-col items-center py-6 px-10 bg-gray-light dark:bg-gray-dark">
           <Formik
             initialValues={{ email: "", password: "", handle: "" }}
             validate={(values) => {
@@ -89,13 +89,13 @@ const SignupPage: BlitzPage = () => {
             }) => (
               <form onSubmit={handleSubmit} className="flex flex-col">
                 {showError && (
-                  <div className="bg-red bg-opacity-50 rounded-md text-gray-darkest text-center p-3">
+                  <div className="bg-red/50 rounded-md text-gray-darkest text-center p-3">
                     This email is already used
                   </div>
                 )}
-                <label className="mt-4 text-gray-darkest dark:text-white">
+                <label className="mt-4 font-semibold text-gray-darkest dark:text-white">
                   Email
-                  <span className="text-red inline">
+                  <span className="text-xs inline font-normal text-red">
                     {" "}
                     {errors.email && touched.email && " - " + errors.email}
                   </span>
@@ -106,32 +106,32 @@ const SignupPage: BlitzPage = () => {
                   onChange={handleChange}
                   onBlur={handleBlur}
                   value={values.email}
-                  className="p-2 bg-black text-white focus:outline-green/[.50]"
+                  className="p-2 w-80 bg-black text-white focus:outline-green/[.50]"
                 />
-                <label htmlFor="handle" className="mt-4 text-gray-darkest dark:text-white">
+                <label htmlFor="handle" className="mt-4 font-semibold text-gray-darkest dark:text-white">
                   Handle{" "}
-                  <span className="text-red inline">
+                  <span className="text-xs inline font-normal text-red">
                     {errors.handle && touched.handle && " - " + errors.handle}
                   </span>
                 </label>
                 <div className="flex">
-                  <span className="border-black border text-gray-darkest dark:text-white p-2">
+                  <span className="border-black border font-semibold text-gray-darkest dark:text-white p-2">
                     @
                   </span>
                   <input
-                    className="p-2 bg-black text-white focus:outline-green/[.50]"
                     type="handle"
                     name="handle"
                     onChange={handleChange}
                     onBlur={handleBlur}
                     value={values.handle}
+                    className="p-2 w-72 bg-black text-white focus:outline-green/[.50]"
                   />
                 </div>
-                <label htmlFor="password" className="mt-4 text-gray-darkest dark:text-white">
+                <label htmlFor="password" className="mt-4 font-semibold text-gray-darkest dark:text-white">
                   Password{" "}
-                  <span className="text-red inline">
+                  <div className="text-xs inline font-normal text-red">
                     {errors.password && touched.password && " - " + errors.password}
-                  </span>
+                  </div>
                 </label>
                 <div className="relative">
                   <input
@@ -140,7 +140,7 @@ const SignupPage: BlitzPage = () => {
                     onChange={handleChange}
                     onBlur={handleBlur}
                     value={values.password}
-                    className="w-full p-2 bg-black text-white focus:outline-green/[.50]"
+                    className="w-80 p-2 bg-black text-white focus:outline-green/[.50]"
                   />
                   <button type="button" onClick={togglePasswordHidden} className="text-white text-2xl absolute inline right-2 top-2">
                     {isPasswordHidden ? <BsEyeSlash /> : <BsEye />}
@@ -152,7 +152,7 @@ const SignupPage: BlitzPage = () => {
               </form>
             )}
           </Formik>
-          <div className="text-gray-darkest dark:text-white text-bold text-center my-4">Or</div>
+          <div className="text-gray-darkest dark:text-white text-bold text-center my-4">or</div>
           <GoogleButton type="sign-up" />
           <div className="my-4 text-gray-darkest dark:text-white">
             Already have an account?{" "}

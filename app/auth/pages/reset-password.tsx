@@ -1,4 +1,4 @@
-import { BlitzPage, useRouterQuery, Link, useMutation, Routes, useRouter } from "blitz"
+import { BlitzPage, useRouterQuery, Link, useMutation, Routes, useRouter, Image } from "blitz"
 import Layout from "app/core/layouts/Layout"
 import resetPassword from "app/auth/mutations/resetPassword"
 import { Footer } from "app/core/components/Footer"
@@ -6,6 +6,8 @@ import { Formik } from "formik"
 import { Suspense, useEffect, useState } from "react"
 import Navbar from "app/core/components/Navbar"
 import { BsEye, BsEyeSlash } from "react-icons/bs"
+import resetPasswordDarkMode from "public/reset-password-darkmode.png"
+import resetPasswordLightMode from "public/reset-password-lightmode.png"
 
 const ResetPasswordPage: BlitzPage = () => {
   const query = useRouterQuery()
@@ -21,6 +23,13 @@ const ResetPasswordPage: BlitzPage = () => {
     setIsConfirmationHidden(!isConfirmationHidden)
   }
 
+  // handle darkmode
+  const [isDark, setIsDark] = useState(false)
+  useEffect(() => {
+    const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+    setIsDark(mediaQuery.matches)
+  }, [])
+
   // Redirect to home when no token is found
   useEffect(() => {
     if (!query.token) router.push("/")
@@ -32,8 +41,15 @@ const ResetPasswordPage: BlitzPage = () => {
         <Navbar />
       </Suspense>
       <main className="flex-grow flex flex-col items-center justify-center">
-        <h1 className="mt-40 text-center text-4xl font-bold my-4 text-gray-darkest dark:text-white">Change Password</h1>
-        <div className="flex flex-col items-center py-6 px-20 bg-gray-light dark:bg-gray-dark text-gray-darkest dark:text-white">
+        <div className="h-40 w-full flex justify-center">
+          <Image
+            src={isDark ? resetPasswordDarkMode : resetPasswordLightMode}
+            alt="An image of a padlock with an encrypted password overlay"
+            width={140}
+          />
+        </div>
+        <h1 className=" text-center text-4xl font-bold my-4 text-gray-darkest dark:text-white">Change Password</h1>
+        <div className="flex flex-col items-center py-7 px-10 h-80 bg-gray-light dark:bg-gray-dark text-gray-darkest dark:text-white">
           {isSuccess ? (
             <div>
               <h2>Password changed successfully!</h2>
@@ -81,12 +97,12 @@ const ResetPasswordPage: BlitzPage = () => {
                 isSubmitting,
               }) => (
                 <form onSubmit={handleSubmit} className="flex flex-col">
-                  <label htmlFor="password" className="mt-4 text-gray-darkest dark:text-white">
+                  <label htmlFor="password" className="mt-3 font-semibold text-gray-darkest dark:text-white">
                     New Password
-                    <span className="text-red inline">
-                      {errors.password && touched.password && " - " + errors.password}
-                    </span>
                   </label>
+                  <span className="text-xs font-normal text-red">
+                    {errors.password && touched.password && " - " + errors.password}
+                  </span>
                   <div id="password-card" className="relative">
                     <input
                       type={isPasswordHidden ? "password" : "text"}
@@ -94,18 +110,18 @@ const ResetPasswordPage: BlitzPage = () => {
                       onChange={handleChange}
                       onBlur={handleBlur}
                       value={values.password}
-                      className="w-full p-2 bg-black text-white focus:outline-green/[.50]"
+                      className="w-80 p-2 bg-black text-white focus:outline-green/[.50]"
                     />
-                    <button type="button" onClick={togglePasswordHidden} className="text-white text-2xl absolute inline right-2 top-2">
+                    <button type="button" onClick={togglePasswordHidden} className="text-white text-2xl absolute inline right-5 top-2">
                       {isPasswordHidden ? <BsEyeSlash /> : <BsEye />}
                     </button>
                   </div>
-                  <label htmlFor="passwordConfirmation" className="mt-4 text-gray-darkest dark:text-white">
+                  <label htmlFor="passwordConfirmation" className="mt-4 font-semibold text-gray-darkest dark:text-white">
                     Confirm New Password
-                    <span className="text-orange-400 inline">
-                      {errors.password && touched.password && " - " + errors.password}
-                    </span>
                   </label>
+                  <span className="text-xs font-normal text-red">
+                    {errors.password && touched.password && " - " + errors.password}
+                  </span>
                   <div id="conf-card" className="relative">
                     <input
                       type={isConfirmationHidden ? "password" : "text"}
@@ -113,13 +129,13 @@ const ResetPasswordPage: BlitzPage = () => {
                       onChange={handleChange}
                       onBlur={handleBlur}
                       value={values.passwordConfirmation}
-                      className="w-full mb-6 p-2 bg-black text-white focus:outline-green/[.50]"
+                      className="w-80 mb-6 p-2 bg-black text-white focus:outline-green/[.50]"
                     />
-                    <button type="button" onClick={toggleConfirmationHidden} className="text-white text-2xl absolute inline right-2 top-2">
+                    <button type="button" onClick={toggleConfirmationHidden} className="text-white text-2xl absolute inline right-5 top-2">
                       {isConfirmationHidden ? <BsEyeSlash /> : <BsEye />}
                     </button>
                   </div>
-                  <div id="action-container" className="text-xl text-green rounded-lg bg-gray-medium dark:bg-gray-medium hover:bg-gray-darkest">
+                  <div id="action-container" className="text-center text-green rounded-lg bg-gray-medium dark:bg-gray-medium hover:bg-gray-darkest">
                     <button className="mx-2 my-2" onClick={() => router.push("signup")}>
                       Change password
                     </button></div>

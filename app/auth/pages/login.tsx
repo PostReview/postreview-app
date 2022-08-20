@@ -33,7 +33,7 @@ const LoginPage: BlitzPage = () => {
         <Navbar />
       </Suspense>
       <main className="flex-grow flex flex-col items-center justify-center">
-        <div className="contrast-100 mt-20 h-60 w-full flex justify-center">
+        <div className="contrast-100 mt-6 h-60 w-full flex justify-center">
           <Image
             src={isDark ? detectiveDarkMode : detectiveLightMode}
             alt="An image of a detective looking through a magnifying glass with their left eye"
@@ -42,7 +42,7 @@ const LoginPage: BlitzPage = () => {
           />
         </div>
         <h1 className="text-4xl text-center font-bold my-4 text-gray-darkest dark:text-white">Welcome back!</h1>
-        <div className="flex flex-col items-center py-6 px-20 bg-gray-light dark:bg-gray-dark">
+        <div className="flex flex-col items-center py-6 px-10 bg-gray-light dark:bg-gray-dark">
           <Formik
             initialValues={{ email: "", password: "", handle: "" }}
             validate={(values) => {
@@ -83,9 +83,9 @@ const LoginPage: BlitzPage = () => {
                     Incorrect email or password
                   </div>
                 )}
-                <label htmlFor="email" className="mt-4 text-gray-darkest dark:text-white">
+                <label htmlFor="email" className="mt-4 font-semibold text-gray-darkest dark:text-white">
                   Email
-                  <span className="text-red inline">
+                  <span className="text-xs inline font-normal text-red">
                     {" "}
                     {errors.email && touched.email && " - " + errors.email}
                   </span>
@@ -96,11 +96,11 @@ const LoginPage: BlitzPage = () => {
                   onChange={handleChange}
                   onBlur={handleBlur}
                   value={values.email}
-                  className="p-2 bg-black text-white focus:outline-green/[.50]"
+                  className="p-2 w-80 bg-black text-white focus:outline-green/[.50]"
                 />
-                <label htmlFor="password" className="mt-4 text-gray-darkest dark:text-white">
+                <label htmlFor="password" className="mt-4 font-semibold text-gray-darkest dark:text-white">
                   Password{" "}
-                  <span className="text-red">
+                  <span className="text-xs inline font-normal text-red">
                     {errors.password && touched.password && " - " + errors.password}
                   </span>
                 </label>
@@ -111,7 +111,7 @@ const LoginPage: BlitzPage = () => {
                     onChange={handleChange}
                     onBlur={handleBlur}
                     value={values.password}
-                    className="w-full p-2 bg-black text-white focus:outline-green/[.50]"
+                    className="w-80 p-2 bg-black text-white focus:outline-green/[.50]"
                   />
                   <button type="button" onClick={togglePasswordHidden} className="text-white text-2xl absolute inline right-2 top-2">
                     {isPasswordHidden ? <BsEyeSlash /> : <BsEye />}
@@ -135,7 +135,7 @@ const LoginPage: BlitzPage = () => {
             </Link>
           </div>
 
-          <div className="text-gray-darkest dark:text-white text-bold text-center my-4">Or</div>
+          <div className="text-gray-darkest dark:text-white text-bold text-center my-4">or</div>
           <GoogleButton type="log-in" />
         </div>
       </main>

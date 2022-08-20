@@ -24,17 +24,16 @@ const ForgotPasswordPage: BlitzPage = () => {
         <Navbar />
       </Suspense>
       <main className="flex-grow flex flex-col items-center justify-start">
-        <div className="contrast-100 mt-20 h-60 w-full flex justify-center">
+        <div className="contrast-100 mt-6 h-48 w-full flex justify-center">
           <Image
             src={isDark ? forgotPictureDarkMode : forgotPictureLightMode}
             alt="A bust image of a person with three question marks on top of their head instead of hair"
-            width={180}
-            height={180}
+            width={160}
           />
         </div>
-        <h1 className="text-3xl text-center font-bold my-4 text-gray-darkest dark:text-white">Forgot your password?</h1>
-        <h2 className="mb-8 text-md text-center text-gray-darkest dark:text-gray-light">We got your back!</h2>
-        <div className="flex flex-col items-center py-6 px-20 bg-gray-light dark:bg-gray-dark">
+        <h1 className="text-3xl text-center font-bold my-2 text-gray-darkest dark:text-white">Forgot your password?</h1>
+        <h2 className="mb-2 text-md text-center text-gray-darkest dark:text-gray-light">We got your back!</h2>
+        <div className="flex flex-col items-center py-6 px-10 bg-gray-light dark:bg-gray-dark">
           {isSuccess ? (
             <div>
               <h2 className="my-4 text-gray-darkest dark:text-white">Request Submitted</h2>
@@ -72,9 +71,9 @@ const ForgotPasswordPage: BlitzPage = () => {
                 isSubmitting,
               }) => (
                 <form onSubmit={handleSubmit} className="flex flex-col">
-                  <label htmlFor="email" className="mt-4 text-gray-darkest dark:text-white">
+                  <label htmlFor="email" className="mt-4 font-semibold text-gray-darkest dark:text-white">
                     Email
-                    <span className="text-red inline">
+                    <span className="text-xs inline font-normal text-red">
                       {errors.email && touched.email && " - " + errors.email}
                     </span>
                   </label>
@@ -84,9 +83,9 @@ const ForgotPasswordPage: BlitzPage = () => {
                     onChange={handleChange}
                     onBlur={handleBlur}
                     value={values.email}
-                    className="p-2 bg-black text-white focus:outline-green/[.50]"
+                    className="p-2 w-80 bg-black text-white focus:outline-green/[.50]"
                   />
-                  <div className="my-4 font-semibold text-green rounded-lg bg-gray-medium dark:bg-gray-medium hover:bg-gray-darkest">
+                  <div className="my-4 text-center font-semibold text-green rounded-lg bg-gray-medium dark:bg-gray-medium hover:bg-gray-darkest">
                     <button type="submit" className="mx-4 my-4" disabled={isSubmitting}>
                       Send change password instructions
                     </button>
