@@ -137,6 +137,28 @@ const CodeOfConductPage: BlitzPage = () => {
               </ul>
             </AccordionDetails>
           </Accordion>
+          <Accordion
+            className="bg-gray-dark dark:bg-black/30 text-black dark:text-white"
+            expanded={expanded === "panel2"}
+            onChange={handleChange("panel2")}
+          >
+            <AccordionSummary aria-controls="panel2d-content" id="panel2d-header">
+              <Typography className="font-bold text-2xl">Enforcement Responsibilities</Typography>
+            </AccordionSummary>
+            <AccordionDetails className="bg-gray-medium dark:bg-gray-dark text-black/80 dark:text-white/80">
+              <p className="mx-2 my-3 text-black/90 dark:text-white/90">
+                Community leaders are responsible for clarifying and enforcing our standards of
+                acceptable behavior and will take appropriate and fair corrective action in response
+                to any behavior that they deem inappropriate, threatening, offensive, or harmful.
+              </p>
+              <p className="mx-2 my-3 text-black/90 dark:text-white/90">
+                Community leaders have the right and responsibility to remove, edit, or reject
+                comments, commits, code, wiki edits, issues, and other contributions that are not
+                aligned to this Code of Conduct, and will communicate reasons for moderation
+                decisions when appropriate.
+              </p>
+            </AccordionDetails>
+          </Accordion>
             </AccordionDetails>
           </Accordion>
             </AccordionDetails>
