@@ -115,7 +115,9 @@ const Profile = () => {
               />
             </Button>
             <div id="user-pronouns" className="relative">
-              <span className="absolute bottom-0 ml-4"> {`(${userInfo?.pronoun})`}</span>
+              <span className="absolute bottom-0 ml-4">
+                {userInfo?.pronoun && `(${userInfo?.pronoun})`}
+              </span>
             </div>
           </div>
         </div>
@@ -151,8 +153,8 @@ const Profile = () => {
           </div>
         )}
       </div>
-      <div id="my-reviews-container" className="m-4 mt-8 max-w-4xl">
-        <h1 className="text-2xl font-semibold text-gray-darkest dark:text-white">Your Reviews</h1>
+      <div id="my-reviews-container" className="m-4 mt-8 max-w-2xl">
+        <h1 className="text-2xl font-semibold text-gray-darkest dark:text-white">Reviews</h1>
         <div className=" text-gray-darkest dark:text-white">
           {myArticlesWithReview?.length === 0 && <MyReviewsEmptyState />}
           <MyReviewsTable articleWithReview={myArticlesWithReview} currentUser={currentUser} />
