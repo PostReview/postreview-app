@@ -49,8 +49,8 @@ export default function Article(props) {
         <div id="author-doi-container" className="flex flex-col items-end">
           <div className="text-[0.9rem] text-gray-light">
             <FaCrown className="inline mr-2" />
-            {authorString.length < 20 ? authorString :
-              authorString.slice(0, 20) + "..."} {publishedYear && publishedYearString}
+            {authorString.length < 20 ? authorString : authorString.slice(0, 20) + "..."}{" "}
+            {publishedYear && publishedYearString}
           </div>
           <div className="text-[0.8rem] text-green-dark/60 underline whitespace-nowrap">
             <a href={`https://dx.doi.org/${doi}`} rel="noreferrer" target="_blank">
