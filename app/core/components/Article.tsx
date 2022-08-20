@@ -5,7 +5,43 @@ import { Rating } from "@mui/material"
 import StarIcon from "@mui/icons-material/Star"
 
 export default function Article(props) {
-  const { id, authorString, doi, title, publishedYear, ratingTotal, ratingRQ, ratingDesign, ratingFindings, ratingInterpretation, ratingSignificance, ratingsCount } = props
+  const {
+    id,
+    authorString,
+    doi,
+    title,
+    publishedYear,
+    ratingTotal,
+    ratingRQ,
+    ratingDesign,
+    ratingFindings,
+    ratingInterpretation,
+    ratingSignificance,
+    ratingsCount,
+    questionCategory,
+  } = props
+
+  var selectedRating
+  switch (questionCategory) {
+    case "Overall":
+      selectedRating = ratingTotal
+      break
+    case "Research Question":
+      selectedRating = ratingRQ
+      break
+    case "Design":
+      selectedRating = ratingDesign
+      break
+    case "Findings":
+      selectedRating = ratingFindings
+      break
+    case "Interpretation":
+      selectedRating = ratingInterpretation
+      break
+    case "Significance":
+      selectedRating = ratingSignificance
+      break
+  }
 
   const ratingScaleMax = 5
   const publishedYearString = `(${publishedYear})`
