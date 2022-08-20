@@ -43,8 +43,9 @@ const AccordionSummary = styled((props: AccordionSummaryProps) => (
 
 const AccordionDetails = styled(MuiAccordionDetails)(({ theme }) => ({
   padding: theme.spacing(2),
-  borderTop: '1px solid rgba(0, 0, 0, .125)',
-}));
+  borderTop: "1px solid rgba(0, 0, 0, .125)",
+}))
+
 const CodeOfConductPage: BlitzPage = () => {
   const [expanded, setExpanded] = React.useState<string | false>('panel1');
 
