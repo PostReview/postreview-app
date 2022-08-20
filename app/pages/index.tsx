@@ -63,17 +63,17 @@ const UserInfo = () => {
           </div>
           <div
             id="overall-reviews"
-            className="items-center flex flex-row font-bold text-white hover:cursor-pointer"
+            className="items-center flex flex-row font-bold text-white hover:cursor-pointer overflow-x-clip"
           >
             <span
-              className={`mr-4 ${questionCategory === "Overall" && "invisible"}`}
+              className={`mr-1 ${questionCategory === "Overall" && "invisible"}`}
               onClick={() => handleArrowClick("left")}
             >
               {"<<"}
             </span>
             <div className="text-4xl w-80 text-center">{questionCategory}</div>
             <span
-              className={`ml-4 ${
+              className={`ml-1 ${
                 questionCategory === searchCategories.slice(-1)[0] && "invisible"
               }`}
               onClick={() => handleArrowClick("right")}
