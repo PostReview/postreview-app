@@ -12,12 +12,12 @@ const Browse = () => {
   return (
     <div className="flex flex-col min-h-screen bg-white dark:bg-gray-darkest text-gray-darkest dark:text-white">
       <main className="flex-grow flex flex-col items-center">
-        <h1 id="post-review" className="mt-16 text-5xl font-bold">
+        <h1 id="post-review" className="mt-24 text-5xl font-bold">
           PostReview
         </h1>
         <div
           id="search-bar-container"
-          className="absolute flex flex-grow mt-28 w-96 justify-center"
+          className="absolute flex flex-grow mt-36 w-96 justify-center"
         >
           {session?.userId ? (
             <EnterDOI session={session} />
