@@ -5,10 +5,10 @@ import * as z from "zod"
 const inputData = z.object({
   id: z.number(),
   handle: z.string(),
-  displayName: z.string().optional(),
-  pronoun: z.string().optional(),
-  aboutMe: z.string().optional(),
-  website: z.string().optional(),
+  displayName: z.string().optional().nullable(),
+  pronoun: z.string().optional().nullable(),
+  aboutMe: z.string().optional().nullable(),
+  website: z.string().optional().nullable(),
 })
 
 export default async function changeUserInfo(input: z.infer<typeof inputData>, ctx: Ctx) {
