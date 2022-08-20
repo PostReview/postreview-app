@@ -159,6 +159,22 @@ const CodeOfConductPage: BlitzPage = () => {
               </p>
             </AccordionDetails>
           </Accordion>
+          <Accordion
+            className="bg-gray-dark dark:bg-black/30 text-black dark:text-white"
+            expanded={expanded === "panel3"}
+            onChange={handleChange("panel3")}
+          >
+            <AccordionSummary aria-controls="panel3d-content" id="panel3d-header">
+              <Typography className="font-bold text-2xl">Scope</Typography>
+            </AccordionSummary>
+            <AccordionDetails className="bg-gray-medium dark:bg-gray-dark text-black/80 dark:text-white/80">
+              <p className="mx-2 my-3 text-black/90 dark:text-white/90">
+                This Code of Conduct applies within all community spaces, and also applies when an
+                individual is officially representing the community in public spaces. Examples of
+                representing our community include using an official e-mail address, posting via an
+                official social media account, or acting as an appointed representative at an online
+                or offline event.
+              </p>
             </AccordionDetails>
           </Accordion>
             </AccordionDetails>
