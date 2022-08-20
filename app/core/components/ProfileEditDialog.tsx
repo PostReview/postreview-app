@@ -92,7 +92,7 @@ export const ProfileEditDialog = (props) => {
                 website: userInfo?.website,
               }}
               onSubmit={async (values) => {
-                setUserInfo({ ...values })
+                setUserInfo({ id: userInfo.id, ...values })
                 changeUserinfoMutation({ id: userInfo.id, ...values })
                 setOpen(false)
               }}
