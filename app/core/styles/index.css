@@ -2,6 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Import font */
+@import url("https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@1,300&display=swap");
+
 @layer components {
   .hero {
     @apply w-full text-[#333];
