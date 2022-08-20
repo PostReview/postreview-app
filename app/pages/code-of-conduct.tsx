@@ -47,11 +47,7 @@ const AccordionDetails = styled(MuiAccordionDetails)(({ theme }) => ({
 }))
 
 const CodeOfConductPage: BlitzPage = () => {
-  const [expanded, setExpanded] = React.useState<string | false>("panel1")
 
-  const handleChange = (panel: string) => (event: React.SyntheticEvent, newExpanded: boolean) => {
-    setExpanded(newExpanded ? panel : false)
-  }
 
   return (
     <div className="flex flex-col min-h-screen bg-white dark:bg-gray-darkest">
@@ -73,7 +69,7 @@ const CodeOfConductPage: BlitzPage = () => {
         <div id="our-pledge-header" className="flex flex-col justify-start">
           <div className="text-2xl font-semibold text-black dark:text-white">Our Pledge</div>
         </div>
-        <div id="our-pledge-body" className="font-light text-gray-darkest dark:text-white">
+        <div id="our-pledge-body" className="font-light max-w-3xl text-gray-darkest dark:text-white">
           <p className="mx-6 my-3">
             We as members, contributors, and leaders pledge to make participation in our community a
             harassment-free experience for everyone, regardless of age, body size, visible or
@@ -86,11 +82,9 @@ const CodeOfConductPage: BlitzPage = () => {
             inclusive, and healthy community.
           </p>
         </div>
-        <div id="code-of-conduct-content">
+        <div id="code-of-conduct-content" className="max-w-3xl">
           <Accordion
             className="bg-gray-dark dark:bg-black/30 text-black dark:text-white"
-            expanded={expanded === "panel1"}
-            onChange={handleChange("panel1")}
           >
             <AccordionSummary aria-controls="panel1d-content" id="panel1d-header">
               <Typography className="font-bold text-2xl">Our Standards</Typography>
@@ -140,8 +134,6 @@ const CodeOfConductPage: BlitzPage = () => {
           </Accordion>
           <Accordion
             className="bg-gray-dark dark:bg-black/30 text-black dark:text-white"
-            expanded={expanded === "panel2"}
-            onChange={handleChange("panel2")}
           >
             <AccordionSummary aria-controls="panel2d-content" id="panel2d-header">
               <Typography className="font-bold text-2xl">Enforcement Responsibilities</Typography>
@@ -162,8 +154,6 @@ const CodeOfConductPage: BlitzPage = () => {
           </Accordion>
           <Accordion
             className="bg-gray-dark dark:bg-black/30 text-black dark:text-white"
-            expanded={expanded === "panel3"}
-            onChange={handleChange("panel3")}
           >
             <AccordionSummary aria-controls="panel3d-content" id="panel3d-header">
               <Typography className="font-bold text-2xl">Scope</Typography>
@@ -180,8 +170,6 @@ const CodeOfConductPage: BlitzPage = () => {
           </Accordion>
           <Accordion
             className="bg-gray-dark dark:bg-black/30 text-black dark:text-white"
-            expanded={expanded === "panel4"}
-            onChange={handleChange("panel4")}
           >
             <AccordionSummary aria-controls="panel4d-content" id="panel4d-header">
               <Typography className="font-bold text-2xl">Enforcement</Typography>
@@ -236,8 +224,6 @@ const CodeOfConductPage: BlitzPage = () => {
           </Accordion>
           <Accordion
             className="bg-gray-dark dark:bg-black/30 text-black dark:text-white"
-            expanded={expanded === "panel5"}
-            onChange={handleChange("panel5")}
           >
             <AccordionSummary aria-controls="panel5d-content" id="panel5d-header">
               <Typography className="font-bold text-2xl">Enforcement Guidelines</Typography>
@@ -307,8 +293,6 @@ const CodeOfConductPage: BlitzPage = () => {
           </Accordion>
           <Accordion
             className="bg-gray-dark dark:bg-black/30 text-black dark:text-white"
-            expanded={expanded === "panel6"}
-            onChange={handleChange("panel6")}
           >
             <AccordionSummary aria-controls="panel6d-content" id="panel6d-header">
               <Typography className="font-bold text-2xl">Attribution</Typography>
