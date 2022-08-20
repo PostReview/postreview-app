@@ -2,15 +2,12 @@ import {
   AccordionDetails,
   AccordionSummary,
   Button,
-  Divider,
   Drawer,
   List,
-  ListItem,
   ListItemButton,
   ListItemText,
   Typography,
 } from "@mui/material"
-import { Box } from "@mui/system"
 import { Image, useRouter } from "blitz"
 import React, { useState } from "react"
 import postReviewIcon from "/public/logo-withname-lightmode.png"
@@ -29,35 +26,6 @@ export const DrawerMenu = () => {
   const toggleDrawer = () => {
     setOpen(!open)
   }
-
-  const list = () => (
-    <Box
-      sx={{ width: "auto" }}
-      role="presentation"
-      onClick={() => toggleDrawer()}
-      onKeyDown={() => toggleDrawer()}
-    >
-      <List>
-        {["Inbox", "Starred", "Send email", "Drafts"].map((text, index) => (
-          <ListItem key={text} disablePadding>
-            <ListItemButton>
-              <ListItemText primary={text} />
-            </ListItemButton>
-          </ListItem>
-        ))}
-      </List>
-      <Divider />
-      <List>
-        {["All mail", "Trash", "Spam"].map((text, index) => (
-          <ListItem key={text} disablePadding>
-            <ListItemButton>
-              <ListItemText primary={text} />
-            </ListItemButton>
-          </ListItem>
-        ))}
-      </List>
-    </Box>
-  )
 
   const Accordion = styled((props: AccordionProps) => (
     <MuiAccordion disableGutters elevation={0} square {...props} />
