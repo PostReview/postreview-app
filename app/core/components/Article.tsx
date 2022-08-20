@@ -68,7 +68,7 @@ export default function Article(props) {
         {/* Show the rating and the star */}
         <div id="with-rating-total">
           <div className="flex flex-row items-end">
-            <div className="text-5xl font-bold text-white">{selectedRating?.toFixed(1)}</div>
+            <div className="text-5xl font-bold text-white w-16">{selectedRating?.toFixed(1)}</div>
             <Rating
               readOnly
               value={selectedRating / ratingScaleMax}
