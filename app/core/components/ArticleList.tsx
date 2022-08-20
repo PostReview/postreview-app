@@ -7,7 +7,6 @@ import {
   InstantSearch,
   SortBy,
   Hits,
-  Pagination,
   Configure,
 } from "react-instantsearch-hooks-web"
 
@@ -73,7 +72,6 @@ export default function ArticleList() {
             <Hits hitComponent={Hit} />
           </div>
         </div>
-        <Pagination />
       </InstantSearch>
     </div>
   )
