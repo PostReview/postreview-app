@@ -86,6 +86,19 @@ const CodeOfConductPage: BlitzPage = () => {
             inclusive, and healthy community.
           </p>
         </div>
+          <Accordion
+            className="bg-gray-dark dark:bg-black/30 text-black dark:text-white"
+            expanded={expanded === "panel1"}
+            onChange={handleChange("panel1")}
+          >
+            <AccordionSummary aria-controls="panel1d-content" id="panel1d-header">
+              <Typography className="font-bold text-2xl">Our Standards</Typography>
+            </AccordionSummary>
+          </Accordion>
+            </AccordionDetails>
+          </Accordion>
+            </AccordionDetails>
+          </Accordion>
 CodeOfConductPage.getLayout = (page) => <Layout title="Code of Conduct | PostReview">{page}</Layout>
 
 export default CodeOfConductPage
