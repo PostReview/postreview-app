@@ -81,7 +81,7 @@ const UserInfo = () => {
               {">>"}
             </span>
           </div>
-          <ArticleList />
+          <ArticleList questionCategory={questionCategory} />
         </div>
         <NavDots
           searchCategories={searchCategories}
