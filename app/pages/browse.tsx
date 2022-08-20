@@ -1,7 +1,7 @@
 import ArticleList from "app/core/components/ArticleList"
+import EnterDOI from "app/core/components/EnterDOI"
 import { Footer } from "app/core/components/Footer"
-import Navbar from "app/core/components/Navbar"
-import { BlitzPage } from "blitz"
+import { BlitzPage, useRouter, useSession } from "blitz"
 import { Suspense } from "react"
 
 const Browse = () => {
