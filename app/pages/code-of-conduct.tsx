@@ -4,6 +4,15 @@ import { Suspense } from "react"
 import Navbar from "app/core/components/Navbar"
 import { Footer } from "app/core/components/Footer"
 import codeOfConduct from "public/code-of-conduct.png"
+import * as React from 'react';
+import { styled } from '@mui/material/styles';
+import ArrowForwardIosSharpIcon from '@mui/icons-material/ArrowForwardIosSharp';
+import MuiAccordion, { AccordionProps } from '@mui/material/Accordion';
+import MuiAccordionSummary, {
+  AccordionSummaryProps,
+} from '@mui/material/AccordionSummary';
+import MuiAccordionDetails from '@mui/material/AccordionDetails';
+import Typography from '@mui/material/Typography';
 const CodeOfConductPage: BlitzPage = () => {
   return (
     <div className="flex flex-col min-h-screen bg-white dark:bg-gray-darkest">
