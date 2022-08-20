@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useEffect, useState } from "react"
 import { FaBarcode, FaCrown, FaUsers } from "react-icons/fa"
 import { Link } from "next/link"
 import { Rating } from "@mui/material"
@@ -62,25 +62,23 @@ export default function Article(props) {
       <div id="title-star-container" className="w-full flex md:flex-row flex-row justify-between">
         <div id="title" className="font-semibold inline mr-3">
           <Link href={`/articles/${id}`}>
-            {title.length < 70 ? title :
-              title.slice(0, 70) + "..."}
+            {title.length < 70 ? title : title.slice(0, 70) + "..."}
           </Link>
         </div>
+        {/* Show the rating and the star */}
         <div id="with-rating-total">
           <div className="flex flex-row items-end">
-            <div className="text-5xl font-bold text-white">
-              {ratingTotal?.toFixed(1)}
-            </div>
+            <div className="text-5xl font-bold text-white">{selectedRating?.toFixed(1)}</div>
             <Rating
               readOnly
-              value={ratingTotal / ratingScaleMax}
+              value={selectedRating / ratingScaleMax}
               precision={0.1}
               max={1}
               sx={{
                 fontSize: 70,
-                color: "#94ec01",
+                color: questionCategory === "Overall" ? "#94ec01" : smallStarColor,
               }}
-              emptyIcon={<StarIcon style={{ opacity: .40, color: "#737373" }} fontSize="inherit" />}
+              emptyIcon={<StarIcon style={{ opacity: 0.4, color: "#737373" }} fontSize="inherit" />}
             />
           </div>
         </div>
