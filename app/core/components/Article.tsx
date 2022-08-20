@@ -42,12 +42,12 @@ export default function Article(props) {
         </div>
       </div>
       <div id="bottom-container" className="flex flex-row items-end justify-between">
-        <div id="g-ratings-container" className="text-gray-medium text-[0.8rem] whitespace-nowrap">
-          <FaUsers className="inline mr-2 text-gray-medium" />
+        <div id="g-ratings-container" className="text-green-dark text-[0.8rem] whitespace-nowrap">
+          <FaUsers className="inline mr-2 text-gray-light" />
           {ratingsCount} global ratings
         </div>
         <div id="author-doi-container" className="flex flex-col items-end">
-          <div className="text-[0.9rem] text-gray-medium">
+          <div className="text-[0.9rem] text-gray-light">
             <FaCrown className="inline mr-2" />
             {authorString.length < 20 ? authorString :
               authorString.slice(0, 20) + "..."} {publishedYear && publishedYearString}
