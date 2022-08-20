@@ -70,6 +70,22 @@ const CodeOfConductPage: BlitzPage = () => {
             height={200}
           />
         </div>
+        <div id="our-pledge-header" className="flex flex-col justify-start">
+          <div className="text-2xl font-semibold text-black dark:text-white">Our Pledge</div>
+        </div>
+        <div id="our-pledge-body" className="font-light text-gray-darkest dark:text-white">
+          <p className="mx-6 my-3">
+            We as members, contributors, and leaders pledge to make participation in our community a
+            harassment-free experience for everyone, regardless of age, body size, visible or
+            invisible disability, ethnicity, sex characteristics, gender identity and expression,
+            level of experience, education, socio-economic status, nationality, personal appearance,
+            race, caste, color, religion, or sexual identity and orientation.
+          </p>
+          <p className="mx-6 mb-3">
+            We pledge to act and interact in ways that contribute to an open, welcoming, diverse,
+            inclusive, and healthy community.
+          </p>
+        </div>
 CodeOfConductPage.getLayout = (page) => <Layout title="Code of Conduct | PostReview">{page}</Layout>
 
 export default CodeOfConductPage
