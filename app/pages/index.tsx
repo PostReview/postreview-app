@@ -8,6 +8,7 @@ import { Footer } from "app/core/components/Footer"
 import { Hero } from "app/core/components/Hero"
 import { HowItWorks } from "app/core/components/HowItWorks"
 import ArticleList from "app/core/components/ArticleList"
+import { DrawerMenu } from "app/core/components/DrawerMenu"
 
 const UserInfo = () => {
   const router = useRouter()
