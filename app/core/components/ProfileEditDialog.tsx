@@ -152,7 +152,7 @@ export const ProfileEditDialog = (props) => {
                     About Me
                   </label>
                   <div className="absolute right-0 bottom-0 text-sm text-gray-light">
-                    {`${aboutMe.length}/${aboutMeCharLimit}`}
+                    {`${aboutMe?.length ? aboutMe?.length : 0}/${aboutMeCharLimit}`}
                   </div>
                   <Field
                     name="aboutMe"
