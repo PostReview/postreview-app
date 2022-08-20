@@ -17,13 +17,9 @@ export const Footer = () => {
           </li>
           <li className="md:inline mx-4">Terms</li>
           <li className="md:inline mx-4">
-            <a
-              href="https://github.com/nsunami/postreview-app/blob/main/CODE_OF_CONDUCT.md"
-              target="_blank"
-              rel="noreferrer"
-            >
+            <Link href="/code-of-conduct">
               Code of Conduct
-            </a>
+            </Link>
           </li>
           <li className="md:inline mx-4">
             <Link href="/about">About Us</Link>
