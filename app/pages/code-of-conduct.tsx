@@ -94,6 +94,48 @@ const CodeOfConductPage: BlitzPage = () => {
             <AccordionSummary aria-controls="panel1d-content" id="panel1d-header">
               <Typography className="font-bold text-2xl">Our Standards</Typography>
             </AccordionSummary>
+            <AccordionDetails className="bg-gray-medium dark:bg-gray-dark text-black/80 dark:text-white/80">
+              <p className="mx-2 font-semibold text-black/90 dark:text-white">
+                Examples of behavior that contributes to a positive environment for our community
+                include:
+              </p>
+              <ul className="mx-8 my-4 list-disc">
+                <li className="m-2">Demonstrating empathy and kindness toward other people</li>
+                <li className="m-2">
+                  Being respectful of differing opinions, viewpoints, and experiences
+                </li>
+                <li className="m-2">Giving and gracefully accepting constructive feedback</li>
+                <li className="m-2">
+                  Accepting responsibility and apologizing to those affected by our mistakes, and
+                  learning from the experience
+                </li>
+                <li className="m-2">
+                  Focusing on what is best not just for us as individuals, but for the overall
+                  community
+                </li>
+              </ul>
+              <p className="mx-2 font-semibold text-black/90 dark:text-white">
+                Examples of unacceptable behavior include:
+              </p>
+              <ul className="mx-8 my-4 list-disc">
+                <li className="m-2">
+                  The use of sexualized language or imagery, and sexual attention or advances of any
+                  kind
+                </li>
+                <li className="m-2">
+                  Trolling, insulting or derogatory comments, and personal or political attacks
+                </li>
+                <li className="m-2">Public or private harassment</li>
+                <li className="m-2">
+                  Publishing others&amp; private information, such as a physical or email address,
+                  without their explicit permission
+                </li>
+                <li className="m-2">
+                  Other conduct which could reasonably be considered inappropriate in a professional
+                  setting
+                </li>
+              </ul>
+            </AccordionDetails>
           </Accordion>
             </AccordionDetails>
           </Accordion>
