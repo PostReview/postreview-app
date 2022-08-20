@@ -64,6 +64,10 @@
 :root {
   /* Search results BG = Black */
   --aa-background-color-rgb: 46, 44, 44;
+  --aa-primary-color-rgb: 148, 236, 1;
+  /* Search results selected highlight color */
+  --aa-selected-color-rgb: 148, 236, 1;
+  --aa-description-highlight-background-color-rgb: 148, 236, 1;
 }
 .aa-Panel {
   --aa-text-color-rgb: 255, 255, 255;
@@ -74,8 +78,9 @@
   :root {
     /* Search Results BG = White */
     --aa-background-color-rgb: 255, 255, 255;
-    /* Selected color */
-    --aa-selected-color-rgb: 148, 236, 1; /* green */
+    --aa-primary-color-rgb: 148, 236, 1;
+    /* Search results selected highlight color */
+    --aa-selected-color-rgb: 148, 236, 1;
     --aa-description-highlight-background-color-rgb: 148, 236, 1;
   }
   .aa-Panel {
