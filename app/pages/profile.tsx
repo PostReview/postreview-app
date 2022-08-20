@@ -63,8 +63,10 @@ const Profile = () => {
     <main className="flex flex-col items-center min-h-screen bg-white dark:bg-gray-darkest relative text-gray-darkest dark:text-white">
       <div id="verify-email-container" className="absolute self-center">
         {!currentUser?.emailIsVerified && (
-          <div className="flex flex-row max-w-sm items-center justify-evenly text-sm rounded-md px-2 mt-3 border-2 border-white-medium text-gray-darkest dark:text-white">
-            {!verificationSent && <span className="mr-1">Your email is not verified</span>}{" "}
+          <div className="flex flex-row max-w-sm items-center justify-evenly text-sm rounded-md px-2 mt-3 border-2 border-white-medium text-white">
+            {!verificationSent && (
+              <span className="mr-1 text-gray-light">Your email is not verified</span>
+            )}{" "}
             {verificationSent ? (
               <span className="underline text-green-dark">
                 Verification sent! Please check your mailbox.
