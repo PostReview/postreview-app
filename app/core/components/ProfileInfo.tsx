@@ -6,6 +6,7 @@ import { Link } from "blitz"
 
 export const ProfileInfo = (props) => {
   const { open, setOpen, userInfo, showEditButton = false } = props
+
   return (
     <div id="user-info-container" className="relative mx-10 max-w-4xl">
       {showEditButton && (
