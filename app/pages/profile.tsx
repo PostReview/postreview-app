@@ -136,7 +136,13 @@ const Profile = () => {
           <div id="website" className="mt-6">
             <span className="text-xs text-green-dark">
               <FaLink className="inline mr-1" />
-              <Link href={encodeURI(userInfo?.website)}>
+              <Link
+                href={
+                  /^http+/.test(userInfo?.website)
+                    ? encodeURI(userInfo?.website)
+                    : "https://" + userInfo?.website
+                }
+              >
                 <a target={"_blank"} className="">
                   {encodeURI(userInfo?.website)}
                 </a>
