@@ -71,6 +71,7 @@
 }
 .aa-Panel {
   --aa-text-color-rgb: 255, 255, 255;
+  --aa-panel-overflow: scrollable;
 }
 
 /* When in dark mode */
@@ -84,6 +85,10 @@
     --aa-description-highlight-background-color-rgb: 148, 236, 1;
   }
   .aa-Panel {
+    --aa-text-color-rgb: 0, 0, 0;
+    --aa-panel-overflow: scrollable;
+  }
+  .aa-DetachedCancelButton {
     --aa-text-color-rgb: 0, 0, 0;
   }
 }
