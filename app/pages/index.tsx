@@ -17,7 +17,7 @@ const UserInfo = () => {
     return (
       <div className="w-full bg-black items-center">
         <div id="header-category container" className="flex flex-col items-center">
-          <div id="reviews-header" className="mt-10 mb-2 items-center font-semibold text-5xl text-gray-darkest/80">
+          <div id="reviews-header" className="mt-10 mb-2 items-center font-semibold text-5xl text-gray-medium">
             All Reviews
           </div>
           <div id="overall-reviews" className="items-center text-4xl font-bold text-white hover:cursor-pointer">
