@@ -52,6 +52,7 @@ const UserInfo = () => {
 const Home: BlitzPage = () => {
   return (
     <div className="flex flex-col min-h-screen">
+      <DrawerMenu />
       <Suspense fallback="Loading...">
         <Navbar />
       </Suspense>
