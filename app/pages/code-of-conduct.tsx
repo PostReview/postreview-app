@@ -10,6 +10,10 @@ const CodeOfConductPage: BlitzPage = () => {
       <Suspense fallback="Loading...">
         <Navbar />
       </Suspense>
+      <main className="flex-grow flex flex-col items-center bg-gray-light dark:bg-gray-darkest">
+        <div className="py-4 w-full text-3xl font-bold bg-gray-dark dark:bg-black/30">
+          <h1 className="text-center text-black dark:text-white">Code of Conduct</h1>
+        </div>
 CodeOfConductPage.getLayout = (page) => <Layout title="Code of Conduct | PostReview">{page}</Layout>
 
 export default CodeOfConductPage
