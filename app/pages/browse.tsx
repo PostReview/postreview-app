@@ -10,10 +10,21 @@ const Browse = () => {
   const isAtRoot = router.pathname === "/"
 
   return (
-    <div className="flex flex-col min-h-screen">
-      <Navbar />
-      <main className="flex-grow flex flex-col items-center mb-4">
-        <ArticleList />
+    <div className="flex flex-col min-h-screen bg-white dark:bg-gray-darkest text-gray-darkest dark:text-white">
+      <main className="flex-grow flex flex-col items-center">
+        <h1 id="post-review" className="mt-16 text-5xl font-bold">
+          PostReview
+        </h1>
+        <div
+          id="search-bar-container"
+          className="absolute flex flex-grow mt-28 w-96 justify-center"
+        >
+          {session?.userId ? (
+            <EnterDOI session={session} />
+          ) : (
+            !isAtRoot && <EnterDOI session={session} />
+          )}
+        </div>
       </main>
       <Footer />
     </div>
