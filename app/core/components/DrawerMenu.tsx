@@ -121,7 +121,7 @@ export const DrawerMenu = () => {
           </div>
           <div id="sign-up-button" className="mx-2 ">
             <button
-              className="bg-green px-3 py-1 rounded-lg"
+              className="bg-green px-3 py-1 rounded-lg hover:bg-green-dark"
               onClick={() => router.push("/signup")}
             >
               Sign up
