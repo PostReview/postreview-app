@@ -20,7 +20,7 @@ import { FaGithub, FaDiscord, FaBars } from "react-icons/fa"
 import { AiFillTwitterCircle } from "react-icons/ai"
 
 export const DrawerMenu = () => {
-  const [open, setOpen] = useState(true)
+  const [open, setOpen] = useState(false)
   const router = useRouter()
 
   const toggleDrawer = () => {
@@ -117,7 +117,12 @@ export const DrawerMenu = () => {
             </div>
           </div>
           <div id="sign-up-button" className="mx-2 ">
-            <button className="bg-green px-3 py-1 rounded-lg">Sign up</button>
+            <button
+              className="bg-green px-3 py-1 rounded-lg"
+              onClick={() => router.push("/signup")}
+            >
+              Sign up
+            </button>
           </div>
           <div id="copyright" className="self-end mx-4 mt-10 text-xl text-gray-medium">
             <span className="text-2xl">&copy;</span> PostReview {datetime.getFullYear()}
