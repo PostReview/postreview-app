@@ -2,6 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Import font */
+@import url("https://fonts.googleapis.com/css2?family=Fira+Sans:wght@400;600;700&display=swap");
+
 @layer components {
   .hero {
     @apply w-full text-[#333];
@@ -71,6 +74,7 @@
 }
 .aa-Panel {
   --aa-text-color-rgb: 255, 255, 255;
+  --aa-panel-overflow: scrollable;
 }
 
 /* When in dark mode */
@@ -84,6 +88,10 @@
     --aa-description-highlight-background-color-rgb: 148, 236, 1;
   }
   .aa-Panel {
+    --aa-text-color-rgb: 0, 0, 0;
+    --aa-panel-overflow: scrollable;
+  }
+  .aa-DetachedCancelButton {
     --aa-text-color-rgb: 0, 0, 0;
   }
 }
