@@ -20,7 +20,7 @@ export default function Navbar() {
             !isAtRoot && <EnterDOI session={session} />
           )}
         </div>
-        <div id="buttons-container" className="mr-4 flex flex-row">
+        <div id="buttons-container" className="mx-4 flex flex-row">
           <HeaderUserButton />
         </div>
         <DrawerMenu />
