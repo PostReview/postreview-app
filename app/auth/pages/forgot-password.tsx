@@ -3,7 +3,6 @@ import Layout from "app/core/layouts/Layout"
 import forgotPassword from "app/auth/mutations/forgotPassword"
 import { Suspense, useEffect, useState } from "react"
 import Navbar from "app/core/components/Navbar"
-import { Footer } from "app/core/components/Footer"
 import { Formik } from "formik"
 import forgotPictureDarkMode from "public/forgot-picture-darkmode.png"
 import forgotPictureLightMode from "public/forgot-picture-lightmode.png"
@@ -14,7 +13,7 @@ const ForgotPasswordPage: BlitzPage = () => {
   // handle darkmode
   const [isDark, setIsDark] = useState(false)
   useEffect(() => {
-    const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+    const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)")
     setIsDark(mediaQuery.matches)
   }, [])
 
@@ -31,8 +30,12 @@ const ForgotPasswordPage: BlitzPage = () => {
             width={160}
           />
         </div>
-        <h1 className="text-3xl text-center font-bold my-2 text-gray-darkest dark:text-white">Forgot your password?</h1>
-        <h2 className="mb-2 text-md text-center text-gray-darkest dark:text-gray-light">We got your back!</h2>
+        <h1 className="text-3xl text-center font-bold my-2 text-gray-darkest dark:text-white">
+          Forgot your password?
+        </h1>
+        <h2 className="mb-2 text-md text-center text-gray-darkest dark:text-gray-light">
+          We got your back!
+        </h2>
         <div className="flex flex-col items-center py-6 px-10 bg-gray-light dark:bg-gray-dark">
           {isSuccess ? (
             <div>
@@ -71,7 +74,10 @@ const ForgotPasswordPage: BlitzPage = () => {
                 isSubmitting,
               }) => (
                 <form onSubmit={handleSubmit} className="flex flex-col">
-                  <label htmlFor="email" className="mt-4 font-semibold text-gray-darkest dark:text-white">
+                  <label
+                    htmlFor="email"
+                    className="mt-4 font-semibold text-gray-darkest dark:text-white"
+                  >
                     Email
                     <span className="text-xs inline font-normal text-red">
                       {errors.email && touched.email && " - " + errors.email}
@@ -96,7 +102,6 @@ const ForgotPasswordPage: BlitzPage = () => {
           )}
         </div>
       </main>
-      <Footer />
     </div>
   )
 }

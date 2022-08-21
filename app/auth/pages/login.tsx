@@ -2,7 +2,6 @@ import { BlitzPage, useMutation, Link, Routes, Image } from "blitz"
 import Layout from "app/core/layouts/Layout"
 import { Suspense, useEffect, useState } from "react"
 import Navbar from "app/core/components/Navbar"
-import { Footer } from "app/core/components/Footer"
 import { Formik } from "formik"
 import GoogleButton from "app/core/components/GoogleButton"
 import login from "../mutations/login"
@@ -19,11 +18,10 @@ const LoginPage: BlitzPage = () => {
     setIsPasswordHidden(!isPasswordHidden)
   }
 
-
   // handle darkmode
   const [isDark, setIsDark] = useState(false)
   useEffect(() => {
-    const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+    const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)")
     setIsDark(mediaQuery.matches)
   }, [])
 
@@ -41,7 +39,9 @@ const LoginPage: BlitzPage = () => {
             height={180}
           />
         </div>
-        <h1 className="text-4xl text-center font-bold my-4 text-gray-darkest dark:text-white">Welcome back!</h1>
+        <h1 className="text-4xl text-center font-bold my-4 text-gray-darkest dark:text-white">
+          Welcome back!
+        </h1>
         <div className="flex flex-col items-center py-6 px-10 bg-gray-light dark:bg-gray-dark">
           <Formik
             initialValues={{ email: "", password: "", handle: "" }}
@@ -83,7 +83,10 @@ const LoginPage: BlitzPage = () => {
                     Incorrect email or password
                   </div>
                 )}
-                <label htmlFor="email" className="mt-4 font-semibold text-gray-darkest dark:text-white">
+                <label
+                  htmlFor="email"
+                  className="mt-4 font-semibold text-gray-darkest dark:text-white"
+                >
                   Email
                   <span className="text-xs inline font-normal text-red">
                     {" "}
@@ -98,7 +101,10 @@ const LoginPage: BlitzPage = () => {
                   value={values.email}
                   className="p-2 w-80 bg-black text-white focus:outline-green/[.50]"
                 />
-                <label htmlFor="password" className="mt-4 font-semibold text-gray-darkest dark:text-white">
+                <label
+                  htmlFor="password"
+                  className="mt-4 font-semibold text-gray-darkest dark:text-white"
+                >
                   Password{" "}
                   <span className="text-xs inline font-normal text-red">
                     {errors.password && touched.password && " - " + errors.password}
@@ -113,13 +119,19 @@ const LoginPage: BlitzPage = () => {
                     value={values.password}
                     className="w-80 p-2 bg-black text-white focus:outline-green/[.50]"
                   />
-                  <button type="button" onClick={togglePasswordHidden} className="text-white text-2xl absolute inline right-2 top-2">
+                  <button
+                    type="button"
+                    onClick={togglePasswordHidden}
+                    className="text-white text-2xl absolute inline right-2 top-2"
+                  >
                     {isPasswordHidden ? <BsEyeSlash /> : <BsEye />}
                   </button>
                 </div>
                 <div>
                   <Link href={Routes.ForgotPasswordPage()}>
-                    <a className="text-sm underline italic text-gray-dark dark:text-white/70">Forgot your password?</a>
+                    <a className="text-sm underline italic text-gray-dark dark:text-white/70">
+                      Forgot your password?
+                    </a>
                   </Link>
                 </div>
                 <Button addstyles="my-4" type="submit" disabled={isSubmitting}>
@@ -131,7 +143,9 @@ const LoginPage: BlitzPage = () => {
           <div className="my-2 text-gray-darkest dark:text-white">
             Don&apos;t have an account?{" "}
             <Link href={Routes.SignupPage()}>
-              <a className="text-sm text-center underline italic text-gray-dark dark:text-white/70">Sign up today</a>
+              <a className="text-sm text-center underline italic text-gray-dark dark:text-white/70">
+                Sign up today
+              </a>
             </Link>
           </div>
 
@@ -139,7 +153,6 @@ const LoginPage: BlitzPage = () => {
           <GoogleButton type="log-in" />
         </div>
       </main>
-      <Footer />
     </div>
   )
 }

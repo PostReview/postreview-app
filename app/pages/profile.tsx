@@ -7,7 +7,6 @@ import getReviewAnswersByUserId from "app/queries/getReviewAnswersByUserId"
 import { Suspense, useEffect, useState } from "react"
 import { MyReviewsTable } from "app/core/components/MyReviewsTable"
 import { MyReviewsEmptyState } from "app/core/components/MyReviewsEmptyState"
-import { Footer } from "app/core/components/Footer"
 import deleteUser from "app/mutations/deleteUser"
 import logout from "app/auth/mutations/logout"
 import { Button } from "app/core/components/Button"
@@ -145,7 +144,6 @@ const ProfilePage: BlitzPage = () => {
         <Navbar />
         <Profile />
       </Suspense>
-      <Footer />
     </div>
   )
 }

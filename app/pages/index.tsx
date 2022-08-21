@@ -4,7 +4,6 @@ import Layout from "app/core/layouts/Layout"
 
 // Components
 import Navbar from "../core/components/Navbar"
-import { Footer } from "app/core/components/Footer"
 import { Hero } from "app/core/components/Hero"
 import { HowItWorks } from "app/core/components/HowItWorks"
 import ArticleList from "app/core/components/ArticleList"
@@ -53,7 +52,7 @@ const UserInfo = () => {
 
   if (session.userId) {
     return (
-      <div className="w-full bg-black items-center">
+      <div className="w-full bg-black items-center pb-32">
         <div id="header-category container" className="flex flex-col items-center">
           <div
             id="reviews-header"
@@ -112,12 +111,11 @@ const Home: BlitzPage = () => {
       <Suspense fallback="Loading...">
         <Navbar />
       </Suspense>
-      <main className="flex-grow flex flex-col items-center mb-4 bg-white dark:bg-gray-darkest">
+      <main className="flex-grow flex flex-col items-center bg-white dark:bg-gray-darkest">
         <Suspense fallback="Loading...">
           <UserInfo />
         </Suspense>
       </main>
-      <Footer />
     </div>
   )
 }

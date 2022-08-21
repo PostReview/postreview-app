@@ -1,4 +1,3 @@
-import { Footer } from "app/core/components/Footer"
 import Navbar from "app/core/components/Navbar"
 import { Visions } from "app/core/components/Visions"
 import { BlitzPage } from "blitz"
@@ -55,7 +54,6 @@ const About: BlitzPage = () => {
           </div>
         </div>
       </main>
-      <Footer />
     </div>
   )
 }

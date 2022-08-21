@@ -16,9 +16,9 @@ export const ProfileInfo = (props) => {
           </IconButton>
         </div>
       )}
-      <div id="photo-avatar-container" className="flex flex-row mt-6">
+      <div id="photo-avatar-container" className="flex flex-row -mt-12">
         <div id="profile-picture" className="flex flex-row">
-          <Button id="user-avatar" className="focus:outline-none -mt-16" onClick={undefined}>
+          <Button id="user-avatar" className="focus:outline-none" onClick={undefined}>
             <Avatar
               alt={userInfo?.displayName ? userInfo?.displayName : userInfo?.handle}
               sx={{
