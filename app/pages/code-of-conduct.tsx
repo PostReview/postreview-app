@@ -2,7 +2,6 @@ import { BlitzPage, Image } from "blitz"
 import Layout from "app/core/layouts/Layout"
 import { Suspense } from "react"
 import Navbar from "app/core/components/Navbar"
-import { Footer } from "app/core/components/Footer"
 import codeOfConduct from "public/code-of-conduct.png"
 import * as React from "react"
 import { styled } from "@mui/material/styles"
@@ -47,8 +46,6 @@ const AccordionDetails = styled(MuiAccordionDetails)(({ theme }) => ({
 }))
 
 const CodeOfConductPage: BlitzPage = () => {
-
-
   return (
     <div className="flex flex-col min-h-screen bg-white dark:bg-gray-darkest">
       <Suspense fallback="Loading...">
@@ -69,7 +66,10 @@ const CodeOfConductPage: BlitzPage = () => {
         <div id="our-pledge-header" className="flex flex-col justify-start">
           <div className="text-2xl font-semibold text-black dark:text-white">Our Pledge</div>
         </div>
-        <div id="our-pledge-body" className="font-light max-w-3xl text-gray-darkest dark:text-white">
+        <div
+          id="our-pledge-body"
+          className="font-light max-w-3xl text-gray-darkest dark:text-white"
+        >
           <p className="mx-6 my-3">
             We as members, contributors, and leaders pledge to make participation in our community a
             harassment-free experience for everyone, regardless of age, body size, visible or
@@ -83,9 +83,7 @@ const CodeOfConductPage: BlitzPage = () => {
           </p>
         </div>
         <div id="code-of-conduct-content" className="max-w-3xl">
-          <Accordion
-            className="bg-gray-dark dark:bg-black/30 text-black dark:text-white"
-          >
+          <Accordion className="bg-gray-dark dark:bg-black/30 text-black dark:text-white">
             <AccordionSummary aria-controls="panel1d-content" id="panel1d-header">
               <Typography className="font-bold text-2xl">Our Standards</Typography>
             </AccordionSummary>
@@ -132,9 +130,7 @@ const CodeOfConductPage: BlitzPage = () => {
               </ul>
             </AccordionDetails>
           </Accordion>
-          <Accordion
-            className="bg-gray-dark dark:bg-black/30 text-black dark:text-white"
-          >
+          <Accordion className="bg-gray-dark dark:bg-black/30 text-black dark:text-white">
             <AccordionSummary aria-controls="panel2d-content" id="panel2d-header">
               <Typography className="font-bold text-2xl">Enforcement Responsibilities</Typography>
             </AccordionSummary>
@@ -152,9 +148,7 @@ const CodeOfConductPage: BlitzPage = () => {
               </p>
             </AccordionDetails>
           </Accordion>
-          <Accordion
-            className="bg-gray-dark dark:bg-black/30 text-black dark:text-white"
-          >
+          <Accordion className="bg-gray-dark dark:bg-black/30 text-black dark:text-white">
             <AccordionSummary aria-controls="panel3d-content" id="panel3d-header">
               <Typography className="font-bold text-2xl">Scope</Typography>
             </AccordionSummary>
@@ -168,9 +162,7 @@ const CodeOfConductPage: BlitzPage = () => {
               </p>
             </AccordionDetails>
           </Accordion>
-          <Accordion
-            className="bg-gray-dark dark:bg-black/30 text-black dark:text-white"
-          >
+          <Accordion className="bg-gray-dark dark:bg-black/30 text-black dark:text-white">
             <AccordionSummary aria-controls="panel4d-content" id="panel4d-header">
               <Typography className="font-bold text-2xl">Enforcement</Typography>
             </AccordionSummary>
@@ -222,9 +214,7 @@ const CodeOfConductPage: BlitzPage = () => {
               </p>
             </AccordionDetails>
           </Accordion>
-          <Accordion
-            className="bg-gray-dark dark:bg-black/30 text-black dark:text-white"
-          >
+          <Accordion className="bg-gray-dark dark:bg-black/30 text-black dark:text-white">
             <AccordionSummary aria-controls="panel5d-content" id="panel5d-header">
               <Typography className="font-bold text-2xl">Enforcement Guidelines</Typography>
             </AccordionSummary>
@@ -291,9 +281,7 @@ const CodeOfConductPage: BlitzPage = () => {
               </p>
             </AccordionDetails>
           </Accordion>
-          <Accordion
-            className="bg-gray-dark dark:bg-black/30 text-black dark:text-white"
-          >
+          <Accordion className="bg-gray-dark dark:bg-black/30 text-black dark:text-white">
             <AccordionSummary aria-controls="panel6d-content" id="panel6d-header">
               <Typography className="font-bold text-2xl">Attribution</Typography>
             </AccordionSummary>
@@ -343,7 +331,6 @@ const CodeOfConductPage: BlitzPage = () => {
           </Accordion>
         </div>
       </main>
-      <Footer />
     </div>
   )
 }

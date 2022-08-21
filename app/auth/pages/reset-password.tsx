@@ -1,7 +1,6 @@
 import { BlitzPage, useRouterQuery, Link, useMutation, Routes, useRouter, Image } from "blitz"
 import Layout from "app/core/layouts/Layout"
 import resetPassword from "app/auth/mutations/resetPassword"
-import { Footer } from "app/core/components/Footer"
 import { Formik } from "formik"
 import { Suspense, useEffect, useState } from "react"
 import Navbar from "app/core/components/Navbar"
@@ -26,7 +25,7 @@ const ResetPasswordPage: BlitzPage = () => {
   // handle darkmode
   const [isDark, setIsDark] = useState(false)
   useEffect(() => {
-    const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+    const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)")
     setIsDark(mediaQuery.matches)
   }, [])
 
@@ -48,7 +47,9 @@ const ResetPasswordPage: BlitzPage = () => {
             width={140}
           />
         </div>
-        <h1 className=" text-center text-4xl font-bold my-4 text-gray-darkest dark:text-white">Change Password</h1>
+        <h1 className=" text-center text-4xl font-bold my-4 text-gray-darkest dark:text-white">
+          Change Password
+        </h1>
         <div className="flex flex-col items-center py-7 px-10 h-80 bg-gray-light dark:bg-gray-dark text-gray-darkest dark:text-white">
           {isSuccess ? (
             <div>
@@ -97,7 +98,10 @@ const ResetPasswordPage: BlitzPage = () => {
                 isSubmitting,
               }) => (
                 <form onSubmit={handleSubmit} className="flex flex-col">
-                  <label htmlFor="password" className="mt-3 font-semibold text-gray-darkest dark:text-white">
+                  <label
+                    htmlFor="password"
+                    className="mt-3 font-semibold text-gray-darkest dark:text-white"
+                  >
                     New Password
                   </label>
                   <span className="text-xs font-normal text-red">
@@ -112,11 +116,18 @@ const ResetPasswordPage: BlitzPage = () => {
                       value={values.password}
                       className="w-80 p-2 bg-black text-white focus:outline-green/[.50]"
                     />
-                    <button type="button" onClick={togglePasswordHidden} className="text-white text-2xl absolute inline right-5 top-2">
+                    <button
+                      type="button"
+                      onClick={togglePasswordHidden}
+                      className="text-white text-2xl absolute inline right-5 top-2"
+                    >
                       {isPasswordHidden ? <BsEyeSlash /> : <BsEye />}
                     </button>
                   </div>
-                  <label htmlFor="passwordConfirmation" className="mt-4 font-semibold text-gray-darkest dark:text-white">
+                  <label
+                    htmlFor="passwordConfirmation"
+                    className="mt-4 font-semibold text-gray-darkest dark:text-white"
+                  >
                     Confirm New Password
                   </label>
                   <span className="text-xs font-normal text-red">
@@ -131,26 +142,35 @@ const ResetPasswordPage: BlitzPage = () => {
                       value={values.passwordConfirmation}
                       className="w-80 mb-6 p-2 bg-black text-white focus:outline-green/[.50]"
                     />
-                    <button type="button" onClick={toggleConfirmationHidden} className="text-white text-2xl absolute inline right-5 top-2">
+                    <button
+                      type="button"
+                      onClick={toggleConfirmationHidden}
+                      className="text-white text-2xl absolute inline right-5 top-2"
+                    >
                       {isConfirmationHidden ? <BsEyeSlash /> : <BsEye />}
                     </button>
                   </div>
-                  <div id="action-container" className="text-center text-green rounded-lg bg-gray-medium dark:bg-gray-medium hover:bg-gray-darkest">
+                  <div
+                    id="action-container"
+                    className="text-center text-green rounded-lg bg-gray-medium dark:bg-gray-medium hover:bg-gray-darkest"
+                  >
                     <button className="mx-2 my-2" onClick={() => router.push("signup")}>
                       Change password
-                    </button></div>
+                    </button>
+                  </div>
                 </form>
               )}
             </Formik>
           )}
         </div>
       </main>
-      <Footer />
     </div>
   )
 }
 
 ResetPasswordPage.redirectAuthenticatedTo = "/"
-ResetPasswordPage.getLayout = (page) => <Layout title="Reset Your Password | PostReview">{page}</Layout>
+ResetPasswordPage.getLayout = (page) => (
+  <Layout title="Reset Your Password | PostReview">{page}</Layout>
+)
 
 export default ResetPasswordPage

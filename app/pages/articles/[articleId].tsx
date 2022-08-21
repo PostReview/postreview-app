@@ -5,7 +5,6 @@ import getArticle from "app/queries/getArticle"
 import { Suspense, useEffect, useState } from "react"
 import PopupReview from "app/core/components/PopupReview"
 import hasUserSunmittedReview from "app/queries/hasUserSubmittedReview"
-import { Footer } from "app/core/components/Footer"
 import {
   Accordion,
   AccordionDetails,
@@ -403,7 +402,6 @@ const ArticlePage: BlitzPage = () => {
         <Navbar />
         <ArticleDetails />
       </Suspense>
-      <Footer />
     </div>
   )
 }

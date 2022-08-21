@@ -1,7 +1,6 @@
 import { BlitzPage, Head, useParam, useQuery } from "blitz"
 import Navbar from "app/core/components/Navbar"
 import { Suspense } from "react"
-import { Footer } from "app/core/components/Footer"
 import getReviewAnswersByUserId from "app/queries/getReviewAnswersByUserId"
 import getUserInfo from "app/queries/getUserInfo"
 import { MyReviewsTable } from "app/core/components/MyReviewsTable"
@@ -64,7 +63,6 @@ const PublicProfilePage: BlitzPage = () => {
         <Navbar />
         <PublicProfileDetails />
       </Suspense>
-      <Footer />
     </div>
   )
 }

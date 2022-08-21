@@ -4,7 +4,6 @@ import Layout from "app/core/layouts/Layout"
 
 // Components
 import Navbar from "../core/components/Navbar"
-import { Footer } from "app/core/components/Footer"
 import { Hero } from "app/core/components/Hero"
 import { HowItWorks } from "app/core/components/HowItWorks"
 import ArticleList from "app/core/components/ArticleList"
@@ -117,7 +116,6 @@ const Home: BlitzPage = () => {
           <UserInfo />
         </Suspense>
       </main>
-      <Footer />
     </div>
   )
 }

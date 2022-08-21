@@ -2,7 +2,6 @@ import { useRouter, BlitzPage, invoke, useMutation, Image, Link, Routes } from "
 import Layout from "app/core/layouts/Layout"
 import { Suspense, useEffect, useState } from "react"
 import Navbar from "app/core/components/Navbar"
-import { Footer } from "app/core/components/Footer"
 import { Formik } from "formik"
 import GoogleButton from "app/core/components/GoogleButton"
 import getUserInfo from "app/queries/getUserInfo"
@@ -24,7 +23,7 @@ const SignupPage: BlitzPage = () => {
   // handle darkmode
   const [isDark, setIsDark] = useState(false)
   useEffect(() => {
-    const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+    const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)")
     setIsDark(mediaQuery.matches)
   }, [])
 
@@ -42,7 +41,9 @@ const SignupPage: BlitzPage = () => {
             height={200}
           />
         </div>
-        <h1 className="mt-0 text-center text-4xl font-bold my-4 text-gray-darkest dark:text-white">Join PostReview</h1>
+        <h1 className="mt-0 text-center text-4xl font-bold my-4 text-gray-darkest dark:text-white">
+          Join PostReview
+        </h1>
         <div className="flex flex-col items-center py-6 px-10 bg-gray-light dark:bg-gray-dark">
           <Formik
             initialValues={{ email: "", password: "", handle: "" }}
@@ -108,7 +109,10 @@ const SignupPage: BlitzPage = () => {
                   value={values.email}
                   className="p-2 w-80 bg-black text-white focus:outline-green/[.50]"
                 />
-                <label htmlFor="handle" className="mt-4 font-semibold text-gray-darkest dark:text-white">
+                <label
+                  htmlFor="handle"
+                  className="mt-4 font-semibold text-gray-darkest dark:text-white"
+                >
                   Handle{" "}
                   <span className="text-xs inline font-normal text-red">
                     {errors.handle && touched.handle && " - " + errors.handle}
@@ -127,7 +131,10 @@ const SignupPage: BlitzPage = () => {
                     className="p-2 w-72 bg-black text-white focus:outline-green/[.50]"
                   />
                 </div>
-                <label htmlFor="password" className="mt-4 font-semibold text-gray-darkest dark:text-white">
+                <label
+                  htmlFor="password"
+                  className="mt-4 font-semibold text-gray-darkest dark:text-white"
+                >
                   Password{" "}
                   <div className="text-xs inline font-normal text-red">
                     {errors.password && touched.password && " - " + errors.password}
@@ -142,7 +149,11 @@ const SignupPage: BlitzPage = () => {
                     value={values.password}
                     className="w-80 p-2 bg-black text-white focus:outline-green/[.50]"
                   />
-                  <button type="button" onClick={togglePasswordHidden} className="text-white text-2xl absolute inline right-2 top-2">
+                  <button
+                    type="button"
+                    onClick={togglePasswordHidden}
+                    className="text-white text-2xl absolute inline right-2 top-2"
+                  >
                     {isPasswordHidden ? <BsEyeSlash /> : <BsEye />}
                   </button>
                 </div>
@@ -157,13 +168,13 @@ const SignupPage: BlitzPage = () => {
           <div className="my-4 text-gray-darkest dark:text-white">
             Already have an account?{" "}
             <Link href={Routes.LoginPage()}>
-              <a className="text-sm text-center underline italic text-gray-dark dark:text-white/70">Log in</a>
+              <a className="text-sm text-center underline italic text-gray-dark dark:text-white/70">
+                Log in
+              </a>
             </Link>
           </div>
-
         </div>
       </main>
-      <Footer />
     </div>
   )
 }

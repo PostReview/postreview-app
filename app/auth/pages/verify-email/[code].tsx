@@ -2,7 +2,6 @@ import { BlitzPage, Router, useMutation, useParam, useRouterQuery } from "blitz"
 import Layout from "app/core/layouts/Layout"
 import { Suspense, useEffect, useState } from "react"
 import Navbar from "app/core/components/Navbar"
-import { Footer } from "app/core/components/Footer"
 import verifyEmail from "app/auth/mutations/verifyEmail"
 
 const VerifyEmailPage: BlitzPage = () => {
@@ -33,7 +32,9 @@ const VerifyEmailPage: BlitzPage = () => {
         <Navbar />
       </Suspense>
       <main className="flex-grow flex flex-col items-center justify-center">
-        <h1 className="text-2xl font-bold my-4 text-gray-darkest dark:text-white">Verifying email...</h1>
+        <h1 className="text-2xl font-bold my-4 text-gray-darkest dark:text-white">
+          Verifying email...
+        </h1>
 
         {error && (
           <div className="flex flex-col items-center bg-gray-medium py-6 px-12 text-gray-darkest dark:text-white">
@@ -41,7 +42,6 @@ const VerifyEmailPage: BlitzPage = () => {
           </div>
         )}
       </main>
-      <Footer />
     </div>
   )
 }
