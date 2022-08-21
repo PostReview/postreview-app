@@ -12,7 +12,7 @@ export default function Navbar() {
   return (
     <>
       <nav className="bg-gradient-to-r from-gray-darkest to-gray-dark flex flex-row items-center h-16 fixed z-50 w-full">
-        <div className="object-none h-20 w-20 p-2" />
+        <div className="object-none h-20 w-16 p-2" />
         <div id="search-bar-container" className="flex flex-grow justify-center">
           {session?.userId ? (
             <EnterDOI session={session} />
