@@ -96,7 +96,7 @@ const UserInfo = () => {
         <Hero />
         <HowItWorks />
         <button
-          className="mb-12 px-4 py-4 text-xl text-green rounded-lg bg-black/50 hover:bg-gray-darkest dark:bg-gray-medium dark:hover:bg-black/40"
+          className="my-12 px-4 py-4 text-xl text-green rounded-lg bg-black/50 hover:bg-gray-darkest dark:bg-gray-medium dark:hover:bg-black/40"
           onClick={() => router.push("signup")}
         >
           Sign up now
