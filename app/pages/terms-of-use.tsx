@@ -46,6 +46,15 @@ const AccordionDetails = styled(MuiAccordionDetails)(({ theme }) => ({
 }))
 
 const TermsofUsePage: BlitzPage = () => {
+  return (
+    <div className="flex flex-col min-h-screen bg-white dark:bg-gray-darkest">
+      <Suspense fallback="Loading...">
+        <Navbar />
+      </Suspense>
+      <main className="flex-grow flex flex-col items-center bg-gray-light dark:bg-gray-darkest">
+        <div className="py-4 w-full text-3xl font-bold bg-gray-dark dark:bg-black/30">
+          <h1 className="text-center text-black dark:text-white">Terms of Use</h1>
+        </div>
 
 TermsofUsePage.getLayout = (page) => <Layout title="Code of Conduct | PostReview">{page}</Layout>
 
