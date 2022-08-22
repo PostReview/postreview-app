@@ -42,10 +42,10 @@ export const HowItWorks = () => {
           />
         </div>
         <div>
-          <div className="mb-1 ml-4 md:ml-24 text-3xl font-bold text-gray-darkest dark:text-white">
+          <div className="mb-1 ml-4 sm:ml-24 text-3xl font-bold text-gray-darkest dark:text-white">
             2. Review
           </div>
-          <div className="mb-3 mx-4 md:ml-24 text-xl text-gray-darkest dark:text-white">
+          <div className="mb-3 mx-4 sm:ml-24 text-xl text-gray-darkest dark:text-white">
             Tell us what you think by inputting your review
           </div>
         </div>
@@ -56,10 +56,10 @@ export const HowItWorks = () => {
           />
         </div>
         <div>
-          <div className="ml-4 mb-1 md:ml-32 text-3xl font-bold text-gray-darkest dark:text-white">
+          <div className="ml-4 mb-1 sm:ml-32 text-3xl font-bold text-gray-darkest dark:text-white">
             3. Submit
           </div>
-          <div className="mx-4  md:ml-32 text-xl text-gray-darkest dark:text-white">
+          <div className="mx-4  sm:ml-32 text-xl text-gray-darkest dark:text-white">
             Click submit and we will add your review instantly
           </div>
         </div>
