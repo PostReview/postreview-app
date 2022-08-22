@@ -70,15 +70,15 @@ const TermsofUsePage: BlitzPage = () => {
             </AccordionSummary>
             <AccordionDetails className="bg-gray-medium dark:bg-gray-dark text-black/80 dark:text-white/80">
               <p className="mx-2 text-black/90 dark:text-white">
-                PostReview Team ("we" or "us") provides an online reviewing where people can post
-                reviews to scholarly outputs. The platform is available at{" "}
+                PostReview Team (&quot;we&quot; or &quot;us&quot;) provides an online reviewing
+                where people can post reviews to scholarly outputs. The platform is available at{" "}
                 <a
                   className="font-thin underline text-green hover:text-green-dark"
                   href="https://postreview.org"
                 >
                   https://postreview.org/
                 </a>{" "}
-                (thereafter referred to as "PostReview").
+                (thereafter referred to as &quot;PostReview&quot;).
               </p>
             </AccordionDetails>
           </Accordion>
@@ -88,16 +88,19 @@ const TermsofUsePage: BlitzPage = () => {
             </AccordionSummary>
             <AccordionDetails className="bg-gray-medium dark:bg-gray-dark text-black/80 dark:text-white/80">
               <ul className="mx-4 my-4 list-decimal">
-                <li className="m-2">"User": A natural person that registers and uses PostReview</li>
                 <li className="m-2">
-                  "User Account" or "Account": The personal account registered to PostReview
+                  &quot;User&quot;: A natural person that registers and uses PostReview
                 </li>
                 <li className="m-2">
-                  "Content": Any type of information that a user uploads to PostReview
+                  &quot;User Account&quot; or &quot;Account&quot;: The personal account registered
+                  to PostReview
                 </li>
                 <li className="m-2">
-                  "Review": An evaluation of a scholarly output posted by a user. They take forms of
-                  numeric ratings or verbal comments.
+                  &quot;Content&quot;: Any type of information that a user uploads to PostReview
+                </li>
+                <li className="m-2">
+                  &quot;Review&quot;: An evaluation of a scholarly output posted by a user. They
+                  take forms of numeric ratings or verbal comments.
                 </li>
               </ul>
             </AccordionDetails>
@@ -130,10 +133,11 @@ const TermsofUsePage: BlitzPage = () => {
                   objectionable.
                 </li>
                 <li className="m-2">
-                  By clicking the "Sign up" button, the user is asking to create an account on
-                  PostReview. Then, we will send an email with an offer to open the account and to
-                  confirm the user's email address. Once the user clicks the email to confirm their
-                  email, the user will accept the offer and concludes the contract with us.
+                  By clicking the &quot;Sign up&quot; button, the user is asking to create an
+                  account on PostReview. Then, we will send an email with an offer to open the
+                  account and to confirm the user&apos;s email address. Once the user clicks the
+                  email to confirm their email, the user will accept the offer and concludes the
+                  contract with us.
                 </li>
                 <li className="m-2">
                   We ask the user to keep their account information, especially the password, secure
@@ -156,12 +160,13 @@ const TermsofUsePage: BlitzPage = () => {
               <ul className="mx-4 my-4 list-decimal">
                 <li className="m-2">
                   The PostReview platform provides basic functions to all users with a user account.
-                  The user can search scholarly articles, browse other users' reviews, and submit
-                  their own reviews. We make no guarantees about the availability of PostReview.
+                  The user can search scholarly articles, browse other users&apos; reviews, and
+                  submit their own reviews. We make no guarantees about the availability of
+                  PostReview.
                 </li>
                 <li className="m-2">
                   The user ensures complies to the basic rules of PostReview at any time. On
-                  PostReview, it's forbidden:
+                  PostReview, it&apos;s forbidden:
                 </li>
                 <ul className="mx-8 my-4 font-thin list-disc">
                   <li className="m-2">
@@ -222,10 +227,10 @@ const TermsofUsePage: BlitzPage = () => {
             <AccordionDetails className="bg-gray-medium dark:bg-gray-dark text-black/80 dark:text-white/80">
               <ul className="mx-4 my-4 list-decimal">
                 <li className="m-2">
-                  The term of this agreement commences with the user's registration. Both parties
-                  can terminate the agreement with effect at the end of each month by sending a
-                  termination notice, in written form, such as email. The user can delete their
-                  account at any time.
+                  The term of this agreement commences with the user&apos;s registration. Both
+                  parties can terminate the agreement with effect at the end of each month by
+                  sending a termination notice, in written form, such as email. The user can delete
+                  their account at any time.
                 </li>
                 <li className="m-2">
                   The right of both parties to terminate this agreement for good cause shall remain
