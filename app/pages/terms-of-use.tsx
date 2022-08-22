@@ -45,3 +45,8 @@ const AccordionDetails = styled(MuiAccordionDetails)(({ theme }) => ({
   borderTop: "1px solid rgba(0, 0, 0, .125)",
 }))
 
+const TermsofUsePage: BlitzPage = () => {
+
+TermsofUsePage.getLayout = (page) => <Layout title="Code of Conduct | PostReview">{page}</Layout>
+
+export default TermsofUsePage
