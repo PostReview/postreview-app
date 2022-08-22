@@ -55,6 +55,14 @@ const TermsofUsePage: BlitzPage = () => {
         <div className="py-4 w-full text-3xl font-bold bg-gray-dark dark:bg-black/30">
           <h1 className="text-center text-black dark:text-white">Terms of Use</h1>
         </div>
+        <div id="terms-of-use-image" className="py-4">
+          <Image
+            src={termsOfUse}
+            alt="An image of a paper with a checkmark on the bottom right"
+            width={200}
+            height={200}
+          />
+        </div>
 
 TermsofUsePage.getLayout = (page) => <Layout title="Code of Conduct | PostReview">{page}</Layout>
 
