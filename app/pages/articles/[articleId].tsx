@@ -32,6 +32,7 @@ const ArticleDetails = (props) => {
   const [article] = useQuery(getArticle, articleId)
   // Article title
   const [currentTitle, setCurrentTitle] = useState(article.title)
+  const publishedYear = "`(${publishedYear})`"
 
   const [isReviewDialogOpen, setIsReviewDialogOpen] = useState(false)
   const [isConfirmDialogOpen, setIsConfirmDialogOpen] = useState(false)
@@ -107,7 +108,7 @@ const ArticleDetails = (props) => {
         </div>
         <div className="article__author text-base text-center m-2 max-w-2xl text-gray-dark dark:text-gray-light">
           <FaCrown className="inline m-2" />
-          {article.authorString}
+          {article.authorString} ({article.publishedYear})
         </div>
         <div className="article__barcode text-base underline max-w-2xl text-green">
           <a href={`https://dx.doi.org/${article.doi}`} rel="noreferrer" target="_blank">

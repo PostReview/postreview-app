@@ -8,6 +8,7 @@ export default function ArticleSample() {
   const ratingsCount = 14
   const authorString = "Author, A."
   const doi = "10.9999/xyz/abc123"
+  const publishedYearString = "`(${publishedYear})`"
 
   return (
     <div
@@ -23,7 +24,7 @@ export default function ArticleSample() {
           <div>
             <div className="article__author ml-2 text-gray-700">
               <FaUser className="inline mr-2" />
-              {authorString}
+              {authorString}({publishedYearString})
             </div>
             <div className="article__DOI ml-2 text-gray-700">
               <a rel="noreferrer" target="_blank">
