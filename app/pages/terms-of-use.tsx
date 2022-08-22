@@ -63,6 +63,9 @@ const TermsofUsePage: BlitzPage = () => {
             height={200}
           />
         </div>
+        <div id="terms-of-use-content" className="max-w-3xl">
+        </div>
+        </div>
 
 TermsofUsePage.getLayout = (page) => <Layout title="Code of Conduct | PostReview">{page}</Layout>
 
