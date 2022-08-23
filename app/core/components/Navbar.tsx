@@ -4,7 +4,8 @@ import EnterDOI from "./EnterDOI"
 import { useRouter, useSession, useRouterQuery } from "blitz"
 import { DrawerMenu } from "./DrawerMenu"
 
-export default function Navbar() {
+export default function Navbar(props) {
+  const { hideSearch } = props
   const session = useSession()
   const router = useRouter()
   const isAtRoot = router.pathname === "/"
@@ -15,7 +16,7 @@ export default function Navbar() {
       <nav className="bg-gradient-to-r from-gray-darkest to-gray-dark flex flex-row items-center h-16 fixed z-50 w-full">
         <div className="w-16" />
         <div id="search-bar-container" className="flex flex-grow justify-center">
-          {session?.userId ? (
+          {hideSearch ? undefined : session?.userId ? (
             <EnterDOI session={session} />
           ) : (
             (!isAtRoot || query.search) && <EnterDOI session={session} />
