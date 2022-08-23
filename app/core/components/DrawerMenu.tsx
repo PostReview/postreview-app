@@ -95,7 +95,7 @@ export const DrawerMenu = () => {
                 <ListItemButton sx={{ ...hoverSx }} onClick={() => router.push("/terms-of-use")}>
                   <ListItemText primary={"Terms of use"} />
                 </ListItemButton>
-                <ListItemButton sx={{ ...hoverSx }}>
+                <ListItemButton sx={{ ...hoverSx }} onClick={() => router.push("/privacy-policy")}>
                   <ListItemText primary={"Privacy policy"} />
                 </ListItemButton>
                 <ListItemButton sx={{ ...hoverSx }} onClick={() => router.push("/code-of-conduct")}>
