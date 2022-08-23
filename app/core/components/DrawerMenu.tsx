@@ -88,7 +88,7 @@ export const DrawerMenu = () => {
                 <Typography>Policies</Typography>
               </AccordionSummary>
               <AccordionDetails>
-                <ListItemButton sx={{ ...hoverSx }}>
+                <ListItemButton sx={{ ...hoverSx }} onClick={() => router.push("terms-of-use")}>
                   <ListItemText primary={"Terms of use"} />
                 </ListItemButton>
                 <ListItemButton sx={{ ...hoverSx }}>
