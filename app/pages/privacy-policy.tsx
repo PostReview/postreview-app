@@ -58,6 +58,14 @@ const PrivacyPolicyPage: BlitzPage = () => {
             Last updated: August 22, 2022
           </div>
         </div>
+        <div id="terms-of-use-image" className="py-4">
+          <Image
+            src={privacyPolicy}
+            alt="A picture of a window with an icon of a user and a padlock connected by an encrypted password"
+            width={200}
+            height={200}
+          />
+        </div>
 PrivacyPolicyPage.getLayout = (page) => <Layout title="Privacy Policy | PostReview">{page}</Layout>
 
 export default PrivacyPolicyPage
