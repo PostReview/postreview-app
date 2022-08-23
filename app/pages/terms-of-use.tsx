@@ -357,6 +357,6 @@ const TermsofUsePage: BlitzPage = () => {
   )
 }
 
-TermsofUsePage.getLayout = (page) => <Layout title="Code of Conduct | PostReview">{page}</Layout>
+TermsofUsePage.getLayout = (page) => <Layout title="Terms of Use | PostReview">{page}</Layout>
 
 export default TermsofUsePage
