@@ -45,6 +45,19 @@ const AccordionDetails = styled(MuiAccordionDetails)(({ theme }) => ({
   borderTop: "1px solid rgba(0, 0, 0, .125)",
 }))
 
+const accordionStyle = {
+  "@media (prefers-color-scheme: light)": {
+    background: "#545454",
+    color: "#000000",
+    fontWeight: "bold",
+  },
+  "@media (prefers-color-scheme: dark)": {
+    background: alpha("#000000", 0.3),
+    color: "#ffffff",
+    fontWeight: "bold",
+  },
+}
+
 const TermsofUsePage: BlitzPage = () => {
   return (
     <div className="flex flex-col min-h-screen bg-white dark:bg-gray-darkest">
