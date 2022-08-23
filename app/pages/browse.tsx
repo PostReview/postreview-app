@@ -16,7 +16,7 @@ const Browse = () => {
         </h1>
         <div
           id="search-bar-container"
-          className="absolute flex flex-grow mt-60 mb-16 px-4 sm:px-2 md:px-80 w-full justify-center overflow-y-clip"
+          className="absolute flex flex-grow mt-60 mb-16 sm:w-3/5 w-full justify-center overflow-y-clip"
         >
           {session?.userId ? (
             <EnterDOI session={session} />
