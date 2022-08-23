@@ -26,6 +26,9 @@ export const ReviewQuestion = (props) => {
   )
   const [currentAnswer, setCurrentAnswer] = useState(defaultCurrentAnswer)
 
+  // Track the state of the close button
+  const [xMarkClicked, setXMarkClicked] = useState(false)
+
   return (
     <div
       className="
@@ -34,10 +37,10 @@ export const ReviewQuestion = (props) => {
       m-3
       px-6
       py-2
-      rounded-full"
+      rounded-full relative"
     >
-      <div className="text-center font-bold">{question.questionCategory}</div>
-      <div id="question-header" className="text-center mb-2">
+      <div className="font-bold">{question.questionCategory}</div>
+      <div id="question-header" className="mb-2">
         {question.questionText}
       </div>
       <div
@@ -52,19 +55,23 @@ export const ReviewQuestion = (props) => {
            p-2"
         ></div>
         <div id="rating-container" className="flex flex-col">
-          <Rating
-            size="large"
-            name="customized-10"
-            max={question.maxValue}
-            onChange={(event, newValue) => {
-              // If the star is blank, do nothing
-              if (newValue == null) return undefined
-              setCurrentAnswer({ ...currentAnswer, response: newValue })
-              handleRatingChange(question.questionId, newValue)
-              setIsChangeMade(true)
-            }}
-            value={currentAnswer ? currentAnswer?.response : 0}
-          />
+          {!xMarkClicked ? (
+            <Rating
+              size="large"
+              name="customized-10"
+              max={question.maxValue}
+              onChange={(event, newValue) => {
+                // If the star is blank, do nothing
+                if (newValue == null) return undefined
+                setCurrentAnswer({ ...currentAnswer, response: newValue })
+                handleRatingChange(question.questionId, newValue)
+                setIsChangeMade(true)
+              }}
+              value={currentAnswer ? currentAnswer?.response : 0}
+            />
+          ) : (
+            <span className="italic self-start">Not rated</span>
+          )}
         </div>
         <div
           id="max-label"
@@ -72,6 +79,17 @@ export const ReviewQuestion = (props) => {
            w-1/3
            p-2"
         ></div>
+        <div
+          id="delete-button"
+          className="absolute text-3xl top-0 right-6 hover:cursor-pointer"
+          onClick={() => {
+            setXMarkClicked(!xMarkClicked)
+            setCurrentAnswer({ ...currentAnswer, response: null })
+            handleRatingChange(question.questionId, null)
+          }}
+        >
+          {xMarkClicked ? <span className="text-base underline">Undo</span> : "×"}
+        </div>
       </div>
     </div>
   )

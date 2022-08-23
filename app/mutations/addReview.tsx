@@ -14,7 +14,7 @@ const AddReview = z.array(
     userId: z.number(),
     articleId: z.string(),
     questionId: z.number(),
-    response: z.number(),
+    response: z.number().nullable(),
     isAnonymous: z.boolean(),
   })
 )
@@ -48,6 +48,9 @@ export default async function addReview(input: z.infer<typeof AddReview>, ctx: C
       })
     )
   )
+
+  // Delete any null responses
+  const deleted = await db.reviewAnswers.deleteMany({ where: { response: null } })
 
   // Update article metadata on Algolia
   // Get the new scores for the article
