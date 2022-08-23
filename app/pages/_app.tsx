@@ -11,17 +11,25 @@ import {
 // Load algolia theme first then customize it in the css file
 import "@algolia/autocomplete-theme-classic"
 import "app/core/styles/index.css"
+import { ThemeProvider, createTheme } from "@mui/material/styles"
 
 export default function App({ Component, pageProps }: AppProps) {
   const getLayout = Component.getLayout || ((page) => page)
-
+  // Specify typeface fonts for the MUI components
+  const theme = createTheme({
+    typography: {
+      fontFamily: ["Fira Sans", "Roboto", '"Helvetica Neue"', "Arial", "sans-serif"].join(","),
+    },
+  })
   return (
-    <ErrorBoundary
-      FallbackComponent={RootErrorFallback}
-      onReset={useQueryErrorResetBoundary().reset}
-    >
-      {getLayout(<Component {...pageProps} />)}
-    </ErrorBoundary>
+    <ThemeProvider theme={theme}>
+      <ErrorBoundary
+        FallbackComponent={RootErrorFallback}
+        onReset={useQueryErrorResetBoundary().reset}
+      >
+        {getLayout(<Component {...pageProps} />)}
+      </ErrorBoundary>
+    </ThemeProvider>
   )
 }
 
