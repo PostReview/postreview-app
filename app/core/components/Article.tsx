@@ -1,150 +1,106 @@
-import React from "react"
-import { FaBook, FaUser } from "react-icons/fa"
+import React, { useEffect, useState } from "react"
+import { FaBarcode, FaCrown, FaUsers } from "react-icons/fa"
 import { Link } from "next/link"
 import { Rating } from "@mui/material"
-import Chip from "@mui/material/Chip"
 import StarIcon from "@mui/icons-material/Star"
-import { useQuery } from "blitz"
-import getArticleScoresById from "app/queries/getArticleScoresById"
-import getQuestionCategories from "app/queries/getQuestionCategories"
-import getUsersWithReviewsByArticleId from "app/queries/getUsersWithReviewsByArticleId"
 
 export default function Article(props) {
-  const { id, authorString, doi, title } = props
+  const {
+    id,
+    authorString,
+    doi,
+    title,
+    publishedYear,
+    ratingTotal,
+    ratingRQ,
+    ratingDesign,
+    ratingFindings,
+    ratingInterpretation,
+    ratingSignificance,
+    ratingsCount,
+    questionCategory,
+  } = props
+
+  var selectedRating
+  switch (questionCategory) {
+    case "Overall":
+      selectedRating = ratingTotal
+      break
+    case "Research Question":
+      selectedRating = ratingRQ
+      break
+    case "Design":
+      selectedRating = ratingDesign
+      break
+    case "Findings":
+      selectedRating = ratingFindings
+      break
+    case "Interpretation":
+      selectedRating = ratingInterpretation
+      break
+    case "Significance":
+      selectedRating = ratingSignificance
+      break
+  }
 
   const ratingScaleMax = 5
+  const publishedYearString = `(${publishedYear})`
 
-  const [articleScores] = useQuery(getArticleScoresById, {
-    currentArticleId: id,
-  })
-
-  const [questionCategories] = useQuery(getQuestionCategories, undefined)
-
-  const [usersWithReview] = useQuery(getUsersWithReviewsByArticleId, {
-    currentArticleId: id,
-  })
-  const ratingsCount = usersWithReview.length
-
-  const totalRating = articleScores.reduce((prev, current) => {
-    return prev + current._avg.response! / articleScores.length
-  }, 0)
+  // handle darkmode
+  const [isDark, setIsDark] = useState(false)
+  useEffect(() => {
+    const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)")
+    setIsDark(mediaQuery.matches)
+  }, [])
+  const smallStarColor = isDark ? "#d9d9d9" : "#737373"
 
   return (
     <div
-      className="bg-gray-50 m-3 p-4 border-gray-600 border-2
-    flex flex-col w-full max-w-5xl"
+      className="mx-6 my-2 p-2 bg-transparent border-gray-medium border-2
+    flex flex-col items min-w-fit max-w-3xl text-white"
     >
-      <div id="article-header" className="flex md:flex-row flex-col">
-        <div id="chip-container" className="self-center">
-          <Chip label={ratingsCount} className="w-8" />
+      <div id="title-star-container" className="w-full flex md:flex-row flex-row justify-between">
+        <div id="title" className="font-semibold inline mr-3">
+          <Link href={`/articles/${id}`}>
+            {title.length < 70 ? title : title.slice(0, 70) + "..."}
+          </Link>
         </div>
-        <div id="article-metadata" className="w-full flex md:flex-row flex-col  justify-between">
-          <div id="title" className="font-semibold inline ml-3">
-            <Link href={`/articles/${id}`}>{title}</Link>
-          </div>
-          <div>
-            <div className="article__author ml-2 text-gray-700">
-              <FaUser className="inline mr-2" />
-              {authorString}
-            </div>
-            <div className="article__DOI ml-2 text-violet-600 whitespace-nowrap">
-              <a href={`https://dx.doi.org/${doi}`} rel="noreferrer" target="_blank">
-                <FaBook className="inline mr-2" />
-                {doi}
-              </a>
-            </div>
+        {/* Show the rating and the star */}
+        <div id="with-rating-total">
+          <div className="flex flex-row items-end">
+            <div className="text-5xl font-bold text-white w-16">{selectedRating?.toFixed(1)}</div>
+            <Rating
+              readOnly
+              value={selectedRating / ratingScaleMax}
+              precision={0.1}
+              max={1}
+              sx={{
+                fontSize: 70,
+                color: questionCategory === "Overall" ? "#94ec01" : smallStarColor,
+              }}
+              emptyIcon={<StarIcon style={{ opacity: 0.4, color: "#737373" }} fontSize="inherit" />}
+            />
           </div>
         </div>
       </div>
-      <div
-        id="ratings-container"
-        className="flex md:flex-row flex-col items-center justify-evenly text-xs mx-6"
-      >
-        <div id="total" className="px-3 md:border-r-2 md:border-b-0 border-b-2 text-center">
-          <div id="total-rating">
-            {ratingsCount === 0 ? ( // When no ratings, show a placeholder
-              <div className="flex items-center justify-center">
-                <div className="absolute text-gray-500 z-50">N/A</div>
-                <Rating
-                  readOnly
-                  value={0}
-                  precision={0.1}
-                  max={1}
-                  sx={{
-                    fontSize: 100,
-                    color: "#FF5733",
-                  }}
-                  emptyIcon={<StarIcon style={{ opacity: 0.2 }} fontSize="inherit" />}
-                />
-              </div>
-            ) : (
-              <div className="flex items-center justify-center">
-                <div className="absolute text-white font-semibold text-base z-50">
-                  {totalRating.toFixed(1)}
-                </div>
-                <Rating
-                  readOnly
-                  value={totalRating / ratingScaleMax}
-                  precision={0.1}
-                  max={1}
-                  sx={{
-                    fontSize: 100,
-                    color: "#FF5733",
-                  }}
-                  emptyIcon={<StarIcon style={{ opacity: 0.55 }} fontSize="inherit" />}
-                />
-              </div>
-            )}
-          </div>
-          Total
+      <div id="bottom-container" className="flex flex-row items-end justify-between">
+        <div id="g-ratings-container" className="text-green-dark text-[0.8rem] whitespace-nowrap">
+          <FaUsers className="inline mr-2 text-gray-light" />
+          {ratingsCount} global ratings
         </div>
-        {questionCategories.map((category) =>
-          articleScores.find((score) => score.questionId === category.questionId)?._avg
-            .response! ? (
-            <div key={category.questionId} className="text-center">
-              <div className="flex items-center justify-center">
-                <div className="absolute text-white font-semibold text-base z-50">
-                  {articleScores
-                    .find((score) => score.questionId === category.questionId)
-                    ?._avg.response!.toFixed(1)}
-                </div>
-                <Rating
-                  readOnly
-                  value={
-                    articleScores.find((score) => score.questionId === category.questionId)?._avg
-                      .response! / ratingScaleMax
-                  }
-                  precision={0.1}
-                  max={1}
-                  sx={{
-                    fontSize: 100,
-                    color: "#FFC300",
-                  }}
-                  emptyIcon={<StarIcon style={{ opacity: 0.55 }} fontSize="inherit" />}
-                />
-              </div>
-              <div>{category.questionCategory}</div>
-            </div>
-          ) : (
-            <div key={category.questionId} className="text-center">
-              <div className="flex items-center justify-center">
-                <div className="absolute text-gray-500 z-50">N/A</div>
-                <Rating
-                  readOnly
-                  value={0}
-                  precision={0.1}
-                  max={1}
-                  sx={{
-                    fontSize: 100,
-                    color: "#FF5733",
-                  }}
-                  emptyIcon={<StarIcon style={{ opacity: 0.2 }} fontSize="inherit" />}
-                />
-              </div>
-              <div>{category.questionCategory}</div>
-            </div>
-          )
-        )}
+        <div id="author-doi-container" className="flex flex-col items-end">
+          <div className="text-[0.9rem] text-gray-light">
+            <FaCrown className="inline mr-2" />
+            {authorString.length < 20 ? authorString : authorString.slice(0, 20) + "..."}{" "}
+            {publishedYear && publishedYearString}
+          </div>
+          <div className="text-[0.8rem] text-green-dark/60 underline whitespace-nowrap">
+            <a href={`https://dx.doi.org/${doi}`} rel="noreferrer" target="_blank">
+              <FaBarcode className="inline mr-2 text-green-dark/60" />
+              {doi}
+            </a>
+          </div>
+        </div>
       </div>
     </div>
   )

@@ -2,7 +2,6 @@ import { BlitzPage, Router, useMutation, useParam, useRouterQuery } from "blitz"
 import Layout from "app/core/layouts/Layout"
 import { Suspense, useEffect, useState } from "react"
 import Navbar from "app/core/components/Navbar"
-import { Footer } from "app/core/components/Footer"
 import verifyEmail from "app/auth/mutations/verifyEmail"
 
 const VerifyEmailPage: BlitzPage = () => {
@@ -28,20 +27,21 @@ const VerifyEmailPage: BlitzPage = () => {
   }, [code, userId, setError, verifyEmailMutation])
 
   return (
-    <div className="flex flex-col min-h-screen">
+    <div className="flex flex-col min-h-screen bg-white dark:bg-gray-darkest">
       <Suspense fallback="Loading...">
         <Navbar />
       </Suspense>
       <main className="flex-grow flex flex-col items-center justify-center">
-        <h1 className="text-2xl font-bold my-4">Verifying email...</h1>
+        <h1 className="text-2xl font-bold my-4 text-gray-darkest dark:text-white">
+          Verifying email...
+        </h1>
 
         {error && (
-          <div className="flex flex-col items-center bg-slate-200 py-6 px-12">
+          <div className="flex flex-col items-center bg-gray-medium py-6 px-12 text-gray-darkest dark:text-white">
             An error happened
           </div>
         )}
       </main>
-      <Footer />
     </div>
   )
 }

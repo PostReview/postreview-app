@@ -1,52 +1,65 @@
 import { Image } from "blitz"
-import articleScreenshot from "public/steps-screenshots/article.png"
-import popupReviewScreenshot from "public/steps-screenshots/popup-review.gif"
-import reviewAnswersScreenshot from "public/steps-screenshots/review-answers.png"
-import enterTitleScreenshot from "public/steps-screenshots/enter-title.png"
+import postReviewLogoDarkMode from "public/logo-darkmode.png"
+import postReviewLogoLightMode from "public/logo-lightmode.png"
+import reviewIconDarkMode from "public/review-icon-darkmode.png"
+import reviewIconLightMode from "public/review-icon-lightmode.png"
+import submitIconDarkMode from "public/submit-icon-darkmode.png"
+import submitIconLightMode from "public/submit-icon-lightmode.png"
+import { useEffect, useState } from "react"
 
 export const HowItWorks = () => {
+  const [isDark, setIsDark] = useState(false)
+  useEffect(() => {
+    const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)")
+    setIsDark(mediaQuery.matches)
+  }, [])
+
   return (
-    <div
-      id="how-it-works-container"
-      className="flex flex-col items-center min-h-screen justify-evenly my-12 max-w-4xl m-12 mb-24 space-y-20"
-    >
-      <div className="text-4xl font-bold">How it works</div>
-      <div>
-        <div className="text-center mb-6 text-2xl font-bold ">Enter the title of the paper</div>
-        <div className="max-w-xl">
-          <Image
-            src={enterTitleScreenshot}
-            alt="A card showing an article with ratings across users"
-          />
-        </div>
+    <div id="how-it-works-container" className="flex flex-col min-h-screen p-8 max-w-4xl">
+      <div className="my-6 text-center text-4xl font-bold text-gray-darkest dark:text-white">
+        How PostReview works
       </div>
-      <div>
-        <div className="text-center mb-6 text-2xl font-bold">Rate the paper</div>
-        <div className="max-w-xl">
-          <Image
-            src={popupReviewScreenshot}
-            alt="A screen recording where the user is choosing ratings for the article"
-          />
-        </div>
+      <div className="text-3xl text-center font-semibold text-green">
+        Share what you think in 3 simple steps
       </div>
-      <div>
-        <div className="text-center mb-6 text-2xl font-bold">
-          You can browse others&apos; ratings
-        </div>
-        <div className="max-w-full">
+      <div id="steps-container" className="flex flex-col items-center">
+        <div id="step-1" className="mt-16 mb-2 w-52">
           <Image
-            src={reviewAnswersScreenshot}
-            alt="A card showing ratings for the article by one user"
+            src={isDark ? postReviewLogoDarkMode : postReviewLogoLightMode}
+            alt="An image of a magnifying glass wearing a fedora hat"
           />
+          <div className="mb-1 text-3xl font-bold text-gray-darkest dark:text-white">1. Search</div>
+          <div className="mb-3 text-xl text-gray-darkest dark:text-white">
+            Search an article you want to review
+          </div>
         </div>
-      </div>
-      <div>
-        <div className="text-center mb-6 text-2xl font-bold">Everyone&apos;s ratings, combined</div>
-        <div className="self-center">
+        <div id="step-2" className="mt-24 mb-2 w-52">
           <Image
-            src={articleScreenshot}
-            alt="A card showing an article with ratings across users"
+            src={isDark ? reviewIconDarkMode : reviewIconLightMode}
+            alt="A picture of a hand pointing at the middle of five stars"
           />
+          <div>
+            <div className="mb-1 text-3xl font-bold text-gray-darkest dark:text-white">
+              2. Review
+            </div>
+            <div className="mb-3 text-xl text-gray-darkest dark:text-white">
+              Tell us what you think by inputting your review
+            </div>
+          </div>
+        </div>
+        <div id="step-3" className="mt-24 mb-2 w-52">
+          <Image
+            src={isDark ? submitIconDarkMode : submitIconLightMode}
+            alt="A picture of a rectangle button. Inside the rectangle button is an arrow pointer in between a line on the left and two dots on the right"
+          />
+          <div>
+            <div className="mb-1 text-3xl font-bold text-gray-darkest dark:text-white">
+              3. Submit
+            </div>
+            <div className="mb-3 text-xl text-gray-darkest dark:text-white">
+              Click submit and we will add your review instantly
+            </div>
+          </div>
         </div>
       </div>
     </div>

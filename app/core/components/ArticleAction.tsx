@@ -10,16 +10,15 @@ import {
   Menu,
   MenuItem,
 } from "@mui/material"
-import { invoke, useRouter } from "blitz"
+import { invoke, useRouter, useSession } from "blitz"
 import deleteReview from "app/mutations/deleteReview"
 import PopupReview from "app/core/components/PopupReview"
 import changeReviewAnonimity from "app/mutations/changeReivewAnonimity"
 import { MoreHoriz } from "@mui/icons-material"
-import { useCurrentUser } from "../hooks/useCurrentUser"
 
 export const ArticleAction = (props) => {
-  const { article, setMyArticlesWithReview } = props
-  const currentUser = useCurrentUser()
+  const { article } = props
+  const session = useSession()
   const router = useRouter()
   const [anchorEl, setAnchorEl] = useState(null)
 
@@ -58,7 +57,7 @@ export const ArticleAction = (props) => {
   const handleChangeAnonymous = async (article) => {
     const newAnonymity = !article.review[0].isAnonymous
     await invoke(changeReviewAnonimity, {
-      userId: currentUser?.id,
+      userId: session?.userId,
       articleId: article.id,
       isAnonymous: newAnonymity,
     })
@@ -69,7 +68,7 @@ export const ArticleAction = (props) => {
   return (
     <>
       <IconButton onClick={handleClick}>
-        <MoreHoriz />
+        <MoreHoriz className="text-gray-dark dark:text-gray-medium" />
       </IconButton>
       <Menu
         id="action-menu"
@@ -93,6 +92,7 @@ export const ArticleAction = (props) => {
           userHasReview={userHasReview}
           setUserHasReview={setUserHasReview}
           setIsChangeMade={setIsChangeMade}
+          session={session}
         />
       </Dialog>
       <Box>

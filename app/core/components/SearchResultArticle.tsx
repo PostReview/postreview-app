@@ -1,13 +1,11 @@
 const SearchResultArticle = ({ item, components }) => {
   return (
     <>
-      <div className="my-1 mx-1 flex">
-        <div className="mr-2">
-          {components ? <components.Highlight hit={item} attribute="name" /> : item.title}
-        </div>
+      <div className="my-1 mx-1 flex-col">
+        <div className="mr-2">{item.title}</div>
         <div>
-          <p className="text-md font-normal leading-4 text-gray-500 dark:text-gray-400">
-            {item.authors} ({item.publishedYear})
+          <p className="text-xs text-gray-500 dark:text-gray-400">
+            {item?.authors} {item.publishedYear && `(${item.publishedYear})`}
           </p>
         </div>
       </div>

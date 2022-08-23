@@ -26,8 +26,7 @@ export default async function getReviewAnswersByUserId(props) {
   return await db.article.findMany({
     where: {
       review: {
-        some: { userId: currentUserId },
-        none: { isAnonymous: true },
+        some: { userId: currentUserId, isAnonymous: false },
       },
     },
     include: {

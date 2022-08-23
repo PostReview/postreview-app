@@ -1,11 +1,9 @@
 import React from "react"
 import { invoke, useMutation, useRouter } from "blitz"
-import { useCurrentUser } from "app/core/hooks/useCurrentUser"
 import { Autocomplete } from "./Autocomplete"
 import { getAlgoliaResults } from "@algolia/autocomplete-js"
 import algoliasearch from "algoliasearch"
 import SearchResultArticle from "./SearchResultArticle"
-import "@algolia/autocomplete-theme-classic"
 import { cleanCrossRefItem } from "../cleanCrossRefItem"
 import getArticleByDoi from "app/queries/getArticleByDoi"
 import addArticle from "app/mutations/addArticle"
@@ -15,8 +13,8 @@ const searchClient = algoliasearch(
   process.env.ALGOLIA_API_SEARCH_KEY as string
 )
 
-export default function EnterDOI() {
-  const currentUser = useCurrentUser()
+export default function EnterDOI(props) {
+  const { session } = props
   const router = useRouter()
   const [addArticleMutation] = useMutation(addArticle)
 
@@ -28,7 +26,7 @@ export default function EnterDOI() {
 
     // If the article is new, push to our database
     const addedArticle = await invoke(addArticleMutation, {
-      addedById: currentUser?.id,
+      addedById: session?.userId || undefined,
       authorString: newArticle.authors,
       ...newArticle,
     })
@@ -39,7 +37,7 @@ export default function EnterDOI() {
   return (
     <div className="m-1 rounded-md flex flex-row items-center flex-grow max-w-7xl justify-end">
       <Autocomplete
-        placeholder="Subject, title, author, keyword, DOI"
+        placeholder="Search Title, Author, DOI"
         openOnFocus={true}
         getSources={({ query }) => {
           // If the input is a DOI, return the specific paper
@@ -128,21 +126,7 @@ export default function EnterDOI() {
                   templates: {
                     item({ item, components }) {
                       const currentItem = cleanCrossRefItem(item)
-                      return (
-                        <div className="my-1 mx-1 flex">
-                          <div className="mr-2">
-                            {components && (
-                              <components.Highlight hit={currentItem} attribute="title" />
-                            )}
-                          </div>
-                          <div>
-                            <p className="text-md font-normal leading-4 text-gray-500 dark:text-gray-400">
-                              {currentItem?.authors}{" "}
-                              {currentItem.publishedYear && `(${currentItem.publishedYear})`}
-                            </p>
-                          </div>
-                        </div>
-                      )
+                      return <SearchResultArticle item={currentItem} components={components} />
                     },
                   },
                 },
