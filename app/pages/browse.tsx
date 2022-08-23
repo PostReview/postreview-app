@@ -11,7 +11,7 @@ const Browse = () => {
   return (
     <div className="flex flex-col min-h-screen bg-white dark:bg-gray-darkest text-gray-darkest dark:text-white">
       <main className="flex-grow flex flex-col items-center">
-        <h1 id="post-review" className="mt-44 text-6xl font-bold text-gray-dark dark:text-white">
+        <h1 id="post-review" className="mt-44 text-5xl font-bold text-gray-dark dark:text-white">
           PostReview
         </h1>
         <div
