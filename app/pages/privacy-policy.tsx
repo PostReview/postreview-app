@@ -66,6 +66,23 @@ const PrivacyPolicyPage: BlitzPage = () => {
             height={200}
           />
         </div>
+        <div
+          id="privacy-policy-summary"
+          className="font-light max-w-3xl text-gray-darkest dark:text-white"
+        >
+          <p className="mx-6 mb-3">
+            This privacy policy describes our policies and procedures on the collection, use and
+            disclosure of your information when you use PostReview. See our{" "}
+            <Link href={Routes.TermsofUsePage()}>
+              <a className="underline hover:text-gray-medium">terms of use</a>
+            </Link>{" "}
+            for more information about the conditions of using PostReview.
+          </p>
+          <p className="mx-6 my-3">
+            By using our service, you agree to the collection and use of information in accordance
+            with this privacy policy.
+          </p>
+        </div>
 PrivacyPolicyPage.getLayout = (page) => <Layout title="Privacy Policy | PostReview">{page}</Layout>
 
 export default PrivacyPolicyPage
