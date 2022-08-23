@@ -8,7 +8,7 @@ import {
   ListItemText,
   Typography,
 } from "@mui/material"
-import { Image, useRouter } from "blitz"
+import { Image, useRouter, useSession } from "blitz"
 import React, { useState } from "react"
 import postReviewIcon from "/public/logo-withname-lightmode.png"
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore"
@@ -20,6 +20,7 @@ import { FaGithub, FaDiscord, FaBars } from "react-icons/fa"
 import { AiFillTwitterCircle } from "react-icons/ai"
 
 export const DrawerMenu = () => {
+  const session = useSession()
   const [open, setOpen] = useState(false)
   const router = useRouter()
 
@@ -65,7 +66,10 @@ export const DrawerMenu = () => {
           <div className="border border-gray-medium" />
           <List>
             <ListItemButton sx={{ ...hoverSx }}>
-              <ListItemText primary={"Home"} onClick={() => router.push("/")} />
+              <ListItemText
+                primary={"Home"}
+                onClick={() => router.push(session.userId ? "/" : "/?search=true")}
+              />
             </ListItemButton>
             <ListItemButton sx={{ ...hoverSx }}>
               <ListItemText primary={"How it works"} onClick={() => router.push("/how-it-works")} />
