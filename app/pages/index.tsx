@@ -1,5 +1,5 @@
 import React, { Suspense, useEffect, useState } from "react"
-import { useRouter, useSession, BlitzPage, noSSR, useQuery } from "blitz"
+import { useRouter, useSession, BlitzPage, useQuery, useRouterQuery } from "blitz"
 import Layout from "app/core/layouts/Layout"
 
 // Components
@@ -50,7 +50,10 @@ const UserInfo = () => {
     return () => window.removeEventListener("keydown", handleKeyEvent, false)
   }, [questionCategory])
 
-  if (session.userId) {
+  // Getting the URL query for `search` for showing the article list
+  const query = useRouterQuery()
+
+  if (session.userId || query.search) {
     return (
       <div className="w-full bg-black items-center pb-32">
         <div id="header-category container" className="flex flex-col items-center">
