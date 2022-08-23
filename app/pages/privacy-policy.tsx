@@ -46,6 +46,18 @@ const AccordionDetails = styled(MuiAccordionDetails)(({ theme }) => ({
 }))
 
 const PrivacyPolicyPage: BlitzPage = () => {
+  return (
+    <div className="flex flex-col min-h-screen bg-white dark:bg-gray-darkest">
+      <Suspense fallback="Loading...">
+        <Navbar />
+      </Suspense>
+      <main className="flex-grow flex flex-col items-center bg-gray-light dark:bg-gray-darkest">
+        <div className="py-4 w-full text-3xl font-bold bg-gray-dark dark:bg-black/30">
+          <h1 className="text-center text-black dark:text-white">Privacy Policy</h1>
+          <div className="pt-1 text-sm text-center font-thin text-black/90 dark:text-white/80">
+            Last updated: August 22, 2022
+          </div>
+        </div>
 PrivacyPolicyPage.getLayout = (page) => <Layout title="Privacy Policy | PostReview">{page}</Layout>
 
 export default PrivacyPolicyPage
