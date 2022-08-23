@@ -45,3 +45,7 @@ const AccordionDetails = styled(MuiAccordionDetails)(({ theme }) => ({
   borderTop: "1px solid rgba(0, 0, 0, .125)",
 }))
 
+const PrivacyPolicyPage: BlitzPage = () => {
+PrivacyPolicyPage.getLayout = (page) => <Layout title="Privacy Policy | PostReview">{page}</Layout>
+
+export default PrivacyPolicyPage
