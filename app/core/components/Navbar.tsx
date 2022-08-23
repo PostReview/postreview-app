@@ -1,13 +1,14 @@
 import React from "react"
 import { HeaderUserButton } from "./HeaderUserButton"
 import EnterDOI from "./EnterDOI"
-import { useRouter, Image, useSession } from "blitz"
+import { useRouter, useSession, useRouterQuery } from "blitz"
 import { DrawerMenu } from "./DrawerMenu"
 
 export default function Navbar() {
   const session = useSession()
   const router = useRouter()
   const isAtRoot = router.pathname === "/"
+  const query = useRouterQuery()
 
   return (
     <>
@@ -17,7 +18,7 @@ export default function Navbar() {
           {session?.userId ? (
             <EnterDOI session={session} />
           ) : (
-            !isAtRoot && <EnterDOI session={session} />
+            (!isAtRoot || query.search) && <EnterDOI session={session} />
           )}
         </div>
         <div id="buttons-container" className="mx-4 flex flex-row">
