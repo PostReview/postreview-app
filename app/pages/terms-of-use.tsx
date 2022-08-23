@@ -77,12 +77,12 @@ const TermsofUsePage: BlitzPage = () => {
           />
         </div>
         <div id="terms-of-use-content" className="max-w-3xl">
-          <Accordion className="bg-gray-dark dark:bg-black/30 text-black dark:text-white">
+          <Accordion sx={{ ...accordionStyle }}>
             <AccordionSummary aria-controls="panel1d-content" id="panel1d-header">
-              <Typography className="font-bold text-2xl">Scope</Typography>
+              <Typography variant="h5">Scope</Typography>
             </AccordionSummary>
             <AccordionDetails className="bg-gray-medium dark:bg-gray-dark text-black/80 dark:text-white/80">
-              <p className="mx-2 text-black/90 dark:text-white">
+              <p className="mx-2 font-thin text-black/90 dark:text-white/90">
                 PostReview Team (&quot;we&quot; or &quot;us&quot;) provides an online reviewing
                 where people can post reviews to scholarly outputs. The platform is available at{" "}
                 <a
@@ -95,12 +95,12 @@ const TermsofUsePage: BlitzPage = () => {
               </p>
             </AccordionDetails>
           </Accordion>
-          <Accordion className="bg-gray-dark dark:bg-black/30 text-black dark:text-white">
+          <Accordion sx={{ ...accordionStyle }}>
             <AccordionSummary aria-controls="panel2d-content" id="panel2d-header">
-              <Typography className="font-bold text-2xl">Definitions</Typography>
+              <Typography variant="h5">Definitions</Typography>
             </AccordionSummary>
             <AccordionDetails className="bg-gray-medium dark:bg-gray-dark text-black/80 dark:text-white/80">
-              <ul className="mx-4 my-4 list-decimal">
+              <ul className="mx-4 my-4  font-thin list-decimal">
                 <li className="m-2">
                   &quot;User&quot;: A natural person that registers and uses PostReview
                 </li>
@@ -118,14 +118,14 @@ const TermsofUsePage: BlitzPage = () => {
               </ul>
             </AccordionDetails>
           </Accordion>
-          <Accordion className="bg-gray-dark dark:bg-black/30 text-black dark:text-white">
+          <Accordion sx={{ ...accordionStyle }}>
             <AccordionSummary aria-controls="panel3d-content" id="panel3d-header">
-              <Typography className="font-bold text-2xl">
+              <Typography variant="h5">
                 Agreement to the terms and registering an account
               </Typography>
             </AccordionSummary>
             <AccordionDetails className="bg-gray-medium dark:bg-gray-dark text-black/80 dark:text-white/80">
-              <ul className="mx-4 my-4 list-decimal">
+              <ul className="mx-4 my-4 font-thin list-decimal">
                 <li className="m-2">
                   The user has to open a user account to post reviews on PostReview.
                 </li>
@@ -163,14 +163,12 @@ const TermsofUsePage: BlitzPage = () => {
               </ul>
             </AccordionDetails>
           </Accordion>
-          <Accordion className="bg-gray-dark dark:bg-black/30 text-black dark:text-white">
+          <Accordion sx={{ ...accordionStyle }}>
             <AccordionSummary aria-controls="panel4d-content" id="panel4d-header">
-              <Typography className="font-bold text-2xl">
-                Basic functions and rules of PostReview
-              </Typography>
+              <Typography variant="h5">Basic functions and rules of PostReview</Typography>
             </AccordionSummary>
             <AccordionDetails className="bg-gray-medium dark:bg-gray-dark text-black/80 dark:text-white/80">
-              <ul className="mx-4 my-4 list-decimal">
+              <ul className="mx-4 my-4 font-thin list-decimal">
                 <li className="m-2">
                   The PostReview platform provides basic functions to all users with a user account.
                   The user can search scholarly articles, browse other users&apos; reviews, and
@@ -233,12 +231,12 @@ const TermsofUsePage: BlitzPage = () => {
               </ul>
             </AccordionDetails>
           </Accordion>
-          <Accordion className="bg-gray-dark dark:bg-black/30 text-black dark:text-white">
+          <Accordion sx={{ ...accordionStyle }}>
             <AccordionSummary aria-controls="panel5d-content" id="panel5d-header">
-              <Typography className="font-bold text-2xl">Term and termination</Typography>
+              <Typography variant="h5">Term and termination</Typography>
             </AccordionSummary>
             <AccordionDetails className="bg-gray-medium dark:bg-gray-dark text-black/80 dark:text-white/80">
-              <ul className="mx-4 my-4 list-decimal">
+              <ul className="mx-4 my-4 font-thin list-decimal">
                 <li className="m-2">
                   The term of this agreement commences with the user&apos;s registration. Both
                   parties can terminate the agreement with effect at the end of each month by
@@ -252,36 +250,36 @@ const TermsofUsePage: BlitzPage = () => {
               </ul>
             </AccordionDetails>
           </Accordion>
-          <Accordion className="bg-gray-dark dark:bg-black/30 text-black dark:text-white">
+          <Accordion sx={{ ...accordionStyle }}>
             <AccordionSummary aria-controls="panel6d-content" id="panel6d-header">
-              <Typography className="font-bold text-2xl">Availability and maintenance</Typography>
+              <Typography variant="h5">Availability and maintenance</Typography>
             </AccordionSummary>
             <AccordionDetails className="bg-gray-medium dark:bg-gray-dark text-black/80 dark:text-white/80">
-              <p className="mx-2 my-3 text-black/90 dark:text-white/90">
+              <p className="mx-2 my-3 font-thin text-black/90 dark:text-white/90">
                 We will carry out maintenance to ensure that PostReview works well for the users.
                 While we work on maintenance, PostReview may not be available or functional during
                 use. We cannot guarantee the uninterrupted availability of the platform.
               </p>
             </AccordionDetails>
           </Accordion>
-          <Accordion className="bg-gray-dark dark:bg-black/30 text-black dark:text-white">
+          <Accordion sx={{ ...accordionStyle }}>
             <AccordionSummary aria-controls="panel7d-content" id="panel7d-header">
-              <Typography className="font-bold text-2xl">Protecting data</Typography>
+              <Typography variant="h5">Protecting data</Typography>
             </AccordionSummary>
             <AccordionDetails className="bg-gray-medium dark:bg-gray-dark text-black/80 dark:text-white/80">
-              <p className="mx-2 my-3 text-black/90 dark:text-white/90">
+              <p className="mx-2 my-3 font-thin text-black/90 dark:text-white/90">
                 The user agrees that we shall have no liability for any loss or corruption of data,
                 and the user hereby waives any right of action against us arising from any such loss
                 or corruption of data. Please see our Privacy Policy for more details.
               </p>
             </AccordionDetails>
           </Accordion>
-          <Accordion className="bg-gray-dark dark:bg-black/30 text-black dark:text-white">
+          <Accordion sx={{ ...accordionStyle }}>
             <AccordionSummary aria-controls="panel8d-content" id="panel8d-header">
-              <Typography className="font-bold text-2xl">Changes to the terms</Typography>
+              <Typography variant="h5">Changes to the terms</Typography>
             </AccordionSummary>
             <AccordionDetails className="bg-gray-medium dark:bg-gray-dark text-black/80 dark:text-white/80">
-              <ul className="mx-4 my-4 list-decimal">
+              <ul className="mx-4 my-4 font-thin list-decimal">
                 <li className="m-2">
                   We reserve the right to introduce new changes to PostReview and corresponding
                   rules to the terms. If the user does not object in writing form (e.g., email)
@@ -302,12 +300,12 @@ const TermsofUsePage: BlitzPage = () => {
               </ul>
             </AccordionDetails>
           </Accordion>
-          <Accordion className="bg-gray-dark dark:bg-black/30 text-black dark:text-white">
+          <Accordion sx={{ ...accordionStyle }}>
             <AccordionSummary aria-controls="panel9d-content" id="panel9d-header">
-              <Typography className="font-bold text-2xl">Governing law</Typography>
+              <Typography variant="h5">Governing law</Typography>
             </AccordionSummary>
             <AccordionDetails className="bg-gray-medium dark:bg-gray-dark text-black/80 dark:text-white/80">
-              <p className="mx-2 my-3 text-black/90 dark:text-white/90">
+              <p className="mx-2 my-3 font-thin text-black/90 dark:text-white/90">
                 These terms and the use of PostReview are governed by and construed in accordance
                 with the laws of the State of Delaware applicable to agreements made and to be
                 entirely performed within the State of Delaware, without regard to its conflict of
@@ -315,12 +313,12 @@ const TermsofUsePage: BlitzPage = () => {
               </p>
             </AccordionDetails>
           </Accordion>
-          <Accordion className="bg-gray-dark dark:bg-black/30 text-black dark:text-white">
+          <Accordion sx={{ ...accordionStyle }}>
             <AccordionSummary aria-controls="panel10d-content" id="panel10d-header">
-              <Typography className="font-bold text-2xl">Contact</Typography>
+              <Typography variant="h5">Contact</Typography>
             </AccordionSummary>
             <AccordionDetails className="bg-gray-medium dark:bg-gray-dark text-black/80 dark:text-white/80">
-              <p className="mx-2 my-3 text-black/90 dark:text-white/90">
+              <p className="mx-2 my-3 font-thin text-black/90 dark:text-white/90">
                 To resolve a complaint regarding PostReview or to receive further information
                 regarding its use, please contact us at{" "}
                 <a
@@ -334,12 +332,12 @@ const TermsofUsePage: BlitzPage = () => {
               </p>
             </AccordionDetails>
           </Accordion>
-          <Accordion className="bg-gray-dark dark:bg-black/30 text-black dark:text-white">
+          <Accordion sx={{ ...accordionStyle }}>
             <AccordionSummary aria-controls="panel11d-content" id="panel11d-header">
-              <Typography className="font-bold text-2xl">Acknowledgement</Typography>
+              <Typography variant="h5">Acknowledgement</Typography>
             </AccordionSummary>
             <AccordionDetails className="bg-gray-medium dark:bg-gray-dark text-black/80 dark:text-white/80">
-              <p className="mx-2 my-3 text-black/90 dark:text-white/90">
+              <p className="mx-2 my-3 font-thin text-black/90 dark:text-white/90">
                 In writing this terms of use, we referred to the Terms of Use by
                 <a
                   className="font-thin text-green hover:text-green-dark"
