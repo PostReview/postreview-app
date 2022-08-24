@@ -10,6 +10,7 @@ import { Button } from "app/core/components/Button"
 import postReviewLogoDarkMode from "public/logo-darkmode.png"
 import postReviewLogoLightMode from "public/logo-lightmode.png"
 import { BsEye, BsEyeSlash } from "react-icons/bs"
+import { createTheme, Switch, ThemeProvider } from "@mui/material"
 
 const SignupPage: BlitzPage = () => {
   const router = useRouter()
