@@ -10,6 +10,7 @@ import { Button } from "app/core/components/Button"
 import postReviewLogoDarkMode from "public/logo-darkmode.png"
 import postReviewLogoLightMode from "public/logo-lightmode.png"
 import { BsEye, BsEyeSlash } from "react-icons/bs"
+import { createTheme, Switch, ThemeProvider } from "@mui/material"
 
 const SignupPage: BlitzPage = () => {
   const router = useRouter()
@@ -26,6 +27,18 @@ const SignupPage: BlitzPage = () => {
     const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)")
     setIsDark(mediaQuery.matches)
   }, [])
+
+  // Theme override
+  const theme = createTheme({
+    palette: {
+      success: {
+        light: "#ffffff",
+        main: "#94ec01",
+        dark: "#2e2c2c",
+        contrastText: "rgba(0, 0, 0, 0.87)",
+      },
+    },
+  })
 
   return (
     <div className="flex flex-col min-h-screen bg-white dark:bg-gray-darkest">
@@ -46,7 +59,7 @@ const SignupPage: BlitzPage = () => {
         </h1>
         <div className="flex flex-col items-center py-6 px-10 bg-gray-light dark:bg-gray-dark">
           <Formik
-            initialValues={{ email: "", password: "", handle: "" }}
+            initialValues={{ email: "", password: "", handle: "", terms: false, coc: false }}
             validate={(values) => {
               const existingUser = invoke(getUserInfo, { userHandle: values.handle })
               return existingUser.then((foundUser) => {
@@ -67,6 +80,15 @@ const SignupPage: BlitzPage = () => {
                   errors.password = "Required"
                 } else if (values.password.length < 10) {
                   errors.password = "Password should be 10 or more characters"
+                }
+
+                if (!values.terms) {
+                  errors.terms =
+                    "Please read our Terms of Use and Privacy Policy and click to agree"
+                }
+
+                if (!values.coc) {
+                  errors.coc = "Please read our CoC and click to agree"
                 }
 
                 return errors
@@ -90,7 +112,7 @@ const SignupPage: BlitzPage = () => {
             }) => (
               <form onSubmit={handleSubmit} className="flex flex-col">
                 {showError && (
-                  <div className="bg-red/50 rounded-md text-gray-darkest text-center p-3">
+                  <div className="bg-black/60 rounded-md text-red text-center p-2">
                     This email is already used
                   </div>
                 )}
@@ -157,6 +179,63 @@ const SignupPage: BlitzPage = () => {
                     {isPasswordHidden ? <BsEyeSlash /> : <BsEye />}
                   </button>
                 </div>
+                <div className="flex flex-row w-80 items-center">
+                  <ThemeProvider theme={theme}>
+                    <Switch
+                      color="success"
+                      name="terms"
+                      value={values.terms}
+                      onChange={handleChange}
+                    ></Switch>
+                  </ThemeProvider>
+                  <div className="my-4 inline text-gray-darkest dark:text-white">
+                    I agree to the{" "}
+                    <Link href={Routes.TermsofUsePage()}>
+                      <a
+                        className="underline italic text-gray-dark dark:text-white/90 hover:text-black"
+                        target="_blank"
+                      >
+                        Terms of Use
+                      </a>
+                    </Link>{" "}
+                    and{" "}
+                    <Link href={Routes.PrivacyPolicyPage()}>
+                      <a
+                        className="underline italic text-gray-dark dark:text-white/90 hover:text-black"
+                        target="_blank"
+                      >
+                        Privacy Policy
+                      </a>
+                    </Link>
+                    <div className="text-xs font-semibold text-red">
+                      {errors.terms && touched.terms && " - " + errors.terms}
+                    </div>
+                  </div>
+                </div>
+                <div className="flex flex-row w-80 items-center">
+                  <ThemeProvider theme={theme}>
+                    <Switch
+                      color="success"
+                      name="coc"
+                      value={values.coc}
+                      onChange={handleChange}
+                    ></Switch>
+                  </ThemeProvider>
+                  <div className="my-4 inline text-gray-darkest dark:text-white">
+                    I agree to the{" "}
+                    <Link href={Routes.CodeOfConductPage()}>
+                      <a
+                        className="underline italic text-gray-dark dark:text-white/90 hover:text-black"
+                        target="_blank"
+                      >
+                        Code of Conduct
+                      </a>
+                    </Link>
+                    <div className="text-xs font-semibold text-red">
+                      {errors.coc && touched.coc && " - " + errors.coc}
+                    </div>
+                  </div>
+                </div>
                 <Button addstyles="my-4" type="submit" disabled={isSubmitting}>
                   Sign up
                 </Button>
@@ -168,7 +247,7 @@ const SignupPage: BlitzPage = () => {
           <div className="my-4 text-gray-darkest dark:text-white">
             Already have an account?{" "}
             <Link href={Routes.LoginPage()}>
-              <a className="text-sm text-center underline italic text-gray-dark dark:text-white/70">
+              <a className="text-sm text-center underline italic text-gray-dark dark:text-white/90 hover:text-gray-darkest">
                 Log in
               </a>
             </Link>
