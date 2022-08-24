@@ -112,7 +112,7 @@ const SignupPage: BlitzPage = () => {
             }) => (
               <form onSubmit={handleSubmit} className="flex flex-col">
                 {showError && (
-                  <div className="bg-red/50 rounded-md text-gray-darkest text-center p-3">
+                  <div className="bg-black/60 rounded-md text-red text-center p-2">
                     This email is already used
                   </div>
                 )}
