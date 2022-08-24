@@ -1,5 +1,6 @@
 import db from "db"
 import { Ctx, AuthorizationError } from "blitz"
+import { updateArticleIndex } from "./helpers/updateArticleIndex"
 
 export default async function deleteReview(currentArticleId: string, ctx: Ctx) {
   ctx.session.$authorize()
@@ -16,6 +17,9 @@ export default async function deleteReview(currentArticleId: string, ctx: Ctx) {
       userId: currentUserId,
     },
   })
+
+  // Update Algolia Index
+  updateArticleIndex(currentArticleId)
 
   return review
 }
