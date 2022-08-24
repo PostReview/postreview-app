@@ -46,6 +46,33 @@ const Team: BlitzPage = () => {
               charge of the organizational efforts of PostReview.
             </div>
           </div>
+          <div id="nami-container" className="m-4 flex flex-col items-center">
+            <Image
+              id="nami-photo"
+              src={teamMemberNamiPhoto}
+              alt="A picture of a thinking man facing right"
+              className="hover:animate-pulse hover:cursor-pointer"
+              width={200}
+              height={200}
+            />
+            <h3 className="text-2xl font-bold">Naoyuki(Nami) Sunami, PhD</h3>
+            <h3 className="font-semibold">Chief Technology Officer</h3>
+            <div className="m-4 max-w-lg">
+              Nami Sunami (he/him;{" "}
+              <Link href="https://twitter.com/n_sunami">
+                <a
+                  className="underline font-thin text-green hover:text-green-dark"
+                  target="_blank"
+                  rel="nofollow"
+                >
+                  @n_sunami
+                </a>
+              </Link>
+              ) has a PhD in Social Psychology with background in social rejection research. In his
+              spare time, Nami enjoys drawing, playing guitar and playing Warframe. Nami is in
+              charge of the full stack development of the PostReview platform.
+            </div>
+          </div>
       </main>
     </div>
   )
