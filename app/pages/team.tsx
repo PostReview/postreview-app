@@ -155,4 +155,4 @@ const TeamPage: BlitzPage = () => {
   )
 }
 TeamPage.getLayout = (page) => <Layout title="Team | PostReview">{page}</Layout>
-export default Team
+export default TeamPage
