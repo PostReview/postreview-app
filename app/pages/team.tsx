@@ -19,6 +19,7 @@ const Team: BlitzPage = () => {
           PostReview is developed by a small group of people passionate about improving
           communications in research.
         </div>
+        <div id="team-container" className="md:flex flex-row">
           <div id="anton-container" className="m-4 flex flex-col items-center">
             <Image
               id="anton-photo"
@@ -99,6 +100,7 @@ const Team: BlitzPage = () => {
               of PostReview visual design and front end development.
             </div>
           </div>
+        </div>
       </main>
     </div>
   )
