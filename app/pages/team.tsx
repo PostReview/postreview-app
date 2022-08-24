@@ -73,6 +73,32 @@ const Team: BlitzPage = () => {
               charge of the full stack development of the PostReview platform.
             </div>
           </div>
+          <div id="jazelle-container" className="m-4 flex flex-col items-center">
+            <Image
+              id="jazelle-photo"
+              src={teamMemberJazellePhoto}
+              alt="A picture of a woman facing right"
+              className="hover:animate-pulse hover:cursor-pointer"
+              width={200}
+              height={200}
+            />
+            <h3 className="text-2xl font-bold">Jazelle Maira R. Carillo</h3>
+            <h3 className="font-semibold">Lead Designer</h3>
+            <div className="m-4 max-w-lg">
+              Jazelle Carillo (she/her;{" "}
+              <Link href="https://twitter.com/jazellemaira">
+                <a
+                  className="underline font-thin text-green hover:text-green-dark"
+                  target="_blank"
+                  rel="nofollow"
+                >
+                  @jazellemaira
+                </a>
+              </Link>
+              ) is a wife and a cat mom. She enjoys painting and taking photos. Jazelle is in charge
+              of PostReview visual design and front end development.
+            </div>
+          </div>
       </main>
     </div>
   )
