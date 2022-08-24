@@ -104,6 +104,52 @@ const Team: BlitzPage = () => {
         <h1 id="special-thanks" className="text-4xl font-bold mt-12">
           Special Thanks
         </h1>
+        <div id="chris-container" className="m-4 flex flex-col items-center">
+          <Image
+            id="chris-photo"
+            src={postReviewMentorPhoto}
+            alt="A picture of Chris, PostReview mentor"
+            className="hover:animate-pulse hover:cursor-pointer"
+            width={200}
+            height={200}
+          />
+          <h3 className="text-2xl font-bold">Chris Hartgerink, PhD</h3>
+          <h3 className="font-semibold">PostReview Mentor</h3>
+          <div className="m-4 max-w-lg">
+            Chris Hartgerink (he/they;{" "}
+            <Link href="https://twitter.com/chartgerink">
+              <a
+                className="underline font-thin text-green hover:text-green-dark"
+                target="_blank"
+                rel="nofollow"
+              >
+                @chartgerink
+              </a>
+            </Link>
+            ) is part researcher, part statistician, part software programmer, part businessperson.
+            He is the founder of{" "}
+            <Link href="https://libscie.org">
+              <a
+                className="underline font-thin text-green hover:text-green-dark"
+                target="_blank"
+                rel="nofollow"
+              >
+                Liberate Science GmbH
+              </a>
+            </Link>{" "}
+            and{" "}
+            <Link href="https://www.researchequals.com/">
+              <a
+                className="underline font-thin text-green hover:text-green-dark"
+                target="_blank"
+                rel="nofollow"
+              >
+                ResearchEquals
+              </a>
+            </Link>
+            . Chris has mentored the Team of PostReview greatly since the beginning.
+          </div>
+        </div>
       </main>
     </div>
   )
