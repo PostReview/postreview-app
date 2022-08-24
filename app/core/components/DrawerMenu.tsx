@@ -83,7 +83,7 @@ export const DrawerMenu = () => {
                   <ListItemText primary={"Our story"} />
                 </ListItemButton>
                 <ListItemButton sx={{ ...hoverSx }}>
-                  <ListItemText primary={"Team"} />
+                  <ListItemText primary={"Team"} onClick={() => router.push("/team")} />
                 </ListItemButton>
               </AccordionDetails>
             </Accordion>
