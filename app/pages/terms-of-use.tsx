@@ -1,4 +1,4 @@
-import { BlitzPage, Image } from "blitz"
+import { BlitzPage, Image, Link } from "blitz"
 import Layout from "app/core/layouts/Layout"
 import { Suspense } from "react"
 import Navbar from "app/core/components/Navbar"
@@ -339,14 +339,16 @@ const TermsofUsePage: BlitzPage = () => {
             <AccordionDetails className="bg-gray-medium dark:bg-gray-dark text-black/80 dark:text-white/80">
               <p className="mx-2 my-3 font-thin text-black/90 dark:text-white/90">
                 In writing this terms of use, we referred to the Terms of Use by
-                <a
-                  className="font-thin text-green hover:text-green-dark"
-                  href="https://www.researchequals.com/terms"
-                  rel="nofollow"
-                >
-                  {" "}
-                  ResearchEquals
-                </a>
+                <Link href="https://www.researchequals.com/terms">
+                  <a
+                    className="font-thin text-green hover:text-green-dark"
+                    target="_blank"
+                    rel="nofollow"
+                  >
+                    {" "}
+                    ResearchEquals
+                  </a>
+                </Link>
                 .
               </p>
             </AccordionDetails>
