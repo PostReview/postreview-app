@@ -13,6 +13,9 @@ const Team: BlitzPage = () => {
       <Suspense fallback="Loading...">
         <Navbar />
       </Suspense>
+      <main className="flex-grow flex flex-col items-center mb-12 text-gray-darkest">
+        <h1 className="text-5xl font-bold mt-12">Our Team</h1>
+      </main>
     </div>
   )
 }
