@@ -101,6 +101,9 @@ const Team: BlitzPage = () => {
             </div>
           </div>
         </div>
+        <h1 id="special-thanks" className="text-4xl font-bold mt-12">
+          Special Thanks
+        </h1>
       </main>
     </div>
   )
