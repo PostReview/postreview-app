@@ -7,7 +7,7 @@ import teamMemberNamiPhoto from "public/team-member-nami-photo.png"
 import teamMemberJazellePhoto from "public/team-member-jazelle-photo.png"
 import postReviewMentorPhoto from "public/team-mentor-chris-photo.png"
 
-const Team: BlitzPage = () => {
+const TeamPage: BlitzPage = () => {
   return (
     <div className="flex flex-col min-h-screen bg-white">
       <Suspense fallback="Loading...">
@@ -154,5 +154,5 @@ const Team: BlitzPage = () => {
     </div>
   )
 }
-Team.getLayout = (page) => <Layout title="Team | PostReview">{page}</Layout>
+TeamPage.getLayout = (page) => <Layout title="Team | PostReview">{page}</Layout>
 export default Team
