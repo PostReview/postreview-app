@@ -28,7 +28,7 @@ const LoginPage: BlitzPage = () => {
   return (
     <div className="flex flex-col min-h-screen bg-white dark:bg-gray-darkest">
       <Suspense fallback="Loading...">
-        <Navbar />
+        <Navbar hideSearch={true} />
       </Suspense>
       <main className="flex-grow flex flex-col items-center justify-center">
         <div className="contrast-100 mt-6 h-60 w-full flex justify-center">
