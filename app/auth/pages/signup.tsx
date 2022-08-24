@@ -28,6 +28,18 @@ const SignupPage: BlitzPage = () => {
     setIsDark(mediaQuery.matches)
   }, [])
 
+  // Theme override
+  const theme = createTheme({
+    palette: {
+      success: {
+        light: "#ffffff",
+        main: "#94ec01",
+        dark: "#2e2c2c",
+        contrastText: "rgba(0, 0, 0, 0.87)",
+      },
+    },
+  })
+
   return (
     <div className="flex flex-col min-h-screen bg-white dark:bg-gray-darkest">
       <Suspense fallback="Loading...">
