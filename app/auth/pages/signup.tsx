@@ -82,6 +82,15 @@ const SignupPage: BlitzPage = () => {
                   errors.password = "Password should be 10 or more characters"
                 }
 
+                if (!values.terms) {
+                  errors.terms =
+                    "Please read our Terms of Use and Privacy Policy and click to agree"
+                }
+
+                if (!values.coc) {
+                  errors.coc = "Please read our CoC and click to agree"
+                }
+
                 return errors
               })
             }}
