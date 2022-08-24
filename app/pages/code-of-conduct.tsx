@@ -1,4 +1,4 @@
-import { BlitzPage, Image } from "blitz"
+import { BlitzPage, Image, Link } from "blitz"
 import Layout from "app/core/layouts/Layout"
 import { Suspense } from "react"
 import Navbar from "app/core/components/Navbar"
@@ -302,43 +302,52 @@ const CodeOfConductPage: BlitzPage = () => {
             <AccordionDetails className="bg-gray-medium dark:bg-gray-dark text-black/80 dark:text-white/80">
               <p className="mx-2 my-3 font-thin text-black/90 dark:text-white/90">
                 This Code of Conduct is adapted from the
-                <a
-                  className="font-thin text-green hover:text-green-dark"
-                  href="https://contributor-covenant.org"
-                  rel="nofollow"
-                >
-                  {" "}
-                  Contributor Covenant
-                </a>
+                <Link href="https://contributor-covenant.org">
+                  <a
+                    className="font-thin text-green hover:text-green-dark"
+                    target="_blank"
+                    rel="nofollow"
+                  >
+                    {" "}
+                    Contributor Covenant
+                  </a>
+                </Link>
                 , version 2.1, available at{" "}
-                <a
-                  className="font-thin text-green hover:text-green-dark"
-                  href="https://www.contributor-covenant.org/version/2/1/code_of_conduct.html"
-                  rel="nofollow"
-                >
-                  https://www.contributor-covenant.org.version/2/1/code_of_conduct.html
-                </a>
+                <Link href="https://www.contributor-covenant.org/version/2/1/code_of_conduct.html">
+                  <a
+                    className="font-thin underline text-green hover:text-green-dark"
+                    target="_blank"
+                    rel="nofollow"
+                  >
+                    https://www.contributor-covenant.org.version/2/1/code_of_conduct.html
+                  </a>
+                </Link>
                 .
               </p>
               <p className="mx-2 my-3 font-thin text-black/90 dark:text-white/90">
                 Community Impact Guidelines were inspired by{" "}
-                <a
-                  className="font-thin text-green hover:text-green-dark"
-                  href="https://github.com/mozilla/diversity"
-                >
-                  Mozilla&apos;s code of conduct enforcement ladder
-                </a>
+                <Link href="https://github.com/mozilla/diversity">
+                  <a
+                    className="font-thin text-green hover:text-green-dark"
+                    target="_blank"
+                    rel="nofollow"
+                  >
+                    Mozilla&apos;s code of conduct enforcement ladder
+                  </a>
+                </Link>
                 .
               </p>
               <p className="mx-2 my-3 font-thin text-black/90 dark:text-white/90">
                 For answers to common questions about this code of conduct, see the FAQ at{" "}
-                <a
-                  className="font-thin text-green hover:text-green-dark"
-                  href="https://www.contributor-covenant.org/faq"
-                  rel="nofollow"
-                >
-                  https://www.contributor-covenant.org/faq
-                </a>
+                <Link href="https://www.contributor-covenant.org/faq">
+                  <a
+                    className="font-thin underline text-green hover:text-green-dark"
+                    target="_blank"
+                    rel="nofollow"
+                  >
+                    https://www.contributor-covenant.org/faq
+                  </a>
+                </Link>
                 .
               </p>
             </AccordionDetails>
