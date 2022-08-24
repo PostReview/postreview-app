@@ -179,6 +179,63 @@ const SignupPage: BlitzPage = () => {
                     {isPasswordHidden ? <BsEyeSlash /> : <BsEye />}
                   </button>
                 </div>
+                <div className="flex flex-row w-80 items-center">
+                  <ThemeProvider theme={theme}>
+                    <Switch
+                      color="success"
+                      name="terms"
+                      value={values.terms}
+                      onChange={handleChange}
+                    ></Switch>
+                  </ThemeProvider>
+                  <div className="my-4 inline text-gray-darkest dark:text-white">
+                    I agree to the{" "}
+                    <Link href={Routes.TermsofUsePage()}>
+                      <a
+                        className="underline italic text-gray-dark dark:text-white/90 hover:text-black"
+                        target="_blank"
+                      >
+                        Terms of Use
+                      </a>
+                    </Link>{" "}
+                    and{" "}
+                    <Link href={Routes.PrivacyPolicyPage()}>
+                      <a
+                        className="underline italic text-gray-dark dark:text-white/90 hover:text-black"
+                        target="_blank"
+                      >
+                        Privacy Policy
+                      </a>
+                    </Link>
+                    <div className="text-xs font-semibold text-red">
+                      {errors.terms && touched.terms && " - " + errors.terms}
+                    </div>
+                  </div>
+                </div>
+                <div className="flex flex-row w-80 items-center">
+                  <ThemeProvider theme={theme}>
+                    <Switch
+                      color="success"
+                      name="coc"
+                      value={values.coc}
+                      onChange={handleChange}
+                    ></Switch>
+                  </ThemeProvider>
+                  <div className="my-4 inline text-gray-darkest dark:text-white">
+                    I agree to the{" "}
+                    <Link href={Routes.CodeOfConductPage()}>
+                      <a
+                        className="underline italic text-gray-dark dark:text-white/90 hover:text-black"
+                        target="_blank"
+                      >
+                        Code of Conduct
+                      </a>
+                    </Link>
+                    <div className="text-xs font-semibold text-red">
+                      {errors.coc && touched.coc && " - " + errors.coc}
+                    </div>
+                  </div>
+                </div>
                 <Button addstyles="my-4" type="submit" disabled={isSubmitting}>
                   Sign up
                 </Button>
@@ -190,7 +247,7 @@ const SignupPage: BlitzPage = () => {
           <div className="my-4 text-gray-darkest dark:text-white">
             Already have an account?{" "}
             <Link href={Routes.LoginPage()}>
-              <a className="text-sm text-center underline italic text-gray-dark dark:text-white/70">
+              <a className="text-sm text-center underline italic text-gray-dark dark:text-white/90 hover:text-gray-darkest">
                 Log in
               </a>
             </Link>
