@@ -59,7 +59,7 @@ const SignupPage: BlitzPage = () => {
         </h1>
         <div className="flex flex-col items-center py-6 px-10 bg-gray-light dark:bg-gray-dark">
           <Formik
-            initialValues={{ email: "", password: "", handle: "" }}
+            initialValues={{ email: "", password: "", handle: "", terms: false, coc: false }}
             validate={(values) => {
               const existingUser = invoke(getUserInfo, { userHandle: values.handle })
               return existingUser.then((foundUser) => {
