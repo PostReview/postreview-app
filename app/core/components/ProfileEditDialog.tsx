@@ -5,8 +5,11 @@ import changeUseInfo from "app/mutations/changeUserInfo"
 import { Field, Formik, Form, FormikValues, ErrorMessage } from "formik"
 import { invoke, useMutation } from "blitz"
 import getUserInfo from "app/queries/getUserInfo"
+import { Widget } from "@uploadcare/react-widget"
+import changeAvatar from "app/mutations/changeAvatar"
 
 export const ProfileEditDialog = (props) => {
+  const UPLOADCARE_PUBLIC_KEY = process.env.UPLOADCARE_PUBLIC_KEY
   const { open, setOpen, userInfo, setUserInfo } = props
 
   const formRef = useRef<FormikValues>()
@@ -39,6 +42,9 @@ export const ProfileEditDialog = (props) => {
 
   const [changeUserinfoMutation] = useMutation(changeUseInfo)
 
+  const widgetApi = useRef<any>()
+  const [changeAvatarMutation] = useMutation(changeAvatar)
+
   return (
     <Dialog open={open} onClose={() => handleCancel()} sx={{ background: "black" }} fullScreen>
       <AppBar sx={{ position: "relative", background: "black" }}>
@@ -64,7 +70,11 @@ export const ProfileEditDialog = (props) => {
         <div id="user-info-container" className="relative">
           <div id="photo-avatar-container" className="flex flex-row mt-6">
             <div id="profile-picture" className="flex flex-row">
-              <Button id="user-avatar" className="focus:outline-none -mt-16" onClick={undefined}>
+              <Button
+                id="user-avatar"
+                className="focus:outline-none -mt-16"
+                onClick={() => widgetApi?.current?.openDialog()}
+              >
                 <Avatar
                   alt={userInfo?.displayName ? userInfo?.displayName : userInfo?.handle}
                   sx={{
@@ -79,6 +89,24 @@ export const ProfileEditDialog = (props) => {
                   }&color=94ec01&background=545454`}
                 />
               </Button>
+              <div className="hidden">
+                <Widget
+                  publicKey={UPLOADCARE_PUBLIC_KEY ? UPLOADCARE_PUBLIC_KEY : ""}
+                  ref={widgetApi}
+                  crop="1:1"
+                  imageShrink="480x480"
+                  imagesOnly
+                  previewStep
+                  clearable
+                  onChange={async (info) => {
+                    try {
+                      changeAvatarMutation({ id: userInfo.id, avatar: info.cdnUrl! })
+                    } catch (err) {
+                      alert(err)
+                    }
+                  }}
+                />
+              </div>
             </div>
           </div>
           <div id="username-handle-card">
