@@ -5,6 +5,16 @@
 /* Import font */
 @import url("https://fonts.googleapis.com/css2?family=Fira+Sans:wght@400;600;700&display=swap");
 
+/* Define the theme colors */
+:root {
+  --gray-darkest: #2e2c2c;
+  --gray-dark: #545454;
+  --gray-medium: #737373;
+  --gray-light: #d9d9d9;
+  --green: #94ec01;
+  --green-dark: #74b40a;
+}
+
 body {
   background-color: #2e2c2c;
 }
@@ -98,4 +108,26 @@ body {
   .aa-DetachedCancelButton {
     --aa-text-color-rgb: 0, 0, 0;
   }
+}
+
+/* Uploadcare Dialog Styling */
+.uploadcare--panel__content {
+  color: white;
+  background: var(--gray-darkest);
+}
+.uploadcare--tab__action-button {
+  background-color: var(--green);
+  color: black;
+  border: none;
+}
+.uploadcare--button_primary:focus,
+.uploadcare--button_primary:hover {
+  color: black;
+  background-color: var(--green-dark);
+  border: none;
+}
+/* Hide the powered by text */
+.uploadcare--powered-by,
+.uploadcare--powered-by__link {
+  display: none;
 }
