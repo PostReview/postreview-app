@@ -1,4 +1,4 @@
-import { AppBar, Avatar, Button, Dialog, IconButton, Toolbar, Typography } from "@mui/material"
+import { AppBar, Button, Dialog, IconButton, Toolbar, Typography } from "@mui/material"
 import React, { useRef, useState } from "react"
 import CloseIcon from "@mui/icons-material/Close"
 import changeUseInfo from "app/mutations/changeUserInfo"
@@ -7,6 +7,7 @@ import { invoke, useMutation } from "blitz"
 import getUserInfo from "app/queries/getUserInfo"
 import { Widget } from "@uploadcare/react-widget"
 import changeAvatar from "app/mutations/changeAvatar"
+import { AvatarIcon } from "./AvatarIcon"
 
 export const ProfileEditDialog = (props) => {
   const UPLOADCARE_PUBLIC_KEY = process.env.UPLOADCARE_PUBLIC_KEY
@@ -75,19 +76,7 @@ export const ProfileEditDialog = (props) => {
                 className="focus:outline-none -mt-16"
                 onClick={() => widgetApi?.current?.openDialog()}
               >
-                <Avatar
-                  alt={userInfo?.displayName ? userInfo?.displayName : userInfo?.handle}
-                  sx={{
-                    backgroundColor: "#545454",
-                    color: "#94ec01",
-                    height: "5rem",
-                    width: "5rem",
-                  }}
-                  variant="square"
-                  src={`https://eu.ui-avatars.com/api/?name=${
-                    userInfo?.displayName ? userInfo?.displayName : userInfo?.handle
-                  }&color=94ec01&background=545454`}
-                />
+                <AvatarIcon currentUser={userInfo} height={"5rem"} width={"5rem"} />
               </Button>
               <div className="hidden">
                 <Widget
