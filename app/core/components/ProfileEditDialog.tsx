@@ -46,6 +46,9 @@ export const ProfileEditDialog = (props) => {
   const widgetApi = useRef<any>()
   const [changeAvatarMutation] = useMutation(changeAvatar)
 
+  // Track the avatar icon URL
+  const [icon, setIcon] = useState(userInfo.icon)
+
   return (
     <Dialog open={open} onClose={() => handleCancel()} sx={{ background: "black" }} fullScreen>
       <AppBar sx={{ position: "relative", background: "black" }}>
@@ -89,7 +92,8 @@ export const ProfileEditDialog = (props) => {
                   clearable
                   onChange={async (info) => {
                     try {
-                      changeAvatarMutation({ id: userInfo.id, avatar: info.cdnUrl! })
+                      setUserInfo({ id: userInfo.id, icon: icon, ...userInfo })
+                      setIcon(info.cdnUrl)
                     } catch (err) {
                       alert(err)
                     }
@@ -109,8 +113,8 @@ export const ProfileEditDialog = (props) => {
                 website: userInfo?.website || "",
               }}
               onSubmit={async (values) => {
-                setUserInfo({ id: userInfo.id, ...values })
-                changeUserinfoMutation({ id: userInfo.id, ...values })
+                setUserInfo({ id: userInfo.id, icon: icon, ...values })
+                changeUserinfoMutation({ id: userInfo.id, ...values, icon: icon })
                 setOpen(false)
               }}
               validate={(values) => {
