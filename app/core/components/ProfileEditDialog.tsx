@@ -64,7 +64,7 @@ export const ProfileEditDialog = (props) => {
           <Typography sx={{ ml: 2, flex: 1 }} variant="h6" component="div">
             Edit profile
           </Typography>
-          <Button autoFocus color="inherit" onClick={() => handleSave()}>
+          <Button color="inherit" onClick={() => handleSave()}>
             save
           </Button>
         </Toolbar>
