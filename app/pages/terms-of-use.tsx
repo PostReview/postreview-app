@@ -107,15 +107,16 @@ const TermsofUsePage: BlitzPage = () => {
             height={200}
           />
         </div>
-        <div className="self-end">
-          <button
-            className="px-2 py-1 mx-3 my-2 text-sm bg-gray-medium text-gray-light"
-            onClick={() => handleExpandAll(!expandClicked)}
-          >
-            {expandClicked ? "Collapse" : "Expand All"}
-          </button>
-        </div>
         <div id="terms-of-use-content" className="max-w-3xl">
+          <div className="text-right">
+            <button
+              className="px-2 py-1 mx-3 my-2 text-sm bg-gray-medium text-black dark:text-gray-light"
+              onClick={() => handleExpandAll(!expandClicked)}
+            >
+              {expandClicked ? "Collapse" : "Expand All"}
+            </button>
+          </div>
+
           <Accordion
             sx={{ ...accordionStyle }}
             expanded={accordion.scope}
