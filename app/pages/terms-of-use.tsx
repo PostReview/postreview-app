@@ -78,12 +78,16 @@ const TermsofUsePage: BlitzPage = () => {
   const handleClick = (key: string) => {
     setAccordion({ ...accordion, [key]: !accordion[key] })
   }
+  // Track the expand all button
+  const [expandClicked, setExpandClicked] = React.useState(false)
   // Handle expand all accordions
-  const handleExpandAll = () => {
+  const handleExpandAll = (expand = true) => {
     Object.keys(accordion).forEach((key) => {
-      return (accordion[key] = true)
+      if (expand) return (accordion[key] = true)
+      if (!expand) return (accordion[key] = false)
     })
     setAccordion({ ...accordion })
+    setExpandClicked(!expandClicked)
   }
 
   return (
@@ -106,9 +110,9 @@ const TermsofUsePage: BlitzPage = () => {
         <div className="self-end">
           <button
             className="px-2 py-1 mx-3 my-2 text-sm bg-gray-medium text-gray-light"
-            onClick={() => handleExpandAll()}
+            onClick={() => handleExpandAll(!expandClicked)}
           >
-            Expand All
+            {expandClicked ? "Collapse" : "Expand All"}
           </button>
         </div>
         <div id="terms-of-use-content" className="max-w-3xl">
