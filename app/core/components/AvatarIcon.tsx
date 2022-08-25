@@ -2,7 +2,7 @@ import React from "react"
 import { Avatar } from "@mui/material"
 
 export const AvatarIcon = (props) => {
-  const { currentUser } = props
+  const { currentUser, height, width } = props
   return (
     <Avatar
       alt={currentUser.handle}
@@ -17,6 +17,8 @@ export const AvatarIcon = (props) => {
         backgroundColor: "#545454",
         color: "#94ec01",
         borderColor: "black",
+        height: height,
+        width: width,
       }}
       variant="square"
     />
