@@ -94,12 +94,12 @@ export const HeaderUserButton = () => {
         <>
           <button
             id="login-button"
-            className="font-semibold mx-2 rounded-md px-3 py-2 whitespace-nowrap flex items-center justify-center text-gray-darkest dark:text-white bg-gray-light dark:bg-gray-medium hover:bg-gray-medium dark:hover:bg-gray-darkest hover:text-white"
+            className="font-semibold rounded-md px-3 py-2 whitespace-nowrap flex items-center justify-center text-gray-darkest dark:text-white bg-gray-light dark:bg-gray-medium hover:bg-gray-medium dark:hover:bg-gray-darkest hover:text-white"
             onClick={() => router.push(Routes.LoginPage())}
           >
             Log in
           </button>
-          <Button id="login-button" onClick={() => router.push(Routes.SignupPage())}>
+          <Button id="sign-up-button" onClick={() => router.push(Routes.SignupPage())}>
             Sign up
           </Button>
         </>
