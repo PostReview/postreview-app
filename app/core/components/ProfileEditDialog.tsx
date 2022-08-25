@@ -186,7 +186,7 @@ export const ProfileEditDialog = (props) => {
                     name="aboutMe"
                     type="text"
                     as="textarea"
-                    maxlength={aboutMeCharLimit}
+                    maxLength={aboutMeCharLimit}
                     className="ml-10 mb-4 h-20 w-full text-sm bg-black outline-0 text-green"
                     validate={validateAboutMe}
                   />
