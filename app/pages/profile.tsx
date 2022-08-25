@@ -26,7 +26,6 @@ const Profile = () => {
   })
 
   const [userInfo, setUserInfo] = useState(currentUser)
-
   const [myArticlesWithReview, setMyArticlesWithReview] = useState(defaultMyArticlesWithReview)
 
   const [isDeactivateAccountDialogOpen, setIsDeactivateAccountDialogOpen] = useState(false)
@@ -83,7 +82,13 @@ const Profile = () => {
         )}
       </div>
       <ProfileBgImage />
-      <ProfileInfo userInfo={userInfo} open={open} setOpen={setOpen} showEditButton={true} />
+      <ProfileInfo
+        userInfo={userInfo}
+        setUserInfo={setUserInfo}
+        open={open}
+        setOpen={setOpen}
+        showEditButton={true}
+      />
       <div id="my-reviews-container" className="m-4 mt-8 max-w-2xl">
         <h1 className="text-2xl font-semibold text-gray-darkest dark:text-white">Reviews</h1>
         <div className=" text-gray-darkest dark:text-white">
