@@ -5,7 +5,7 @@ import { useCurrentUser } from "../hooks/useCurrentUser"
 import { Button } from "./Button"
 import { Routes, useRouter } from "blitz"
 import { Menu, Transition } from "@headlessui/react"
-import { Avatar } from "@mui/material"
+import { AvatarIcon } from "./AvatarIcon"
 
 export const HeaderUserButton = () => {
   const currentUser = useCurrentUser()
@@ -32,23 +32,7 @@ export const HeaderUserButton = () => {
         <Menu as="div" className="relative inline-block text-left">
           <div>
             <Menu.Button className="inline-flex w-full justify-center rounded-md py-2 text-sm font-medium text-white hover:bg-opacity-30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75">
-              <Avatar
-                alt={currentUser.handle}
-                src={
-                  currentUser.icon
-                    ? currentUser.icon!
-                    : `https://eu.ui-avatars.com/api/?name=${
-                        currentUser.displayName ? currentUser.displayName : currentUser.handle
-                      }&color=94ec01&background=2e2c2c`
-                }
-                sx={{
-                  backgroundColor: "#545454",
-                  color: "#94ec01",
-                  borderColor: "black",
-                }}
-                variant="square"
-                onClick={handleClick}
-              />
+              <AvatarIcon currentUser={currentUser} onClick={handleClick} />
             </Menu.Button>
           </div>
           <Transition
