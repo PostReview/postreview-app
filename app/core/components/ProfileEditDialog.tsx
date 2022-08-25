@@ -117,6 +117,9 @@ export const ProfileEditDialog = (props) => {
                 setUserInfo({ id: userInfo.id, icon: icon, ...values })
                 changeUserinfoMutation({ id: userInfo.id, ...values, icon: icon })
                 setOpen(false)
+                // Reload the page to reflect the change on the user avatar in the nav bar
+                // (TODO: Make the icon change reactive in the nav bar)
+                window.location.reload()
               }}
               validate={(values) => {
                 const existingUser = invoke(getUserInfo, { userHandle: values.handle })
