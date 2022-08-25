@@ -73,8 +73,7 @@ const TermsofUsePage: BlitzPage = () => {
     contact: false,
     acknowledgement: false,
   })
-  // Track the state of expand all
-  const [expandAll, setExpandAll] = React.useState(false)
+
   // Handle click for each accordion
   const handleClick = (key: string) => {
     setAccordion({ ...accordion, [key]: !accordion[key] })
