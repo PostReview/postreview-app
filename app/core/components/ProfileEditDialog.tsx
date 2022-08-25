@@ -1,7 +1,7 @@
 import { AppBar, Button, Dialog, IconButton, Toolbar, Typography } from "@mui/material"
 import React, { useRef, useState } from "react"
 import CloseIcon from "@mui/icons-material/Close"
-import changeUseInfo from "app/mutations/changeUserInfo"
+import changeUserInfo from "app/mutations/changeUserInfo"
 import { Field, Formik, Form, FormikValues, ErrorMessage } from "formik"
 import { invoke, useMutation } from "blitz"
 import getUserInfo from "app/queries/getUserInfo"
@@ -41,7 +41,7 @@ export const ProfileEditDialog = (props) => {
     setAboutMe(value)
   }
 
-  const [changeUserinfoMutation] = useMutation(changeUseInfo)
+  const [changeUserinfoMutation] = useMutation(changeUserInfo)
 
   const widgetApi = useRef<any>()
   const [changeAvatarMutation] = useMutation(changeAvatar)
