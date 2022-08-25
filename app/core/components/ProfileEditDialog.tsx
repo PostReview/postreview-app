@@ -90,6 +90,7 @@ export const ProfileEditDialog = (props) => {
                   imagesOnly
                   previewStep
                   clearable
+                  tabs="file url"
                   onChange={async (info) => {
                     try {
                       setUserInfo({ id: userInfo.id, icon: icon, ...userInfo })
