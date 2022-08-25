@@ -1,7 +1,6 @@
 import {
   AccordionDetails,
   AccordionSummary,
-  Button,
   Drawer,
   List,
   ListItemButton,
@@ -9,7 +8,7 @@ import {
   Typography,
 } from "@mui/material"
 import { Image, useRouter, useSession } from "blitz"
-import React, { useState } from "react"
+import React from "react"
 import postReviewIcon from "/public/logo-withname-lightmode.png"
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore"
 import MuiAccordion, { AccordionProps } from "@mui/material/Accordion"
@@ -19,14 +18,10 @@ import styled from "@emotion/styled"
 import { FaGithub, FaDiscord, FaBars } from "react-icons/fa"
 import { AiFillTwitterCircle } from "react-icons/ai"
 
-export const DrawerMenu = () => {
+export const DrawerMenu = (props) => {
+  const { open, setOpen } = props
   const session = useSession()
-  const [open, setOpen] = useState(false)
   const router = useRouter()
-
-  const toggleDrawer = () => {
-    setOpen(!open)
-  }
 
   // Style the MUI components
   const Accordion = styled((props: AccordionProps) => (
@@ -52,12 +47,6 @@ export const DrawerMenu = () => {
 
   return (
     <>
-      <button
-        onClick={() => toggleDrawer()}
-        className={"fixed text-4xl top-4 left-4 text-gray-medium"}
-      >
-        <FaBars />
-      </button>
       <Drawer anchor={"left"} open={open} onClose={() => setOpen(false)}>
         <div className="w-full h-full bg-gray-light flex flex-col overflow-clip">
           <div id="logo-container" className="ml-8">
