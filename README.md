@@ -1,17 +1,17 @@
-
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
+
 [![All Contributors](https://img.shields.io/badge/all_contributors-3-orange.svg?style=flat-square)](#contributors-)
+
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 # PostReview
 
-PostReview is a platform for anyone to post their opinions about research papers, post-publication. The app is build via 
- [Blitz.js](https://github.com/blitz-js/blitz).
- 
+PostReview is a platform for anyone to post their opinions about research papers, post-publication. The app is build via
+[Blitz.js](https://github.com/blitz-js/blitz).
 
 ## Code of Conduct
-We welcome anyone who wants to contribute. That said, we ask you to follow our [Code of Conduct](https://github.com/nsunami/postreview-app/blob/main/CODE_OF_CONDUCT.md) when you are in our space. 
 
+We welcome anyone who wants to contribute. That said, we ask you to follow our [Code of Conduct](https://github.com/nsunami/postreview-app/blob/main/CODE_OF_CONDUCT.md) when you are in our space.
 
 ## How to Run the App Locally
 
@@ -25,9 +25,16 @@ DATABASE_URL=postgresql://<YOUR_DB_USERNAME>@localhost:5432/postreview-app
 GOOGLE_CLIENT_ID=****
 GOOGLE_CLIENT_SECRET=***
 GOOGLE_CALLBACK_URL=http://localhost:3000/api/auth/google/callback
+ALGOLIA_APP_ID
+ALGOLIA_API_SEARCH_KEY
+ALGOLIA_API_ADMIN_KEY
+ALGOLIA_PREFIX
+POSTMARK_TOKEN
+UPLOADCARE_PUBLIC_KEY
 ```
 
 3. Run your app in the development mode.
+
 ```
 blitz dev
 ```
@@ -37,8 +44,7 @@ blitz dev
 ## Managing App on Heroku
 
 - To reset the database, run `heroku pg:reset`
-- To seed the database, run `heroku run blitz db seed` 
-
+- To seed the database, run `heroku run blitz db seed`
 
 ## Contributors ✨
 
