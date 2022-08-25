@@ -17,22 +17,24 @@ import { ProfileBgImage } from "app/core/components/ProfileBgImage"
 import { ProfileInfo } from "app/core/components/ProfileInfo"
 
 const Profile = () => {
-  const currentUser = useCurrentUser()
   const router = useRouter()
 
+  // User-related variables
+  const currentUser = useCurrentUser()
+  const [userInfo, setUserInfo] = useState(currentUser)
+
+  // Article-related variables
   const [defaultMyArticlesWithReview] = useQuery(getReviewAnswersByUserId, {
     currentUserId: currentUser?.id,
     includeAnonymous: true,
   })
-
-  const [userInfo, setUserInfo] = useState(currentUser)
   const [myArticlesWithReview, setMyArticlesWithReview] = useState(defaultMyArticlesWithReview)
 
-  const [isDeactivateAccountDialogOpen, setIsDeactivateAccountDialogOpen] = useState(false)
+  // Account-related variables
   const [resendVerificationMutation, { isSuccess }] = useMutation(resendVerification)
   const [verificationSent, setVerificationSent] = useState(false)
-
   const [logoutMutation] = useMutation(logout)
+  const [isDeactivateAccountDialogOpen, setIsDeactivateAccountDialogOpen] = useState(false)
   const handleDeleteUser = async () => {
     await invoke(deleteUser, currentUser?.id)
     await logoutMutation()
