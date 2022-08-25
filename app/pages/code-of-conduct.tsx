@@ -10,7 +10,6 @@ import MuiAccordion, { AccordionProps } from "@mui/material/Accordion"
 import MuiAccordionSummary, { AccordionSummaryProps } from "@mui/material/AccordionSummary"
 import MuiAccordionDetails from "@mui/material/AccordionDetails"
 import Typography from "@mui/material/Typography"
-import { color } from "@mui/system"
 
 const Accordion = styled((props: AccordionProps) => (
   <MuiAccordion disableGutters elevation={0} square {...props} />
@@ -60,6 +59,31 @@ const accordionStyle = {
 }
 
 const CodeOfConductPage: BlitzPage = () => {
+  // Track the state of individual accordion
+  const [accordion, setAccordion] = React.useState({
+    standards: false,
+    responsibilities: false,
+    scope: false,
+    enforcement: false,
+    guidelines: false,
+    attribution: false,
+  })
+
+  // Handle click for each accordion
+  const handleClick = (key: string) => {
+    setAccordion({ ...accordion, [key]: !accordion[key] })
+  }
+  // Track the expand all button
+  const [expandClicked, setExpandClicked] = React.useState(false)
+  // Handle expand all accordions
+  const handleExpandAll = (expand = true) => {
+    Object.keys(accordion).forEach((key) => {
+      if (expand) return (accordion[key] = true)
+      if (!expand) return (accordion[key] = false)
+    })
+    setAccordion({ ...accordion })
+    setExpandClicked(!expandClicked)
+  }
   return (
     <div className="flex flex-col min-h-screen bg-white dark:bg-gray-darkest">
       <Suspense fallback="Loading...">
@@ -97,7 +121,19 @@ const CodeOfConductPage: BlitzPage = () => {
           </p>
         </div>
         <div id="code-of-conduct-content" className="max-w-3xl">
-          <Accordion sx={{ ...accordionStyle }}>
+          <div className="text-right">
+            <button
+              className="px-2 py-1 mx-3 my-2 text-sm bg-gray-medium text-black dark:text-gray-light"
+              onClick={() => handleExpandAll(!expandClicked)}
+            >
+              {expandClicked ? "Collapse" : "Expand All"}
+            </button>
+          </div>
+          <Accordion
+            sx={{ ...accordionStyle }}
+            expanded={accordion.standards}
+            onClick={() => handleClick("standards")}
+          >
             <AccordionSummary aria-controls="panel1d-content" id="panel1d-header">
               <Typography variant="h5">Our Standards</Typography>
             </AccordionSummary>
@@ -144,7 +180,11 @@ const CodeOfConductPage: BlitzPage = () => {
               </ul>
             </AccordionDetails>
           </Accordion>
-          <Accordion sx={{ ...accordionStyle }}>
+          <Accordion
+            sx={{ ...accordionStyle }}
+            expanded={accordion.responsibilities}
+            onClick={() => handleClick("responsibilities")}
+          >
             <AccordionSummary aria-controls="panel2d-content" id="panel2d-header">
               <Typography variant="h5">Enforcement Responsibilities</Typography>
             </AccordionSummary>
@@ -162,7 +202,11 @@ const CodeOfConductPage: BlitzPage = () => {
               </p>
             </AccordionDetails>
           </Accordion>
-          <Accordion sx={{ ...accordionStyle }}>
+          <Accordion
+            sx={{ ...accordionStyle }}
+            expanded={accordion.scope}
+            onClick={() => handleClick("scope")}
+          >
             <AccordionSummary aria-controls="panel3d-content" id="panel3d-header">
               <Typography variant="h5">Scope</Typography>
             </AccordionSummary>
@@ -176,7 +220,11 @@ const CodeOfConductPage: BlitzPage = () => {
               </p>
             </AccordionDetails>
           </Accordion>
-          <Accordion sx={{ ...accordionStyle }}>
+          <Accordion
+            sx={{ ...accordionStyle }}
+            expanded={accordion.enforcement}
+            onClick={() => handleClick("enforcement")}
+          >
             <AccordionSummary aria-controls="panel4d-content" id="panel4d-header">
               <Typography variant="h5">Enforcement</Typography>
             </AccordionSummary>
@@ -228,7 +276,11 @@ const CodeOfConductPage: BlitzPage = () => {
               </p>
             </AccordionDetails>
           </Accordion>
-          <Accordion sx={{ ...accordionStyle }}>
+          <Accordion
+            sx={{ ...accordionStyle }}
+            expanded={accordion.guidelines}
+            onClick={() => handleClick("guidelines")}
+          >
             <AccordionSummary aria-controls="panel5d-content" id="panel5d-header">
               <Typography variant="h5">Enforcement Guidelines</Typography>
             </AccordionSummary>
@@ -295,7 +347,11 @@ const CodeOfConductPage: BlitzPage = () => {
               </p>
             </AccordionDetails>
           </Accordion>
-          <Accordion sx={{ ...accordionStyle }}>
+          <Accordion
+            sx={{ ...accordionStyle }}
+            expanded={accordion.attribution}
+            onClick={() => handleClick("attribution")}
+          >
             <AccordionSummary aria-controls="panel6d-content" id="panel6d-header">
               <Typography variant="h5">Attribution</Typography>
             </AccordionSummary>
