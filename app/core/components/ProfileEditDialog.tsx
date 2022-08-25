@@ -113,11 +113,11 @@ export const ProfileEditDialog = (props) => {
             <Formik
               innerRef={formRef as any}
               initialValues={{
-                displayName: userInfo?.displayName,
+                displayName: userInfo?.displayName || "",
                 handle: userInfo?.handle,
-                pronoun: userInfo?.pronoun,
-                aboutMe: userInfo?.aboutMe,
-                website: userInfo?.website,
+                pronoun: userInfo?.pronoun || "",
+                aboutMe: userInfo?.aboutMe || "",
+                website: userInfo?.website || "",
               }}
               onSubmit={async (values) => {
                 setUserInfo({ id: userInfo.id, ...values })
