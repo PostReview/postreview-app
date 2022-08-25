@@ -135,7 +135,7 @@ const PrivacyPolicyPage: BlitzPage = () => {
           </Accordion>
           <Accordion className="bg-gray-dark dark:bg-black/30 text-black dark:text-white">
             <AccordionSummary aria-controls="panel2d-content" id="panel2d-header">
-              <Typography className="font-bold text-2xl">Personal Data</Typography>
+              <Typography className="font-bold text-2xl">Personal data</Typography>
             </AccordionSummary>
             <AccordionDetails className="bg-gray-medium dark:bg-gray-dark text-black/80 dark:text-white/80">
               <p className="mx-2 font-thin text-black/90 dark:text-white">
@@ -267,7 +267,7 @@ const PrivacyPolicyPage: BlitzPage = () => {
           <Accordion className="bg-gray-dark dark:bg-black/30 text-black dark:text-white">
             <AccordionSummary aria-controls="panel7d-content" id="panel7d-header">
               <Typography className="font-bold text-2xl">
-                Retention of Your Personal Data
+                Retention of your personal data
               </Typography>
             </AccordionSummary>
             <AccordionDetails className="bg-gray-medium dark:bg-gray-dark text-black/80 dark:text-white/80">
@@ -290,7 +290,7 @@ const PrivacyPolicyPage: BlitzPage = () => {
           </Accordion>
           <Accordion className="bg-gray-dark dark:bg-black/30 text-black dark:text-white">
             <AccordionSummary aria-controls="panel8d-content" id="panel8d-header">
-              <Typography className="font-bold text-2xl">Transfer of Your Personal Data</Typography>
+              <Typography className="font-bold text-2xl">Transfer of your personal data</Typography>
             </AccordionSummary>
             <AccordionDetails className="bg-gray-medium dark:bg-gray-dark text-black/80 dark:text-white/80">
               <ul className="mx-4 my-4 font-thin list-decimal">
@@ -330,7 +330,7 @@ const PrivacyPolicyPage: BlitzPage = () => {
           <Accordion className="bg-gray-dark dark:bg-black/30 text-black dark:text-white">
             <AccordionSummary aria-controls="panel9d-content" id="panel9d-header">
               <Typography className="font-bold text-2xl">
-                Disclosure of Your Personal Data
+                Disclosure of your personal data
               </Typography>
             </AccordionSummary>
             <AccordionDetails className="bg-gray-medium dark:bg-gray-dark text-black/80 dark:text-white/80">
@@ -364,7 +364,7 @@ const PrivacyPolicyPage: BlitzPage = () => {
           </Accordion>
           <Accordion className="bg-gray-dark dark:bg-black/30 text-black dark:text-white">
             <AccordionSummary aria-controls="panel10d-content" id="panel10d-header">
-              <Typography className="font-bold text-2xl">Security of Your Personal Data</Typography>
+              <Typography className="font-bold text-2xl">Security of your personal data</Typography>
             </AccordionSummary>
             <AccordionDetails className="bg-gray-medium dark:bg-gray-dark text-black/80 dark:text-white/80">
               <p className="mx-2 my-3 font-thin text-black/90 dark:text-white/90">
@@ -377,7 +377,7 @@ const PrivacyPolicyPage: BlitzPage = () => {
           </Accordion>
           <Accordion className="bg-gray-dark dark:bg-black/30 text-black dark:text-white">
             <AccordionSummary aria-controls="panel11d-content" id="panel11d-header">
-              <Typography className="font-bold text-2xl">Changes to this Privacy Policy</Typography>
+              <Typography className="font-bold text-2xl">Changes to this privacy policy</Typography>
             </AccordionSummary>
             <AccordionDetails className="bg-gray-medium dark:bg-gray-dark text-black/80 dark:text-white/80">
               <ul className="mx-4 my-4 font-thin list-decimal">
@@ -395,7 +395,7 @@ const PrivacyPolicyPage: BlitzPage = () => {
           </Accordion>
           <Accordion className="bg-gray-dark dark:bg-black/30 text-black dark:text-white">
             <AccordionSummary aria-controls="panel12d-content" id="panel12d-header">
-              <Typography className="font-bold text-2xl">Contact Us</Typography>
+              <Typography className="font-bold text-2xl">Contact us</Typography>
             </AccordionSummary>
             <AccordionDetails className="bg-gray-medium dark:bg-gray-dark text-black/80 dark:text-white/80">
               <p className="mx-2 my-3 font-thin text-black/90 dark:text-white/90">
