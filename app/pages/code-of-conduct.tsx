@@ -104,10 +104,7 @@ const CodeOfConductPage: BlitzPage = () => {
         <div id="our-pledge-header" className="flex flex-col justify-start">
           <div className="text-2xl font-semibold text-black dark:text-white">Our Pledge</div>
         </div>
-        <div
-          id="our-pledge-body"
-          className="font-light max-w-3xl text-gray-darkest dark:text-white"
-        >
+        <div id="our-pledge-body" className="font-light max-w-3xl text-black dark:text-white">
           <p className="mx-6 my-3">
             We as members, contributors, and leaders pledge to make participation in our community a
             harassment-free experience for everyone, regardless of age, body size, visible or
@@ -123,7 +120,7 @@ const CodeOfConductPage: BlitzPage = () => {
         <div id="code-of-conduct-content" className="max-w-3xl">
           <div className="text-right">
             <button
-              className="px-2 py-1 mx-3 my-2 text-sm bg-gray-medium text-black dark:text-gray-light"
+              className="px-2 py-1 mx-3 my-2 text-sm font-semibold bg-gray-dark/40 dark:bg-black/40 text-black dark:text-gray-light"
               onClick={() => handleExpandAll(!expandClicked)}
             >
               {expandClicked ? "Collapse" : "Expand All"}
