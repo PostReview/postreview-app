@@ -15,7 +15,7 @@ const TeamPage: BlitzPage = () => {
       </Suspense>
       <main className="flex-grow flex flex-col items-center mb-12 text-gray-darkest">
         <h1 className="text-5xl font-bold mt-12">Our Team</h1>
-        <div className="text-center max-w-xl">
+        <div className="mx-4 text-center text-xl max-w-xl">
           PostReview is developed by a small group of people passionate about improving
           communications in research.
         </div>
