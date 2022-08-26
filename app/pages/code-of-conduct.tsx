@@ -90,8 +90,10 @@ const CodeOfConductPage: BlitzPage = () => {
         <Navbar />
       </Suspense>
       <main className="flex-grow flex flex-col items-center bg-gray-light dark:bg-gray-darkest">
-        <div className="py-4 w-full text-3xl font-bold bg-gray-dark dark:bg-black/30">
-          <h1 className="text-center text-black dark:text-white">Code of Conduct</h1>
+        <div className="py-4 w-full text-3xl font-bold bg-gray-medium dark:bg-black/60">
+          <h1 className="text-center bg-gray-medium dark:bg-black/0 text-black dark:text-white">
+            Code of Conduct
+          </h1>
         </div>
         <div id="code-of-conduct-image" className="py-4 brightness-200">
           <Image
