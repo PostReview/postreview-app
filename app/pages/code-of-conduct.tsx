@@ -104,7 +104,7 @@ const CodeOfConductPage: BlitzPage = () => {
           />
         </div>
         <div id="our-pledge-header" className="flex flex-col justify-start">
-          <div className="text-2xl font-semibold text-black dark:text-white">Our Pledge</div>
+          <div className="text-2xl font-bold text-black dark:text-white">Our Pledge</div>
         </div>
         <div id="our-pledge-body" className="font-light max-w-3xl text-black dark:text-white">
           <p className="mx-6 my-3">
