@@ -36,6 +36,16 @@ const About: BlitzPage = () => {
             <span className="text-4xl font-bold text-green">perfect space </span>
             <span className="text-4xl font-bold text-black">began...</span>
           </div>
+          <div id="two-scientists-container" className="mt-20 mx-4 flex flex-col items-center">
+            <Image
+              id="two-scientists-photo"
+              src={twoScientistsPhoto}
+              alt="A picture of two men thinking with their backs together"
+              className="brightness-110"
+            />
+            <h3 className="absolute mt-60 sm:mt-96 text-6xl sm:text-7xl font-bold text-green">
+              It should be
+            </h3>
           </div>
         </div>
         <Visions />
