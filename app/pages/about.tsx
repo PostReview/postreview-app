@@ -13,14 +13,7 @@ const About: BlitzPage = () => {
       <Suspense fallback="Loading...">
         <Navbar />
       </Suspense>
-      <main className="flex-grow flex flex-col items-center mb-12">
-        <h1 className="text-6xl font-bold my-12">About us</h1>
-        <div className="flex flex-col items-center max-w-3xl my-12 mx-4">
-          <h2 className="text-4xl font-bold">Our mission</h2>
-          <div className="my-6">
-            We love science and sharing opinions. Our goal is to streamline the opinion-sharing
-            process and improve the quality of published papers by creating a reliable feedback
-            channel between the authors and the audience.
+      <main className="flex-grow flex flex-col items-center bg-white text-gray-darkest">
           </div>
         </div>
         <Visions />
