@@ -77,14 +77,9 @@ const About: BlitzPage = () => {
             <span className=" text-green"> can share their opinions </span>
             <span className=" text-black">about scholarly articles.</span>
             </div>
-            <div id="out-team-description" className="flex flex-row">
-              <div className="m-4">
-                <h3 className="font-bold">Naoyuki Sunami </h3>
-                <h3 className="text-stone-600">Chief Technology Officer</h3>
-                <div className="my-2">
-                  Nami has a PhD in Social Psychology with background in social rejection research.
-                  In his spare time, Nami enjoys drawing, playing guitar and playing Warframe. Nami
-                  is in charge of the development of the platform.
+          <div className="text-2xl text-left">
+            They knew that if they can make their vision happen...
+          </div>
                 </div>
               </div>
               <div className="m-4">
