@@ -15,7 +15,8 @@ const MissionVisionPage: BlitzPage = () => {
       <main className="mb-20 flex-grow flex flex-col items-center text-gray-darkest">
         <h1 className="mt-12 text-5xl font-bold">Our Mission</h1>
         <p className="mt-4 mx-4 text-center text-xl max-w-xl">
-          Our mission is to de-centralize the power of voicing opinions about scholarly outputs.{" "}
+          PostReview mission is to de-centralize the power of voicing opinions about scholarly
+          outputs.{" "}
         </p>
         <div className="flex flex-col items-center">
           <h1 className="mt-20 text-5xl font-bold">Our Vision</h1>
