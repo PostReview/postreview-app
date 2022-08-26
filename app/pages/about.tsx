@@ -101,8 +101,20 @@ const About: BlitzPage = () => {
             <span className="text-green">a collective knowledge</span>
           </div>
         </div>
+        <div id="ending-of-story-container" className="flex flex-col max-w-2xl px-4 bg-green">
+          <div className="mt-24 text-2xl text-left">They believed that...</div>
+          <div className="mt-32 mb-16 text-6xl font-bold text-white">
+            Opinions on research should be
                 </div>
+          <div className="mt-10 sm:px-24 text-left sm:text-5xl text-4xl font-bold text-gray-medium">
+            open
               </div>
+          <div className="mt-14 sm:px-24 text-left sm:text-5xl text-4xl font-bold text-gray-dark">
+            accessible
+          </div>
+          <div className="mt-14 sm:px-24 text-left sm:text-5xl text-4xl font-bold">transparent</div>
+          <div className="mt-14 mb-28 sm:px-24 text-left sm:text-5xl text-4xl font-bold text-black">
+            community-driven
             </div>
           </div>
         </div>
