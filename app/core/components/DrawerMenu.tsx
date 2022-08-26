@@ -81,14 +81,14 @@ export const DrawerMenu = (props) => {
                 <Typography>Policies</Typography>
               </AccordionSummary>
               <AccordionDetails>
-                <ListItemButton sx={{ ...hoverSx }} onClick={() => router.push("/terms-of-use")}>
-                  <ListItemText primary={"Terms of use"} />
+                <ListItemButton sx={{ ...hoverSx }} onClick={() => router.push("/code-of-conduct")}>
+                  <ListItemText primary={"Code of conduct"} />
                 </ListItemButton>
                 <ListItemButton sx={{ ...hoverSx }} onClick={() => router.push("/privacy-policy")}>
                   <ListItemText primary={"Privacy policy"} />
                 </ListItemButton>
-                <ListItemButton sx={{ ...hoverSx }} onClick={() => router.push("/code-of-conduct")}>
-                  <ListItemText primary={"Code of conduct"} />
+                <ListItemButton sx={{ ...hoverSx }} onClick={() => router.push("/terms-of-use")}>
+                  <ListItemText primary={"Terms of use"} />
                 </ListItemButton>
               </AccordionDetails>
             </Accordion>

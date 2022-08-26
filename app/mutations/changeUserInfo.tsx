@@ -9,6 +9,7 @@ const inputData = z.object({
   pronoun: z.string().optional().nullable(),
   aboutMe: z.string().optional().nullable(),
   website: z.string().optional().nullable(),
+  icon: z.string().optional().nullable(),
 })
 
 export default async function changeUserInfo(input: z.infer<typeof inputData>, ctx: Ctx) {

@@ -1,12 +1,16 @@
-import { AppBar, Avatar, Button, Dialog, IconButton, Toolbar, Typography } from "@mui/material"
+import { AppBar, Button, Dialog, IconButton, Toolbar, Typography } from "@mui/material"
 import React, { useRef, useState } from "react"
 import CloseIcon from "@mui/icons-material/Close"
-import changeUseInfo from "app/mutations/changeUserInfo"
+import changeUserInfo from "app/mutations/changeUserInfo"
 import { Field, Formik, Form, FormikValues, ErrorMessage } from "formik"
 import { invoke, useMutation } from "blitz"
 import getUserInfo from "app/queries/getUserInfo"
+import { Widget } from "@uploadcare/react-widget"
+import changeAvatar from "app/mutations/changeAvatar"
+import { AvatarIcon } from "./AvatarIcon"
 
 export const ProfileEditDialog = (props) => {
+  const UPLOADCARE_PUBLIC_KEY = process.env.UPLOADCARE_PUBLIC_KEY
   const { open, setOpen, userInfo, setUserInfo } = props
 
   const formRef = useRef<FormikValues>()
@@ -37,7 +41,13 @@ export const ProfileEditDialog = (props) => {
     setAboutMe(value)
   }
 
-  const [changeUserinfoMutation] = useMutation(changeUseInfo)
+  const [changeUserinfoMutation] = useMutation(changeUserInfo)
+
+  const widgetApi = useRef<any>()
+  const [changeAvatarMutation] = useMutation(changeAvatar)
+
+  // Track the avatar icon URL
+  const [icon, setIcon] = useState(userInfo.icon)
 
   return (
     <Dialog open={open} onClose={() => handleCancel()} sx={{ background: "black" }} fullScreen>
@@ -54,7 +64,7 @@ export const ProfileEditDialog = (props) => {
           <Typography sx={{ ml: 2, flex: 1 }} variant="h6" component="div">
             Edit profile
           </Typography>
-          <Button autoFocus color="inherit" onClick={() => handleSave()}>
+          <Button color="inherit" onClick={() => handleSave()}>
             save
           </Button>
         </Toolbar>
@@ -64,37 +74,52 @@ export const ProfileEditDialog = (props) => {
         <div id="user-info-container" className="relative">
           <div id="photo-avatar-container" className="flex flex-row mt-6">
             <div id="profile-picture" className="flex flex-row">
-              <Button id="user-avatar" className="focus:outline-none -mt-16" onClick={undefined}>
-                <Avatar
-                  alt={userInfo?.displayName ? userInfo?.displayName : userInfo?.handle}
-                  sx={{
-                    backgroundColor: "#545454",
-                    color: "#94ec01",
-                    height: "5rem",
-                    width: "5rem",
-                  }}
-                  variant="square"
-                  src={`https://eu.ui-avatars.com/api/?name=${
-                    userInfo?.displayName ? userInfo?.displayName : userInfo?.handle
-                  }&color=94ec01&background=545454`}
-                />
+              <Button
+                id="user-avatar"
+                className="focus:outline-none -mt-16"
+                onClick={() => widgetApi?.current?.openDialog()}
+              >
+                <AvatarIcon currentUser={userInfo} height={"5rem"} width={"5rem"} />
               </Button>
+              <div className="hidden">
+                <Widget
+                  publicKey={UPLOADCARE_PUBLIC_KEY ? UPLOADCARE_PUBLIC_KEY : ""}
+                  ref={widgetApi}
+                  crop="1:1"
+                  imageShrink="480x480"
+                  imagesOnly
+                  previewStep
+                  clearable
+                  tabs="file url"
+                  onChange={async (info) => {
+                    try {
+                      setUserInfo({ id: userInfo.id, icon: icon, ...userInfo })
+                      setIcon(info.cdnUrl)
+                    } catch (err) {
+                      alert(err)
+                    }
+                  }}
+                />
+              </div>
             </div>
           </div>
           <div id="username-handle-card">
             <Formik
               innerRef={formRef as any}
               initialValues={{
-                displayName: userInfo?.displayName,
+                displayName: userInfo?.displayName || "",
                 handle: userInfo?.handle,
-                pronoun: userInfo?.pronoun,
-                aboutMe: userInfo?.aboutMe,
-                website: userInfo?.website,
+                pronoun: userInfo?.pronoun || "",
+                aboutMe: userInfo?.aboutMe || "",
+                website: userInfo?.website || "",
               }}
               onSubmit={async (values) => {
-                setUserInfo({ id: userInfo.id, ...values })
-                changeUserinfoMutation({ id: userInfo.id, ...values })
+                setUserInfo({ id: userInfo.id, icon: icon, ...values })
+                changeUserinfoMutation({ id: userInfo.id, ...values, icon: icon })
                 setOpen(false)
+                // Reload the page to reflect the change on the user avatar in the nav bar
+                // (TODO: Make the icon change reactive in the nav bar)
+                window.location.reload()
               }}
               validate={(values) => {
                 const existingUser = invoke(getUserInfo, { userHandle: values.handle })
@@ -158,7 +183,7 @@ export const ProfileEditDialog = (props) => {
                     name="aboutMe"
                     type="text"
                     as="textarea"
-                    maxlength={aboutMeCharLimit}
+                    maxLength={aboutMeCharLimit}
                     className="ml-10 mb-4 h-20 w-full text-sm bg-black outline-0 text-green"
                     validate={validateAboutMe}
                   />

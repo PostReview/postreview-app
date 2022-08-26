@@ -25,7 +25,7 @@ const Accordion = styled((props: AccordionProps) => (
 
 const AccordionSummary = styled((props: AccordionSummaryProps) => (
   <MuiAccordionSummary
-    expandIcon={<ArrowForwardIosSharpIcon sx={{ fontSize: "0.9rem" }} />}
+    expandIcon={<ArrowForwardIosSharpIcon sx={{ fontSize: "1rem", color: "#2e2c2c" }} />}
     {...props}
   />
 ))(({ theme }) => ({
@@ -47,26 +47,59 @@ const AccordionDetails = styled(MuiAccordionDetails)(({ theme }) => ({
 
 const accordionStyle = {
   "@media (prefers-color-scheme: light)": {
-    background: "#545454",
+    background: "#737373",
     color: "#000000",
     fontWeight: "bold",
   },
   "@media (prefers-color-scheme: dark)": {
-    background: alpha("#000000", 0.3),
+    background: alpha("#000000", 0.6),
     color: "#ffffff",
     fontWeight: "bold",
   },
 }
 
 const TermsofUsePage: BlitzPage = () => {
+  // Track the state of individual accordion
+  const [accordion, setAccordion] = React.useState({
+    scope: false,
+    definitions: false,
+    agreement: false,
+    functions: false,
+    term: false,
+    availability: false,
+    data: false,
+    change: false,
+    law: false,
+    contact: false,
+    acknowledgement: false,
+  })
+
+  // Handle click for each accordion
+  const handleClick = (key: string) => {
+    setAccordion({ ...accordion, [key]: !accordion[key] })
+  }
+  // Track the expand all button
+  const [expandClicked, setExpandClicked] = React.useState(false)
+  // Handle expand all accordions
+  const handleExpandAll = (expand = true) => {
+    Object.keys(accordion).forEach((key) => {
+      if (expand) return (accordion[key] = true)
+      if (!expand) return (accordion[key] = false)
+    })
+    setAccordion({ ...accordion })
+    setExpandClicked(!expandClicked)
+  }
+
   return (
     <div className="flex flex-col min-h-screen bg-white dark:bg-gray-darkest">
       <Suspense fallback="Loading...">
         <Navbar />
       </Suspense>
       <main className="flex-grow flex flex-col items-center bg-gray-light dark:bg-gray-darkest">
-        <div className="py-4 w-full text-3xl font-bold bg-gray-dark dark:bg-black/30">
-          <h1 className="text-center text-black dark:text-white">Terms of Use</h1>
+        <div className="py-4 w-full text-3xl font-bold bg-gray-medium dark:bg-black/60">
+          <h1 className="text-center bg-gray-medium dark:bg-black/0 text-black dark:text-white">
+            Terms of Use
+          </h1>
         </div>
         <div id="terms-of-use-image" className="py-4">
           <Image
@@ -77,12 +110,27 @@ const TermsofUsePage: BlitzPage = () => {
           />
         </div>
         <div id="terms-of-use-content" className="max-w-3xl">
-          <Accordion sx={{ ...accordionStyle }}>
+          <div className="text-right">
+            <button
+              className="px-2 py-1 mx-3 my-2 text-sm font-semibold bg-gray-dark/40 dark:bg-black/40 text-black dark:text-white"
+              onClick={() => handleExpandAll(!expandClicked)}
+            >
+              {expandClicked ? "Collapse" : "Expand All"}
+            </button>
+          </div>
+
+          <Accordion
+            sx={{ ...accordionStyle }}
+            expanded={accordion.scope}
+            onClick={() => handleClick("scope")}
+          >
             <AccordionSummary aria-controls="panel1d-content" id="panel1d-header">
-              <Typography variant="h5">Scope</Typography>
+              <Typography variant="h5" fontWeight="bold">
+                Scope
+              </Typography>
             </AccordionSummary>
-            <AccordionDetails className="bg-gray-medium dark:bg-gray-dark text-black/80 dark:text-white/80">
-              <p className="mx-2 font-thin text-black/90 dark:text-white/90">
+            <AccordionDetails className="bg-white dark:bg-gray-dark text-black/80 dark:text-white/80">
+              <p className="mx-2 font-thin text-black/80 dark:text-white/80">
                 PostReview Team (&quot;we&quot; or &quot;us&quot;) provides an online reviewing
                 where people can post reviews to scholarly outputs. The platform is available at{" "}
                 <a
@@ -95,11 +143,17 @@ const TermsofUsePage: BlitzPage = () => {
               </p>
             </AccordionDetails>
           </Accordion>
-          <Accordion sx={{ ...accordionStyle }}>
+          <Accordion
+            sx={{ ...accordionStyle }}
+            expanded={accordion.definitions}
+            onClick={() => handleClick("definitions")}
+          >
             <AccordionSummary aria-controls="panel2d-content" id="panel2d-header">
-              <Typography variant="h5">Definitions</Typography>
+              <Typography variant="h5" fontWeight="bold">
+                Definitions
+              </Typography>
             </AccordionSummary>
-            <AccordionDetails className="bg-gray-medium dark:bg-gray-dark text-black/80 dark:text-white/80">
+            <AccordionDetails className="bg-white dark:bg-gray-dark text-black/80 dark:text-white/80">
               <ul className="mx-4 my-4  font-thin list-decimal">
                 <li className="m-2">
                   &quot;User&quot;: A natural person that registers and uses PostReview
@@ -118,13 +172,17 @@ const TermsofUsePage: BlitzPage = () => {
               </ul>
             </AccordionDetails>
           </Accordion>
-          <Accordion sx={{ ...accordionStyle }}>
+          <Accordion
+            sx={{ ...accordionStyle }}
+            expanded={accordion.agreement}
+            onClick={() => handleClick("agreement")}
+          >
             <AccordionSummary aria-controls="panel3d-content" id="panel3d-header">
-              <Typography variant="h5">
+              <Typography variant="h5" fontWeight="bold">
                 Agreement to the terms and registering an account
               </Typography>
             </AccordionSummary>
-            <AccordionDetails className="bg-gray-medium dark:bg-gray-dark text-black/80 dark:text-white/80">
+            <AccordionDetails className="bg-white dark:bg-gray-dark text-black/80 dark:text-white/80">
               <ul className="mx-4 my-4 font-thin list-decimal">
                 <li className="m-2">
                   The user has to open a user account to post reviews on PostReview.
@@ -163,11 +221,17 @@ const TermsofUsePage: BlitzPage = () => {
               </ul>
             </AccordionDetails>
           </Accordion>
-          <Accordion sx={{ ...accordionStyle }}>
+          <Accordion
+            sx={{ ...accordionStyle }}
+            expanded={accordion.functions}
+            onClick={() => handleClick("functions")}
+          >
             <AccordionSummary aria-controls="panel4d-content" id="panel4d-header">
-              <Typography variant="h5">Basic functions and rules of PostReview</Typography>
+              <Typography variant="h5" fontWeight="bold">
+                Basic functions and rules of PostReview
+              </Typography>
             </AccordionSummary>
-            <AccordionDetails className="bg-gray-medium dark:bg-gray-dark text-black/80 dark:text-white/80">
+            <AccordionDetails className="bg-white dark:bg-gray-dark text-black/80 dark:text-white/80">
               <ul className="mx-4 my-4 font-thin list-decimal">
                 <li className="m-2">
                   The PostReview platform provides basic functions to all users with a user account.
@@ -231,11 +295,17 @@ const TermsofUsePage: BlitzPage = () => {
               </ul>
             </AccordionDetails>
           </Accordion>
-          <Accordion sx={{ ...accordionStyle }}>
+          <Accordion
+            sx={{ ...accordionStyle }}
+            expanded={accordion.term}
+            onClick={() => handleClick("term")}
+          >
             <AccordionSummary aria-controls="panel5d-content" id="panel5d-header">
-              <Typography variant="h5">Term and termination</Typography>
+              <Typography variant="h5" fontWeight="bold">
+                Term and termination
+              </Typography>
             </AccordionSummary>
-            <AccordionDetails className="bg-gray-medium dark:bg-gray-dark text-black/80 dark:text-white/80">
+            <AccordionDetails className="bg-white dark:bg-gray-dark text-black/80 dark:text-white/80">
               <ul className="mx-4 my-4 font-thin list-decimal">
                 <li className="m-2">
                   The term of this agreement commences with the user&apos;s registration. Both
@@ -250,11 +320,17 @@ const TermsofUsePage: BlitzPage = () => {
               </ul>
             </AccordionDetails>
           </Accordion>
-          <Accordion sx={{ ...accordionStyle }}>
+          <Accordion
+            sx={{ ...accordionStyle }}
+            expanded={accordion.availability}
+            onClick={() => handleClick("availability")}
+          >
             <AccordionSummary aria-controls="panel6d-content" id="panel6d-header">
-              <Typography variant="h5">Availability and maintenance</Typography>
+              <Typography variant="h5" fontWeight="bold">
+                Availability and maintenance
+              </Typography>
             </AccordionSummary>
-            <AccordionDetails className="bg-gray-medium dark:bg-gray-dark text-black/80 dark:text-white/80">
+            <AccordionDetails className="bg-white dark:bg-gray-dark text-black/80 dark:text-white/80">
               <p className="mx-2 my-3 font-thin text-black/90 dark:text-white/90">
                 We will carry out maintenance to ensure that PostReview works well for the users.
                 While we work on maintenance, PostReview may not be available or functional during
@@ -262,11 +338,17 @@ const TermsofUsePage: BlitzPage = () => {
               </p>
             </AccordionDetails>
           </Accordion>
-          <Accordion sx={{ ...accordionStyle }}>
+          <Accordion
+            sx={{ ...accordionStyle }}
+            expanded={accordion.data}
+            onClick={() => handleClick("data")}
+          >
             <AccordionSummary aria-controls="panel7d-content" id="panel7d-header">
-              <Typography variant="h5">Protecting data</Typography>
+              <Typography variant="h5" fontWeight="bold">
+                Protecting data
+              </Typography>
             </AccordionSummary>
-            <AccordionDetails className="bg-gray-medium dark:bg-gray-dark text-black/80 dark:text-white/80">
+            <AccordionDetails className="bg-white dark:bg-gray-dark text-black/80 dark:text-white/80">
               <p className="mx-2 my-3 font-thin text-black/90 dark:text-white/90">
                 The user agrees that we shall have no liability for any loss or corruption of data,
                 and the user hereby waives any right of action against us arising from any such loss
@@ -274,11 +356,17 @@ const TermsofUsePage: BlitzPage = () => {
               </p>
             </AccordionDetails>
           </Accordion>
-          <Accordion sx={{ ...accordionStyle }}>
+          <Accordion
+            sx={{ ...accordionStyle }}
+            expanded={accordion.change}
+            onClick={() => handleClick("change")}
+          >
             <AccordionSummary aria-controls="panel8d-content" id="panel8d-header">
-              <Typography variant="h5">Changes to the terms</Typography>
+              <Typography variant="h5" fontWeight="bold">
+                Changes to the terms
+              </Typography>
             </AccordionSummary>
-            <AccordionDetails className="bg-gray-medium dark:bg-gray-dark text-black/80 dark:text-white/80">
+            <AccordionDetails className="bg-white dark:bg-gray-dark text-black/80 dark:text-white/80">
               <ul className="mx-4 my-4 font-thin list-decimal">
                 <li className="m-2">
                   We reserve the right to introduce new changes to PostReview and corresponding
@@ -300,11 +388,17 @@ const TermsofUsePage: BlitzPage = () => {
               </ul>
             </AccordionDetails>
           </Accordion>
-          <Accordion sx={{ ...accordionStyle }}>
+          <Accordion
+            sx={{ ...accordionStyle }}
+            expanded={accordion.law}
+            onClick={() => handleClick("law")}
+          >
             <AccordionSummary aria-controls="panel9d-content" id="panel9d-header">
-              <Typography variant="h5">Governing law</Typography>
+              <Typography variant="h5" fontWeight="bold">
+                Governing law
+              </Typography>
             </AccordionSummary>
-            <AccordionDetails className="bg-gray-medium dark:bg-gray-dark text-black/80 dark:text-white/80">
+            <AccordionDetails className="bg-white dark:bg-gray-dark text-black/80 dark:text-white/80">
               <p className="mx-2 my-3 font-thin text-black/90 dark:text-white/90">
                 These terms and the use of PostReview are governed by and construed in accordance
                 with the laws of the State of Delaware applicable to agreements made and to be
@@ -313,11 +407,17 @@ const TermsofUsePage: BlitzPage = () => {
               </p>
             </AccordionDetails>
           </Accordion>
-          <Accordion sx={{ ...accordionStyle }}>
+          <Accordion
+            sx={{ ...accordionStyle }}
+            expanded={accordion.contact}
+            onClick={() => handleClick("contact")}
+          >
             <AccordionSummary aria-controls="panel10d-content" id="panel10d-header">
-              <Typography variant="h5">Contact</Typography>
+              <Typography variant="h5" fontWeight="bold">
+                Contact
+              </Typography>
             </AccordionSummary>
-            <AccordionDetails className="bg-gray-medium dark:bg-gray-dark text-black/80 dark:text-white/80">
+            <AccordionDetails className="bg-white dark:bg-gray-dark text-black/80 dark:text-white/80">
               <p className="mx-2 my-3 font-thin text-black/90 dark:text-white/90">
                 To resolve a complaint regarding PostReview or to receive further information
                 regarding its use, please contact us at{" "}
@@ -332,11 +432,17 @@ const TermsofUsePage: BlitzPage = () => {
               </p>
             </AccordionDetails>
           </Accordion>
-          <Accordion sx={{ ...accordionStyle }}>
+          <Accordion
+            sx={{ ...accordionStyle }}
+            expanded={accordion.acknowledgement}
+            onClick={() => handleClick("acknowledgement")}
+          >
             <AccordionSummary aria-controls="panel11d-content" id="panel11d-header">
-              <Typography variant="h5">Acknowledgement</Typography>
+              <Typography variant="h5" fontWeight="bold">
+                Acknowledgement
+              </Typography>
             </AccordionSummary>
-            <AccordionDetails className="bg-gray-medium dark:bg-gray-dark text-black/80 dark:text-white/80">
+            <AccordionDetails className="bg-white dark:bg-gray-dark text-black/80 dark:text-white/80">
               <p className="mx-2 my-3 font-thin text-black/90 dark:text-white/90">
                 In writing this terms of use, we referred to the Terms of Use by
                 <Link href="https://www.researchequals.com/terms">

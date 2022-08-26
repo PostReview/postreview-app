@@ -4,7 +4,7 @@ import { Suspense } from "react"
 import Navbar from "app/core/components/Navbar"
 import privacyPolicy from "public/privacy-policy.png"
 import * as React from "react"
-import { styled } from "@mui/material/styles"
+import { alpha, styled } from "@mui/material/styles"
 import ArrowForwardIosSharpIcon from "@mui/icons-material/ArrowForwardIosSharp"
 import MuiAccordion, { AccordionProps } from "@mui/material/Accordion"
 import MuiAccordionSummary, { AccordionSummaryProps } from "@mui/material/AccordionSummary"
@@ -25,7 +25,7 @@ const Accordion = styled((props: AccordionProps) => (
 
 const AccordionSummary = styled((props: AccordionSummaryProps) => (
   <MuiAccordionSummary
-    expandIcon={<ArrowForwardIosSharpIcon sx={{ fontSize: "0.9rem" }} />}
+    expandIcon={<ArrowForwardIosSharpIcon sx={{ fontSize: "1rem", color: "#2e2c2c" }} />}
     {...props}
   />
 ))(({ theme }) => ({
@@ -45,16 +45,63 @@ const AccordionDetails = styled(MuiAccordionDetails)(({ theme }) => ({
   borderTop: "1px solid rgba(0, 0, 0, .125)",
 }))
 
+const accordionStyle = {
+  "@media (prefers-color-scheme: light)": {
+    background: "#737373",
+    color: "#000000",
+    fontWeight: "bold",
+  },
+  "@media (prefers-color-scheme: dark)": {
+    background: alpha("#000000", 0.6),
+    color: "#ffffff",
+    fontWeight: "bold",
+  },
+}
+
 const PrivacyPolicyPage: BlitzPage = () => {
+  // Track the state of individual accordion
+  const [accordion, setAccordion] = React.useState({
+    definitions: false,
+    personal: false,
+    usage: false,
+    cookies: false,
+    purposes: false,
+    share: false,
+    retention: false,
+    transfer: false,
+    disclosure: false,
+    security: false,
+    changes: false,
+    contact: false,
+  })
+
+  // Handle click for each accordion
+  const handleClick = (key: string) => {
+    setAccordion({ ...accordion, [key]: !accordion[key] })
+  }
+  // Track the expand all button
+  const [expandClicked, setExpandClicked] = React.useState(false)
+  // Handle expand all accordions
+  const handleExpandAll = (expand = true) => {
+    Object.keys(accordion).forEach((key) => {
+      if (expand) return (accordion[key] = true)
+      if (!expand) return (accordion[key] = false)
+    })
+    setAccordion({ ...accordion })
+    setExpandClicked(!expandClicked)
+  }
+
   return (
     <div className="flex flex-col min-h-screen bg-white dark:bg-gray-darkest">
       <Suspense fallback="Loading...">
         <Navbar />
       </Suspense>
       <main className="flex-grow flex flex-col items-center bg-gray-light dark:bg-gray-darkest">
-        <div className="py-4 w-full text-3xl font-bold bg-gray-dark dark:bg-black/30">
-          <h1 className="text-center text-black dark:text-white">Privacy Policy</h1>
-          <div className="pt-1 text-sm text-center font-thin text-black/90 dark:text-white/80">
+        <div className="py-4 w-full text-3xl font-bold bg-gray-medium dark:bg-black/60">
+          <h1 className="text-center bg-gray-medium dark:bg-black/0 text-black dark:text-white">
+            Privacy Policy
+          </h1>
+          <div className="pt-1 text-sm text-center bg-gray-medium dark:bg-black/0 text-black/70 dark:text-white/70">
             Last updated: August 22, 2022
           </div>
         </div>
@@ -68,7 +115,7 @@ const PrivacyPolicyPage: BlitzPage = () => {
         </div>
         <div
           id="privacy-policy-summary"
-          className="font-light max-w-3xl text-gray-darkest dark:text-white"
+          className="font-light max-w-3xl text-black dark:text-white"
         >
           <p className="mx-6 mb-3">
             This privacy policy describes our policies and procedures on the collection, use and
@@ -84,11 +131,26 @@ const PrivacyPolicyPage: BlitzPage = () => {
           </p>
         </div>
         <div id="terms-of-use-content" className="max-w-3xl">
-          <Accordion className="bg-gray-dark dark:bg-black/30 text-black dark:text-white">
+          <div className="text-right">
+            <button
+              className="px-2 py-1 mx-3 my-2 text-sm font-semibold bg-gray-dark/40 dark:bg-black/40 text-black dark:text-white"
+              onClick={() => handleExpandAll(!expandClicked)}
+            >
+              {expandClicked ? "Collapse" : "Expand All"}
+            </button>
+          </div>
+
+          <Accordion
+            sx={{ ...accordionStyle }}
+            expanded={accordion.definitions}
+            onClick={() => handleClick("definitions")}
+          >
             <AccordionSummary aria-controls="panel1d-content" id="panel1d-header">
-              <Typography className="font-bold text-2xl">Definitions</Typography>
+              <Typography variant="h5" fontWeight="bold">
+                Definitions
+              </Typography>
             </AccordionSummary>
-            <AccordionDetails className="bg-gray-medium dark:bg-gray-dark text-black/80 dark:text-white/80">
+            <AccordionDetails className="bg-white dark:bg-gray-dark text-black/80 dark:text-white/80">
               <ul className="mx-4 my-4 font-thin list-decimal">
                 <li className="m-2">
                   Account: A unique account created for the user to access PostReview
@@ -133,11 +195,17 @@ const PrivacyPolicyPage: BlitzPage = () => {
               </ul>
             </AccordionDetails>
           </Accordion>
-          <Accordion className="bg-gray-dark dark:bg-black/30 text-black dark:text-white">
+          <Accordion
+            sx={{ ...accordionStyle }}
+            expanded={accordion.personal}
+            onClick={() => handleClick("personal")}
+          >
             <AccordionSummary aria-controls="panel2d-content" id="panel2d-header">
-              <Typography className="font-bold text-2xl">Personal Data</Typography>
+              <Typography variant="h5" fontWeight="bold">
+                Personal data
+              </Typography>
             </AccordionSummary>
-            <AccordionDetails className="bg-gray-medium dark:bg-gray-dark text-black/80 dark:text-white/80">
+            <AccordionDetails className="bg-white dark:bg-gray-dark text-black/80 dark:text-white/80">
               <p className="mx-2 font-thin text-black/90 dark:text-white">
                 While using PostReview, we may ask you to provide us with personally identifiable
                 information that can be used to contact or identify you. Personally identifiable
@@ -145,11 +213,17 @@ const PrivacyPolicyPage: BlitzPage = () => {
               </p>
             </AccordionDetails>
           </Accordion>
-          <Accordion className="bg-gray-dark dark:bg-black/30 text-black dark:text-white">
+          <Accordion
+            sx={{ ...accordionStyle }}
+            expanded={accordion.usage}
+            onClick={() => handleClick("usage")}
+          >
             <AccordionSummary aria-controls="panel3d-content" id="panel3d-header">
-              <Typography className="font-bold text-2xl">Usage data</Typography>
+              <Typography variant="h5" fontWeight="bold">
+                Usage data
+              </Typography>
             </AccordionSummary>
-            <AccordionDetails className="bg-gray-medium dark:bg-gray-dark text-black/80 dark:text-white/80">
+            <AccordionDetails className="bg-white dark:bg-gray-dark text-black/80 dark:text-white/80">
               <ul className="mx-4 my-4 font-thin list-decimal">
                 <li className="m-2">
                   Usage data is collected automatically when using PostReview.
@@ -168,11 +242,17 @@ const PrivacyPolicyPage: BlitzPage = () => {
               </ul>
             </AccordionDetails>
           </Accordion>
-          <Accordion className="bg-gray-dark dark:bg-black/30 text-black dark:text-white">
+          <Accordion
+            sx={{ ...accordionStyle }}
+            expanded={accordion.cookies}
+            onClick={() => handleClick("cookies")}
+          >
             <AccordionSummary aria-controls="panel4d-content" id="panel4d-header">
-              <Typography className="font-bold text-2xl">Cookies</Typography>
+              <Typography variant="h5" fontWeight="bold">
+                Cookies
+              </Typography>
             </AccordionSummary>
-            <AccordionDetails className="bg-gray-medium dark:bg-gray-dark text-black/80 dark:text-white/80">
+            <AccordionDetails className="bg-white dark:bg-gray-dark text-black/80 dark:text-white/80">
               <ul className="mx-4 my-4 font-thin list-decimal">
                 <li className="m-2">
                   A cookie is a small file placed on your device. You can instruct your browser to
@@ -194,13 +274,17 @@ const PrivacyPolicyPage: BlitzPage = () => {
               </ul>
             </AccordionDetails>
           </Accordion>
-          <Accordion className="bg-gray-dark dark:bg-black/30 text-black dark:text-white">
+          <Accordion
+            sx={{ ...accordionStyle }}
+            expanded={accordion.purposes}
+            onClick={() => handleClick("purposes")}
+          >
             <AccordionSummary aria-controls="panel5d-content" id="panel5d-header">
-              <Typography className="font-bold text-2xl">
+              <Typography variant="h5" fontWeight="bold">
                 Purposes of processing your data
               </Typography>
             </AccordionSummary>
-            <AccordionDetails className="bg-gray-medium dark:bg-gray-dark text-black/80 dark:text-white/80">
+            <AccordionDetails className="bg-white dark:bg-gray-dark text-black/80 dark:text-white/80">
               <p className="mx-2 font-thin text-black/90 dark:text-white">
                 We may use your personal data for the following purposes:
               </p>
@@ -236,13 +320,17 @@ const PrivacyPolicyPage: BlitzPage = () => {
               </ul>
             </AccordionDetails>
           </Accordion>
-          <Accordion className="bg-gray-dark dark:bg-black/30 text-black dark:text-white">
+          <Accordion
+            sx={{ ...accordionStyle }}
+            expanded={accordion.share}
+            onClick={() => handleClick("share")}
+          >
             <AccordionSummary aria-controls="panel6d-content" id="panel6d-header">
-              <Typography className="font-bold text-2xl">
+              <Typography variant="h5" fontWeight="bold">
                 We may share your personal information
               </Typography>
             </AccordionSummary>
-            <AccordionDetails className="bg-gray-medium dark:bg-gray-dark text-black/80 dark:text-white/80">
+            <AccordionDetails className="bg-white dark:bg-gray-dark text-black/80 dark:text-white/80">
               <p className="mx-2 my-3 font-thin text-black/90 dark:text-white/90">
                 In the following situations:
               </p>
@@ -264,13 +352,17 @@ const PrivacyPolicyPage: BlitzPage = () => {
               </ul>
             </AccordionDetails>
           </Accordion>
-          <Accordion className="bg-gray-dark dark:bg-black/30 text-black dark:text-white">
+          <Accordion
+            sx={{ ...accordionStyle }}
+            expanded={accordion.retention}
+            onClick={() => handleClick("retention")}
+          >
             <AccordionSummary aria-controls="panel7d-content" id="panel7d-header">
-              <Typography className="font-bold text-2xl">
-                Retention of Your Personal Data
+              <Typography variant="h5" fontWeight="bold">
+                Retention of your personal data
               </Typography>
             </AccordionSummary>
-            <AccordionDetails className="bg-gray-medium dark:bg-gray-dark text-black/80 dark:text-white/80">
+            <AccordionDetails className="bg-white dark:bg-gray-dark text-black/80 dark:text-white/80">
               <ul className="mx-4 my-4 font-thin list-decimal">
                 <li className="m-2">
                   The Company will retain your personal data only for as long as is necessary for
@@ -288,11 +380,17 @@ const PrivacyPolicyPage: BlitzPage = () => {
               </ul>
             </AccordionDetails>
           </Accordion>
-          <Accordion className="bg-gray-dark dark:bg-black/30 text-black dark:text-white">
+          <Accordion
+            sx={{ ...accordionStyle }}
+            expanded={accordion.transfer}
+            onClick={() => handleClick("transfer")}
+          >
             <AccordionSummary aria-controls="panel8d-content" id="panel8d-header">
-              <Typography className="font-bold text-2xl">Transfer of Your Personal Data</Typography>
+              <Typography variant="h5" fontWeight="bold">
+                Transfer of your personal data
+              </Typography>
             </AccordionSummary>
-            <AccordionDetails className="bg-gray-medium dark:bg-gray-dark text-black/80 dark:text-white/80">
+            <AccordionDetails className="bg-white dark:bg-gray-dark text-black/80 dark:text-white/80">
               <ul className="mx-4 my-4 font-thin list-decimal">
                 <li className="m-2">
                   Your information is processed at our offices and in other places where data
@@ -327,13 +425,17 @@ const PrivacyPolicyPage: BlitzPage = () => {
               </ul>
             </AccordionDetails>
           </Accordion>
-          <Accordion className="bg-gray-dark dark:bg-black/30 text-black dark:text-white">
+          <Accordion
+            sx={{ ...accordionStyle }}
+            expanded={accordion.disclosure}
+            onClick={() => handleClick("disclosure")}
+          >
             <AccordionSummary aria-controls="panel9d-content" id="panel9d-header">
-              <Typography className="font-bold text-2xl">
-                Disclosure of Your Personal Data
+              <Typography variant="h5" fontWeight="bold">
+                Disclosure of your personal data
               </Typography>
             </AccordionSummary>
-            <AccordionDetails className="bg-gray-medium dark:bg-gray-dark text-black/80 dark:text-white/80">
+            <AccordionDetails className="bg-white dark:bg-gray-dark text-black/80 dark:text-white/80">
               <ul className="mx-4 my-4 font-thin list-decimal">
                 <li className="m-2">
                   Business Transactions: If we are involved in a merger, acquisition or asset sale,
@@ -362,11 +464,17 @@ const PrivacyPolicyPage: BlitzPage = () => {
               </ul>
             </AccordionDetails>
           </Accordion>
-          <Accordion className="bg-gray-dark dark:bg-black/30 text-black dark:text-white">
+          <Accordion
+            sx={{ ...accordionStyle }}
+            expanded={accordion.security}
+            onClick={() => handleClick("security")}
+          >
             <AccordionSummary aria-controls="panel10d-content" id="panel10d-header">
-              <Typography className="font-bold text-2xl">Security of Your Personal Data</Typography>
+              <Typography variant="h5" fontWeight="bold">
+                Security of your personal data
+              </Typography>
             </AccordionSummary>
-            <AccordionDetails className="bg-gray-medium dark:bg-gray-dark text-black/80 dark:text-white/80">
+            <AccordionDetails className="bg-white dark:bg-gray-dark text-black/80 dark:text-white/80">
               <p className="mx-2 my-3 font-thin text-black/90 dark:text-white/90">
                 The security of your personal data is important to us, but remember that no method
                 of transmission over the Internet, or method of electronic storage, is 100% secure.
@@ -375,11 +483,17 @@ const PrivacyPolicyPage: BlitzPage = () => {
               </p>
             </AccordionDetails>
           </Accordion>
-          <Accordion className="bg-gray-dark dark:bg-black/30 text-black dark:text-white">
+          <Accordion
+            sx={{ ...accordionStyle }}
+            expanded={accordion.changes}
+            onClick={() => handleClick("changes")}
+          >
             <AccordionSummary aria-controls="panel11d-content" id="panel11d-header">
-              <Typography className="font-bold text-2xl">Changes to this Privacy Policy</Typography>
+              <Typography variant="h5" fontWeight="bold">
+                Changes to this privacy policy
+              </Typography>
             </AccordionSummary>
-            <AccordionDetails className="bg-gray-medium dark:bg-gray-dark text-black/80 dark:text-white/80">
+            <AccordionDetails className="bg-white dark:bg-gray-dark text-black/80 dark:text-white/80">
               <ul className="mx-4 my-4 font-thin list-decimal">
                 <li className="m-2">
                   We may update our privacy policy from time to time. We will notify you of any
@@ -393,11 +507,17 @@ const PrivacyPolicyPage: BlitzPage = () => {
               </ul>
             </AccordionDetails>
           </Accordion>
-          <Accordion className="bg-gray-dark dark:bg-black/30 text-black dark:text-white">
+          <Accordion
+            sx={{ ...accordionStyle }}
+            expanded={accordion.contact}
+            onClick={() => handleClick("contact")}
+          >
             <AccordionSummary aria-controls="panel12d-content" id="panel12d-header">
-              <Typography className="font-bold text-2xl">Contact Us</Typography>
+              <Typography variant="h5" fontWeight="bold">
+                Contact us
+              </Typography>
             </AccordionSummary>
-            <AccordionDetails className="bg-gray-medium dark:bg-gray-dark text-black/80 dark:text-white/80">
+            <AccordionDetails className="bg-white dark:bg-gray-dark text-black/80 dark:text-white/80">
               <p className="mx-2 my-3 font-thin text-black/90 dark:text-white/90">
                 If you have any questions about this privacy policy, You can contact us by email:{" "}
                 <a
