@@ -91,13 +91,16 @@ const About: BlitzPage = () => {
           <div className="p-6 mt-10 text-2xl bg-green">
             people from all walks of life can join the conversation
               </div>
-              <div className="m-4">
-                <h3 className="font-bold">Anton Lebed</h3>
-                <h3 className="text-stone-600">Chief Operating Officer</h3>
-                <div className="my-2">
-                  Anton is a PhD in Cognitive Psychology with background in visual attention and
-                  creativity research. In his spare time, Anton enjoys biking and playing board
-                  games. Anton is in charge of the organizational efforts of PostReview.
+          <div
+            id="rotating-container"
+            className="mt-28 mb-72 text-center text-6xl font-bold slidingVertical"
+          >
+            <span>All of us</span>
+            <span>can participate</span>
+            <span>in creating</span>
+            <span className="text-green">a collective knowledge</span>
+          </div>
+        </div>
                 </div>
               </div>
             </div>
