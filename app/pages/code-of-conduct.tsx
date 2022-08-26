@@ -138,7 +138,7 @@ const CodeOfConductPage: BlitzPage = () => {
                 Our Standards
               </Typography>
             </AccordionSummary>
-            <AccordionDetails className="bg-gray-medium dark:bg-gray-dark text-black/80 dark:text-white/80">
+            <AccordionDetails className="bg-white dark:bg-gray-dark text-black/80 dark:text-white/80">
               <p className="mx-2 text-black/90 dark:text-white">
                 Examples of behavior that contributes to a positive environment for our community
                 include:
@@ -191,7 +191,7 @@ const CodeOfConductPage: BlitzPage = () => {
                 Enforcement Responsibilities
               </Typography>
             </AccordionSummary>
-            <AccordionDetails className="bg-gray-medium dark:bg-gray-dark text-black/80 dark:text-white/80">
+            <AccordionDetails className="bg-white dark:bg-gray-dark text-black/80 dark:text-white/80">
               <p className="mx-2 my-3 font-thin text-black/90 dark:text-white/90">
                 Community leaders are responsible for clarifying and enforcing our standards of
                 acceptable behavior and will take appropriate and fair corrective action in response
@@ -215,7 +215,7 @@ const CodeOfConductPage: BlitzPage = () => {
                 Scope
               </Typography>
             </AccordionSummary>
-            <AccordionDetails className="bg-gray-medium dark:bg-gray-dark text-black/80 dark:text-white/80">
+            <AccordionDetails className="bg-white dark:bg-gray-dark text-black/80 dark:text-white/80">
               <p className="mx-2 my-3 font-thin text-black/90 dark:text-white/90">
                 This Code of Conduct applies within all community spaces, and also applies when an
                 individual is officially representing the community in public spaces. Examples of
@@ -235,7 +235,7 @@ const CodeOfConductPage: BlitzPage = () => {
                 Enforcement
               </Typography>
             </AccordionSummary>
-            <AccordionDetails className="bg-gray-medium dark:bg-gray-dark text-black/80 dark:text-white/80">
+            <AccordionDetails className="bg-white dark:bg-gray-dark text-black/80 dark:text-white/80">
               <p className="mx-2 my-3 font-thin text-black/90 dark:text-white/90">
                 Instances of abusive, harassing, or otherwise unacceptable behavior may be reported
                 to the community leaders responsible for enforcement (listed below). All complaints
@@ -293,7 +293,7 @@ const CodeOfConductPage: BlitzPage = () => {
                 Enforcement Guidelines
               </Typography>
             </AccordionSummary>
-            <AccordionDetails className="bg-gray-medium dark:bg-gray-dark text-black/80 dark:text-white/80">
+            <AccordionDetails className="bg-white dark:bg-gray-dark text-black/80 dark:text-white/80">
               <p className="mx-2 my-3 font-thin text-black/90 dark:text-white/90">
                 Community leaders will follow these Community Impact Guidelines in determining the
                 consequences for any action they deem in violation of this Code of Conduct:
@@ -366,7 +366,7 @@ const CodeOfConductPage: BlitzPage = () => {
                 Attribution
               </Typography>
             </AccordionSummary>
-            <AccordionDetails className="bg-gray-medium dark:bg-gray-dark text-black/80 dark:text-white/80">
+            <AccordionDetails className="bg-white dark:bg-gray-dark text-black/80 dark:text-white/80">
               <p className="mx-2 my-3 font-thin text-black/90 dark:text-white/90">
                 This Code of Conduct is adapted from the
                 <Link href="https://contributor-covenant.org">
