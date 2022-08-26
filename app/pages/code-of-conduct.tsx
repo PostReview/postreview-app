@@ -134,7 +134,9 @@ const CodeOfConductPage: BlitzPage = () => {
             onClick={() => handleClick("standards")}
           >
             <AccordionSummary aria-controls="panel1d-content" id="panel1d-header">
-              <Typography variant="h5">Our Standards</Typography>
+              <Typography variant="h5" fontWeight="bold">
+                Our Standards
+              </Typography>
             </AccordionSummary>
             <AccordionDetails className="bg-gray-medium dark:bg-gray-dark text-black/80 dark:text-white/80">
               <p className="mx-2 text-black/90 dark:text-white">
@@ -185,7 +187,9 @@ const CodeOfConductPage: BlitzPage = () => {
             onClick={() => handleClick("responsibilities")}
           >
             <AccordionSummary aria-controls="panel2d-content" id="panel2d-header">
-              <Typography variant="h5">Enforcement Responsibilities</Typography>
+              <Typography variant="h5" fontWeight="bold">
+                Enforcement Responsibilities
+              </Typography>
             </AccordionSummary>
             <AccordionDetails className="bg-gray-medium dark:bg-gray-dark text-black/80 dark:text-white/80">
               <p className="mx-2 my-3 font-thin text-black/90 dark:text-white/90">
@@ -207,7 +211,9 @@ const CodeOfConductPage: BlitzPage = () => {
             onClick={() => handleClick("scope")}
           >
             <AccordionSummary aria-controls="panel3d-content" id="panel3d-header">
-              <Typography variant="h5">Scope</Typography>
+              <Typography variant="h5" fontWeight="bold">
+                Scope
+              </Typography>
             </AccordionSummary>
             <AccordionDetails className="bg-gray-medium dark:bg-gray-dark text-black/80 dark:text-white/80">
               <p className="mx-2 my-3 font-thin text-black/90 dark:text-white/90">
@@ -225,7 +231,9 @@ const CodeOfConductPage: BlitzPage = () => {
             onClick={() => handleClick("enforcement")}
           >
             <AccordionSummary aria-controls="panel4d-content" id="panel4d-header">
-              <Typography variant="h5">Enforcement</Typography>
+              <Typography variant="h5" fontWeight="bold">
+                Enforcement
+              </Typography>
             </AccordionSummary>
             <AccordionDetails className="bg-gray-medium dark:bg-gray-dark text-black/80 dark:text-white/80">
               <p className="mx-2 my-3 font-thin text-black/90 dark:text-white/90">
@@ -281,7 +289,9 @@ const CodeOfConductPage: BlitzPage = () => {
             onClick={() => handleClick("guidelines")}
           >
             <AccordionSummary aria-controls="panel5d-content" id="panel5d-header">
-              <Typography variant="h5">Enforcement Guidelines</Typography>
+              <Typography variant="h5" fontWeight="bold">
+                Enforcement Guidelines
+              </Typography>
             </AccordionSummary>
             <AccordionDetails className="bg-gray-medium dark:bg-gray-dark text-black/80 dark:text-white/80">
               <p className="mx-2 my-3 font-thin text-black/90 dark:text-white/90">
@@ -352,7 +362,9 @@ const CodeOfConductPage: BlitzPage = () => {
             onClick={() => handleClick("attribution")}
           >
             <AccordionSummary aria-controls="panel6d-content" id="panel6d-header">
-              <Typography variant="h5">Attribution</Typography>
+              <Typography variant="h5" fontWeight="bold">
+                Attribution
+              </Typography>
             </AccordionSummary>
             <AccordionDetails className="bg-gray-medium dark:bg-gray-dark text-black/80 dark:text-white/80">
               <p className="mx-2 my-3 font-thin text-black/90 dark:text-white/90">
