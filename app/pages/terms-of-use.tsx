@@ -128,7 +128,7 @@ const TermsofUsePage: BlitzPage = () => {
               <Typography variant="h5">Scope</Typography>
             </AccordionSummary>
             <AccordionDetails className="bg-gray-medium dark:bg-gray-dark text-black/80 dark:text-white/80">
-              <p className="mx-2 font-thin text-black/90 dark:text-white/90">
+              <p className="mx-2 font-thin text-black/80 dark:text-white/80">
                 PostReview Team (&quot;we&quot; or &quot;us&quot;) provides an online reviewing
                 where people can post reviews to scholarly outputs. The platform is available at{" "}
                 <a
