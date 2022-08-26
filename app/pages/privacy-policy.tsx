@@ -115,7 +115,7 @@ const PrivacyPolicyPage: BlitzPage = () => {
         </div>
         <div
           id="privacy-policy-summary"
-          className="font-light max-w-3xl text-gray-darkest dark:text-white"
+          className="font-light max-w-3xl text-black dark:text-white"
         >
           <p className="mx-6 mb-3">
             This privacy policy describes our policies and procedures on the collection, use and
