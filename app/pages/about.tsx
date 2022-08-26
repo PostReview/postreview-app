@@ -70,9 +70,12 @@ const About: BlitzPage = () => {
               open
             </div>
           </div>
-          <div className="flex flex-col items-center">
-            <div id="picture">
-              <PeopleOutlineIcon sx={{ fontSize: 100 }} />
+          <div id="where everyone-container" className="my-32 text-4xl font-bold">
+            <span className=" text-black sm:whitespace-nowrap">A space where </span>
+            <span className=" text-green">everyone</span>
+            <span className=" text-black">, not just scholars</span>
+            <span className=" text-green"> can share their opinions </span>
+            <span className=" text-black">about scholarly articles.</span>
             </div>
             <div id="out-team-description" className="flex flex-row">
               <div className="m-4">
