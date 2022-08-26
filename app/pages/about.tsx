@@ -50,7 +50,7 @@ const About: BlitzPage = () => {
           <div id="words-container" className="mx-4 my-4 text-4xl font-bold">
             <div className="my-4 animate-[pulse_4s_infinite] text-right hover:cursor-pointer hover:animate-bounce">
               a safe place
-        </div>
+            </div>
             <div className="my-6 animate-[pulse_8s_infinite] text-left hover:cursor-pointer hover:animate-bounce">
               convenient
             </div>
@@ -76,7 +76,7 @@ const About: BlitzPage = () => {
             <span className=" text-black">, not just scholars</span>
             <span className=" text-green"> can share their opinions </span>
             <span className=" text-black">about scholarly articles.</span>
-            </div>
+          </div>
           <div className="text-2xl text-left">
             They knew that if they can make their vision happen...
           </div>
@@ -87,10 +87,10 @@ const About: BlitzPage = () => {
               alt="An image of a globe as a puzzle with a unique person in each puzzle piece"
               className="contrast-150 hover:cursor-pointer hover:animate-[pulse_6s_infinite]"
             />
-                </div>
+          </div>
           <div className="p-6 mt-10 text-2xl bg-green">
             people from all walks of life can join the conversation
-              </div>
+          </div>
           <div
             id="rotating-container"
             className="mt-28 mb-72 text-center text-6xl font-bold slidingVertical"
@@ -105,18 +105,18 @@ const About: BlitzPage = () => {
           <div className="mt-24 text-2xl text-left">They believed that...</div>
           <div className="mt-32 mb-16 text-6xl font-bold text-white">
             Opinions on research should be
-                </div>
+          </div>
           <div className="mt-10 sm:px-24 text-left sm:text-5xl text-4xl font-bold text-gray-medium">
             open
-              </div>
+          </div>
           <div className="mt-14 sm:px-24 text-left sm:text-5xl text-4xl font-bold text-gray-dark">
             accessible
           </div>
           <div className="mt-14 sm:px-24 text-left sm:text-5xl text-4xl font-bold">transparent</div>
           <div className="mt-14 mb-28 sm:px-24 text-left sm:text-5xl text-4xl font-bold text-black">
             community-driven
-            </div>
           </div>
+        </div>
         <div
           id="finale-container"
           className="flex flex-col max-w-2xl px-4 bg-gray-darkest text-gray-light pb-40"
