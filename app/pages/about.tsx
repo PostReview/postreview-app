@@ -80,7 +80,16 @@ const About: BlitzPage = () => {
           <div className="text-2xl text-left">
             They knew that if they can make their vision happen...
           </div>
+          <div className="mx-2 mt-36">
+            <Image
+              id="people-in-a-globe"
+              src={peopleAroundTheWorld}
+              alt="An image of a globe as a puzzle with a unique person in each puzzle piece"
+              className="contrast-150 hover:cursor-pointer hover:animate-[pulse_6s_infinite]"
+            />
                 </div>
+          <div className="p-6 mt-10 text-2xl bg-green">
+            people from all walks of life can join the conversation
               </div>
               <div className="m-4">
                 <h3 className="font-bold">Anton Lebed</h3>
