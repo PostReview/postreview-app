@@ -117,6 +117,19 @@ const About: BlitzPage = () => {
             community-driven
             </div>
           </div>
+        <div
+          id="finale-container"
+          className="flex flex-col max-w-2xl px-4 bg-gray-darkest text-gray-light pb-40"
+        >
+          <div className="mt-24 text-2xl text-left">So they created...</div>
+          <div className="mt-32 mx-2 px-16">
+            <Image
+              id="logo-with-name"
+              src={logoWithNameDarkMode}
+              alt="A picture of magnifying glass with the platform name"
+              className="brightness-150"
+            />
+          </div>
         </div>
       </main>
     </div>
