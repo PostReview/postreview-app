@@ -112,7 +112,7 @@ const TermsofUsePage: BlitzPage = () => {
         <div id="terms-of-use-content" className="max-w-3xl">
           <div className="text-right">
             <button
-              className="px-2 py-1 mx-3 my-2 text-sm font-semibold bg-gray-dark/40 dark:bg-black/40 text-black dark:text-gray-light"
+              className="px-2 py-1 mx-3 my-2 text-sm font-semibold bg-gray-dark/40 dark:bg-black/40 text-black dark:text-white"
               onClick={() => handleExpandAll(!expandClicked)}
             >
               {expandClicked ? "Collapse" : "Expand All"}
