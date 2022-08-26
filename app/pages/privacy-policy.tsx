@@ -146,7 +146,9 @@ const PrivacyPolicyPage: BlitzPage = () => {
             onClick={() => handleClick("definitions")}
           >
             <AccordionSummary aria-controls="panel1d-content" id="panel1d-header">
-              <Typography className="font-bold text-2xl">Definitions</Typography>
+              <Typography variant="h5" fontWeight="bold">
+                Definitions
+              </Typography>
             </AccordionSummary>
             <AccordionDetails className="bg-gray-medium dark:bg-gray-dark text-black/80 dark:text-white/80">
               <ul className="mx-4 my-4 font-thin list-decimal">
@@ -199,7 +201,9 @@ const PrivacyPolicyPage: BlitzPage = () => {
             onClick={() => handleClick("personal")}
           >
             <AccordionSummary aria-controls="panel2d-content" id="panel2d-header">
-              <Typography className="font-bold text-2xl">Personal data</Typography>
+              <Typography variant="h5" fontWeight="bold">
+                Personal data
+              </Typography>
             </AccordionSummary>
             <AccordionDetails className="bg-gray-medium dark:bg-gray-dark text-black/80 dark:text-white/80">
               <p className="mx-2 font-thin text-black/90 dark:text-white">
@@ -215,7 +219,9 @@ const PrivacyPolicyPage: BlitzPage = () => {
             onClick={() => handleClick("usage")}
           >
             <AccordionSummary aria-controls="panel3d-content" id="panel3d-header">
-              <Typography className="font-bold text-2xl">Usage data</Typography>
+              <Typography variant="h5" fontWeight="bold">
+                Usage data
+              </Typography>
             </AccordionSummary>
             <AccordionDetails className="bg-gray-medium dark:bg-gray-dark text-black/80 dark:text-white/80">
               <ul className="mx-4 my-4 font-thin list-decimal">
@@ -242,7 +248,9 @@ const PrivacyPolicyPage: BlitzPage = () => {
             onClick={() => handleClick("cookies")}
           >
             <AccordionSummary aria-controls="panel4d-content" id="panel4d-header">
-              <Typography className="font-bold text-2xl">Cookies</Typography>
+              <Typography variant="h5" fontWeight="bold">
+                Cookies
+              </Typography>
             </AccordionSummary>
             <AccordionDetails className="bg-gray-medium dark:bg-gray-dark text-black/80 dark:text-white/80">
               <ul className="mx-4 my-4 font-thin list-decimal">
@@ -272,7 +280,7 @@ const PrivacyPolicyPage: BlitzPage = () => {
             onClick={() => handleClick("purposes")}
           >
             <AccordionSummary aria-controls="panel5d-content" id="panel5d-header">
-              <Typography className="font-bold text-2xl">
+              <Typography variant="h5" fontWeight="bold">
                 Purposes of processing your data
               </Typography>
             </AccordionSummary>
@@ -318,7 +326,7 @@ const PrivacyPolicyPage: BlitzPage = () => {
             onClick={() => handleClick("share")}
           >
             <AccordionSummary aria-controls="panel6d-content" id="panel6d-header">
-              <Typography className="font-bold text-2xl">
+              <Typography variant="h5" fontWeight="bold">
                 We may share your personal information
               </Typography>
             </AccordionSummary>
@@ -350,7 +358,7 @@ const PrivacyPolicyPage: BlitzPage = () => {
             onClick={() => handleClick("retention")}
           >
             <AccordionSummary aria-controls="panel7d-content" id="panel7d-header">
-              <Typography className="font-bold text-2xl">
+              <Typography variant="h5" fontWeight="bold">
                 Retention of your personal data
               </Typography>
             </AccordionSummary>
@@ -378,7 +386,9 @@ const PrivacyPolicyPage: BlitzPage = () => {
             onClick={() => handleClick("transfer")}
           >
             <AccordionSummary aria-controls="panel8d-content" id="panel8d-header">
-              <Typography className="font-bold text-2xl">Transfer of your personal data</Typography>
+              <Typography variant="h5" fontWeight="bold">
+                Transfer of your personal data
+              </Typography>
             </AccordionSummary>
             <AccordionDetails className="bg-gray-medium dark:bg-gray-dark text-black/80 dark:text-white/80">
               <ul className="mx-4 my-4 font-thin list-decimal">
@@ -421,7 +431,7 @@ const PrivacyPolicyPage: BlitzPage = () => {
             onClick={() => handleClick("disclosure")}
           >
             <AccordionSummary aria-controls="panel9d-content" id="panel9d-header">
-              <Typography className="font-bold text-2xl">
+              <Typography variant="h5" fontWeight="bold">
                 Disclosure of your personal data
               </Typography>
             </AccordionSummary>
@@ -460,7 +470,9 @@ const PrivacyPolicyPage: BlitzPage = () => {
             onClick={() => handleClick("security")}
           >
             <AccordionSummary aria-controls="panel10d-content" id="panel10d-header">
-              <Typography className="font-bold text-2xl">Security of your personal data</Typography>
+              <Typography variant="h5" fontWeight="bold">
+                Security of your personal data
+              </Typography>
             </AccordionSummary>
             <AccordionDetails className="bg-gray-medium dark:bg-gray-dark text-black/80 dark:text-white/80">
               <p className="mx-2 my-3 font-thin text-black/90 dark:text-white/90">
@@ -477,7 +489,9 @@ const PrivacyPolicyPage: BlitzPage = () => {
             onClick={() => handleClick("changes")}
           >
             <AccordionSummary aria-controls="panel11d-content" id="panel11d-header">
-              <Typography className="font-bold text-2xl">Changes to this privacy policy</Typography>
+              <Typography variant="h5" fontWeight="bold">
+                Changes to this privacy policy
+              </Typography>
             </AccordionSummary>
             <AccordionDetails className="bg-gray-medium dark:bg-gray-dark text-black/80 dark:text-white/80">
               <ul className="mx-4 my-4 font-thin list-decimal">
@@ -499,7 +513,9 @@ const PrivacyPolicyPage: BlitzPage = () => {
             onClick={() => handleClick("contact")}
           >
             <AccordionSummary aria-controls="panel12d-content" id="panel12d-header">
-              <Typography className="font-bold text-2xl">Contact us</Typography>
+              <Typography variant="h5" fontWeight="bold">
+                Contact us
+              </Typography>
             </AccordionSummary>
             <AccordionDetails className="bg-gray-medium dark:bg-gray-dark text-black/80 dark:text-white/80">
               <p className="mx-2 my-3 font-thin text-black/90 dark:text-white/90">
