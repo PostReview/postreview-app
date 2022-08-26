@@ -130,6 +130,12 @@ const About: BlitzPage = () => {
               className="brightness-150"
             />
           </div>
+          <button
+            className="w-52 mx-auto mb-60 p-4 text-2xl font-semibold text-green rounded-lg bg-black/50 hover:bg-gray-darkest dark:bg-gray-medium dark:hover:bg-black/40"
+            onClick={() => router.push("/signup")}
+          >
+            Sign up now
+          </button>
         </div>
       </main>
     </div>
