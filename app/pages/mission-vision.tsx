@@ -18,6 +18,7 @@ const MissionVisionPage: BlitzPage = () => {
           Our mission is to de-centralize the power of voicing opinions about scholarly outputs.{" "}
         </p>
           <h1 className="mt-20 text-5xl font-bold">Our Vision</h1>
+          <div id="vision-container" className="lg:flex flex-row">
             <div
               id="transparency-container"
               className="mt-16 mb-4 flex flex-col max-w-sm items-center"
@@ -62,6 +63,7 @@ const MissionVisionPage: BlitzPage = () => {
               />
               <p className="mt-2 mx-2 text-xl">Increase accountability in research.</p>
             </div>
+          </div>
       </main>
     </div>
   )
