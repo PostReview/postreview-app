@@ -7,6 +7,7 @@ import logoWithNameDarkMode from "public/logo-withname-darkmode.png"
 import Layout from "app/core/layouts/Layout"
 
 const About: BlitzPage = () => {
+  const router = useRouter()
   return (
     <div className="flex flex-col min-h-screen">
       <Suspense fallback="Loading...">
