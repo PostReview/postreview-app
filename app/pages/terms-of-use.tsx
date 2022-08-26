@@ -47,12 +47,12 @@ const AccordionDetails = styled(MuiAccordionDetails)(({ theme }) => ({
 
 const accordionStyle = {
   "@media (prefers-color-scheme: light)": {
-    background: "#545454",
+    background: "#737373",
     color: "#000000",
     fontWeight: "bold",
   },
   "@media (prefers-color-scheme: dark)": {
-    background: alpha("#000000", 0.3),
+    background: alpha("#000000", 0.6),
     color: "#ffffff",
     fontWeight: "bold",
   },
