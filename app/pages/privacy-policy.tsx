@@ -97,9 +97,11 @@ const PrivacyPolicyPage: BlitzPage = () => {
         <Navbar />
       </Suspense>
       <main className="flex-grow flex flex-col items-center bg-gray-light dark:bg-gray-darkest">
-        <div className="py-4 w-full text-3xl font-bold bg-gray-dark dark:bg-black/30">
-          <h1 className="text-center text-black dark:text-white">Privacy Policy</h1>
-          <div className="pt-1 text-sm text-center font-thin text-black/90 dark:text-white/80">
+        <div className="py-4 w-full text-3xl font-bold bg-gray-medium dark:bg-black/60">
+          <h1 className="text-center bg-gray-medium dark:bg-black/0 text-black dark:text-white">
+            Privacy Policy
+          </h1>
+          <div className="pt-1 text-sm text-center bg-gray-medium dark:bg-black/0 text-black/70 dark:text-white/70">
             Last updated: August 22, 2022
           </div>
         </div>
