@@ -47,13 +47,28 @@ const About: BlitzPage = () => {
               It should be
             </h3>
           </div>
+          <div id="words-container" className="mx-4 my-4 text-4xl font-bold">
+            <div className="my-4 animate-[pulse_4s_infinite] text-right hover:cursor-pointer hover:animate-bounce">
+              a safe place
         </div>
-        <Visions />
-        <div id="team" className="flex flex-col items-center max-w-3xl my-12 mx-4">
-          <h2 className="text-4xl font-bold">Our team</h2>
-          <div className="my-6">
-            PostReview is developed by a small group of scientists passionate about improving
-            communications in research.
+            <div className="my-6 animate-[pulse_8s_infinite] text-left hover:cursor-pointer hover:animate-bounce">
+              convenient
+            </div>
+            <div className="my-6 text-center hover:cursor-pointer hover:animate-bounce text-black">
+              accessible
+            </div>
+            <div className="my-4 animate-[pulse_10s_infinite] text-right hover:cursor-pointer hover:animate-bounce">
+              transparent
+            </div>
+            <div className="my-4 animate-[pulse_4s_infinite] text-left hover:cursor-pointer hover:animate-bounce">
+              fun
+            </div>
+            <div className="my-4 animate-[pulse_6s_infinite] text-center hover:cursor-pointer hover:animate-bounce">
+              equitable
+            </div>
+            <div className="my-4 text-right hover:cursor-pointer hover:animate-bounce text-black">
+              open
+            </div>
           </div>
           <div className="flex flex-col items-center">
             <div id="picture">
