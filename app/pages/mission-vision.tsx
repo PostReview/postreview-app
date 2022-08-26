@@ -34,6 +34,21 @@ const MissionVisionPage: BlitzPage = () => {
                 research.
               </p>
             </div>
+            <div
+              id="diversity-container"
+              className="mt-16 mb-4 flex flex-col max-w-sm items-center"
+            >
+              <Image
+                src={diversityPhoto}
+                alt="An image of a crowd"
+                className="hover:animate-pulse hover:cursor-pointer"
+                width={240}
+                height={160}
+              />
+              <p className="mt-2 mx-2 text-xl">
+                Amplify the voices of underrepresented groups and identities in research.
+              </p>
+            </div>
       </main>
     </div>
   )
