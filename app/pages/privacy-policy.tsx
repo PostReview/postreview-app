@@ -45,6 +45,19 @@ const AccordionDetails = styled(MuiAccordionDetails)(({ theme }) => ({
   borderTop: "1px solid rgba(0, 0, 0, .125)",
 }))
 
+const accordionStyle = {
+  "@media (prefers-color-scheme: light)": {
+    background: "#737373",
+    color: "#000000",
+    fontWeight: "bold",
+  },
+  "@media (prefers-color-scheme: dark)": {
+    background: alpha("#000000", 0.6),
+    color: "#ffffff",
+    fontWeight: "bold",
+  },
+}
+
 const PrivacyPolicyPage: BlitzPage = () => {
   // Track the state of individual accordion
   const [accordion, setAccordion] = React.useState({
