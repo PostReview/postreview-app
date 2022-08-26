@@ -129,7 +129,7 @@ const TermsofUsePage: BlitzPage = () => {
                 Scope
               </Typography>
             </AccordionSummary>
-            <AccordionDetails className="bg-gray-medium dark:bg-gray-dark text-black/80 dark:text-white/80">
+            <AccordionDetails className="bg-white dark:bg-gray-dark text-black/80 dark:text-white/80">
               <p className="mx-2 font-thin text-black/80 dark:text-white/80">
                 PostReview Team (&quot;we&quot; or &quot;us&quot;) provides an online reviewing
                 where people can post reviews to scholarly outputs. The platform is available at{" "}
@@ -153,7 +153,7 @@ const TermsofUsePage: BlitzPage = () => {
                 Definitions
               </Typography>
             </AccordionSummary>
-            <AccordionDetails className="bg-gray-medium dark:bg-gray-dark text-black/80 dark:text-white/80">
+            <AccordionDetails className="bg-white dark:bg-gray-dark text-black/80 dark:text-white/80">
               <ul className="mx-4 my-4  font-thin list-decimal">
                 <li className="m-2">
                   &quot;User&quot;: A natural person that registers and uses PostReview
@@ -182,7 +182,7 @@ const TermsofUsePage: BlitzPage = () => {
                 Agreement to the terms and registering an account
               </Typography>
             </AccordionSummary>
-            <AccordionDetails className="bg-gray-medium dark:bg-gray-dark text-black/80 dark:text-white/80">
+            <AccordionDetails className="bg-white dark:bg-gray-dark text-black/80 dark:text-white/80">
               <ul className="mx-4 my-4 font-thin list-decimal">
                 <li className="m-2">
                   The user has to open a user account to post reviews on PostReview.
@@ -231,7 +231,7 @@ const TermsofUsePage: BlitzPage = () => {
                 Basic functions and rules of PostReview
               </Typography>
             </AccordionSummary>
-            <AccordionDetails className="bg-gray-medium dark:bg-gray-dark text-black/80 dark:text-white/80">
+            <AccordionDetails className="bg-white dark:bg-gray-dark text-black/80 dark:text-white/80">
               <ul className="mx-4 my-4 font-thin list-decimal">
                 <li className="m-2">
                   The PostReview platform provides basic functions to all users with a user account.
@@ -305,7 +305,7 @@ const TermsofUsePage: BlitzPage = () => {
                 Term and termination
               </Typography>
             </AccordionSummary>
-            <AccordionDetails className="bg-gray-medium dark:bg-gray-dark text-black/80 dark:text-white/80">
+            <AccordionDetails className="bg-white dark:bg-gray-dark text-black/80 dark:text-white/80">
               <ul className="mx-4 my-4 font-thin list-decimal">
                 <li className="m-2">
                   The term of this agreement commences with the user&apos;s registration. Both
@@ -330,7 +330,7 @@ const TermsofUsePage: BlitzPage = () => {
                 Availability and maintenance
               </Typography>
             </AccordionSummary>
-            <AccordionDetails className="bg-gray-medium dark:bg-gray-dark text-black/80 dark:text-white/80">
+            <AccordionDetails className="bg-white dark:bg-gray-dark text-black/80 dark:text-white/80">
               <p className="mx-2 my-3 font-thin text-black/90 dark:text-white/90">
                 We will carry out maintenance to ensure that PostReview works well for the users.
                 While we work on maintenance, PostReview may not be available or functional during
@@ -348,7 +348,7 @@ const TermsofUsePage: BlitzPage = () => {
                 Protecting data
               </Typography>
             </AccordionSummary>
-            <AccordionDetails className="bg-gray-medium dark:bg-gray-dark text-black/80 dark:text-white/80">
+            <AccordionDetails className="bg-white dark:bg-gray-dark text-black/80 dark:text-white/80">
               <p className="mx-2 my-3 font-thin text-black/90 dark:text-white/90">
                 The user agrees that we shall have no liability for any loss or corruption of data,
                 and the user hereby waives any right of action against us arising from any such loss
@@ -366,7 +366,7 @@ const TermsofUsePage: BlitzPage = () => {
                 Changes to the terms
               </Typography>
             </AccordionSummary>
-            <AccordionDetails className="bg-gray-medium dark:bg-gray-dark text-black/80 dark:text-white/80">
+            <AccordionDetails className="bg-white dark:bg-gray-dark text-black/80 dark:text-white/80">
               <ul className="mx-4 my-4 font-thin list-decimal">
                 <li className="m-2">
                   We reserve the right to introduce new changes to PostReview and corresponding
@@ -398,7 +398,7 @@ const TermsofUsePage: BlitzPage = () => {
                 Governing law
               </Typography>
             </AccordionSummary>
-            <AccordionDetails className="bg-gray-medium dark:bg-gray-dark text-black/80 dark:text-white/80">
+            <AccordionDetails className="bg-white dark:bg-gray-dark text-black/80 dark:text-white/80">
               <p className="mx-2 my-3 font-thin text-black/90 dark:text-white/90">
                 These terms and the use of PostReview are governed by and construed in accordance
                 with the laws of the State of Delaware applicable to agreements made and to be
@@ -417,7 +417,7 @@ const TermsofUsePage: BlitzPage = () => {
                 Contact
               </Typography>
             </AccordionSummary>
-            <AccordionDetails className="bg-gray-medium dark:bg-gray-dark text-black/80 dark:text-white/80">
+            <AccordionDetails className="bg-white dark:bg-gray-dark text-black/80 dark:text-white/80">
               <p className="mx-2 my-3 font-thin text-black/90 dark:text-white/90">
                 To resolve a complaint regarding PostReview or to receive further information
                 regarding its use, please contact us at{" "}
@@ -442,7 +442,7 @@ const TermsofUsePage: BlitzPage = () => {
                 Acknowledgement
               </Typography>
             </AccordionSummary>
-            <AccordionDetails className="bg-gray-medium dark:bg-gray-dark text-black/80 dark:text-white/80">
+            <AccordionDetails className="bg-white dark:bg-gray-dark text-black/80 dark:text-white/80">
               <p className="mx-2 my-3 font-thin text-black/90 dark:text-white/90">
                 In writing this terms of use, we referred to the Terms of Use by
                 <Link href="https://www.researchequals.com/terms">
