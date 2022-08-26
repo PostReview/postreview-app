@@ -141,7 +141,7 @@ const PrivacyPolicyPage: BlitzPage = () => {
           </div>
 
           <Accordion
-            className="bg-gray-dark dark:bg-black/30 text-black dark:text-white"
+            sx={{ ...accordionStyle }}
             expanded={accordion.definitions}
             onClick={() => handleClick("definitions")}
           >
@@ -194,7 +194,7 @@ const PrivacyPolicyPage: BlitzPage = () => {
             </AccordionDetails>
           </Accordion>
           <Accordion
-            className="bg-gray-dark dark:bg-black/30 text-black dark:text-white"
+            sx={{ ...accordionStyle }}
             expanded={accordion.personal}
             onClick={() => handleClick("personal")}
           >
@@ -210,7 +210,7 @@ const PrivacyPolicyPage: BlitzPage = () => {
             </AccordionDetails>
           </Accordion>
           <Accordion
-            className="bg-gray-dark dark:bg-black/30 text-black dark:text-white"
+            sx={{ ...accordionStyle }}
             expanded={accordion.usage}
             onClick={() => handleClick("usage")}
           >
@@ -237,7 +237,7 @@ const PrivacyPolicyPage: BlitzPage = () => {
             </AccordionDetails>
           </Accordion>
           <Accordion
-            className="bg-gray-dark dark:bg-black/30 text-black dark:text-white"
+            sx={{ ...accordionStyle }}
             expanded={accordion.cookies}
             onClick={() => handleClick("cookies")}
           >
@@ -267,7 +267,7 @@ const PrivacyPolicyPage: BlitzPage = () => {
             </AccordionDetails>
           </Accordion>
           <Accordion
-            className="bg-gray-dark dark:bg-black/30 text-black dark:text-white"
+            sx={{ ...accordionStyle }}
             expanded={accordion.purposes}
             onClick={() => handleClick("purposes")}
           >
@@ -313,7 +313,7 @@ const PrivacyPolicyPage: BlitzPage = () => {
             </AccordionDetails>
           </Accordion>
           <Accordion
-            className="bg-gray-dark dark:bg-black/30 text-black dark:text-white"
+            sx={{ ...accordionStyle }}
             expanded={accordion.share}
             onClick={() => handleClick("share")}
           >
@@ -345,7 +345,7 @@ const PrivacyPolicyPage: BlitzPage = () => {
             </AccordionDetails>
           </Accordion>
           <Accordion
-            className="bg-gray-dark dark:bg-black/30 text-black dark:text-white"
+            sx={{ ...accordionStyle }}
             expanded={accordion.retention}
             onClick={() => handleClick("retention")}
           >
@@ -373,7 +373,7 @@ const PrivacyPolicyPage: BlitzPage = () => {
             </AccordionDetails>
           </Accordion>
           <Accordion
-            className="bg-gray-dark dark:bg-black/30 text-black dark:text-white"
+            sx={{ ...accordionStyle }}
             expanded={accordion.transfer}
             onClick={() => handleClick("transfer")}
           >
@@ -416,7 +416,7 @@ const PrivacyPolicyPage: BlitzPage = () => {
             </AccordionDetails>
           </Accordion>
           <Accordion
-            className="bg-gray-dark dark:bg-black/30 text-black dark:text-white"
+            sx={{ ...accordionStyle }}
             expanded={accordion.disclosure}
             onClick={() => handleClick("disclosure")}
           >
@@ -455,7 +455,7 @@ const PrivacyPolicyPage: BlitzPage = () => {
             </AccordionDetails>
           </Accordion>
           <Accordion
-            className="bg-gray-dark dark:bg-black/30 text-black dark:text-white"
+            sx={{ ...accordionStyle }}
             expanded={accordion.security}
             onClick={() => handleClick("security")}
           >
@@ -472,7 +472,7 @@ const PrivacyPolicyPage: BlitzPage = () => {
             </AccordionDetails>
           </Accordion>
           <Accordion
-            className="bg-gray-dark dark:bg-black/30 text-black dark:text-white"
+            sx={{ ...accordionStyle }}
             expanded={accordion.changes}
             onClick={() => handleClick("changes")}
           >
@@ -494,7 +494,7 @@ const PrivacyPolicyPage: BlitzPage = () => {
             </AccordionDetails>
           </Accordion>
           <Accordion
-            className="bg-gray-dark dark:bg-black/30 text-black dark:text-white"
+            sx={{ ...accordionStyle }}
             expanded={accordion.contact}
             onClick={() => handleClick("contact")}
           >
