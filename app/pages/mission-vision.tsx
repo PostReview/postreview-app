@@ -49,6 +49,19 @@ const MissionVisionPage: BlitzPage = () => {
                 Amplify the voices of underrepresented groups and identities in research.
               </p>
             </div>
+            <div
+              id="accountability-container"
+              className="mt-16 mb-4 flex flex-col max-w-sm items-center"
+            >
+              <Image
+                src={accountabilityPhoto}
+                alt="A picture of two hands holding a star"
+                className="hover:animate-pulse hover:cursor-pointer"
+                width={160}
+                height={160}
+              />
+              <p className="mt-2 mx-2 text-xl">Increase accountability in research.</p>
+            </div>
       </main>
     </div>
   )
