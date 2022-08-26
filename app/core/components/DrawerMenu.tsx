@@ -69,16 +69,16 @@ export const DrawerMenu = (props) => {
               </AccordionSummary>
               <AccordionDetails>
                 <ListItemButton sx={{ ...hoverSx }}>
-                  <ListItemText primary={"Our story"} />
-                </ListItemButton>
-                <ListItemButton sx={{ ...hoverSx }}>
-                  <ListItemText primary={"Team"} onClick={() => router.push("/team")} />
-                </ListItemButton>
-                <ListItemButton sx={{ ...hoverSx }}>
                   <ListItemText
                     primary={"Mission and Vision"}
                     onClick={() => router.push("/mission-vision")}
                   />
+                </ListItemButton>
+                <ListItemButton sx={{ ...hoverSx }}>
+                  <ListItemText primary={"Our story"} />
+                </ListItemButton>
+                <ListItemButton sx={{ ...hoverSx }}>
+                  <ListItemText primary={"Team"} onClick={() => router.push("/team")} />
                 </ListItemButton>
               </AccordionDetails>
             </Accordion>
