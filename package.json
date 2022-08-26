@@ -37,6 +37,7 @@
     "@mui/lab": "5.0.0-alpha.65",
     "@mui/material": "5.0.1",
     "@prisma/client": "3.6.0",
+    "@uploadcare/react-widget": "2.1.5",
     "algoliasearch": "4.12.2",
     "autoprefixer": "10.3.4",
     "axios": "0.21.4",

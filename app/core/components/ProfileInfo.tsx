@@ -3,6 +3,7 @@ import EditIcon from "@mui/icons-material/Edit"
 import React from "react"
 import { FaLink } from "react-icons/fa"
 import { Link } from "blitz"
+import { AvatarIcon } from "./AvatarIcon"
 
 export const ProfileInfo = (props) => {
   const { open, setOpen, userInfo, showEditButton = false } = props
@@ -19,19 +20,7 @@ export const ProfileInfo = (props) => {
       <div id="photo-avatar-container" className="flex flex-row -mt-12">
         <div id="profile-picture" className="flex flex-row">
           <Button id="user-avatar" className="focus:outline-none" onClick={undefined}>
-            <Avatar
-              alt={userInfo?.displayName ? userInfo?.displayName : userInfo?.handle}
-              sx={{
-                backgroundColor: "#545454",
-                color: "#94ec01",
-                height: "5rem",
-                width: "5rem",
-              }}
-              variant="square"
-              src={`https://eu.ui-avatars.com/api/?name=${
-                userInfo?.displayName ? userInfo?.displayName : userInfo?.handle
-              }&color=94ec01&background=545454`}
-            />
+            <AvatarIcon currentUser={userInfo} height={"5rem"} width={"5rem"} />
           </Button>
           <div id="user-pronouns" className="relative">
             <span className="absolute bottom-0 ml-4">

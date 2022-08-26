@@ -17,23 +17,24 @@ import { ProfileBgImage } from "app/core/components/ProfileBgImage"
 import { ProfileInfo } from "app/core/components/ProfileInfo"
 
 const Profile = () => {
-  const currentUser = useCurrentUser()
   const router = useRouter()
 
+  // User-related variables
+  const currentUser = useCurrentUser()
+  const [userInfo, setUserInfo] = useState(currentUser)
+
+  // Article-related variables
   const [defaultMyArticlesWithReview] = useQuery(getReviewAnswersByUserId, {
     currentUserId: currentUser?.id,
     includeAnonymous: true,
   })
-
-  const [userInfo, setUserInfo] = useState(currentUser)
-
   const [myArticlesWithReview, setMyArticlesWithReview] = useState(defaultMyArticlesWithReview)
 
-  const [isDeactivateAccountDialogOpen, setIsDeactivateAccountDialogOpen] = useState(false)
+  // Account-related variables
   const [resendVerificationMutation, { isSuccess }] = useMutation(resendVerification)
   const [verificationSent, setVerificationSent] = useState(false)
-
   const [logoutMutation] = useMutation(logout)
+  const [isDeactivateAccountDialogOpen, setIsDeactivateAccountDialogOpen] = useState(false)
   const handleDeleteUser = async () => {
     await invoke(deleteUser, currentUser?.id)
     await logoutMutation()
@@ -83,7 +84,13 @@ const Profile = () => {
         )}
       </div>
       <ProfileBgImage />
-      <ProfileInfo userInfo={userInfo} open={open} setOpen={setOpen} showEditButton={true} />
+      <ProfileInfo
+        userInfo={userInfo}
+        setUserInfo={setUserInfo}
+        open={open}
+        setOpen={setOpen}
+        showEditButton={true}
+      />
       <div id="my-reviews-container" className="m-4 mt-8 max-w-2xl">
         <h1 className="text-2xl font-semibold text-gray-darkest dark:text-white">Reviews</h1>
         <div className=" text-gray-darkest dark:text-white">
