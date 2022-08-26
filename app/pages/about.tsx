@@ -61,4 +61,5 @@ const About: BlitzPage = () => {
   )
 }
 
+About.getLayout = (page) => <Layout title="Our Story | PostReview">{page}</Layout>
 export default About
