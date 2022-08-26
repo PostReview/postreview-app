@@ -12,6 +12,8 @@ const MissionVisionPage: BlitzPage = () => {
       <Suspense fallback="Loading...">
         <Navbar />
       </Suspense>
+      <main className="mb-20 flex-grow flex flex-col items-center text-gray-darkest">
+      </main>
     </div>
   )
 }
