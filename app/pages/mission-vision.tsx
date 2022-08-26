@@ -8,6 +8,11 @@ import accountabilityPhoto from "public/accountability-photo.png"
 
 const MissionVisionPage: BlitzPage = () => {
   return (
+    <div className="flex flex-col min-h-screen bg-white">
+      <Suspense fallback="Loading...">
+        <Navbar />
+      </Suspense>
+    </div>
   )
 }
 MissionVisionPage.getLayout = (page) => (
