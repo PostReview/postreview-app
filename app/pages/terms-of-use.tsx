@@ -125,7 +125,9 @@ const TermsofUsePage: BlitzPage = () => {
             onClick={() => handleClick("scope")}
           >
             <AccordionSummary aria-controls="panel1d-content" id="panel1d-header">
-              <Typography variant="h5">Scope</Typography>
+              <Typography variant="h5" fontWeight="bold">
+                Scope
+              </Typography>
             </AccordionSummary>
             <AccordionDetails className="bg-gray-medium dark:bg-gray-dark text-black/80 dark:text-white/80">
               <p className="mx-2 font-thin text-black/80 dark:text-white/80">
@@ -147,7 +149,9 @@ const TermsofUsePage: BlitzPage = () => {
             onClick={() => handleClick("definitions")}
           >
             <AccordionSummary aria-controls="panel2d-content" id="panel2d-header">
-              <Typography variant="h5">Definitions</Typography>
+              <Typography variant="h5" fontWeight="bold">
+                Definitions
+              </Typography>
             </AccordionSummary>
             <AccordionDetails className="bg-gray-medium dark:bg-gray-dark text-black/80 dark:text-white/80">
               <ul className="mx-4 my-4  font-thin list-decimal">
@@ -174,7 +178,7 @@ const TermsofUsePage: BlitzPage = () => {
             onClick={() => handleClick("agreement")}
           >
             <AccordionSummary aria-controls="panel3d-content" id="panel3d-header">
-              <Typography variant="h5">
+              <Typography variant="h5" fontWeight="bold">
                 Agreement to the terms and registering an account
               </Typography>
             </AccordionSummary>
@@ -223,7 +227,9 @@ const TermsofUsePage: BlitzPage = () => {
             onClick={() => handleClick("functions")}
           >
             <AccordionSummary aria-controls="panel4d-content" id="panel4d-header">
-              <Typography variant="h5">Basic functions and rules of PostReview</Typography>
+              <Typography variant="h5" fontWeight="bold">
+                Basic functions and rules of PostReview
+              </Typography>
             </AccordionSummary>
             <AccordionDetails className="bg-gray-medium dark:bg-gray-dark text-black/80 dark:text-white/80">
               <ul className="mx-4 my-4 font-thin list-decimal">
@@ -295,7 +301,9 @@ const TermsofUsePage: BlitzPage = () => {
             onClick={() => handleClick("term")}
           >
             <AccordionSummary aria-controls="panel5d-content" id="panel5d-header">
-              <Typography variant="h5">Term and termination</Typography>
+              <Typography variant="h5" fontWeight="bold">
+                Term and termination
+              </Typography>
             </AccordionSummary>
             <AccordionDetails className="bg-gray-medium dark:bg-gray-dark text-black/80 dark:text-white/80">
               <ul className="mx-4 my-4 font-thin list-decimal">
@@ -318,7 +326,9 @@ const TermsofUsePage: BlitzPage = () => {
             onClick={() => handleClick("availability")}
           >
             <AccordionSummary aria-controls="panel6d-content" id="panel6d-header">
-              <Typography variant="h5">Availability and maintenance</Typography>
+              <Typography variant="h5" fontWeight="bold">
+                Availability and maintenance
+              </Typography>
             </AccordionSummary>
             <AccordionDetails className="bg-gray-medium dark:bg-gray-dark text-black/80 dark:text-white/80">
               <p className="mx-2 my-3 font-thin text-black/90 dark:text-white/90">
@@ -334,7 +344,9 @@ const TermsofUsePage: BlitzPage = () => {
             onClick={() => handleClick("data")}
           >
             <AccordionSummary aria-controls="panel7d-content" id="panel7d-header">
-              <Typography variant="h5">Protecting data</Typography>
+              <Typography variant="h5" fontWeight="bold">
+                Protecting data
+              </Typography>
             </AccordionSummary>
             <AccordionDetails className="bg-gray-medium dark:bg-gray-dark text-black/80 dark:text-white/80">
               <p className="mx-2 my-3 font-thin text-black/90 dark:text-white/90">
@@ -350,7 +362,9 @@ const TermsofUsePage: BlitzPage = () => {
             onClick={() => handleClick("change")}
           >
             <AccordionSummary aria-controls="panel8d-content" id="panel8d-header">
-              <Typography variant="h5">Changes to the terms</Typography>
+              <Typography variant="h5" fontWeight="bold">
+                Changes to the terms
+              </Typography>
             </AccordionSummary>
             <AccordionDetails className="bg-gray-medium dark:bg-gray-dark text-black/80 dark:text-white/80">
               <ul className="mx-4 my-4 font-thin list-decimal">
@@ -380,7 +394,9 @@ const TermsofUsePage: BlitzPage = () => {
             onClick={() => handleClick("law")}
           >
             <AccordionSummary aria-controls="panel9d-content" id="panel9d-header">
-              <Typography variant="h5">Governing law</Typography>
+              <Typography variant="h5" fontWeight="bold">
+                Governing law
+              </Typography>
             </AccordionSummary>
             <AccordionDetails className="bg-gray-medium dark:bg-gray-dark text-black/80 dark:text-white/80">
               <p className="mx-2 my-3 font-thin text-black/90 dark:text-white/90">
@@ -397,7 +413,9 @@ const TermsofUsePage: BlitzPage = () => {
             onClick={() => handleClick("contact")}
           >
             <AccordionSummary aria-controls="panel10d-content" id="panel10d-header">
-              <Typography variant="h5">Contact</Typography>
+              <Typography variant="h5" fontWeight="bold">
+                Contact
+              </Typography>
             </AccordionSummary>
             <AccordionDetails className="bg-gray-medium dark:bg-gray-dark text-black/80 dark:text-white/80">
               <p className="mx-2 my-3 font-thin text-black/90 dark:text-white/90">
@@ -420,7 +438,9 @@ const TermsofUsePage: BlitzPage = () => {
             onClick={() => handleClick("acknowledgement")}
           >
             <AccordionSummary aria-controls="panel11d-content" id="panel11d-header">
-              <Typography variant="h5">Acknowledgement</Typography>
+              <Typography variant="h5" fontWeight="bold">
+                Acknowledgement
+              </Typography>
             </AccordionSummary>
             <AccordionDetails className="bg-gray-medium dark:bg-gray-dark text-black/80 dark:text-white/80">
               <p className="mx-2 my-3 font-thin text-black/90 dark:text-white/90">
