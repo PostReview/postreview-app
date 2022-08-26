@@ -2,7 +2,8 @@ import Navbar from "app/core/components/Navbar"
 import { Visions } from "app/core/components/Visions"
 import { BlitzPage } from "blitz"
 import { Suspense } from "react"
-import PeopleOutlineIcon from "@mui/icons-material/PeopleOutline"
+import peopleAroundTheWorld from "public/people-around-the-world.png"
+import logoWithNameDarkMode from "public/logo-withname-darkmode.png"
 
 const About: BlitzPage = () => {
   return (
