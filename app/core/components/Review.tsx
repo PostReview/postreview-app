@@ -5,6 +5,7 @@ import { useRouter } from "blitz"
 import StarIcon from "@mui/icons-material/Star"
 import { ArticleAction } from "./ArticleAction"
 import { ReviewStars } from "./ReviewStars"
+import { AvatarIcon } from "./AvatarIcon"
 
 export const Review = (props) => {
   const {
@@ -83,17 +84,7 @@ export const Review = (props) => {
                 </Avatar>
               ) : (
                 <button onClick={() => router.push(`/profiles/${handle}`)}>
-                  <Avatar
-                    alt={displayName ? displayName : handle}
-                    sx={{
-                      backgroundColor: "#545454",
-                      color: "#94ec01",
-                    }}
-                    variant="square"
-                    src={`https://eu.ui-avatars.com/api/?name=${
-                      displayName ? displayName : handle
-                    }&color=94ec01&background=545454`}
-                  />
+                  <AvatarIcon currentUser={{ handle: handle, icon: userIcon }} />
                 </button>
               )}
             </Tooltip>
