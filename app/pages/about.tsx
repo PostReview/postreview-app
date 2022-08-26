@@ -14,6 +14,28 @@ const About: BlitzPage = () => {
         <Navbar />
       </Suspense>
       <main className="flex-grow flex flex-col items-center bg-white text-gray-darkest">
+        <h1 className="my-12 mx-4 max-w-3xl text-5xl text-left font-bold text-green">
+          Post a review, post-publication
+        </h1>
+        <div id="story-container" className="flex flex-col max-w-2xl mt-24 mx-4">
+          <div className="text-2xl text-left">
+            Last year, a question peaked two scientists&apos; minds.
+          </div>
+          <h2 className="my-36 md:ml-16 max-w-xl text-4xl font-bold text-black">
+            Why is it so difficult to track evaluations of scholarly articles?
+          </h2>
+          <div className="text-2xl text-left">
+            They realized there was no space to document and communicate discussions on scholarly
+            articles.
+          </div>
+          <div className="my-36 text-2xl text-left">They decided to create a space.</div>
+          <div id="brainstorming-container">
+            <span className="text-4xl font-bold text-black sm:whitespace-nowrap">
+              Brainstorming for the{" "}
+            </span>
+            <span className="text-4xl font-bold text-green">perfect space </span>
+            <span className="text-4xl font-bold text-black">began...</span>
+          </div>
           </div>
         </div>
         <Visions />
