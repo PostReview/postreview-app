@@ -25,7 +25,7 @@ const Accordion = styled((props: AccordionProps) => (
 
 const AccordionSummary = styled((props: AccordionSummaryProps) => (
   <MuiAccordionSummary
-    expandIcon={<ArrowForwardIosSharpIcon sx={{ fontSize: "0.9rem" }} />}
+    expandIcon={<ArrowForwardIosSharpIcon sx={{ fontSize: "1rem", color: "#2e2c2c" }} />}
     {...props}
   />
 ))(({ theme }) => ({
@@ -47,12 +47,12 @@ const AccordionDetails = styled(MuiAccordionDetails)(({ theme }) => ({
 
 const accordionStyle = {
   "@media (prefers-color-scheme: light)": {
-    background: "#545454",
+    background: "#737373",
     color: "#000000",
     fontWeight: "bold",
   },
   "@media (prefers-color-scheme: dark)": {
-    background: alpha("#000000", 0.3),
+    background: alpha("#000000", 0.6),
     color: "#ffffff",
     fontWeight: "bold",
   },
@@ -90,8 +90,10 @@ const CodeOfConductPage: BlitzPage = () => {
         <Navbar />
       </Suspense>
       <main className="flex-grow flex flex-col items-center bg-gray-light dark:bg-gray-darkest">
-        <div className="py-4 w-full text-3xl font-bold bg-gray-dark dark:bg-black/30">
-          <h1 className="text-center text-black dark:text-white">Code of Conduct</h1>
+        <div className="py-4 w-full text-3xl font-bold bg-gray-medium dark:bg-black/60">
+          <h1 className="text-center bg-gray-medium dark:bg-black/0 text-black dark:text-white">
+            Code of Conduct
+          </h1>
         </div>
         <div id="code-of-conduct-image" className="py-4 brightness-200">
           <Image
@@ -102,12 +104,9 @@ const CodeOfConductPage: BlitzPage = () => {
           />
         </div>
         <div id="our-pledge-header" className="flex flex-col justify-start">
-          <div className="text-2xl font-semibold text-black dark:text-white">Our Pledge</div>
+          <div className="text-2xl font-bold text-black dark:text-white">Our Pledge</div>
         </div>
-        <div
-          id="our-pledge-body"
-          className="font-light max-w-3xl text-gray-darkest dark:text-white"
-        >
+        <div id="our-pledge-body" className="font-light max-w-3xl text-black dark:text-white">
           <p className="mx-6 my-3">
             We as members, contributors, and leaders pledge to make participation in our community a
             harassment-free experience for everyone, regardless of age, body size, visible or
@@ -123,7 +122,7 @@ const CodeOfConductPage: BlitzPage = () => {
         <div id="code-of-conduct-content" className="max-w-3xl">
           <div className="text-right">
             <button
-              className="px-2 py-1 mx-3 my-2 text-sm bg-gray-medium text-black dark:text-gray-light"
+              className="px-2 py-1 mx-3 my-2 text-sm font-semibold bg-gray-dark/40 dark:bg-black/40 text-black dark:text-white"
               onClick={() => handleExpandAll(!expandClicked)}
             >
               {expandClicked ? "Collapse" : "Expand All"}
@@ -135,9 +134,11 @@ const CodeOfConductPage: BlitzPage = () => {
             onClick={() => handleClick("standards")}
           >
             <AccordionSummary aria-controls="panel1d-content" id="panel1d-header">
-              <Typography variant="h5">Our Standards</Typography>
+              <Typography variant="h5" fontWeight="bold">
+                Our Standards
+              </Typography>
             </AccordionSummary>
-            <AccordionDetails className="bg-gray-medium dark:bg-gray-dark text-black/80 dark:text-white/80">
+            <AccordionDetails className="bg-white dark:bg-gray-dark text-black/80 dark:text-white/80">
               <p className="mx-2 text-black/90 dark:text-white">
                 Examples of behavior that contributes to a positive environment for our community
                 include:
@@ -186,9 +187,11 @@ const CodeOfConductPage: BlitzPage = () => {
             onClick={() => handleClick("responsibilities")}
           >
             <AccordionSummary aria-controls="panel2d-content" id="panel2d-header">
-              <Typography variant="h5">Enforcement Responsibilities</Typography>
+              <Typography variant="h5" fontWeight="bold">
+                Enforcement Responsibilities
+              </Typography>
             </AccordionSummary>
-            <AccordionDetails className="bg-gray-medium dark:bg-gray-dark text-black/80 dark:text-white/80">
+            <AccordionDetails className="bg-white dark:bg-gray-dark text-black/80 dark:text-white/80">
               <p className="mx-2 my-3 font-thin text-black/90 dark:text-white/90">
                 Community leaders are responsible for clarifying and enforcing our standards of
                 acceptable behavior and will take appropriate and fair corrective action in response
@@ -208,9 +211,11 @@ const CodeOfConductPage: BlitzPage = () => {
             onClick={() => handleClick("scope")}
           >
             <AccordionSummary aria-controls="panel3d-content" id="panel3d-header">
-              <Typography variant="h5">Scope</Typography>
+              <Typography variant="h5" fontWeight="bold">
+                Scope
+              </Typography>
             </AccordionSummary>
-            <AccordionDetails className="bg-gray-medium dark:bg-gray-dark text-black/80 dark:text-white/80">
+            <AccordionDetails className="bg-white dark:bg-gray-dark text-black/80 dark:text-white/80">
               <p className="mx-2 my-3 font-thin text-black/90 dark:text-white/90">
                 This Code of Conduct applies within all community spaces, and also applies when an
                 individual is officially representing the community in public spaces. Examples of
@@ -226,9 +231,11 @@ const CodeOfConductPage: BlitzPage = () => {
             onClick={() => handleClick("enforcement")}
           >
             <AccordionSummary aria-controls="panel4d-content" id="panel4d-header">
-              <Typography variant="h5">Enforcement</Typography>
+              <Typography variant="h5" fontWeight="bold">
+                Enforcement
+              </Typography>
             </AccordionSummary>
-            <AccordionDetails className="bg-gray-medium dark:bg-gray-dark text-black/80 dark:text-white/80">
+            <AccordionDetails className="bg-white dark:bg-gray-dark text-black/80 dark:text-white/80">
               <p className="mx-2 my-3 font-thin text-black/90 dark:text-white/90">
                 Instances of abusive, harassing, or otherwise unacceptable behavior may be reported
                 to the community leaders responsible for enforcement (listed below). All complaints
@@ -282,9 +289,11 @@ const CodeOfConductPage: BlitzPage = () => {
             onClick={() => handleClick("guidelines")}
           >
             <AccordionSummary aria-controls="panel5d-content" id="panel5d-header">
-              <Typography variant="h5">Enforcement Guidelines</Typography>
+              <Typography variant="h5" fontWeight="bold">
+                Enforcement Guidelines
+              </Typography>
             </AccordionSummary>
-            <AccordionDetails className="bg-gray-medium dark:bg-gray-dark text-black/80 dark:text-white/80">
+            <AccordionDetails className="bg-white dark:bg-gray-dark text-black/80 dark:text-white/80">
               <p className="mx-2 my-3 font-thin text-black/90 dark:text-white/90">
                 Community leaders will follow these Community Impact Guidelines in determining the
                 consequences for any action they deem in violation of this Code of Conduct:
@@ -353,9 +362,11 @@ const CodeOfConductPage: BlitzPage = () => {
             onClick={() => handleClick("attribution")}
           >
             <AccordionSummary aria-controls="panel6d-content" id="panel6d-header">
-              <Typography variant="h5">Attribution</Typography>
+              <Typography variant="h5" fontWeight="bold">
+                Attribution
+              </Typography>
             </AccordionSummary>
-            <AccordionDetails className="bg-gray-medium dark:bg-gray-dark text-black/80 dark:text-white/80">
+            <AccordionDetails className="bg-white dark:bg-gray-dark text-black/80 dark:text-white/80">
               <p className="mx-2 my-3 font-thin text-black/90 dark:text-white/90">
                 This Code of Conduct is adapted from the
                 <Link href="https://contributor-covenant.org">
