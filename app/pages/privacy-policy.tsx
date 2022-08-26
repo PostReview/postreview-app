@@ -150,7 +150,7 @@ const PrivacyPolicyPage: BlitzPage = () => {
                 Definitions
               </Typography>
             </AccordionSummary>
-            <AccordionDetails className="bg-gray-medium dark:bg-gray-dark text-black/80 dark:text-white/80">
+            <AccordionDetails className="bg-white dark:bg-gray-dark text-black/80 dark:text-white/80">
               <ul className="mx-4 my-4 font-thin list-decimal">
                 <li className="m-2">
                   Account: A unique account created for the user to access PostReview
@@ -205,7 +205,7 @@ const PrivacyPolicyPage: BlitzPage = () => {
                 Personal data
               </Typography>
             </AccordionSummary>
-            <AccordionDetails className="bg-gray-medium dark:bg-gray-dark text-black/80 dark:text-white/80">
+            <AccordionDetails className="bg-white dark:bg-gray-dark text-black/80 dark:text-white/80">
               <p className="mx-2 font-thin text-black/90 dark:text-white">
                 While using PostReview, we may ask you to provide us with personally identifiable
                 information that can be used to contact or identify you. Personally identifiable
@@ -223,7 +223,7 @@ const PrivacyPolicyPage: BlitzPage = () => {
                 Usage data
               </Typography>
             </AccordionSummary>
-            <AccordionDetails className="bg-gray-medium dark:bg-gray-dark text-black/80 dark:text-white/80">
+            <AccordionDetails className="bg-white dark:bg-gray-dark text-black/80 dark:text-white/80">
               <ul className="mx-4 my-4 font-thin list-decimal">
                 <li className="m-2">
                   Usage data is collected automatically when using PostReview.
@@ -252,7 +252,7 @@ const PrivacyPolicyPage: BlitzPage = () => {
                 Cookies
               </Typography>
             </AccordionSummary>
-            <AccordionDetails className="bg-gray-medium dark:bg-gray-dark text-black/80 dark:text-white/80">
+            <AccordionDetails className="bg-white dark:bg-gray-dark text-black/80 dark:text-white/80">
               <ul className="mx-4 my-4 font-thin list-decimal">
                 <li className="m-2">
                   A cookie is a small file placed on your device. You can instruct your browser to
@@ -284,7 +284,7 @@ const PrivacyPolicyPage: BlitzPage = () => {
                 Purposes of processing your data
               </Typography>
             </AccordionSummary>
-            <AccordionDetails className="bg-gray-medium dark:bg-gray-dark text-black/80 dark:text-white/80">
+            <AccordionDetails className="bg-white dark:bg-gray-dark text-black/80 dark:text-white/80">
               <p className="mx-2 font-thin text-black/90 dark:text-white">
                 We may use your personal data for the following purposes:
               </p>
@@ -330,7 +330,7 @@ const PrivacyPolicyPage: BlitzPage = () => {
                 We may share your personal information
               </Typography>
             </AccordionSummary>
-            <AccordionDetails className="bg-gray-medium dark:bg-gray-dark text-black/80 dark:text-white/80">
+            <AccordionDetails className="bg-white dark:bg-gray-dark text-black/80 dark:text-white/80">
               <p className="mx-2 my-3 font-thin text-black/90 dark:text-white/90">
                 In the following situations:
               </p>
@@ -362,7 +362,7 @@ const PrivacyPolicyPage: BlitzPage = () => {
                 Retention of your personal data
               </Typography>
             </AccordionSummary>
-            <AccordionDetails className="bg-gray-medium dark:bg-gray-dark text-black/80 dark:text-white/80">
+            <AccordionDetails className="bg-white dark:bg-gray-dark text-black/80 dark:text-white/80">
               <ul className="mx-4 my-4 font-thin list-decimal">
                 <li className="m-2">
                   The Company will retain your personal data only for as long as is necessary for
@@ -390,7 +390,7 @@ const PrivacyPolicyPage: BlitzPage = () => {
                 Transfer of your personal data
               </Typography>
             </AccordionSummary>
-            <AccordionDetails className="bg-gray-medium dark:bg-gray-dark text-black/80 dark:text-white/80">
+            <AccordionDetails className="bg-white dark:bg-gray-dark text-black/80 dark:text-white/80">
               <ul className="mx-4 my-4 font-thin list-decimal">
                 <li className="m-2">
                   Your information is processed at our offices and in other places where data
@@ -435,7 +435,7 @@ const PrivacyPolicyPage: BlitzPage = () => {
                 Disclosure of your personal data
               </Typography>
             </AccordionSummary>
-            <AccordionDetails className="bg-gray-medium dark:bg-gray-dark text-black/80 dark:text-white/80">
+            <AccordionDetails className="bg-white dark:bg-gray-dark text-black/80 dark:text-white/80">
               <ul className="mx-4 my-4 font-thin list-decimal">
                 <li className="m-2">
                   Business Transactions: If we are involved in a merger, acquisition or asset sale,
@@ -474,7 +474,7 @@ const PrivacyPolicyPage: BlitzPage = () => {
                 Security of your personal data
               </Typography>
             </AccordionSummary>
-            <AccordionDetails className="bg-gray-medium dark:bg-gray-dark text-black/80 dark:text-white/80">
+            <AccordionDetails className="bg-white dark:bg-gray-dark text-black/80 dark:text-white/80">
               <p className="mx-2 my-3 font-thin text-black/90 dark:text-white/90">
                 The security of your personal data is important to us, but remember that no method
                 of transmission over the Internet, or method of electronic storage, is 100% secure.
@@ -493,7 +493,7 @@ const PrivacyPolicyPage: BlitzPage = () => {
                 Changes to this privacy policy
               </Typography>
             </AccordionSummary>
-            <AccordionDetails className="bg-gray-medium dark:bg-gray-dark text-black/80 dark:text-white/80">
+            <AccordionDetails className="bg-white dark:bg-gray-dark text-black/80 dark:text-white/80">
               <ul className="mx-4 my-4 font-thin list-decimal">
                 <li className="m-2">
                   We may update our privacy policy from time to time. We will notify you of any
@@ -517,7 +517,7 @@ const PrivacyPolicyPage: BlitzPage = () => {
                 Contact us
               </Typography>
             </AccordionSummary>
-            <AccordionDetails className="bg-gray-medium dark:bg-gray-dark text-black/80 dark:text-white/80">
+            <AccordionDetails className="bg-white dark:bg-gray-dark text-black/80 dark:text-white/80">
               <p className="mx-2 my-3 font-thin text-black/90 dark:text-white/90">
                 If you have any questions about this privacy policy, You can contact us by email:{" "}
                 <a
