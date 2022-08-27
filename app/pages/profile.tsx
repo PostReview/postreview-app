@@ -53,7 +53,7 @@ const Profile = () => {
   const [open, setOpen] = useState(false)
 
   return (
-    <main className="flex flex-col items-center min-h-screen bg-white dark:bg-gray-darkest relative text-gray-darkest dark:text-white">
+    <main className="flex flex-col items-center min-h-screen bg-white dark:bg-black/60 relative text-gray-darkest dark:text-white">
       <div id="verify-email-container" className="absolute self-center">
         {!currentUser?.emailIsVerified && (
           <div className="flex flex-row max-w-sm items-center justify-evenly text-sm rounded-md px-2 mt-3 border-2 border-white-medium text-white">
