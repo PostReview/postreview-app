@@ -125,7 +125,7 @@ const About: BlitzPage = () => {
             className="flex flex-col max-w-2xl px-8 bg-gray-darkest text-gray-light pb-40"
           >
             <div className="mt-24 text-2xl text-left">So they created...</div>
-            <div className="mt-32 mx-2 px-16">
+            <div className="mt-32 mx-2 sm:px-16 px-8">
               <Image
                 id="logo-with-name"
                 src={logoWithNameDarkMode}
