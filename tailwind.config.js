@@ -5,7 +5,23 @@ module.exports = {
   content: ["{pages,app}/**/*.{js,ts,jsx,tsx}"],
   darkMode: "media", // or 'media' or 'class'
   theme: {
-    extend: {},
+    extend: {
+      animation: {
+        bounce: "bounce 1s infinite",
+      },
+      keyframes: {
+        bounce: {
+          "0%, 100%": {
+            transform: "translateY(0%)",
+            "animation-timing-function": "cubic-bezier(0, 0, 0.2, 1)",
+          },
+          "50%": {
+            transform: "translateY(-25%)",
+            "animation-timing-function": "cubic-bezier(0.8, 0, 1, 1)",
+          },
+        },
+      },
+    },
     fontFamily: {
       sans: ['"Fira Sans"', "sans-serif"],
     },
