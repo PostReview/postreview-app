@@ -1,7 +1,7 @@
 import EnterDOI from "app/core/components/EnterDOI"
 import Navbar from "app/core/components/Navbar"
+import Layout from "app/core/layouts/Layout"
 import { BlitzPage, useRouter, useSession } from "blitz"
-import { Suspense } from "react"
 
 const Browse = () => {
   const session = useSession()
@@ -31,11 +31,13 @@ const Browse = () => {
 
 const BrowsePage: BlitzPage = () => {
   return (
-    <Suspense fallback="Loading...">
+    <>
       <Navbar hideSearch={true} />
       <Browse />
-    </Suspense>
+    </>
   )
 }
+
+BrowsePage.getLayout = (page) => <Layout title="Browse | PostReview">{page}</Layout>
 
 export default BrowsePage
