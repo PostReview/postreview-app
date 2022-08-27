@@ -110,7 +110,6 @@ body {
   }
 }
 
-
 /* Animate the text on the about page */
 /*Vertical Sliding*/
 .slidingVertical {
@@ -174,7 +173,7 @@ body {
   100% {
     opacity: 0;
   }
-
+}
 
 /* Uploadcare Dialog Styling */
 .uploadcare--panel__content {
