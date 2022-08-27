@@ -147,10 +147,8 @@ const Profile = () => {
 const ProfilePage: BlitzPage = () => {
   return (
     <div className="flex flex-col min-h-screen">
-      <Suspense fallback="Loading...">
-        <Navbar />
-        <Profile />
-      </Suspense>
+      <Navbar />
+      <Profile />
     </div>
   )
 }
