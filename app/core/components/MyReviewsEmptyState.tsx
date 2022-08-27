@@ -9,7 +9,10 @@ export const MyReviewsEmptyState = () => {
     flex flex-col  max-w-5xl h-32 justify-center"
       >
         <div className="flex flex-col items-center">
-          <div id="rate-paper-container" className="text-gray-darkest dark:text-white underline">
+          <div
+            id="rate-paper-container"
+            className="sm:mx-20 mx-10 text-gray-darkest/80 dark:text-white/80 italic"
+          >
             Search a paper to review
           </div>
         </div>
