@@ -140,12 +140,12 @@ const PrivacyPolicyPage: BlitzPage = () => {
             </button>
           </div>
 
-          <Accordion
-            sx={{ ...accordionStyle }}
-            expanded={accordion.definitions}
-            onClick={() => handleClick("definitions")}
-          >
-            <AccordionSummary aria-controls="panel1d-content" id="panel1d-header">
+          <Accordion sx={{ ...accordionStyle }} expanded={accordion.definitions}>
+            <AccordionSummary
+              aria-controls="panel1d-content"
+              id="panel1d-header"
+              onClick={() => handleClick("definitions")}
+            >
               <Typography variant="h5" fontWeight="bold">
                 Definitions
               </Typography>
@@ -195,12 +195,12 @@ const PrivacyPolicyPage: BlitzPage = () => {
               </ul>
             </AccordionDetails>
           </Accordion>
-          <Accordion
-            sx={{ ...accordionStyle }}
-            expanded={accordion.personal}
-            onClick={() => handleClick("personal")}
-          >
-            <AccordionSummary aria-controls="panel2d-content" id="panel2d-header">
+          <Accordion sx={{ ...accordionStyle }} expanded={accordion.personal}>
+            <AccordionSummary
+              aria-controls="panel2d-content"
+              id="panel2d-header"
+              onClick={() => handleClick("personal")}
+            >
               <Typography variant="h5" fontWeight="bold">
                 Personal data
               </Typography>
@@ -213,12 +213,12 @@ const PrivacyPolicyPage: BlitzPage = () => {
               </p>
             </AccordionDetails>
           </Accordion>
-          <Accordion
-            sx={{ ...accordionStyle }}
-            expanded={accordion.usage}
-            onClick={() => handleClick("usage")}
-          >
-            <AccordionSummary aria-controls="panel3d-content" id="panel3d-header">
+          <Accordion sx={{ ...accordionStyle }} expanded={accordion.usage}>
+            <AccordionSummary
+              aria-controls="panel3d-content"
+              id="panel3d-header"
+              onClick={() => handleClick("usage")}
+            >
               <Typography variant="h5" fontWeight="bold">
                 Usage data
               </Typography>
@@ -242,12 +242,12 @@ const PrivacyPolicyPage: BlitzPage = () => {
               </ul>
             </AccordionDetails>
           </Accordion>
-          <Accordion
-            sx={{ ...accordionStyle }}
-            expanded={accordion.cookies}
-            onClick={() => handleClick("cookies")}
-          >
-            <AccordionSummary aria-controls="panel4d-content" id="panel4d-header">
+          <Accordion sx={{ ...accordionStyle }} expanded={accordion.cookies}>
+            <AccordionSummary
+              aria-controls="panel4d-content"
+              id="panel4d-header"
+              onClick={() => handleClick("cookies")}
+            >
               <Typography variant="h5" fontWeight="bold">
                 Cookies
               </Typography>
@@ -274,12 +274,12 @@ const PrivacyPolicyPage: BlitzPage = () => {
               </ul>
             </AccordionDetails>
           </Accordion>
-          <Accordion
-            sx={{ ...accordionStyle }}
-            expanded={accordion.purposes}
-            onClick={() => handleClick("purposes")}
-          >
-            <AccordionSummary aria-controls="panel5d-content" id="panel5d-header">
+          <Accordion sx={{ ...accordionStyle }} expanded={accordion.purposes}>
+            <AccordionSummary
+              aria-controls="panel5d-content"
+              id="panel5d-header"
+              onClick={() => handleClick("purposes")}
+            >
               <Typography variant="h5" fontWeight="bold">
                 Purposes of processing your data
               </Typography>
@@ -320,12 +320,12 @@ const PrivacyPolicyPage: BlitzPage = () => {
               </ul>
             </AccordionDetails>
           </Accordion>
-          <Accordion
-            sx={{ ...accordionStyle }}
-            expanded={accordion.share}
-            onClick={() => handleClick("share")}
-          >
-            <AccordionSummary aria-controls="panel6d-content" id="panel6d-header">
+          <Accordion sx={{ ...accordionStyle }} expanded={accordion.share}>
+            <AccordionSummary
+              aria-controls="panel6d-content"
+              id="panel6d-header"
+              onClick={() => handleClick("share")}
+            >
               <Typography variant="h5" fontWeight="bold">
                 We may share your personal information
               </Typography>
@@ -352,12 +352,12 @@ const PrivacyPolicyPage: BlitzPage = () => {
               </ul>
             </AccordionDetails>
           </Accordion>
-          <Accordion
-            sx={{ ...accordionStyle }}
-            expanded={accordion.retention}
-            onClick={() => handleClick("retention")}
-          >
-            <AccordionSummary aria-controls="panel7d-content" id="panel7d-header">
+          <Accordion sx={{ ...accordionStyle }} expanded={accordion.retention}>
+            <AccordionSummary
+              aria-controls="panel7d-content"
+              id="panel7d-header"
+              onClick={() => handleClick("retention")}
+            >
               <Typography variant="h5" fontWeight="bold">
                 Retention of your personal data
               </Typography>
@@ -380,12 +380,12 @@ const PrivacyPolicyPage: BlitzPage = () => {
               </ul>
             </AccordionDetails>
           </Accordion>
-          <Accordion
-            sx={{ ...accordionStyle }}
-            expanded={accordion.transfer}
-            onClick={() => handleClick("transfer")}
-          >
-            <AccordionSummary aria-controls="panel8d-content" id="panel8d-header">
+          <Accordion sx={{ ...accordionStyle }} expanded={accordion.transfer}>
+            <AccordionSummary
+              aria-controls="panel8d-content"
+              id="panel8d-header"
+              onClick={() => handleClick("transfer")}
+            >
               <Typography variant="h5" fontWeight="bold">
                 Transfer of your personal data
               </Typography>
@@ -425,12 +425,12 @@ const PrivacyPolicyPage: BlitzPage = () => {
               </ul>
             </AccordionDetails>
           </Accordion>
-          <Accordion
-            sx={{ ...accordionStyle }}
-            expanded={accordion.disclosure}
-            onClick={() => handleClick("disclosure")}
-          >
-            <AccordionSummary aria-controls="panel9d-content" id="panel9d-header">
+          <Accordion sx={{ ...accordionStyle }} expanded={accordion.disclosure}>
+            <AccordionSummary
+              aria-controls="panel9d-content"
+              id="panel9d-header"
+              onClick={() => handleClick("disclosure")}
+            >
               <Typography variant="h5" fontWeight="bold">
                 Disclosure of your personal data
               </Typography>
@@ -464,12 +464,12 @@ const PrivacyPolicyPage: BlitzPage = () => {
               </ul>
             </AccordionDetails>
           </Accordion>
-          <Accordion
-            sx={{ ...accordionStyle }}
-            expanded={accordion.security}
-            onClick={() => handleClick("security")}
-          >
-            <AccordionSummary aria-controls="panel10d-content" id="panel10d-header">
+          <Accordion sx={{ ...accordionStyle }} expanded={accordion.security}>
+            <AccordionSummary
+              aria-controls="panel10d-content"
+              id="panel10d-header"
+              onClick={() => handleClick("security")}
+            >
               <Typography variant="h5" fontWeight="bold">
                 Security of your personal data
               </Typography>
@@ -483,12 +483,12 @@ const PrivacyPolicyPage: BlitzPage = () => {
               </p>
             </AccordionDetails>
           </Accordion>
-          <Accordion
-            sx={{ ...accordionStyle }}
-            expanded={accordion.changes}
-            onClick={() => handleClick("changes")}
-          >
-            <AccordionSummary aria-controls="panel11d-content" id="panel11d-header">
+          <Accordion sx={{ ...accordionStyle }} expanded={accordion.changes}>
+            <AccordionSummary
+              aria-controls="panel11d-content"
+              id="panel11d-header"
+              onClick={() => handleClick("changes")}
+            >
               <Typography variant="h5" fontWeight="bold">
                 Changes to this privacy policy
               </Typography>
@@ -507,12 +507,12 @@ const PrivacyPolicyPage: BlitzPage = () => {
               </ul>
             </AccordionDetails>
           </Accordion>
-          <Accordion
-            sx={{ ...accordionStyle }}
-            expanded={accordion.contact}
-            onClick={() => handleClick("contact")}
-          >
-            <AccordionSummary aria-controls="panel12d-content" id="panel12d-header">
+          <Accordion sx={{ ...accordionStyle }} expanded={accordion.contact}>
+            <AccordionSummary
+              aria-controls="panel12d-content"
+              id="panel12d-header"
+              onClick={() => handleClick("contact")}
+            >
               <Typography variant="h5" fontWeight="bold">
                 Contact us
               </Typography>
