@@ -9,7 +9,7 @@ import Layout from "app/core/layouts/Layout"
 
 const PublicProfileDetails = () => {
   const userHandle = useParam("handle", "string") as String
-  const [userInfo] = useQuery(getUserInfo, { handle: userHandle })
+  const [userInfo] = useQuery(getUserInfo, { userHandle })
   const [defaultArticlesWithReview] = useQuery(getReviewAnswersByUserId, {
     currentUserId: userInfo?.id,
   })
