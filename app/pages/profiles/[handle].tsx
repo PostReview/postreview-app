@@ -26,12 +26,12 @@ const PublicProfileDetails = () => {
         <ProfileInfo userInfo={userInfo} showEditButton={false} />
 
         <div id="my-reviews-container" className="m-4 mt-8 max-w-2xl">
-          <h1 className="text-2xl font-semibold text-gray-darkest dark:text-white">Reviews</h1>
+          <h1 className="ml-4 text-2xl font-semibold text-gray-darkest dark:text-white">Reviews</h1>
           <div className="text-gray-darkest dark:text-white">
             {defaultArticlesWithReview.length === 0 && (
               <div
                 className="m-6 p-4 border-gray-medium
-    flex flex-col w-96 h-32 justify-center"
+    flex flex-col w-80 h-32 justify-center"
               >
                 <div className="flex flex-col items-center">
                   <div
