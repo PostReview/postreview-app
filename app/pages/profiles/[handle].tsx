@@ -1,4 +1,4 @@
-import { BlitzPage, Head, useParam, useQuery } from "blitz"
+import { BlitzPage, Head, Image, useParam, useQuery } from "blitz"
 import Navbar from "app/core/components/Navbar"
 import { Suspense } from "react"
 import getReviewAnswersByUserId from "app/queries/getReviewAnswersByUserId"
@@ -6,6 +6,7 @@ import getUserInfo from "app/queries/getUserInfo"
 import { MyReviewsTable } from "app/core/components/MyReviewsTable"
 import { ProfileBgImage } from "app/core/components/ProfileBgImage"
 import { ProfileInfo } from "app/core/components/ProfileInfo"
+import noReviewPhoto from "public/no-review-photo.png"
 
 const PublicProfileDetails = () => {
   const userHandle = useParam("handle", "string") as String
@@ -21,12 +22,12 @@ const PublicProfileDetails = () => {
           userInfo?.displayName ? userInfo?.displayName : userInfo?.handle
         } | PostReview`}</title>
       </Head>
-      <main className="flex flex-col items-center min-h-screen bg-white dark:bg-gray-darkest relative text-gray-darkest dark:text-white">
+      <main className="flex flex-col items-center min-h-screen bg-white dark:bg-black/60 relative text-gray-darkest dark:text-white">
         <ProfileBgImage />
         <ProfileInfo userInfo={userInfo} showEditButton={false} />
 
         <div id="my-reviews-container" className="m-4 mt-8 max-w-2xl">
-          <h1 className="text-2xl font-semibold text-gray-darkest dark:text-white">Reviews</h1>
+          <h1 className="ml-8 text-2xl font-semibold text-gray-darkest dark:text-white">Reviews</h1>
           <div className="text-gray-darkest dark:text-white">
             {defaultArticlesWithReview.length === 0 && (
               <div
@@ -36,10 +37,16 @@ const PublicProfileDetails = () => {
                 <div className="flex flex-col items-center">
                   <div
                     id="rate-paper-container"
-                    className="text-gray-darkest dark:text-white underline"
+                    className="font-semibold text-gray-darkest dark:text-white"
                   >
-                    No reviews
+                    <Image
+                      src={noReviewPhoto}
+                      alt="A silhouette of a bear sleeping"
+                      width={140}
+                      height={120}
+                    />
                   </div>
+                  <span>It is very quiet in here.</span>
                 </div>
               </div>
             )}
