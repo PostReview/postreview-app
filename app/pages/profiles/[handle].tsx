@@ -1,12 +1,12 @@
 import { BlitzPage, Head, Image, useParam, useQuery } from "blitz"
 import Navbar from "app/core/components/Navbar"
-import { Suspense } from "react"
 import getReviewAnswersByUserId from "app/queries/getReviewAnswersByUserId"
 import getUserInfo from "app/queries/getUserInfo"
 import { MyReviewsTable } from "app/core/components/MyReviewsTable"
 import { ProfileBgImage } from "app/core/components/ProfileBgImage"
 import { ProfileInfo } from "app/core/components/ProfileInfo"
 import noReviewPhoto from "public/no-review-photo.png"
+import Layout from "app/core/layouts/Layout"
 
 const PublicProfileDetails = () => {
   const userHandle = useParam("handle", "string") as String
@@ -32,7 +32,7 @@ const PublicProfileDetails = () => {
             {defaultArticlesWithReview.length === 0 && (
               <div
                 className="m-6 p-4 border-gray-medium
-    flex flex-col w-96 h-32 justify-center"
+    flex flex-col w-80 h-32 justify-center"
               >
                 <div className="flex flex-col items-center">
                   <div
@@ -66,12 +66,12 @@ const PublicProfileDetails = () => {
 const PublicProfilePage: BlitzPage = () => {
   return (
     <div className="flex flex-col min-h-screen">
-      <Suspense fallback="Loading...">
-        <Navbar />
-        <PublicProfileDetails />
-      </Suspense>
+      <Navbar />
+      <PublicProfileDetails />
     </div>
   )
 }
+
+PublicProfilePage.getLayout = (page) => <Layout>{page}</Layout>
 
 export default PublicProfilePage

@@ -10,9 +10,7 @@ const About: BlitzPage = () => {
   const router = useRouter()
   return (
     <div className="flex flex-col min-h-screen">
-      <Suspense fallback="Loading...">
-        <Navbar />
-      </Suspense>
+      <Navbar />
       <div className="w-full bg-gray-darkest flex flex-col items-center">
         <main className="flex-grow flex flex-col items-center bg-white text-gray-darkest">
           <h1 className="my-12 mx-8 max-w-3xl text-5xl text-left font-bold text-green">

@@ -28,9 +28,7 @@ const VerifyEmailPage: BlitzPage = () => {
 
   return (
     <div className="flex flex-col min-h-screen bg-white dark:bg-gray-darkest">
-      <Suspense fallback="Loading...">
-        <Navbar />
-      </Suspense>
+      <Navbar />
       <main className="flex-grow flex flex-col items-center justify-center">
         <h1 className="text-2xl font-bold my-4 text-gray-darkest dark:text-white">
           Verifying email...
