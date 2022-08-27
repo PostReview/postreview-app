@@ -1,15 +1,18 @@
+import { Tooltip } from "@mui/material"
 import React from "react"
 
 const Dot = (props) => {
   return (
-    <div
-      {...props}
-      className={`${props.selected ? "w-5 h-5" : "w-3 h-3"}\
+    <Tooltip title={props.category} placement="top">
+      <div
+        {...props}
+        className={`${props.selected ? "w-5 h-5" : "w-3 h-3"}\
    ${props.category === "Overall" ? "bg-green" : "bg-white"} rounded-full \
     hover:cursor-pointer \
     transition-all
     `}
-    ></div>
+      ></div>
+    </Tooltip>
   )
 }
 
