@@ -1,15 +1,15 @@
 import { BlitzPage, Head, useParam, useQuery } from "blitz"
 import Navbar from "app/core/components/Navbar"
-import { Suspense } from "react"
 import getReviewAnswersByUserId from "app/queries/getReviewAnswersByUserId"
 import getUserInfo from "app/queries/getUserInfo"
 import { MyReviewsTable } from "app/core/components/MyReviewsTable"
 import { ProfileBgImage } from "app/core/components/ProfileBgImage"
 import { ProfileInfo } from "app/core/components/ProfileInfo"
+import Layout from "app/core/layouts/Layout"
 
 const PublicProfileDetails = () => {
   const userHandle = useParam("handle", "string") as String
-  const [userInfo] = useQuery(getUserInfo, { userHandle })
+  const [userInfo] = useQuery(getUserInfo, { handle: userHandle })
   const [defaultArticlesWithReview] = useQuery(getReviewAnswersByUserId, {
     currentUserId: userInfo?.id,
   })
@@ -59,12 +59,12 @@ const PublicProfileDetails = () => {
 const PublicProfilePage: BlitzPage = () => {
   return (
     <div className="flex flex-col min-h-screen">
-      <Suspense fallback="Loading...">
-        <Navbar />
-        <PublicProfileDetails />
-      </Suspense>
+      <Navbar />
+      <PublicProfileDetails />
     </div>
   )
 }
+
+PublicProfilePage.getLayout = (page) => <Layout>{page}</Layout>
 
 export default PublicProfilePage
