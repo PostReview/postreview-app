@@ -46,7 +46,7 @@ const PublicProfileDetails = () => {
                       height={120}
                     />
                   </div>
-                  <span>It is very quiet in here.</span>
+                  <span className="font-semibold">It is very quiet in here.</span>
                 </div>
               </div>
             )}
