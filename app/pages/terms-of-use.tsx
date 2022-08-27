@@ -1,6 +1,5 @@
 import { BlitzPage, Image, Link } from "blitz"
 import Layout from "app/core/layouts/Layout"
-import { Suspense } from "react"
 import Navbar from "app/core/components/Navbar"
 import termsOfUse from "public/terms-of-use.png"
 import * as React from "react"
@@ -92,9 +91,7 @@ const TermsofUsePage: BlitzPage = () => {
 
   return (
     <div className="flex flex-col min-h-screen bg-white dark:bg-gray-darkest">
-      <Suspense fallback="Loading...">
-        <Navbar />
-      </Suspense>
+      <Navbar />
       <main className="flex-grow flex flex-col items-center bg-gray-light dark:bg-gray-darkest">
         <div className="py-4 w-full text-3xl font-bold bg-gray-medium dark:bg-black/60">
           <h1 className="text-center bg-gray-medium dark:bg-black/0 text-black dark:text-white">
