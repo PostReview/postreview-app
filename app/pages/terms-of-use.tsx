@@ -119,12 +119,12 @@ const TermsofUsePage: BlitzPage = () => {
             </button>
           </div>
 
-          <Accordion
-            sx={{ ...accordionStyle }}
-            expanded={accordion.scope}
-            onClick={() => handleClick("scope")}
-          >
-            <AccordionSummary aria-controls="panel1d-content" id="panel1d-header">
+          <Accordion sx={{ ...accordionStyle }} expanded={accordion.scope}>
+            <AccordionSummary
+              aria-controls="panel1d-content"
+              id="panel1d-header"
+              onClick={() => handleClick("scope")}
+            >
               <Typography variant="h5" fontWeight="bold">
                 Scope
               </Typography>
@@ -143,12 +143,12 @@ const TermsofUsePage: BlitzPage = () => {
               </p>
             </AccordionDetails>
           </Accordion>
-          <Accordion
-            sx={{ ...accordionStyle }}
-            expanded={accordion.definitions}
-            onClick={() => handleClick("definitions")}
-          >
-            <AccordionSummary aria-controls="panel2d-content" id="panel2d-header">
+          <Accordion sx={{ ...accordionStyle }} expanded={accordion.definitions}>
+            <AccordionSummary
+              aria-controls="panel2d-content"
+              id="panel2d-header"
+              onClick={() => handleClick("definitions")}
+            >
               <Typography variant="h5" fontWeight="bold">
                 Definitions
               </Typography>
@@ -172,12 +172,12 @@ const TermsofUsePage: BlitzPage = () => {
               </ul>
             </AccordionDetails>
           </Accordion>
-          <Accordion
-            sx={{ ...accordionStyle }}
-            expanded={accordion.agreement}
-            onClick={() => handleClick("agreement")}
-          >
-            <AccordionSummary aria-controls="panel3d-content" id="panel3d-header">
+          <Accordion sx={{ ...accordionStyle }} expanded={accordion.agreement}>
+            <AccordionSummary
+              aria-controls="panel3d-content"
+              id="panel3d-header"
+              onClick={() => handleClick("agreement")}
+            >
               <Typography variant="h5" fontWeight="bold">
                 Agreement to the terms and registering an account
               </Typography>
@@ -221,12 +221,12 @@ const TermsofUsePage: BlitzPage = () => {
               </ul>
             </AccordionDetails>
           </Accordion>
-          <Accordion
-            sx={{ ...accordionStyle }}
-            expanded={accordion.functions}
-            onClick={() => handleClick("functions")}
-          >
-            <AccordionSummary aria-controls="panel4d-content" id="panel4d-header">
+          <Accordion sx={{ ...accordionStyle }} expanded={accordion.functions}>
+            <AccordionSummary
+              aria-controls="panel4d-content"
+              id="panel4d-header"
+              onClick={() => handleClick("functions")}
+            >
               <Typography variant="h5" fontWeight="bold">
                 Basic functions and rules of PostReview
               </Typography>
@@ -295,12 +295,12 @@ const TermsofUsePage: BlitzPage = () => {
               </ul>
             </AccordionDetails>
           </Accordion>
-          <Accordion
-            sx={{ ...accordionStyle }}
-            expanded={accordion.term}
-            onClick={() => handleClick("term")}
-          >
-            <AccordionSummary aria-controls="panel5d-content" id="panel5d-header">
+          <Accordion sx={{ ...accordionStyle }} expanded={accordion.term}>
+            <AccordionSummary
+              aria-controls="panel5d-content"
+              id="panel5d-header"
+              onClick={() => handleClick("term")}
+            >
               <Typography variant="h5" fontWeight="bold">
                 Term and termination
               </Typography>
@@ -320,12 +320,12 @@ const TermsofUsePage: BlitzPage = () => {
               </ul>
             </AccordionDetails>
           </Accordion>
-          <Accordion
-            sx={{ ...accordionStyle }}
-            expanded={accordion.availability}
-            onClick={() => handleClick("availability")}
-          >
-            <AccordionSummary aria-controls="panel6d-content" id="panel6d-header">
+          <Accordion sx={{ ...accordionStyle }} expanded={accordion.availability}>
+            <AccordionSummary
+              aria-controls="panel6d-content"
+              id="panel6d-header"
+              onClick={() => handleClick("availability")}
+            >
               <Typography variant="h5" fontWeight="bold">
                 Availability and maintenance
               </Typography>
@@ -338,12 +338,12 @@ const TermsofUsePage: BlitzPage = () => {
               </p>
             </AccordionDetails>
           </Accordion>
-          <Accordion
-            sx={{ ...accordionStyle }}
-            expanded={accordion.data}
-            onClick={() => handleClick("data")}
-          >
-            <AccordionSummary aria-controls="panel7d-content" id="panel7d-header">
+          <Accordion sx={{ ...accordionStyle }} expanded={accordion.data}>
+            <AccordionSummary
+              aria-controls="panel7d-content"
+              id="panel7d-header"
+              onClick={() => handleClick("data")}
+            >
               <Typography variant="h5" fontWeight="bold">
                 Protecting data
               </Typography>
@@ -356,12 +356,12 @@ const TermsofUsePage: BlitzPage = () => {
               </p>
             </AccordionDetails>
           </Accordion>
-          <Accordion
-            sx={{ ...accordionStyle }}
-            expanded={accordion.change}
-            onClick={() => handleClick("change")}
-          >
-            <AccordionSummary aria-controls="panel8d-content" id="panel8d-header">
+          <Accordion sx={{ ...accordionStyle }} expanded={accordion.change}>
+            <AccordionSummary
+              aria-controls="panel8d-content"
+              id="panel8d-header"
+              onClick={() => handleClick("change")}
+            >
               <Typography variant="h5" fontWeight="bold">
                 Changes to the terms
               </Typography>
@@ -388,12 +388,12 @@ const TermsofUsePage: BlitzPage = () => {
               </ul>
             </AccordionDetails>
           </Accordion>
-          <Accordion
-            sx={{ ...accordionStyle }}
-            expanded={accordion.law}
-            onClick={() => handleClick("law")}
-          >
-            <AccordionSummary aria-controls="panel9d-content" id="panel9d-header">
+          <Accordion sx={{ ...accordionStyle }} expanded={accordion.law}>
+            <AccordionSummary
+              aria-controls="panel9d-content"
+              id="panel9d-header"
+              onClick={() => handleClick("law")}
+            >
               <Typography variant="h5" fontWeight="bold">
                 Governing law
               </Typography>
@@ -407,12 +407,12 @@ const TermsofUsePage: BlitzPage = () => {
               </p>
             </AccordionDetails>
           </Accordion>
-          <Accordion
-            sx={{ ...accordionStyle }}
-            expanded={accordion.contact}
-            onClick={() => handleClick("contact")}
-          >
-            <AccordionSummary aria-controls="panel10d-content" id="panel10d-header">
+          <Accordion sx={{ ...accordionStyle }} expanded={accordion.contact}>
+            <AccordionSummary
+              aria-controls="panel10d-content"
+              id="panel10d-header"
+              onClick={() => handleClick("contact")}
+            >
               <Typography variant="h5" fontWeight="bold">
                 Contact
               </Typography>
@@ -432,12 +432,12 @@ const TermsofUsePage: BlitzPage = () => {
               </p>
             </AccordionDetails>
           </Accordion>
-          <Accordion
-            sx={{ ...accordionStyle }}
-            expanded={accordion.acknowledgement}
-            onClick={() => handleClick("acknowledgement")}
-          >
-            <AccordionSummary aria-controls="panel11d-content" id="panel11d-header">
+          <Accordion sx={{ ...accordionStyle }} expanded={accordion.acknowledgement}>
+            <AccordionSummary
+              aria-controls="panel11d-content"
+              id="panel11d-header"
+              onClick={() => handleClick("acknowledgement")}
+            >
               <Typography variant="h5" fontWeight="bold">
                 Acknowledgement
               </Typography>
