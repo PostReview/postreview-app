@@ -11,7 +11,7 @@ const Layout = ({ title, children }: LayoutProps) => {
   return (
     <>
       <Head>
-        <title>{title || "hello-blitz-postgresql"}</title>
+        <title>{title || "PostReview"}</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <LayoutLoader>{children}</LayoutLoader>
