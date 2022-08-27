@@ -23,6 +23,7 @@ import sadFace from "public/sad-face.png"
 import getUsersWithReviewsByArticleId from "app/queries/getUsersWithReviewsByArticleId"
 import getQuestionCategories from "app/queries/getQuestionCategories"
 import getArticleScoresById from "app/queries/getArticleScoresById"
+import Layout from "app/core/layouts/Layout"
 
 const ArticleDetails = (props) => {
   // The maximum rating
@@ -398,12 +399,12 @@ const ArticleDetails = (props) => {
 const ArticlePage: BlitzPage = () => {
   return (
     <div className="flex flex-col min-h-screen bg-white dark:bg-gray-darkest">
-      <Suspense fallback="Loading...">
-        <Navbar />
-        <ArticleDetails />
-      </Suspense>
+      <Navbar />
+      <ArticleDetails />
     </div>
   )
 }
+
+ArticlePage.getLayout = (page) => <Layout>{page}</Layout>
 
 export default ArticlePage

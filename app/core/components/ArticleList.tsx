@@ -1,4 +1,4 @@
-import React, { Suspense } from "react"
+import React from "react"
 import { useQuery } from "blitz"
 import Article from "./Article"
 import getArticlesWithReview from "app/queries/getArticlesWithReview"
@@ -15,24 +15,22 @@ export default function ArticleList(props) {
   const [defaultArticles] = useQuery(getArticlesWithReview, undefined)
   const Hit = ({ hit }) => {
     return (
-      <Suspense fallback="loading" key={hit.objectID}>
-        <Article
-          key={hit.objectID}
-          id={hit.objectID}
-          authorString={hit.authors}
-          doi={hit.doi}
-          title={hit.name}
-          publishedYear={hit.publishedYear}
-          ratingTotal={hit.ratingTotal}
-          ratingRQ={hit.ratingRQ}
-          ratingDesign={hit.ratingDesign}
-          ratingFindings={hit.ratingFindings}
-          ratingInterpretation={hit.ratingInterpretation}
-          ratingSignificance={hit.ratingSignificance}
-          ratingsCount={hit.ratingsCount}
-          questionCategory={questionCategory}
-        />
-      </Suspense>
+      <Article
+        key={hit.objectID}
+        id={hit.objectID}
+        authorString={hit.authors}
+        doi={hit.doi}
+        title={hit.name}
+        publishedYear={hit.publishedYear}
+        ratingTotal={hit.ratingTotal}
+        ratingRQ={hit.ratingRQ}
+        ratingDesign={hit.ratingDesign}
+        ratingFindings={hit.ratingFindings}
+        ratingInterpretation={hit.ratingInterpretation}
+        ratingSignificance={hit.ratingSignificance}
+        ratingsCount={hit.ratingsCount}
+        questionCategory={questionCategory}
+      />
     )
   }
 

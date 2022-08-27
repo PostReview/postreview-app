@@ -42,9 +42,7 @@ const SignupPage: BlitzPage = () => {
 
   return (
     <div className="flex flex-col min-h-screen bg-white dark:bg-gray-darkest">
-      <Suspense fallback="Loading...">
-        <Navbar hideSearch={true} />
-      </Suspense>
+      <Navbar hideSearch={true} />
       <main className="flex-grow flex flex-col items-center justify-center">
         <div id="postReviewLogo" className="h-70 w-full flex justify-center">
           <Image

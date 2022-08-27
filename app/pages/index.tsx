@@ -111,13 +111,9 @@ const UserInfo = () => {
 const Home: BlitzPage = () => {
   return (
     <div className="flex flex-col min-h-screen">
-      <Suspense fallback="Loading...">
-        <Navbar />
-      </Suspense>
+      <Navbar />
       <main className="flex-grow flex flex-col items-center bg-white dark:bg-gray-darkest">
-        <Suspense fallback="Loading...">
-          <UserInfo />
-        </Suspense>
+        <UserInfo />
       </main>
     </div>
   )
