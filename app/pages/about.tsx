@@ -13,6 +13,7 @@ const About: BlitzPage = () => {
       <Suspense fallback="Loading...">
         <Navbar />
       </Suspense>
+      <div className="w-full bg-gray-darkest flex flex-col items-center">
       <main className="flex-grow flex flex-col items-center bg-white text-gray-darkest">
         <h1 className="my-12 mx-4 max-w-3xl text-5xl text-left font-bold text-green">
           Post a review, post-publication
@@ -138,6 +139,7 @@ const About: BlitzPage = () => {
           </button>
         </div>
       </main>
+      </div>
     </div>
   )
 }
