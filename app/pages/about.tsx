@@ -48,25 +48,25 @@ const About: BlitzPage = () => {
             </h3>
           </div>
           <div id="words-container" className="mx-4 my-4 text-4xl font-bold">
-            <div className="my-4 animate-[pulse_4s_infinite] text-right hover:cursor-pointer hover:animate-bounce">
+            <div className="ml-auto w-min whitespace-nowrap my-4 animate-[pulse_4s_infinite] text-right hover:cursor-pointer hover:animate-bounce">
               a safe place
             </div>
-            <div className="my-6 animate-[pulse_8s_infinite] text-left hover:cursor-pointer hover:animate-bounce">
+            <div className="mr-auto w-min my-6 animate-[pulse_8s_infinite] text-left hover:cursor-pointer hover:animate-bounce">
               convenient
             </div>
-            <div className="my-6 text-center hover:cursor-pointer hover:animate-bounce text-black">
+            <div className="mx-auto w-min my-6 text-center hover:cursor-pointer hover:animate-bounce text-black">
               accessible
             </div>
-            <div className="my-4 animate-[pulse_10s_infinite] text-right hover:cursor-pointer hover:animate-bounce">
+            <div className="ml-auto w-min my-4 animate-[pulse_10s_infinite] text-right hover:cursor-pointer hover:animate-bounce">
               transparent
             </div>
-            <div className="my-4 animate-[pulse_4s_infinite] text-left hover:cursor-pointer hover:animate-bounce">
+            <div className="mr-auto w-min my-4 animate-[pulse_4s_infinite] text-left hover:cursor-pointer hover:animate-bounce">
               fun
             </div>
-            <div className="my-4 animate-[pulse_6s_infinite] text-center hover:cursor-pointer hover:animate-bounce">
+            <div className="mx-auto w-min my-4 animate-[pulse_6s_infinite] text-center hover:cursor-pointer hover:animate-bounce">
               equitable
             </div>
-            <div className="my-4 text-right hover:cursor-pointer hover:animate-bounce text-black">
+            <div className="ml-auto w-min my-4 text-right hover:cursor-pointer hover:animate-bounce text-black">
               open
             </div>
           </div>
