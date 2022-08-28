@@ -1,16 +1,15 @@
-import { useRouter, BlitzPage, Image, useSession, useMutation } from "blitz"
+import { useRouter, BlitzPage, Image, useSession } from "blitz"
 import Layout from "app/core/layouts/Layout"
 import { useEffect, useRef, useState } from "react"
 import Navbar from "app/core/components/Navbar"
-import { Field, Form, Formik, FormikValues } from "formik"
 import { Button } from "app/core/components/Button"
 import detectiveDarkMode from "public/detective-darkmode.png"
 import detectiveLightMode from "public/detective-lightmode.png"
 import { AvatarIcon } from "app/core/components/AvatarIcon"
 import { Widget } from "@uploadcare/react-widget"
 import { useCurrentUser } from "app/core/hooks/useCurrentUser"
-import changeUserInfo from "app/mutations/changeUserInfo"
 import { GetStarted } from "app/core/components/onboarding/GetStarted"
+import { EnterName } from "app/core/components/onboarding/EnterName"
 
 const OnboardingPage: BlitzPage = () => {
   // Redirect when not logged in
@@ -39,78 +38,6 @@ const OnboardingPage: BlitzPage = () => {
 
   // Handle pages
   const [currentPage, setCurrentPage] = useState("get-started")
-
-  // Formik
-  const formRef = useRef<FormikValues>()
-  const handleSubmit = () => {
-    if (formRef.current) {
-      formRef.current.handleSubmit()
-    }
-  }
-
-  // DB mutation to change user info
-  const [changeUserinfoMutation] = useMutation(changeUserInfo)
-
-  const EnterName = () => {
-    return (
-      <div id="enter-name-container" className="pb-20">
-        <div id="title-container" className="flex flex-row items-center">
-          <div className="ml-4 contrast-100 m-6 w-24">
-            <Image
-              src={isDark ? detectiveDarkMode : detectiveLightMode}
-              alt="An image of a detective looking through a magnifying glass with their left eye"
-              width={584}
-              height={800}
-            />
-          </div>
-          <h1 className="w-64 text-4xl font-bold my-4 text-gray-darkest dark:text-white">
-            How do you want to be addressed?
-          </h1>
-        </div>
-        <Formik
-          innerRef={formRef as any}
-          initialValues={{
-            displayName: "",
-            pronoun: "",
-          }}
-          onSubmit={(values) => {
-            setCurrentUser({ ...currentUser!, ...values })
-            changeUserinfoMutation({ ...currentUser! })
-          }}
-        >
-          <Form className="flex flex-col text-xl bg-black text-white px-4">
-            <div className="flex flex-row border-b border-gray-dark py-4">
-              <label className="w-32">Name</label>
-              <Field
-                name="displayName"
-                type="text"
-                className="ml-1 bg-black outline-0 text-green"
-              />
-            </div>
-            <div className="flex flex-row py-4">
-              <label htmlFor="pronouns" className="w-32">
-                Pronouns
-              </label>
-              <Field name="pronoun" type="text" className="ml-1 bg-black outline-0 text-green" />
-            </div>
-          </Form>
-        </Formik>
-        <div className="text-center">
-          <button
-            id="next-button"
-            className="m-9 text-green text-2xl"
-            type="submit"
-            onClick={() => {
-              handleSubmit()
-              setCurrentPage("upload-photo")
-            }}
-          >
-            Next &rarr;
-          </button>
-        </div>
-      </div>
-    )
-  }
 
   const UploadYourPhoto = () => {
     return (
@@ -185,7 +112,14 @@ const OnboardingPage: BlitzPage = () => {
         {currentPage === "get-started" && (
           <GetStarted setCurrentPage={setCurrentPage} isDark={isDark} />
         )}
-        {currentPage === "enter-name" && <EnterName />}
+        {currentPage === "enter-name" && (
+          <EnterName
+            setCurrentPage={setCurrentPage}
+            isDark={isDark}
+            currentUser={currentUser}
+            setCurrentUser={setCurrentUser}
+          />
+        )}
         {currentPage === "upload-photo" && <UploadYourPhoto />}
       </main>
     </div>
