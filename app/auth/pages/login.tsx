@@ -77,7 +77,7 @@ const LoginPage: BlitzPage = () => {
             }) => (
               <form onSubmit={handleSubmit} className="flex flex-col w-full">
                 {showError && (
-                  <div className="bg-red-500 bg-opacity-50 rounded-md text-center p-3">
+                  <div className="bg-black/60 rounded-md text-red text-center p-2">
                     Incorrect email or password
                   </div>
                 )}
