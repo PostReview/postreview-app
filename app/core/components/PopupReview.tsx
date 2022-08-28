@@ -75,6 +75,16 @@ export default function PopupReview(prop) {
 
   const [addReviewMutation] = useMutation(addReview)
   const [addReviewCommentMutation] = useMutation(addReviewComment)
+
+  // Thank-you badge
+  const [thankYouShowing, setThankYouShowing] = useState(false)
+  const showThankYou = () => {
+    setThankYouShowing(true)
+    setTimeout(() => {
+      setThankYouShowing(false)
+    }, 2500)
+  }
+
   const handleReviewSubmit = async () => {
     setLoading(true)
     // If there's no rating given, show the error message
