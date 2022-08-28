@@ -42,34 +42,39 @@ const OnboardingPage: BlitzPage = () => {
     },
   })
 
+  const GetStarted = () => {
+    return (
+      <div id="main-container">
+        <h1 className="w-64 text-4xl font-bold my-4 text-gray-darkest dark:text-white">
+          Thank you for signing up!
+        </h1>
+        <div id="get-started-container" className="flex flex-row">
+          <div className="flex flex-row items-center">
+            <button
+              className="whitespace-nowrap px-4 py-4 text-xl text-green rounded-lg bg-black/50 hover:bg-gray-darkest dark:bg-gray-medium dark:hover:bg-black/40"
+              onClick={undefined}
+            >
+              Get started
+            </button>
+          </div>
+          <div className="ml-4 contrast-100 mt-6 w-44">
+            <Image
+              src={isDark ? detectiveDarkMode : detectiveLightMode}
+              alt="An image of a detective looking through a magnifying glass with their left eye"
+              width={584}
+              height={800}
+            />
+          </div>
+        </div>
+      </div>
+    )
+  }
+
   return (
     <div className="flex flex-col min-h-screen bg-white dark:bg-gray-darkest">
       <Navbar hideSearch={true} />
       <main className="flex-grow flex flex-col items-center mt-36">
-        <div id="main-container">
-          <h1 className="w-64 text-4xl font-bold my-4 text-gray-darkest dark:text-white">
-            Thank you for signing up!
-          </h1>
-          <div id="get-started-container" className="flex flex-row">
-            <div className="flex flex-row items-center">
-              <button
-                className="whitespace-nowrap px-4 py-4 text-xl text-green rounded-lg bg-black/50 hover:bg-gray-darkest dark:bg-gray-medium dark:hover:bg-black/40"
-                onClick={undefined}
-              >
-                Get started
-              </button>
-            </div>
-
-            <div className="ml-4 contrast-100 mt-6 w-44">
-              <Image
-                src={isDark ? detectiveDarkMode : detectiveLightMode}
-                alt="An image of a detective looking through a magnifying glass with their left eye"
-                width={584}
-                height={800}
-              />
-            </div>
-          </div>
-        </div>
+        <GetStarted />
       </main>
     </div>
   )
