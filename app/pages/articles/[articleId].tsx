@@ -7,12 +7,12 @@ import PopupReview from "app/core/components/PopupReview"
 import hasUserSunmittedReview from "app/queries/hasUserSubmittedReview"
 import { Dialog, DialogActions, DialogContent, DialogTitle, Snackbar } from "@mui/material"
 import { Button } from "app/core/components/Button"
-import { FaCrown, FaBarcode, FaUsers } from "react-icons/fa"
 import getUsersWithReviewsByArticleId from "app/queries/getUsersWithReviewsByArticleId"
 import getQuestionCategories from "app/queries/getQuestionCategories"
 import getArticleScoresById from "app/queries/getArticleScoresById"
 import Layout from "app/core/layouts/Layout"
 import { ArticleSummaryScores } from "app/core/components/ArticleSummaryScores"
+import { ArticleMetadata } from "app/core/components/ArticleMetadata"
 
 const ArticleDetails = (props) => {
   // The maximum rating
@@ -92,19 +92,7 @@ const ArticleDetails = (props) => {
         <title>{`${currentTitle} | PostReview`}</title>
       </Head>
       <main className="m-6 flex-grow flex flex-col items-center">
-        <div className="m-6 font-bold text-2xl text-left max-w-3xl text-gray-darkest dark:text-white">
-          <h1>{article.title}</h1>
-        </div>
-        <div className="article__author text-base text-center m-2 max-w-2xl text-gray-dark dark:text-gray-light">
-          <FaCrown className="inline m-2" />
-          {article.authorString} {article?.publishedYear && `(${article?.publishedYear})`}
-        </div>
-        <div className="article__barcode text-base underline max-w-2xl text-green">
-          <a href={`https://dx.doi.org/${article.doi}`} rel="noreferrer" target="_blank">
-            <FaBarcode className="inline m-2" />
-            {article.doi}
-          </a>
-        </div>
+        <ArticleMetadata article={article} />
         <ArticleSummaryScores
           isAccordionOpen={isAccordionOpen}
           toggleAccordion={toggleAccordion}
