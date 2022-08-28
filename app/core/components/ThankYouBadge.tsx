@@ -3,6 +3,13 @@ import thankYouBadge from "public/thank-you-badge.png"
 import { Image } from "blitz"
 
 const ThankYouBadge = (props) => {
+  const { isFirst } = props
+  const possibleMessages = [
+  ]
+  const selectedMessage = possibleMessages[Math.floor(Math.random() * possibleMessages.length)]
+
+  const [currentMessage, setCurrentMessage] = useState(selectedMessage)
+
   return (
     <>
       <div id="badge-container" className="flex flex-col relative min-h-screen items-center mt-56">
