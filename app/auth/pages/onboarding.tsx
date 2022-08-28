@@ -10,6 +10,7 @@ import { AvatarIcon } from "app/core/components/AvatarIcon"
 import { Widget } from "@uploadcare/react-widget"
 import { useCurrentUser } from "app/core/hooks/useCurrentUser"
 import changeUserInfo from "app/mutations/changeUserInfo"
+import { GetStarted } from "app/core/components/onboarding/GetStarted"
 
 const OnboardingPage: BlitzPage = () => {
   // Redirect when not logged in
@@ -49,34 +50,6 @@ const OnboardingPage: BlitzPage = () => {
 
   // DB mutation to change user info
   const [changeUserinfoMutation] = useMutation(changeUserInfo)
-
-  const GetStarted = () => {
-    return (
-      <div id="main-container">
-        <h1 className="w-64 text-4xl font-bold my-4 text-gray-darkest dark:text-white">
-          Thank you for signing up!
-        </h1>
-        <div id="get-started-container" className="flex flex-row">
-          <div className="flex flex-row items-center">
-            <button
-              className="whitespace-nowrap px-4 py-4 text-xl text-green rounded-lg bg-black/50 hover:bg-gray-darkest dark:bg-gray-medium dark:hover:bg-black/40"
-              onClick={() => setCurrentPage("enter-name")}
-            >
-              Get started
-            </button>
-          </div>
-          <div className="ml-4 contrast-100 mt-6 w-44">
-            <Image
-              src={isDark ? detectiveDarkMode : detectiveLightMode}
-              alt="An image of a detective looking through a magnifying glass with their left eye"
-              width={584}
-              height={800}
-            />
-          </div>
-        </div>
-      </div>
-    )
-  }
 
   const EnterName = () => {
     return (
@@ -209,7 +182,9 @@ const OnboardingPage: BlitzPage = () => {
     <div className="flex flex-col min-h-screen bg-white dark:bg-gray-darkest">
       <Navbar hideSearch={true} />
       <main className="flex-grow flex flex-col items-center mt-36">
-        {currentPage === "get-started" && <GetStarted />}
+        {currentPage === "get-started" && (
+          <GetStarted setCurrentPage={setCurrentPage} isDark={isDark} />
+        )}
         {currentPage === "enter-name" && <EnterName />}
         {currentPage === "upload-photo" && <UploadYourPhoto />}
       </main>
