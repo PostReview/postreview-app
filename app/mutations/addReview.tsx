@@ -44,7 +44,7 @@ export default async function addReview(input: z.infer<typeof AddReview>, ctx: C
   )
 
   // Delete any null responses
-  // const deleted = await db.reviewAnswers.deleteMany({ where: { response: null } })
+  const deleted = await db.reviewAnswers.deleteMany({ where: { response: null } })
 
   // Update Algolia index
   updateArticleIndex(data[0]?.articleId)
