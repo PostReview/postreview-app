@@ -1,6 +1,6 @@
-import { useRouter, BlitzPage, invoke, useMutation, Image, Link, Routes } from "blitz"
+import { useRouter, BlitzPage, invoke, useMutation, Image, Link, Routes, useSession } from "blitz"
 import Layout from "app/core/layouts/Layout"
-import { Suspense, useEffect, useState } from "react"
+import { useEffect, useState } from "react"
 import Navbar from "app/core/components/Navbar"
 import { Formik } from "formik"
 import GoogleButton from "app/core/components/GoogleButton"
@@ -14,6 +14,18 @@ import { createTheme, Switch, ThemeProvider } from "@mui/material"
 
 const SignupPage: BlitzPage = () => {
   const router = useRouter()
+
+  // Wait for onboarding -- do not auto-redirect if just signed up
+  const [waitOnboarding, setWaitOnboarding] = useState(false)
+
+  // Redirect when logged in
+  const session = useSession()
+  useEffect(() => {
+    if (!!session.userId && !waitOnboarding) {
+      router.push("/")
+    }
+  }, [router, session, waitOnboarding])
+
   const [signupMutation] = useMutation(signup)
   const [showError, setShowError] = useState(false)
   const [isPasswordHidden, setIsPasswordHidden] = useState(true)
@@ -93,10 +105,13 @@ const SignupPage: BlitzPage = () => {
               })
             }}
             onSubmit={(values, { setSubmitting }) => {
+              // Wait to go to the onboarding page when the form is submitted
+              setWaitOnboarding(true)
               signupMutation(values).catch(() => setShowError(true))
               setTimeout(() => {
                 setSubmitting(false)
               }, 400)
+              router.push("/onboarding")
             }}
           >
             {({
@@ -256,7 +271,7 @@ const SignupPage: BlitzPage = () => {
   )
 }
 
-SignupPage.redirectAuthenticatedTo = "/"
+// SignupPage.redirectAuthenticatedTo = "/"
 SignupPage.getLayout = (page) => <Layout title="Sign Up | PostReview">{page}</Layout>
 
 export default SignupPage
