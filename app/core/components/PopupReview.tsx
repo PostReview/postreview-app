@@ -87,6 +87,7 @@ export default function PopupReview(prop) {
 
   const handleReviewSubmit = async () => {
     setLoading(true)
+    showThankYou()
     // If there's no rating given, show the error message
     if (reviewAnswers.length == 0) return setShowReviewRequiredError(true)
     await invoke(addReviewMutation, reviewAnswers)
