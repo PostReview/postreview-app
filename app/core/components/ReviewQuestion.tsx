@@ -10,6 +10,7 @@ export const ReviewQuestion = (props) => {
     setIsChangeMade,
     isAnonymous,
     session,
+    fontSize = 50,
   } = props
   const handleRatingChange = (questionId, newValue) => {
     const newData = {
@@ -32,12 +33,10 @@ export const ReviewQuestion = (props) => {
   return (
     <div
       className="
-    border-gray-400
-    bg-gray-200
-      m-3
-      px-6
+      mx-2
+      my-4
       py-2
-      rounded-full relative"
+      relative"
     >
       <div className="font-bold">{question.questionCategory}</div>
       <div id="question-header" className="mb-2">
@@ -68,6 +67,7 @@ export const ReviewQuestion = (props) => {
                 setIsChangeMade(true)
               }}
               value={currentAnswer ? currentAnswer?.response : 0}
+              sx={{ fontSize: fontSize, color: "#94ec01" }}
             />
           ) : (
             <span className="italic self-start">Not rated</span>
@@ -81,7 +81,7 @@ export const ReviewQuestion = (props) => {
         ></div>
         <div
           id="delete-button"
-          className="absolute text-3xl top-0 right-6 hover:cursor-pointer"
+          className="absolute text-3xl top-0 right-3 hover:cursor-pointer"
           onClick={() => {
             setXMarkClicked(!xMarkClicked)
             setCurrentAnswer({ ...currentAnswer, response: null })
