@@ -120,6 +120,15 @@ export default function PopupReview(prop) {
 
   return (
     <>
+      {thankYouShowing && (
+        <Backdrop
+          sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }}
+          open={thankYouShowing}
+          onClick={() => setThankYouShowing(false)}
+        >
+          <ThankYouBadge isFirst={!articleHasReview} />
+        </Backdrop>
+      )}
       <DialogTitle sx={{ background: alpha("#737373", 0.9), fontSize: "2rem" }}>
         <div className="text-left text-white font-bold">
           What are your thoughts about this paper?
