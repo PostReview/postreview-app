@@ -1,4 +1,4 @@
-import { useRouter, BlitzPage, useSession } from "blitz"
+import { useRouter, BlitzPage, useSession, useMutation } from "blitz"
 import Layout from "app/core/layouts/Layout"
 import { useEffect, useState } from "react"
 import Navbar from "app/core/components/Navbar"
@@ -6,6 +6,7 @@ import { useCurrentUser } from "app/core/hooks/useCurrentUser"
 import { GetStarted } from "app/core/components/onboarding/GetStarted"
 import { EnterName } from "app/core/components/onboarding/EnterName"
 import { UploadYourPhoto } from "app/core/components/onboarding/UploadYourPhoto"
+import changeUserInfo from "app/mutations/changeUserInfo"
 
 const OnboardingPage: BlitzPage = () => {
   // Redirect when not logged in
@@ -31,6 +32,12 @@ const OnboardingPage: BlitzPage = () => {
   // Handle pages
   const [currentPage, setCurrentPage] = useState("get-started")
 
+  // DB mutation to change user info
+  const [changeUserInfoMutation] = useMutation(changeUserInfo)
+  const handleSave = () => {
+    changeUserInfoMutation
+  }
+
   return (
     <div className="flex flex-col min-h-screen bg-white dark:bg-gray-darkest">
       <Navbar hideSearch={true} />
@@ -44,6 +51,7 @@ const OnboardingPage: BlitzPage = () => {
             isDark={isDark}
             currentUser={currentUser}
             setCurrentUser={setCurrentUser}
+            changeUserInfoMutation={changeUserInfoMutation}
           />
         )}
         {currentPage === "upload-photo" && (
@@ -52,6 +60,7 @@ const OnboardingPage: BlitzPage = () => {
             router={router}
             currentUser={currentUser}
             setCurrentUser={setCurrentUser}
+            changeUserInfoMutation={changeUserInfoMutation}
           />
         )}
       </main>

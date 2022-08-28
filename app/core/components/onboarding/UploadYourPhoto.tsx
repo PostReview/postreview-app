@@ -7,7 +7,7 @@ import detectiveDarkMode from "public/detective-darkmode.png"
 import detectiveLightMode from "public/detective-lightmode.png"
 
 export const UploadYourPhoto = (props) => {
-  const { isDark, currentUser, setCurrentUser, router } = props
+  const { isDark, currentUser, setCurrentUser, router, changeUserInfoMutation } = props
 
   // Uploadcare
   const UPLOADCARE_PUBLIC_KEY = process.env.UPLOADCARE_PUBLIC_KEY

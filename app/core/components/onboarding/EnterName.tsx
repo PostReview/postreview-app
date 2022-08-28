@@ -1,12 +1,11 @@
-import changeUserInfo from "app/mutations/changeUserInfo"
-import { Image, useMutation } from "blitz"
+import { Image } from "blitz"
 import { Field, Form, Formik, FormikValues } from "formik"
 import React, { useRef } from "react"
 import detectiveDarkMode from "public/detective-darkmode.png"
 import detectiveLightMode from "public/detective-lightmode.png"
 
 export const EnterName = (props) => {
-  const { setCurrentPage, isDark, currentUser, setCurrentUser } = props
+  const { setCurrentPage, isDark, currentUser, setCurrentUser, changeUserInfoMutation } = props
 
   // Formik
   const formRef = useRef<FormikValues>()
@@ -15,9 +14,6 @@ export const EnterName = (props) => {
       formRef.current.handleSubmit()
     }
   }
-
-  // DB mutation to change user info
-  const [changeUserInfoMutation] = useMutation(changeUserInfo)
 
   return (
     <div id="enter-name-container" className="pb-20">
