@@ -13,11 +13,12 @@ export const ProfileEditDialog = (props) => {
   const UPLOADCARE_PUBLIC_KEY = process.env.UPLOADCARE_PUBLIC_KEY
   const { open, setOpen, userInfo, setUserInfo } = props
 
-  const formRef = useRef<FormikValues>()
   const [aboutMe, setAboutMe] = useState(userInfo?.aboutMe)
 
   const aboutMeCharLimit = 150
 
+  // Formik
+  const formRef = useRef<FormikValues>()
   const handleSubmit = () => {
     if (formRef.current) {
       formRef.current.handleSubmit()
