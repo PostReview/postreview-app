@@ -82,7 +82,7 @@ export default function PopupReview(prop) {
     setThankYouShowing(true)
     setTimeout(() => {
       setThankYouShowing(false)
-    }, 2500)
+    }, 3000)
   }
 
   const handleReviewSubmit = async () => {
