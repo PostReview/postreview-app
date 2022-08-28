@@ -125,6 +125,7 @@ const ArticleDetails = (props) => {
             setUserHasReview={setUserHasReview}
             setIsChangeMade={setIsChangeMade}
             session={session}
+            articleHasReview={articleHasReview}
           />
         </Dialog>
         <Dialog open={isConfirmDialogOpen} onClose={closeConfirmDialog}>
