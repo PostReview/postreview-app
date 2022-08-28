@@ -4,12 +4,20 @@ import React, { useState } from "react"
 import { ReviewQuestion } from "./ReviewQuestion"
 import addReview from "app/mutations/addReview"
 import getReviewAnswersByArticleAndUserIds from "app/queries/getReviewAnswersByArticleAndUserIds"
-import { Dialog, DialogActions, DialogContent, DialogTitle, Switch, Tooltip } from "@mui/material"
-import HelpOutlineIcon from "@mui/icons-material/HelpOutline"
-import { FaBook, FaUser } from "react-icons/fa"
+import {
+  alpha,
+  createTheme,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogTitle,
+  Switch,
+  ThemeProvider,
+} from "@mui/material"
 import { Button } from "./Button"
 import getReviewCommentByArticleAndUserIds from "app/queries/getReviewCommentByArticleAndUserIds"
 import addReviewComment from "app/mutations/addReviewComment"
+import { ArticleMetadata } from "./ArticleMetadata"
 
 export default function PopupReview(prop) {
   const { article, handleClose, setUserHasReview, setIsChangeMade, userHasReview, session } = prop
@@ -74,24 +82,31 @@ export default function PopupReview(prop) {
     window.location.reload()
   }
   const [loading, setLoading] = useState(false)
+
+  const backgroundColor = { background: alpha("#737373", 0.6) }
+
+  // Theme override
+  const theme = createTheme({
+    palette: {
+      success: {
+        light: "#ffffff",
+        main: "#94ec01",
+        dark: "#2e2c2c",
+        contrastText: "rgba(0, 0, 0, 0.87)",
+      },
+    },
+  })
+
   return (
     <>
-      <DialogTitle>
-        <div className="text-center">What are your thoughts about this paper?</div>
+      <DialogTitle sx={{ background: alpha("#737373", 0.9), fontSize: "2rem" }}>
+        <div className="text-left text-white font-bold">
+          What are your thoughts about this paper?
+        </div>
       </DialogTitle>
-      <DialogContent>
-        <div id="title-container" className="text-center">
-          <strong>{article.title} </strong>
-          <div>
-            <FaUser className="inline mr-2 text-gray-700" /> {article.authorString} (
-            {article.publishedYear})
-          </div>
-          <a href={`https://doi.org/${article.doi}`} target="_blank" rel="noreferrer">
-            <div className="text-violet-600">
-              <FaBook className="inline mr-2" />
-              {`https://doi.org/${article.doi}`}
-            </div>
-          </a>
+      <DialogContent sx={{ backgroundColor }}>
+        <div className="flex flex-col items-center">
+          <ArticleMetadata article={article} bold={"font-semibold"} textBlack />
         </div>
         <div id="question-container" className="flex flex-col">
           {reviewQuestions.map((question) => {
@@ -115,7 +130,7 @@ export default function PopupReview(prop) {
             <span className="text-slate-400 mx-1">(optional)</span>
           </div>
           <textarea
-            className="w-full h-32 border-2 p-4"
+            className="w-full h-32 border-2 p-4 bg-black text-green outline-none"
             onChange={(e) => {
               setReviewComment({ comment: e.target.value })
             }}
@@ -123,14 +138,13 @@ export default function PopupReview(prop) {
           />
         </div>
       </DialogContent>
-      <DialogActions>
-        <span>
-          Submit anonymously
-          <Switch checked={isAnonymous} onClick={handleChangeAnonymous} />
-          <Tooltip title="If you submit your review anonymously, your handle and display name will be hidden from others.">
-            <HelpOutlineIcon />
-          </Tooltip>
-        </span>
+      <DialogActions sx={{ background: alpha("#737373", 0.9), paddingY: "1rem" }}>
+        <div className="flex flex-col ml-3 mt-3 sm:mt-0 sm:flex-row sm:items-center flex-grow">
+          <span className="text-[0.8rem] sm:text-base text-white">Submit anonymously</span>
+          <ThemeProvider theme={theme}>
+            <Switch color="success" checked={isAnonymous} onClick={handleChangeAnonymous} />
+          </ThemeProvider>
+        </div>
         <Button type="cancel" onClick={handleClose}>
           Cancel
         </Button>

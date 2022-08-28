@@ -1,29 +1,18 @@
-import { BlitzPage, Head, Image, Link, Routes, useParam, useQuery, useSession } from "blitz"
+import { BlitzPage, Head, Link, Routes, useParam, useQuery, useSession } from "blitz"
 import Navbar from "app/core/components/Navbar"
 import { ReviewList } from "app/core/components/ReviewList"
 import getArticle from "app/queries/getArticle"
-import { Suspense, useEffect, useState } from "react"
+import { useEffect, useState } from "react"
 import PopupReview from "app/core/components/PopupReview"
 import hasUserSunmittedReview from "app/queries/hasUserSubmittedReview"
-import {
-  Accordion,
-  AccordionDetails,
-  AccordionSummary,
-  Dialog,
-  DialogActions,
-  DialogContent,
-  DialogTitle,
-  Rating,
-  Snackbar,
-} from "@mui/material"
-import StarIcon from "@mui/icons-material/Star"
+import { Dialog, DialogActions, DialogContent, DialogTitle, Snackbar } from "@mui/material"
 import { Button } from "app/core/components/Button"
-import { FaCrown, FaBarcode, FaUsers } from "react-icons/fa"
-import sadFace from "public/sad-face.png"
 import getUsersWithReviewsByArticleId from "app/queries/getUsersWithReviewsByArticleId"
 import getQuestionCategories from "app/queries/getQuestionCategories"
 import getArticleScoresById from "app/queries/getArticleScoresById"
 import Layout from "app/core/layouts/Layout"
+import { ArticleSummaryScores } from "app/core/components/ArticleSummaryScores"
+import { ArticleMetadata } from "app/core/components/ArticleMetadata"
 
 const ArticleDetails = (props) => {
   // The maximum rating
@@ -103,245 +92,18 @@ const ArticleDetails = (props) => {
         <title>{`${currentTitle} | PostReview`}</title>
       </Head>
       <main className="m-6 flex-grow flex flex-col items-center">
-        <div className="m-6 font-bold text-2xl text-left max-w-3xl text-gray-darkest dark:text-white">
-          <h1>{article.title}</h1>
-        </div>
-        <div className="article__author text-base text-center m-2 max-w-2xl text-gray-dark dark:text-gray-light">
-          <FaCrown className="inline m-2" />
-          {article.authorString} {article?.publishedYear && `(${article?.publishedYear})`}
-        </div>
-        <div className="article__barcode text-base underline max-w-2xl text-green">
-          <a href={`https://dx.doi.org/${article.doi}`} rel="noreferrer" target="_blank">
-            <FaBarcode className="inline m-2" />
-            {article.doi}
-          </a>
-        </div>
-        {!articleHasReview ? (
-          // When the article does not have a review, render the sad face
-          <div id="no-rating" className="flex flex-col items-center">
-            <div className="mt-16 w-56">
-              <Image src={sadFace} alt="A picture of a sad face with a single teardrop" />
-            </div>
-          </div>
-        ) : (
-          <>
-            <div id="with-rating-total">
-              <div className="flex flex-row items-center">
-                <div className="py-8 text-7xl font-bold text-gray-darkest dark:text-white">
-                  {totalRating.toFixed(1)}
-                </div>
-                <Rating
-                  readOnly
-                  value={totalRating / ratingScaleMax}
-                  precision={0.1}
-                  max={1}
-                  sx={{
-                    fontSize: 120,
-                    color: "#94ec01",
-                  }}
-                  emptyIcon={
-                    <StarIcon style={{ opacity: 0.4, color: "#737373" }} fontSize="inherit" />
-                  }
-                />
-              </div>
-            </div>
-            <div id="g-num-reviews">
-              <FaUsers className="inline mr-2 text-gray-darkest dark:text-white" />
-              <span className="text-green">{usersWithReview.length} global ratings</span>
-            </div>
-            {/* Render summary scores by question category */}
-            {!isAccordionOpen && (
-              <div
-                id="category-scores"
-                className="flex flex-row mt-3 hover:cursor-pointer"
-                onClick={() => toggleAccordion()}
-              >
-                {questionCategories.map((category) =>
-                  articleScores.find((score) => score.questionId === category.questionId)?._avg
-                    .response! ? (
-                    <div key={category.questionId} className="text-center mx-2">
-                      <div className="flex items-center justify-center">
-                        {/* Rendering the score digits */}
-                        <div className="absolute text-gray-darkest font-semibold text-base z-50">
-                          {articleScores
-                            .find((score) => score.questionId === category.questionId)
-                            ?._avg.response!.toFixed(1)}
-                        </div>
-                        <Rating
-                          readOnly
-                          value={
-                            articleScores.find((score) => score.questionId === category.questionId)
-                              ?._avg.response! / ratingScaleMax
-                          }
-                          precision={0.1}
-                          max={1}
-                          sx={{
-                            fontSize: 60,
-                            color: smallStarColor,
-                          }}
-                          emptyIcon={
-                            <StarIcon
-                              style={{ opacity: 0.4, color: "#737373" }}
-                              fontSize="inherit"
-                            />
-                          }
-                        />
-                      </div>
-                      <div className="w-16 text-center text-[0.7rem] text-gray-darkest dark:text-white">
-                        {category.questionCategory}
-                      </div>
-                    </div>
-                  ) : (
-                    // When the category does not have a star (N/A)
-                    <div key={category.questionId} className="text-center mx-2">
-                      <div className="flex items-center justify-center">
-                        <div className="absolute text-gray-darkest font-semibold text-xs opacity-70 z-50">
-                          N/A
-                        </div>
-                        <Rating
-                          readOnly
-                          value={0}
-                          precision={0.1}
-                          max={1}
-                          sx={{
-                            fontSize: 60,
-                            color: smallStarColor,
-                          }}
-                          emptyIcon={
-                            <StarIcon
-                              style={{ opacity: 0.3, color: "#737373" }}
-                              fontSize="inherit"
-                            />
-                          }
-                        />
-                      </div>
-                      <div className="w-16 text-center text-[0.7rem] opacity-70 text-gray-darkest dark:text-white">
-                        {category.questionCategory}
-                      </div>
-                    </div>
-                  )
-                )}
-              </div>
-            )}
-          </>
-        )}
-        <Accordion
-          expanded={isAccordionOpen}
-          onChange={() => toggleAccordion()}
-          sx={{
-            backgroundColor: "transparent",
-            display: "hidden",
-            border: 0,
-            borderColor: "transparent",
-            boxShadow: 0,
-            width: "auto",
-            padding: 0,
-            transitionDelay: 0,
-            msTransitionDuration: 0,
-            ":before": {
-              display: "none",
-            },
-          }}
-          onClick={() => toggleAccordion()}
-        >
-          <AccordionSummary
-            expandIcon={undefined}
-            aria-controls="panel1a-content"
-            id="panel1a-header"
-            classes={{ root: "hidden" }}
-          ></AccordionSummary>
-          <AccordionDetails>
-            <div className="flex flex-col hover:cursor-pointer">
-              {questionCategories.map((category) =>
-                articleScores.find((score) => score.questionId === category.questionId)?._avg
-                  .response! ? (
-                  <div key={category.questionId} className="text-center my-4">
-                    <div className="flex flex-row items-center justify-between">
-                      {/* Rendering the score digits */}
-                      <div className="text-left">
-                        <div className="text-lg text-gray-darkest dark:text-white">
-                          {category.questionCategory}
-                        </div>
-                        <div id="g-num-reviews" className="text-left">
-                          <FaUsers className="inline mr-2 text-gray-darkest dark:text-white" />
-                          <span className="font-bold text-green-dark">
-                            {
-                              articleScores.find(
-                                (score) => score.questionId === category.questionId
-                              )?._count.response
-                            }
-                          </span>
-                        </div>
-                      </div>
-                      <div className="absolute pl-48 text-2xl font-semibold text-gray-darkest dark:text-white">
-                        {articleScores
-                          .find((score) => score.questionId === category.questionId)
-                          ?._avg.response!.toFixed(1)}
-                      </div>
-                      <div className="pl-24">
-                        <Rating
-                          readOnly
-                          value={
-                            articleScores.find((score) => score.questionId === category.questionId)
-                              ?._avg.response! / ratingScaleMax
-                          }
-                          precision={0.1}
-                          max={1}
-                          sx={{
-                            fontSize: 60,
-                            color: smallStarColor,
-                          }}
-                          emptyIcon={
-                            <StarIcon
-                              style={{ opacity: 0.4, color: "#737373" }}
-                              fontSize="inherit"
-                            />
-                          }
-                        />
-                      </div>
-                    </div>
-                  </div>
-                ) : (
-                  // When the category does not have a star (N/A)
-                  <div key={category.questionId} className="text-center my-4">
-                    <div className="flex flex-row items-center justify-between">
-                      <div className="text-left">
-                        <div className="text-lg opacity-70 text-gray-darkest dark:text-white">
-                          {category.questionCategory}
-                        </div>
-                        <div id="g-num-reviews" className="text-left">
-                          <FaUsers className="inline mr-2 text-gray-darkest dark:text-white" />
-                          <span className="font-bold text-green-dark">0</span>
-                        </div>
-                      </div>
-                      <div className="absolute pl-48 text-xl text-gray-darkest dark:text-white opacity-70">
-                        N/A
-                      </div>
-                      <div className="pl-24">
-                        <Rating
-                          readOnly
-                          value={0}
-                          precision={0.1}
-                          max={1}
-                          sx={{
-                            fontSize: 60,
-                            color: smallStarColor,
-                          }}
-                          emptyIcon={
-                            <StarIcon
-                              style={{ opacity: 0.3, color: "#737373" }}
-                              fontSize="inherit"
-                            />
-                          }
-                        />
-                      </div>
-                    </div>
-                  </div>
-                )
-              )}
-            </div>
-          </AccordionDetails>
-        </Accordion>
+        <ArticleMetadata article={article} />
+        <ArticleSummaryScores
+          isAccordionOpen={isAccordionOpen}
+          toggleAccordion={toggleAccordion}
+          questionCategories={questionCategories}
+          articleScores={articleScores}
+          ratingScaleMax={ratingScaleMax}
+          smallStarColor={smallStarColor}
+          articleHasReview={articleHasReview}
+          totalRating={totalRating}
+          usersWithReview={usersWithReview}
+        />
         {(!userHasReview || !articleHasReview) && (
           <div className="m-16">
             <button
