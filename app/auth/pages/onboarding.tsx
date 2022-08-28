@@ -1,27 +1,16 @@
-import { useRouter, BlitzPage, invoke, useMutation, Image, Link, Routes } from "blitz"
+import { useRouter, BlitzPage, Image } from "blitz"
 import Layout from "app/core/layouts/Layout"
-import { Suspense, useEffect, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import Navbar from "app/core/components/Navbar"
-import { ErrorMessage, Field, Form, Formik } from "formik"
-import getUserInfo from "app/queries/getUserInfo"
-import signup from "../mutations/signup"
+import { Field, Form, Formik } from "formik"
 import { Button } from "app/core/components/Button"
-import postReviewLogoDarkMode from "public/logo-darkmode.png"
-import postReviewLogoLightMode from "public/logo-lightmode.png"
-import { BsEye, BsEyeSlash } from "react-icons/bs"
-import { createTheme, Switch, ThemeProvider } from "@mui/material"
 import detectiveDarkMode from "public/detective-darkmode.png"
 import detectiveLightMode from "public/detective-lightmode.png"
+import { AvatarIcon } from "app/core/components/AvatarIcon"
+import { Widget } from "@uploadcare/react-widget"
+import { useCurrentUser } from "app/core/hooks/useCurrentUser"
 
 const OnboardingPage: BlitzPage = () => {
-  const router = useRouter()
-  const [signupMutation] = useMutation(signup)
-  const [showError, setShowError] = useState(false)
-  const [isPasswordHidden, setIsPasswordHidden] = useState(true)
-  const togglePasswordHidden = () => {
-    setIsPasswordHidden(!isPasswordHidden)
-  }
-
   // handle darkmode
   const [isDark, setIsDark] = useState(false)
   useEffect(() => {
@@ -29,17 +18,13 @@ const OnboardingPage: BlitzPage = () => {
     setIsDark(mediaQuery.matches)
   }, [])
 
-  // Theme override
-  const theme = createTheme({
-    palette: {
-      success: {
-        light: "#ffffff",
-        main: "#94ec01",
-        dark: "#2e2c2c",
-        contrastText: "rgba(0, 0, 0, 0.87)",
-      },
-    },
-  })
+  // Get session info
+  const currentUser = useCurrentUser()
+  const router = useRouter()
+
+  // Uploadcare
+  const UPLOADCARE_PUBLIC_KEY = process.env.UPLOADCARE_PUBLIC_KEY
+  const widgetApi = useRef<any>()
 
   const GetStarted = () => {
     return (
@@ -126,12 +111,74 @@ const OnboardingPage: BlitzPage = () => {
     )
   }
 
+  const UploadYourPhoto = () => {
+    return (
+      <div id="upload-photo-container" className="text-white">
+        <div id="title-container" className="flex flex-row items-center ">
+          <div className="text-gray-darkest dark:text-white">
+            <h1 className="text-4xl font-bold my-4">Upload your photo</h1>
+            <div className="mx-auto w-fit">But, only if you want to!</div>
+          </div>
+          <div className="ml-4 contrast-100 m-6 w-24">
+            <Image
+              src={isDark ? detectiveDarkMode : detectiveLightMode}
+              alt="An image of a detective looking through a magnifying glass with their left eye"
+              width={584}
+              height={800}
+            />
+          </div>
+        </div>
+        <div id="profile-picture" className="flex flex-row mx-4">
+          <Button
+            id="user-avatar"
+            className="focus:outline-none"
+            onClick={() => widgetApi?.current?.openDialog()}
+          >
+            <AvatarIcon currentUser={currentUser} height={"5rem"} width={"5rem"} />
+          </Button>
+          <div className="hidden">
+            <Widget
+              publicKey={UPLOADCARE_PUBLIC_KEY ? UPLOADCARE_PUBLIC_KEY : ""}
+              ref={widgetApi}
+              crop="1:1"
+              imageShrink="480x480"
+              imagesOnly
+              previewStep
+              clearable
+              tabs="file url"
+              onChange={async (info) => {
+                try {
+                  // setUserInfo({ id: userInfo.id, icon: icon, ...userInfo })
+                  // setIcon(info.cdnUrl)
+                } catch (err) {
+                  alert(err)
+                }
+              }}
+            />
+          </div>
+          <div className="self-end mx-3 text-white">
+            {currentUser?.pronoun && `(${currentUser.pronoun})`}
+          </div>
+        </div>
+        <div className="ml-4 mt-2 text-2xl font-semibold">{currentUser?.displayName}</div>
+        <div className="ml-4 text-xl">{`@${currentUser?.handle}`}</div>
+        <div id="buttons-container" className="flex flex-col items-center text-2xl pb-28 mt-10">
+          <button className="w-min whitespace-nowrap my-4 px-8 py-2 text-green rounded-lg bg-black/50 hover:bg-gray-darkest dark:bg-gray-medium dark:hover:bg-black/40">
+            Save
+          </button>
+          <button className="w-min my-4 text-gray-medium">Skip</button>
+        </div>
+      </div>
+    )
+  }
+
   return (
     <div className="flex flex-col min-h-screen bg-white dark:bg-gray-darkest">
       <Navbar hideSearch={true} />
       <main className="flex-grow flex flex-col items-center mt-36">
         <GetStarted />
         <EnterName />
+        <UploadYourPhoto />
       </main>
     </div>
   )
