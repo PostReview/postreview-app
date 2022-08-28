@@ -33,8 +33,8 @@ export const EnterName = (props) => {
       <Formik
         innerRef={formRef as any}
         initialValues={{
-          displayName: "",
-          pronoun: "",
+          displayName: currentUser.displayName || "",
+          pronoun: currentUser.pronoun || "",
         }}
         onSubmit={(values) => {
           setCurrentUser({ ...currentUser!, ...values })
