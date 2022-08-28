@@ -20,6 +20,12 @@ const ThankYouBadge = (props) => {
         >
           Thanks for reviewing!
         </div>
+        <div
+          id="thank-you-message-variation"
+          className="absolute text-3xl text-center w-56 top-64 font-['Special_Elite'] font-bold"
+        >
+          {isFirst ? "You're No. 1!" : currentMessage}
+        </div>
       </div>
     </>
   )
