@@ -20,7 +20,15 @@ import addReviewComment from "app/mutations/addReviewComment"
 import { ArticleMetadata } from "./ArticleMetadata"
 
 export default function PopupReview(prop) {
-  const { article, handleClose, setUserHasReview, setIsChangeMade, userHasReview, session } = prop
+  const {
+    article,
+    handleClose,
+    setUserHasReview,
+    setIsChangeMade,
+    userHasReview,
+    session,
+    articleHasReview,
+  } = prop
   const [reviewQuestions] = useQuery(getReviewQuestions, undefined)
   const reviewAnswerQueryParams = {
     currentArticleId: article.id,
