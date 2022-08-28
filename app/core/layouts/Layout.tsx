@@ -13,6 +13,7 @@ const Layout = ({ title, children }: LayoutProps) => {
       <Head>
         <title>{title || "PostReview"}</title>
         <link rel="icon" href="/favicon.ico" />
+        <script data-respect-dnt data-no-cookie async src="https://cdn.splitbee.io/sb.js"></script>
       </Head>
       <LayoutLoader>{children}</LayoutLoader>
     </>
