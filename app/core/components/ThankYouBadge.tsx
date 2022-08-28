@@ -5,6 +5,22 @@ import { Image } from "blitz"
 const ThankYouBadge = (props) => {
   const { isFirst } = props
   const possibleMessages = [
+    "You're Awesome!",
+    "You're the Champ!",
+    "Great Input!",
+    "Much Appreciated!",
+    "Excellent!",
+    "You are Fantastic!",
+    "Wonderful!",
+    "Magnificent!",
+    "Right on!",
+    "Sensational!",
+    "Outstanding!",
+    "I'm speechless!",
+    "Nice Work!",
+    "Your Voice Matters!",
+    "Phenomenal!",
+    "Keep it up!",
   ]
   const selectedMessage = possibleMessages[Math.floor(Math.random() * possibleMessages.length)]
 
