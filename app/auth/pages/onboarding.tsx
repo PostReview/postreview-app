@@ -1,16 +1,26 @@
-import { useRouter, BlitzPage, Image } from "blitz"
+import { useRouter, BlitzPage, Image, useSession, useMutation } from "blitz"
 import Layout from "app/core/layouts/Layout"
 import { useEffect, useRef, useState } from "react"
 import Navbar from "app/core/components/Navbar"
-import { Field, Form, Formik } from "formik"
+import { Field, Form, Formik, FormikValues } from "formik"
 import { Button } from "app/core/components/Button"
 import detectiveDarkMode from "public/detective-darkmode.png"
 import detectiveLightMode from "public/detective-lightmode.png"
 import { AvatarIcon } from "app/core/components/AvatarIcon"
 import { Widget } from "@uploadcare/react-widget"
 import { useCurrentUser } from "app/core/hooks/useCurrentUser"
+import changeUserInfo from "app/mutations/changeUserInfo"
 
 const OnboardingPage: BlitzPage = () => {
+  // Redirect when not logged in
+  const router = useRouter()
+  const session = useSession()
+  useEffect(() => {
+    if (!session.userId) {
+      router.push("/")
+    }
+  })
+
   // handle darkmode
   const [isDark, setIsDark] = useState(false)
   useEffect(() => {
@@ -19,12 +29,26 @@ const OnboardingPage: BlitzPage = () => {
   }, [])
 
   // Get session info
-  const currentUser = useCurrentUser()
-  const router = useRouter()
+  const defaultCurrentUser = useCurrentUser()
+  const [currentUser, setCurrentUser] = useState(defaultCurrentUser)
 
   // Uploadcare
   const UPLOADCARE_PUBLIC_KEY = process.env.UPLOADCARE_PUBLIC_KEY
   const widgetApi = useRef<any>()
+
+  // Handle pages
+  const [currentPage, setCurrentPage] = useState("get-started")
+
+  // Formik
+  const formRef = useRef<FormikValues>()
+  const handleSubmit = () => {
+    if (formRef.current) {
+      formRef.current.handleSubmit()
+    }
+  }
+
+  // DB mutation to change user info
+  const [changeUserinfoMutation] = useMutation(changeUserInfo)
 
   const GetStarted = () => {
     return (
@@ -36,7 +60,7 @@ const OnboardingPage: BlitzPage = () => {
           <div className="flex flex-row items-center">
             <button
               className="whitespace-nowrap px-4 py-4 text-xl text-green rounded-lg bg-black/50 hover:bg-gray-darkest dark:bg-gray-medium dark:hover:bg-black/40"
-              onClick={undefined}
+              onClick={() => setCurrentPage("enter-name")}
             >
               Get started
             </button>
@@ -71,19 +95,15 @@ const OnboardingPage: BlitzPage = () => {
           </h1>
         </div>
         <Formik
+          innerRef={formRef as any}
           initialValues={{
             displayName: "",
             pronoun: "",
           }}
-          onSubmit={async (values) => {
-            // setUserInfo({ id: userInfo.id, icon: icon, ...values })
-            // changeUserinfoMutation({ id: userInfo.id, ...values, icon: icon })
-            // setOpen(false)
-            // Reload the page to reflect the change on the user avatar in the nav bar
-            // (TODO: Make the icon change reactive in the nav bar)
-            window.location.reload()
+          onSubmit={(values) => {
+            setCurrentUser({ ...currentUser!, ...values })
+            changeUserinfoMutation({ ...currentUser! })
           }}
-          validate={(values) => {}}
         >
           <Form className="flex flex-col text-xl bg-black text-white px-4">
             <div className="flex flex-row border-b border-gray-dark py-4">
@@ -103,7 +123,15 @@ const OnboardingPage: BlitzPage = () => {
           </Form>
         </Formik>
         <div className="text-center">
-          <button id="next-button" className="m-9 text-green text-2xl">
+          <button
+            id="next-button"
+            className="m-9 text-green text-2xl"
+            type="submit"
+            onClick={() => {
+              handleSubmit()
+              setCurrentPage("upload-photo")
+            }}
+          >
             Next &rarr;
           </button>
         </div>
@@ -163,10 +191,15 @@ const OnboardingPage: BlitzPage = () => {
         <div className="ml-4 mt-2 text-2xl font-semibold">{currentUser?.displayName}</div>
         <div className="ml-4 text-xl">{`@${currentUser?.handle}`}</div>
         <div id="buttons-container" className="flex flex-col items-center text-2xl pb-28 mt-10">
-          <button className="w-min whitespace-nowrap my-4 px-8 py-2 text-green rounded-lg bg-black/50 hover:bg-gray-darkest dark:bg-gray-medium dark:hover:bg-black/40">
+          <button
+            className="w-min whitespace-nowrap my-4 px-8 py-2 text-green rounded-lg bg-black/50 hover:bg-gray-darkest dark:bg-gray-medium dark:hover:bg-black/40"
+            onClick={() => router.push("/")}
+          >
             Save
           </button>
-          <button className="w-min my-4 text-gray-medium">Skip</button>
+          <button className="w-min my-4 text-gray-medium" onClick={() => router.push("/")}>
+            Skip
+          </button>
         </div>
       </div>
     )
@@ -176,9 +209,9 @@ const OnboardingPage: BlitzPage = () => {
     <div className="flex flex-col min-h-screen bg-white dark:bg-gray-darkest">
       <Navbar hideSearch={true} />
       <main className="flex-grow flex flex-col items-center mt-36">
-        <GetStarted />
-        <EnterName />
-        <UploadYourPhoto />
+        {currentPage === "get-started" && <GetStarted />}
+        {currentPage === "enter-name" && <EnterName />}
+        {currentPage === "upload-photo" && <UploadYourPhoto />}
       </main>
     </div>
   )
