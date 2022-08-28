@@ -6,6 +6,7 @@ import addReview from "app/mutations/addReview"
 import getReviewAnswersByArticleAndUserIds from "app/queries/getReviewAnswersByArticleAndUserIds"
 import {
   alpha,
+  Backdrop,
   createTheme,
   Dialog,
   DialogActions,
@@ -18,6 +19,7 @@ import { Button } from "./Button"
 import getReviewCommentByArticleAndUserIds from "app/queries/getReviewCommentByArticleAndUserIds"
 import addReviewComment from "app/mutations/addReviewComment"
 import { ArticleMetadata } from "./ArticleMetadata"
+import ThankYouBadge from "./ThankYouBadge"
 
 export default function PopupReview(prop) {
   const {
