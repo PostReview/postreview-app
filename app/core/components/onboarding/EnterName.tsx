@@ -42,7 +42,7 @@ export const EnterName = (props) => {
         }}
         onSubmit={(values) => {
           setCurrentUser({ ...currentUser!, ...values })
-          changeUserInfoMutation({ ...currentUser! })
+          changeUserInfoMutation({ id: currentUser.id, ...currentUser, ...values })
         }}
       >
         <Form className="flex flex-col text-xl bg-black text-white px-4">
