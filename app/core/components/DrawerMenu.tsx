@@ -27,7 +27,7 @@ export const DrawerMenu = (props) => {
   const Accordion = styled((props: AccordionProps) => (
     <MuiAccordion disableGutters elevation={0} square {...props} />
   ))(({}) => ({
-    background: "transparent",
+    background: "#d9d9d9",
     border: `none`,
     "&:not(:last-child)": {
       borderBottom: 0,
@@ -99,7 +99,7 @@ export const DrawerMenu = (props) => {
               </AccordionDetails>
             </Accordion>
           </List>
-          <div className="border border-gray-medium" />
+          <div className="border border-gray-medium bg-gray-light" />
           <div id="social-icons" className="my-4 mx-2">
             <div>Connect with us</div>
             <div className="flex flex-row text-4xl justify-around mr-20 my-4 text-gray-medium">
@@ -118,7 +118,7 @@ export const DrawerMenu = (props) => {
               </a>
             </div>
           </div>
-          <div id="sign-up-button" className="mx-2 ">
+          <div id="sign-up-button" className="mx-2 bg-gray-light">
             <button
               className="bg-green px-3 py-1 rounded-lg hover:bg-green-dark"
               onClick={() => router.push("/signup")}
@@ -126,7 +126,10 @@ export const DrawerMenu = (props) => {
               Sign up
             </button>
           </div>
-          <div id="copyright" className="self-end mx-4 mt-10 text-xl text-gray-medium">
+          <div
+            id="copyright"
+            className="self-end mx-4 mt-10 text-xl bg-gray-light text-gray-medium"
+          >
             <span className="text-2xl">&copy;</span> PostReview {datetime.getFullYear()}
           </div>
         </div>
