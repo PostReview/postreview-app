@@ -48,6 +48,13 @@ export const DrawerMenu = (props) => {
   return (
     <>
       <Drawer
+        anchor={"left"}
+        open={open}
+        onClose={() => setOpen(false)}
+        sx={{
+          background: "#d9d9d9",
+        }}
+      >
         <div className="w-full h-full bg-gray-light flex flex-col overflow-clip">
           <div id="logo-container" className="ml-8">
             <Image src={postReviewIcon} alt={"A magnifier with a hat"} height={250} width={250} />
