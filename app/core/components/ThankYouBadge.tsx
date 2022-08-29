@@ -1,6 +1,8 @@
 import React, { useState } from "react"
 import thankYouBadge from "public/thank-you-badge.png"
 import { Image } from "blitz"
+import thankYouContainer from "public/thank-you-container.png"
+import thankYouRibbon from "public/thank-you-ribbon.png"
 
 const ThankYouBadge = (props) => {
   const { isFirst } = props
