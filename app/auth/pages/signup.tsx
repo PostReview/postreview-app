@@ -16,17 +16,14 @@ import { useCurrentUser } from "app/core/hooks/useCurrentUser"
 const SignupPage: BlitzPage = () => {
   const router = useRouter()
 
-  // Wait for onboarding -- do not auto-redirect if just signed up
-  const [waitOnboarding, setWaitOnboarding] = useState(false)
-
-  // Redirect when logged in
-  const session = useSession()
+  // Redirect when logged in & already onboarded
   const currentUser = useCurrentUser()
   useEffect(() => {
-    if (currentUser && !waitOnboarding) {
+    if (!currentUser?.isOnboarded) return undefined
+    if (currentUser?.isOnboarded) {
       router.push("/")
     }
-  })
+  }, [])
 
   const [signupMutation] = useMutation(signup)
   const [showError, setShowError] = useState(false)
@@ -75,8 +72,6 @@ const SignupPage: BlitzPage = () => {
             validate={(values) => {
               const existingUser = invoke(getUserInfo, { userHandle: values.handle })
               return existingUser.then((foundUser) => {
-                // Wait to go to the onboarding page when the form is touched
-                setWaitOnboarding(true)
                 const errors = {} as any
                 if (!values.email) {
                   errors.email = "Required"
@@ -109,7 +104,6 @@ const SignupPage: BlitzPage = () => {
               })
             }}
             onSubmit={(values, { setSubmitting }) => {
-              setWaitOnboarding(true)
               signupMutation(values).catch(() => setShowError(true))
               setTimeout(() => {
                 setSubmitting(false)
@@ -274,7 +268,6 @@ const SignupPage: BlitzPage = () => {
   )
 }
 
-// SignupPage.redirectAuthenticatedTo = "/"
 SignupPage.getLayout = (page) => <Layout title="Sign Up | PostReview">{page}</Layout>
 
 export default SignupPage
