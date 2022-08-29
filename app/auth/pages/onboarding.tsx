@@ -29,7 +29,7 @@ const OnboardingPage: BlitzPage = () => {
   const [changeUserInfoMutation] = useMutation(changeUserInfo)
 
   return (
-    <div className="flex flex-col min-h-screen bg-white dark:bg-gray-darkest">
+    <div className="flex flex-col min-h-screen bg-white dark:bg-black/60">
       <Navbar hideSearch={true} />
       <main className="flex-grow flex flex-col items-center mt-36">
         {currentPage === "get-started" && (
