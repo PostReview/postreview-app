@@ -18,6 +18,7 @@ export const ArticleSummaryScores = (props) => {
     totalRating,
     usersWithReview,
   } = props
+
   return (
     <>
       {!articleHasReview ? (
