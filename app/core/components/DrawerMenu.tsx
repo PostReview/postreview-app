@@ -23,7 +23,7 @@ export const DrawerMenu = (props) => {
   const session = useSession()
   const router = useRouter()
 
-  // Style the MUI components
+  // Style the MUI accordion components
   const Accordion = styled((props: AccordionProps) => (
     <MuiAccordion disableGutters elevation={0} square {...props} />
   ))(({}) => ({
