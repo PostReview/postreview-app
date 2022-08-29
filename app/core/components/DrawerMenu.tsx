@@ -13,7 +13,6 @@ import postReviewIcon from "/public/logo-withname-lightmode.png"
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore"
 import MuiAccordion, { AccordionProps } from "@mui/material/Accordion"
 import { alpha } from "@mui/material"
-
 import styled from "@emotion/styled"
 import { FaGithub, FaDiscord, FaBars } from "react-icons/fa"
 import { AiFillTwitterCircle } from "react-icons/ai"
@@ -23,11 +22,11 @@ export const DrawerMenu = (props) => {
   const session = useSession()
   const router = useRouter()
 
-  // Style the MUI components
+  // Style the MUI accordion components
   const Accordion = styled((props: AccordionProps) => (
     <MuiAccordion disableGutters elevation={0} square {...props} />
   ))(({}) => ({
-    background: "transparent",
+    background: "#d9d9d9",
     border: `none`,
     "&:not(:last-child)": {
       borderBottom: 0,
@@ -47,7 +46,17 @@ export const DrawerMenu = (props) => {
 
   return (
     <>
-      <Drawer anchor={"left"} open={open} onClose={() => setOpen(false)}>
+      <Drawer
+        anchor={"left"}
+        open={open}
+        onClose={() => setOpen(false)}
+        PaperProps={{
+          sx: {
+            backgroundColor: "#d9d9d9",
+            color: "black",
+          },
+        }}
+      >
         <div className="w-full h-full bg-gray-light flex flex-col overflow-clip">
           <div id="logo-container" className="ml-8">
             <Image src={postReviewIcon} alt={"A magnifier with a hat"} height={250} width={250} />
@@ -99,8 +108,8 @@ export const DrawerMenu = (props) => {
               </AccordionDetails>
             </Accordion>
           </List>
-          <div className="border border-gray-medium" />
-          <div id="social-icons" className="my-4 mx-2">
+          <div className="border border-gray-medium bg-gray-light" />
+          <div id="social-icons" className="my-4 mx-2  bg-gray-light">
             <div>Connect with us</div>
             <div className="flex flex-row text-4xl justify-around mr-20 my-4 text-gray-medium">
               <a
@@ -118,7 +127,7 @@ export const DrawerMenu = (props) => {
               </a>
             </div>
           </div>
-          <div id="sign-up-button" className="mx-2 ">
+          <div id="sign-up-button" className="mx-2 bg-gray-light">
             <button
               className="bg-green px-3 py-1 rounded-lg hover:bg-green-dark"
               onClick={() => router.push("/signup")}
@@ -126,7 +135,10 @@ export const DrawerMenu = (props) => {
               Sign up
             </button>
           </div>
-          <div id="copyright" className="self-end mx-4 mt-10 text-xl text-gray-medium">
+          <div
+            id="copyright"
+            className="self-end mx-4 mt-10 text-xl bg-gray-light text-gray-medium"
+          >
             <span className="text-2xl">&copy;</span> PostReview {datetime.getFullYear()}
           </div>
         </div>
