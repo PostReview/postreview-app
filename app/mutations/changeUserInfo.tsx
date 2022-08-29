@@ -10,6 +10,7 @@ const inputData = z.object({
   aboutMe: z.string().optional().nullable(),
   website: z.string().optional().nullable(),
   icon: z.string().optional().nullable(),
+  isOnboarded: z.boolean().optional(),
 })
 
 export default async function changeUserInfo(input: z.infer<typeof inputData>, ctx: Ctx) {

@@ -26,6 +26,7 @@ model User {
   role            Role    @default(USER)
   aboutMe         String?
   website         String?
+  isOnboarded     Boolean @default(false)
 
   tokens   Token[]
   sessions Session[]

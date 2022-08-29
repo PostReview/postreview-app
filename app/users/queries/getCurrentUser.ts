@@ -17,6 +17,7 @@ export default async function getCurrentUser(_ = null, { session }: Ctx) {
       icon: true,
       aboutMe: true,
       website: true,
+      isOnboarded: true,
     },
   })
 

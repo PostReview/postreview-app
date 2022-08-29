@@ -1,6 +1,6 @@
 import { useRouter, BlitzPage, invoke, useMutation, Image, Link, Routes } from "blitz"
 import Layout from "app/core/layouts/Layout"
-import { Suspense, useEffect, useState } from "react"
+import { useEffect, useState } from "react"
 import Navbar from "app/core/components/Navbar"
 import { Formik } from "formik"
 import GoogleButton from "app/core/components/GoogleButton"
@@ -11,9 +11,22 @@ import postReviewLogoDarkMode from "public/logo-darkmode.png"
 import postReviewLogoLightMode from "public/logo-lightmode.png"
 import { BsEye, BsEyeSlash } from "react-icons/bs"
 import { createTheme, Switch, ThemeProvider } from "@mui/material"
+import { useCurrentUser } from "app/core/hooks/useCurrentUser"
 
 const SignupPage: BlitzPage = () => {
   const router = useRouter()
+  const currentUser = useCurrentUser()
+
+  // Redirect when logged in & already onboarded
+  useEffect(() => {
+    if (currentUser && !currentUser?.isOnboarded) {
+      router.push("/onboarding")
+    }
+    if (currentUser?.isOnboarded) {
+      router.push("/")
+    }
+  })
+
   const [signupMutation] = useMutation(signup)
   const [showError, setShowError] = useState(false)
   const [isPasswordHidden, setIsPasswordHidden] = useState(true)
@@ -256,7 +269,6 @@ const SignupPage: BlitzPage = () => {
   )
 }
 
-SignupPage.redirectAuthenticatedTo = "/"
 SignupPage.getLayout = (page) => <Layout title="Sign Up | PostReview">{page}</Layout>
 
 export default SignupPage
