@@ -5,7 +5,7 @@ import { Strategy as GoogleStrategy } from "passport-google-oauth20"
 
 export default passportAuth({
   // TODO: If success, pass the email, icon, displayname to the success redirectURL?
-  successRedirectUrl: "/",
+  successRedirectUrl: "/signup",
   errorRedirectUrl: "/",
   strategies: [
     {
