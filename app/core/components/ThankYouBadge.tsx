@@ -2,7 +2,6 @@ import React, { useState } from "react"
 import { Image } from "blitz"
 import thankYouContainer from "public/thank-you-container.png"
 import thankYouRibbon from "public/thank-you-ribbon.png"
-import { Box } from "@mui/material"
 
 const ThankYouBadge = (props) => {
   const { isFirst } = props
