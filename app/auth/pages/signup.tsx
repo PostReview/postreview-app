@@ -73,6 +73,8 @@ const SignupPage: BlitzPage = () => {
             validate={(values) => {
               const existingUser = invoke(getUserInfo, { userHandle: values.handle })
               return existingUser.then((foundUser) => {
+                // Wait to go to the onboarding page when the form is touched
+                setWaitOnboarding(true)
                 const errors = {} as any
                 if (!values.email) {
                   errors.email = "Required"
@@ -105,8 +107,6 @@ const SignupPage: BlitzPage = () => {
               })
             }}
             onSubmit={(values, { setSubmitting }) => {
-              // Wait to go to the onboarding page when the form is submitted
-              setWaitOnboarding(true)
               signupMutation(values).catch(() => setShowError(true))
               setTimeout(() => {
                 setSubmitting(false)
