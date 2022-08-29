@@ -52,8 +52,8 @@ export const DrawerMenu = (props) => {
         onClose={() => setOpen(false)}
         PaperProps={{
           sx: {
-            backgroundColor: "pink",
-            color: "red",
+            backgroundColor: "#d9d9d9",
+            color: "black",
           },
         }}
       >
