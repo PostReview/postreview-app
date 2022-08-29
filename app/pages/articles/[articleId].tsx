@@ -13,6 +13,7 @@ import getArticleScoresById from "app/queries/getArticleScoresById"
 import Layout from "app/core/layouts/Layout"
 import { ArticleSummaryScores } from "app/core/components/ArticleSummaryScores"
 import { ArticleMetadata } from "app/core/components/ArticleMetadata"
+import ThankYouBadge from "app/core/components/ThankYouBadge"
 
 const ArticleDetails = (props) => {
   // The maximum rating
@@ -124,6 +125,7 @@ const ArticleDetails = (props) => {
             setUserHasReview={setUserHasReview}
             setIsChangeMade={setIsChangeMade}
             session={session}
+            articleHasReview={articleHasReview}
           />
         </Dialog>
         <Dialog open={isConfirmDialogOpen} onClose={closeConfirmDialog}>

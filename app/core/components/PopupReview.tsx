@@ -6,6 +6,7 @@ import addReview from "app/mutations/addReview"
 import getReviewAnswersByArticleAndUserIds from "app/queries/getReviewAnswersByArticleAndUserIds"
 import {
   alpha,
+  Backdrop,
   createTheme,
   Dialog,
   DialogActions,
@@ -18,9 +19,18 @@ import { Button } from "./Button"
 import getReviewCommentByArticleAndUserIds from "app/queries/getReviewCommentByArticleAndUserIds"
 import addReviewComment from "app/mutations/addReviewComment"
 import { ArticleMetadata } from "./ArticleMetadata"
+import ThankYouBadge from "./ThankYouBadge"
 
 export default function PopupReview(prop) {
-  const { article, handleClose, setUserHasReview, setIsChangeMade, userHasReview, session } = prop
+  const {
+    article,
+    handleClose,
+    setUserHasReview,
+    setIsChangeMade,
+    userHasReview,
+    session,
+    articleHasReview,
+  } = prop
   const [reviewQuestions] = useQuery(getReviewQuestions, undefined)
   const reviewAnswerQueryParams = {
     currentArticleId: article.id,
@@ -65,8 +75,19 @@ export default function PopupReview(prop) {
 
   const [addReviewMutation] = useMutation(addReview)
   const [addReviewCommentMutation] = useMutation(addReviewComment)
+
+  // Thank-you badge
+  const [thankYouShowing, setThankYouShowing] = useState(false)
+  const showThankYou = () => {
+    setThankYouShowing(true)
+    setTimeout(() => {
+      setThankYouShowing(false)
+    }, 3000)
+  }
+
   const handleReviewSubmit = async () => {
     setLoading(true)
+    showThankYou()
     // If there's no rating given, show the error message
     if (reviewAnswers.length == 0) return setShowReviewRequiredError(true)
     await invoke(addReviewMutation, reviewAnswers)
@@ -99,6 +120,15 @@ export default function PopupReview(prop) {
 
   return (
     <>
+      {thankYouShowing && (
+        <Backdrop
+          sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }}
+          open={thankYouShowing}
+          onClick={() => setThankYouShowing(false)}
+        >
+          <ThankYouBadge isFirst={!articleHasReview} />
+        </Backdrop>
+      )}
       <DialogTitle sx={{ background: alpha("#737373", 0.9), fontSize: "2rem" }}>
         <div className="text-left text-white font-bold">
           What are your thoughts about this paper?
