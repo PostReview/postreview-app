@@ -1,4 +1,4 @@
-import { useRouter, BlitzPage, invoke, useMutation, Image, Link, Routes, useSession } from "blitz"
+import { useRouter, BlitzPage, invoke, useMutation, Image, Link, Routes } from "blitz"
 import Layout from "app/core/layouts/Layout"
 import { useEffect, useState } from "react"
 import Navbar from "app/core/components/Navbar"
@@ -19,8 +19,10 @@ const SignupPage: BlitzPage = () => {
 
   // Redirect when logged in & already onboarded
   useEffect(() => {
-    if (!currentUser?.isOnboarded) return undefined
-    if (currentUser.isOnboarded) {
+    if (currentUser && !currentUser?.isOnboarded) {
+      router.push("/onboarding")
+    }
+    if (currentUser?.isOnboarded) {
       router.push("/")
     }
   })
@@ -108,7 +110,6 @@ const SignupPage: BlitzPage = () => {
               setTimeout(() => {
                 setSubmitting(false)
               }, 400)
-              router.push("/onboarding")
             }}
           >
             {({
