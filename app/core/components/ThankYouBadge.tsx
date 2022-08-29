@@ -48,8 +48,8 @@ const ThankYouBadge = (props) => {
               className="animate-[spin_10s_linear_infinite]"
               src={thankYouContainer}
               alt="An image of a circle border"
-              width={400}
-              height={400}
+              width={600}
+              height={600}
             />
           </div>
           <div id="thank-you-ribbon" className="">
