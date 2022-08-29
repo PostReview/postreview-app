@@ -9,14 +9,7 @@ import { UploadYourPhoto } from "app/core/components/onboarding/UploadYourPhoto"
 import changeUserInfo from "app/mutations/changeUserInfo"
 
 const OnboardingPage: BlitzPage = () => {
-  // Redirect when not logged in
   const router = useRouter()
-  const session = useSession()
-  useEffect(() => {
-    if (!session.userId) {
-      router.push("/")
-    }
-  })
 
   // handle darkmode
   const [isDark, setIsDark] = useState(false)
@@ -25,7 +18,7 @@ const OnboardingPage: BlitzPage = () => {
     setIsDark(mediaQuery.matches)
   }, [])
 
-  // Get session info
+  // Get user info
   const defaultCurrentUser = useCurrentUser()
   const [currentUser, setCurrentUser] = useState(defaultCurrentUser)
 
@@ -64,6 +57,8 @@ const OnboardingPage: BlitzPage = () => {
     </div>
   )
 }
+
+OnboardingPage.authenticate = true
 
 OnboardingPage.getLayout = (page) => <Layout title="Welcome | PostReview">{page}</Layout>
 
