@@ -13,7 +13,6 @@ import postReviewIcon from "/public/logo-withname-lightmode.png"
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore"
 import MuiAccordion, { AccordionProps } from "@mui/material/Accordion"
 import { alpha } from "@mui/material"
-
 import styled from "@emotion/styled"
 import { FaGithub, FaDiscord, FaBars } from "react-icons/fa"
 import { AiFillTwitterCircle } from "react-icons/ai"
