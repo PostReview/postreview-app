@@ -26,8 +26,8 @@ const PublicProfileDetails = () => {
         <ProfileBgImage />
         <ProfileInfo userInfo={userInfo} showEditButton={false} />
 
-        <div id="my-reviews-container" className="m-4 mt-8 max-w-2xl">
-          <h1 className="ml-8 text-2xl font-semibold text-gray-darkest dark:text-white">Reviews</h1>
+        <div id="my-reviews-container" className="mt-8 max-w-7xl">
+          <h1 className="text-2xl font-semibold text-gray-darkest dark:text-white">Reviews</h1>
           <div className="text-gray-darkest dark:text-white">
             {defaultArticlesWithReview.length === 0 && (
               <div

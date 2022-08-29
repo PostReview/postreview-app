@@ -6,7 +6,7 @@ export const MyReviewsEmptyState = () => {
     <div>
       <div
         className="m-6 p-4 border-gray-medium border-2 border-dashed
-    flex flex-col  max-w-5xl h-32 justify-center"
+    flex flex-col max-w-5xl h-32 justify-center"
       >
         <div className="flex flex-col items-center">
           <div
