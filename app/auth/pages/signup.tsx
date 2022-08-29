@@ -24,7 +24,7 @@ const SignupPage: BlitzPage = () => {
     if (!!session.userId && !waitOnboarding) {
       router.push("/")
     }
-  }, [router, waitOnboarding])
+  })
 
   const [signupMutation] = useMutation(signup)
   const [showError, setShowError] = useState(false)
