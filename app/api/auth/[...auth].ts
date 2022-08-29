@@ -5,7 +5,7 @@ import { Strategy as GoogleStrategy } from "passport-google-oauth20"
 
 export default passportAuth({
   // TODO: If success, pass the email, icon, displayname to the success redirectURL?
-  successRedirectUrl: "/",
+  successRedirectUrl: "/signup",
   errorRedirectUrl: "/",
   strategies: [
     {
@@ -27,9 +27,12 @@ export default passportAuth({
             where: { email },
             create: {
               email,
-              handle: profile.displayName,
+              // Remove any whitespaces from the display name and make it a handle
+              handle: profile.displayName.replace(/ /g, ""),
               displayName: profile.displayName,
               icon: profile.photos[0]?.value,
+              // Assume Google Email is verified
+              emailIsVerified: true,
             },
             update: { email },
           })
