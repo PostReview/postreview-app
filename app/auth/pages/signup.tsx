@@ -11,6 +11,7 @@ import postReviewLogoDarkMode from "public/logo-darkmode.png"
 import postReviewLogoLightMode from "public/logo-lightmode.png"
 import { BsEye, BsEyeSlash } from "react-icons/bs"
 import { createTheme, Switch, ThemeProvider } from "@mui/material"
+import { useCurrentUser } from "app/core/hooks/useCurrentUser"
 
 const SignupPage: BlitzPage = () => {
   const router = useRouter()
@@ -20,8 +21,9 @@ const SignupPage: BlitzPage = () => {
 
   // Redirect when logged in
   const session = useSession()
+  const currentUser = useCurrentUser()
   useEffect(() => {
-    if (!!session.userId && !waitOnboarding) {
+    if (currentUser && !waitOnboarding) {
       router.push("/")
     }
   })
