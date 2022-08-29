@@ -70,12 +70,7 @@ export const UploadYourPhoto = (props) => {
             }}
           />
         </div>
-        {/* <div className="self-end mx-3 text-white">
-          {currentUser?.pronoun && `(${currentUser.pronoun})`}
-        </div> */}
       </div>
-      {/* <div className="ml-4 mt-2 text-2xl font-semibold">{currentUser?.displayName}</div>
-      <div className="ml-4 text-xl">{`@${currentUser?.handle}`}</div> */}
       <div id="buttons-container" className="flex flex-col items-center text-2xl pb-28 mt-10">
         <button
           className="w-min whitespace-nowrap my-4 px-8 py-2 text-green rounded-lg bg-black/50 hover:bg-gray-darkest dark:bg-gray-medium dark:hover:bg-black/40"
