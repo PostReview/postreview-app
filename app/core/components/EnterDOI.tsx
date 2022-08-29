@@ -34,6 +34,21 @@ export default function EnterDOI(props) {
     router.push(`/articles/${addedArticle.id}`)
   }
 
+  // Prepare debounce to wait before querying CrossRef
+  function debouncePromise(fn, time) {
+    let timerId = undefined
+    return function debounced(...args) {
+      if (timerId) {
+        clearTimeout(timerId)
+      }
+
+      return new Promise((resolve) => {
+        timerId = setTimeout(() => resolve(fn(...args)), time) as any
+      })
+    }
+  }
+  const debounced = debouncePromise((items) => Promise.resolve(items), 300)
+
   return (
     <div className="m-1 rounded-md flex flex-row items-center flex-grow max-w-7xl justify-end">
       <Autocomplete
@@ -76,7 +91,7 @@ export default function EnterDOI(props) {
           )
             .then((response) => response.json())
             .then(({ message }) => {
-              return [
+              return debounced([
                 {
                   // Look for papers already in our database
                   sourceId: "products",
@@ -130,7 +145,7 @@ export default function EnterDOI(props) {
                     },
                   },
                 },
-              ]
+              ])
             })
         }}
       />
