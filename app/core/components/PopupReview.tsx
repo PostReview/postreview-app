@@ -100,7 +100,9 @@ export default function PopupReview(prop) {
     })
 
     setUserHasReview(true)
-    window.location.reload()
+    setTimeout(() => {
+      window.location.reload()
+    }, 3000)
   }
   const [loading, setLoading] = useState(false)
 

@@ -3,7 +3,6 @@ import { FaBarcode, FaCrown, FaUsers } from "react-icons/fa"
 import { Link } from "next/link"
 import { Rating } from "@mui/material"
 import StarIcon from "@mui/icons-material/Star"
-import ThankYouBadge from "./ThankYouBadge"
 
 export default function Article(props) {
   const {
