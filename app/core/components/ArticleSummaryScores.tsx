@@ -128,116 +128,125 @@ export const ArticleSummaryScores = (props) => {
           )}
         </div>
       )}
-      <Accordion
-        expanded={isAccordionOpen}
-        onChange={() => toggleAccordion()}
-        sx={{
-          backgroundColor: "transparent",
-          display: "hidden",
-          border: 0,
-          borderColor: "transparent",
-          boxShadow: 0,
-          width: "auto",
-          padding: 0,
-          transitionDelay: 0,
-          msTransitionDuration: 0,
-          ":before": {
-            display: "none",
-          },
-        }}
-        onClick={() => toggleAccordion()}
-      >
-        <AccordionSummary
-          expandIcon={undefined}
-          aria-controls="panel1a-content"
-          id="panel1a-header"
-          classes={{ root: "hidden" }}
-        ></AccordionSummary>
-        <AccordionDetails>
-          <div className="flex flex-col hover:cursor-pointer">
-            {questionCategories.map((category) =>
-              articleScores.find((score) => score.questionId === category.questionId)?._avg
-                .response! ? (
-                <div key={category.questionId} className="text-center my-4">
-                  <div className="flex flex-row items-center justify-between">
-                    {/* Rendering the score digits */}
-                    <div className="text-left">
-                      <div className="text-lg text-gray-darkest dark:text-white">
-                        {category.questionCategory}
+      {articleHasReview && (
+        <Accordion
+          expanded={isAccordionOpen}
+          onChange={() => toggleAccordion()}
+          sx={{
+            backgroundColor: "transparent",
+            display: "hidden",
+            border: 0,
+            borderColor: "transparent",
+            boxShadow: 0,
+            width: "auto",
+            padding: 0,
+            transitionDelay: 0,
+            msTransitionDuration: 0,
+            ":before": {
+              display: "none",
+            },
+          }}
+          onClick={() => toggleAccordion()}
+        >
+          <AccordionSummary
+            expandIcon={undefined}
+            aria-controls="panel1a-content"
+            id="panel1a-header"
+            classes={{ root: "hidden" }}
+          ></AccordionSummary>
+          <AccordionDetails>
+            <div className="flex flex-col hover:cursor-pointer">
+              {questionCategories.map((category) =>
+                articleScores.find((score) => score.questionId === category.questionId)?._avg
+                  .response! ? (
+                  <div key={category.questionId} className="text-center my-4">
+                    <div className="flex flex-row items-center justify-between">
+                      {/* Rendering the score digits */}
+                      <div className="text-left">
+                        <div className="text-lg text-gray-darkest dark:text-white">
+                          {category.questionCategory}
+                        </div>
+                        <div id="g-num-reviews" className="text-left">
+                          <FaUsers className="inline mr-2 text-gray-darkest dark:text-white" />
+                          <span className="font-bold text-green-dark">
+                            {
+                              articleScores.find(
+                                (score) => score.questionId === category.questionId
+                              )?._count.response
+                            }
+                          </span>
+                        </div>
                       </div>
-                      <div id="g-num-reviews" className="text-left">
-                        <FaUsers className="inline mr-2 text-gray-darkest dark:text-white" />
-                        <span className="font-bold text-green-dark">
-                          {
+                      <div className="absolute pl-48 text-2xl font-semibold text-gray-darkest dark:text-white">
+                        {articleScores
+                          .find((score) => score.questionId === category.questionId)
+                          ?._avg.response!.toFixed(1)}
+                      </div>
+                      <div className="pl-24">
+                        <Rating
+                          readOnly
+                          value={
                             articleScores.find((score) => score.questionId === category.questionId)
-                              ?._count.response
+                              ?._avg.response! / ratingScaleMax
                           }
-                        </span>
+                          precision={0.1}
+                          max={1}
+                          sx={{
+                            fontSize: 60,
+                            color: smallStarColor,
+                          }}
+                          emptyIcon={
+                            <StarIcon
+                              style={{ opacity: 0.4, color: "#737373" }}
+                              fontSize="inherit"
+                            />
+                          }
+                        />
                       </div>
-                    </div>
-                    <div className="absolute pl-48 text-2xl font-semibold text-gray-darkest dark:text-white">
-                      {articleScores
-                        .find((score) => score.questionId === category.questionId)
-                        ?._avg.response!.toFixed(1)}
-                    </div>
-                    <div className="pl-24">
-                      <Rating
-                        readOnly
-                        value={
-                          articleScores.find((score) => score.questionId === category.questionId)
-                            ?._avg.response! / ratingScaleMax
-                        }
-                        precision={0.1}
-                        max={1}
-                        sx={{
-                          fontSize: 60,
-                          color: smallStarColor,
-                        }}
-                        emptyIcon={
-                          <StarIcon style={{ opacity: 0.4, color: "#737373" }} fontSize="inherit" />
-                        }
-                      />
                     </div>
                   </div>
-                </div>
-              ) : (
-                // When the category does not have a star (N/A)
-                <div key={category.questionId} className="text-center my-4">
-                  <div className="flex flex-row items-center justify-between">
-                    <div className="text-left">
-                      <div className="text-lg opacity-70 text-gray-darkest dark:text-white">
-                        {category.questionCategory}
+                ) : (
+                  // When the category does not have a star (N/A)
+                  <div key={category.questionId} className="text-center my-4">
+                    <div className="flex flex-row items-center justify-between">
+                      <div className="text-left">
+                        <div className="text-lg opacity-70 text-gray-darkest dark:text-white">
+                          {category.questionCategory}
+                        </div>
+                        <div id="g-num-reviews" className="text-left">
+                          <FaUsers className="inline mr-2 text-gray-darkest dark:text-white" />
+                          <span className="font-bold text-green-dark">0</span>
+                        </div>
                       </div>
-                      <div id="g-num-reviews" className="text-left">
-                        <FaUsers className="inline mr-2 text-gray-darkest dark:text-white" />
-                        <span className="font-bold text-green-dark">0</span>
+                      <div className="absolute pl-48 text-xl text-gray-darkest dark:text-white opacity-70">
+                        N/A
                       </div>
-                    </div>
-                    <div className="absolute pl-48 text-xl text-gray-darkest dark:text-white opacity-70">
-                      N/A
-                    </div>
-                    <div className="pl-24">
-                      <Rating
-                        readOnly
-                        value={0}
-                        precision={0.1}
-                        max={1}
-                        sx={{
-                          fontSize: 60,
-                          color: smallStarColor,
-                        }}
-                        emptyIcon={
-                          <StarIcon style={{ opacity: 0.3, color: "#737373" }} fontSize="inherit" />
-                        }
-                      />
+                      <div className="pl-24">
+                        <Rating
+                          readOnly
+                          value={0}
+                          precision={0.1}
+                          max={1}
+                          sx={{
+                            fontSize: 60,
+                            color: smallStarColor,
+                          }}
+                          emptyIcon={
+                            <StarIcon
+                              style={{ opacity: 0.3, color: "#737373" }}
+                              fontSize="inherit"
+                            />
+                          }
+                        />
+                      </div>
                     </div>
                   </div>
-                </div>
-              )
-            )}
-          </div>
-        </AccordionDetails>
-      </Accordion>
+                )
+              )}
+            </div>
+          </AccordionDetails>
+        </Accordion>
+      )}
     </>
   )
 }
