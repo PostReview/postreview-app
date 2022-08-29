@@ -87,7 +87,7 @@ export default function EnterDOI(props) {
           return fetch(
             `https://api.crossref.org/works/?query=${encodeURIComponent(
               query
-            )}&select=title,author,published,DOI&rows=5`
+            )}&select=title,author,published,DOI&rows=10`
           )
             .then((response) => response.json())
             .then(({ message }) => {
