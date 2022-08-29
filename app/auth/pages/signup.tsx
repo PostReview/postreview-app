@@ -15,15 +15,15 @@ import { useCurrentUser } from "app/core/hooks/useCurrentUser"
 
 const SignupPage: BlitzPage = () => {
   const router = useRouter()
+  const currentUser = useCurrentUser()
 
   // Redirect when logged in & already onboarded
-  const currentUser = useCurrentUser()
   useEffect(() => {
     if (!currentUser?.isOnboarded) return undefined
-    if (currentUser?.isOnboarded) {
+    if (currentUser.isOnboarded) {
       router.push("/")
     }
-  }, [])
+  })
 
   const [signupMutation] = useMutation(signup)
   const [showError, setShowError] = useState(false)
