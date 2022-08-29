@@ -26,6 +26,12 @@ export const ArticleSummaryScores = (props) => {
           <div className="mt-16 w-56">
             <Image src={sadFace} alt="A picture of a sad face with a single teardrop" />
           </div>
+          <div
+            id="call-to-action"
+            className="mt-10 mb-6 text-lg font-semibold text-gray-darkest dark:text-white"
+          >
+            No reviews yet. Be the first to review!
+          </div>
         </div>
       ) : (
         <>
