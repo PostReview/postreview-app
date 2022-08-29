@@ -52,6 +52,7 @@ export const DrawerMenu = (props) => {
         onClose={() => setOpen(false)}
         sx={{
           background: "#d9d9d9",
+          color: "#d9d9d9",
         }}
       >
         <div className="w-full h-full bg-gray-light flex flex-col overflow-clip">
