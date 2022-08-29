@@ -79,7 +79,9 @@ const ArticleDetails = (props) => {
   }, 0)
 
   // Track if the article has a review at all
-  const articleHasReview = usersWithReview.length === 0 ? false : true
+  const [articleHasReview, setArticleHasReview] = useState(
+    usersWithReview.length === 0 ? false : true
+  )
 
   // Track the accordion state
   const [isAccordionOpen, setIsAccordionOpen] = useState(false)
