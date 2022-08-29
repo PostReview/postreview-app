@@ -100,7 +100,7 @@ export const DrawerMenu = (props) => {
             </Accordion>
           </List>
           <div className="border border-gray-medium bg-gray-light" />
-          <div id="social-icons" className="my-4 mx-2">
+          <div id="social-icons" className="my-4 mx-2  bg-gray-light">
             <div>Connect with us</div>
             <div className="flex flex-row text-4xl justify-around mr-20 my-4 text-gray-medium">
               <a
