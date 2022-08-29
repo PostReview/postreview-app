@@ -30,8 +30,21 @@ const ThankYouBadge = (props) => {
 
   return (
     <>
-      <div id="badge-container" className="flex flex-col relative min-h-screen items-center mt-56">
-        <Image src={thankYouBadge} alt="An image of a badge container" width={400} height={400} />
+      <div id="thank-you-badge" className="flex flex-col relative min-h-screen items-center mt-56">
+        <div id="thank-you-container" className="absolute">
+          <div id="thank-you-ribbon" className="absolute">
+            <Image src={thankYouRibbon} alt="An image of a green ribbon" width={400} height={400} />
+          </div>
+          <div>
+            <Image
+              className="animate-[spin_10s_linear_infinite]"
+              src={thankYouContainer}
+              alt="An image of a circle border"
+              width={400}
+              height={400}
+            />
+          </div>
+        </div>
         <div
           id="thank-you-message"
           className="absolute text-md text-center top-56 pt-1 font-semibold text-gray-dark"
