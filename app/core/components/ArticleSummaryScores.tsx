@@ -61,7 +61,7 @@ export const ArticleSummaryScores = (props) => {
           </div>
         </>
       )}
-      {!isAccordionOpen && (
+      {!isAccordionOpen && articleHasReview && (
         <div
           id="category-scores"
           className="flex flex-row mt-3 hover:cursor-pointer"
