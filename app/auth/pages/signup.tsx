@@ -109,6 +109,7 @@ const SignupPage: BlitzPage = () => {
               })
             }}
             onSubmit={(values, { setSubmitting }) => {
+              setWaitOnboarding(true)
               signupMutation(values).catch(() => setShowError(true))
               setTimeout(() => {
                 setSubmitting(false)
