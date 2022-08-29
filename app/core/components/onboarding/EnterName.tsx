@@ -57,7 +57,7 @@ export const EnterName = (props) => {
       <div className="text-center">
         <button
           id="next-button"
-          className="m-9 text-green text-2xl"
+          className="m-9 text-green-dark dark:text-green text-2xl"
           type="submit"
           onClick={() => {
             handleSubmit()
