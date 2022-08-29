@@ -27,7 +27,8 @@ export default passportAuth({
             where: { email },
             create: {
               email,
-              handle: profile.displayName,
+              // Remove any whitespaces from the display name and make it a handle
+              handle: profile.displayName.replace(/ /g, ""),
               displayName: profile.displayName,
               icon: profile.photos[0]?.value,
             },
