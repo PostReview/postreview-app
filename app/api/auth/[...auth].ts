@@ -31,6 +31,8 @@ export default passportAuth({
               handle: profile.displayName.replace(/ /g, ""),
               displayName: profile.displayName,
               icon: profile.photos[0]?.value,
+              // Assume Google Email is verified
+              emailIsVerified: true,
             },
             update: { email },
           })
