@@ -18,7 +18,7 @@ export const UploadYourPhoto = (props) => {
 
   // Handle the save button
   const handleSave = () => {
-    changeUserInfoMutation({ ...currentUser, icon: icon })
+    changeUserInfoMutation({ ...currentUser, icon: icon, isOnboarded: true })
     router.push("/")
   }
 
