@@ -34,9 +34,6 @@ const OnboardingPage: BlitzPage = () => {
 
   // DB mutation to change user info
   const [changeUserInfoMutation] = useMutation(changeUserInfo)
-  const handleSave = () => {
-    changeUserInfoMutation
-  }
 
   return (
     <div className="flex flex-col min-h-screen bg-white dark:bg-gray-darkest">
