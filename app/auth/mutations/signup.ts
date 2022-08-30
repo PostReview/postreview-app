@@ -8,7 +8,7 @@ import algoliasearch from "algoliasearch"
 
 // Initialize Algolia
 const client = algoliasearch(process.env.ALGOLIA_APP_ID!, process.env.ALGOLIA_API_ADMIN_KEY!)
-const index = client.initIndex(`${process.env.ALGOLIA_PREFIX}_articles`)
+const index = client.initIndex(`${process.env.ALGOLIA_PREFIX}_users`)
 
 export default resolver.pipe(resolver.zod(Signup), async ({ email, handle, password }, ctx) => {
   const hashedPassword = await SecurePassword.hash(password.trim())
