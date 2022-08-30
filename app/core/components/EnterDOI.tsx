@@ -47,7 +47,7 @@ export default function EnterDOI(props) {
       })
     }
   }
-  const debounced = debouncePromise((items) => Promise.resolve(items), 300)
+  const debounced = debouncePromise((items) => Promise.resolve(items), 100)
 
   return (
     <div className="m-1 rounded-md flex flex-row items-center flex-grow max-w-7xl justify-end">
@@ -84,7 +84,7 @@ export default function EnterDOI(props) {
               })
           }
           // If the input is not a DOI, query the CrossRef endpoint
-          return debounced([
+          return [
             {
               // Look for papers already in our database
               sourceId: "products",
