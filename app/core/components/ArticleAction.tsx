@@ -78,6 +78,12 @@ export const ArticleAction = (props) => {
         MenuListProps={{
           "aria-labelledby": "basic-button",
         }}
+        PaperProps={{
+          sx: {
+            backgroundColor: "#545454",
+            color: "white",
+          },
+        }}
       >
         <MenuItem onClick={handleOpenReviewDialog}>Edit</MenuItem>
         <MenuItem onClick={() => handleChangeAnonymous(article)}>
