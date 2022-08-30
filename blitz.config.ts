@@ -15,7 +15,7 @@ const config: BlitzConfig = {
     UPLOADCARE_PUBLIC_KEY: process.env.UPLOADCARE_PUBLIC_KEY,
   },
   images: {
-    domains: ["ucarecdn.com"],
+    domains: ["ucarecdn.com", "lh3.googleusercontent.com"],
   },
   /* Uncomment this to customize the webpack config
   webpack: (config, { buildId, dev, isServer, defaultLoaders, webpack }) => {
