@@ -53,7 +53,8 @@ export const DrawerMenu = (props) => {
         PaperProps={{
           sx: {
             backgroundColor: "#d9d9d9",
-            color: "black",
+            color: "#2c2e2e",
+            fontWeight: "bold",
           },
         }}
       >
@@ -64,17 +65,21 @@ export const DrawerMenu = (props) => {
           <div className="border border-gray-medium" />
           <List>
             <ListItemButton sx={{ ...hoverSx }}>
-              <ListItemText
-                primary={"Home"}
+              <Typography
+                sx={{ fontWeight: "bold" }}
                 onClick={() => router.push(session.userId ? "/" : "/?search=true")}
-              />
+              >
+                Home
+              </Typography>
             </ListItemButton>
             <ListItemButton sx={{ ...hoverSx }}>
-              <ListItemText primary={"How it works"} onClick={() => router.push("/how-it-works")} />
+              <Typography sx={{ fontWeight: "bold" }} onClick={() => router.push("/how-it-works")}>
+                How it works
+              </Typography>
             </ListItemButton>
             <Accordion>
               <AccordionSummary expandIcon={<ExpandMoreIcon />} sx={{ ...hoverSx }}>
-                <Typography>About us</Typography>
+                <Typography sx={{ color: "#2c2e2e", fontWeight: "bold" }}>About us</Typography>
               </AccordionSummary>
               <AccordionDetails>
                 <ListItemButton sx={{ ...hoverSx }}>
@@ -93,7 +98,7 @@ export const DrawerMenu = (props) => {
             </Accordion>
             <Accordion>
               <AccordionSummary expandIcon={<ExpandMoreIcon />} sx={{ ...hoverSx }}>
-                <Typography>Policies</Typography>
+                <Typography sx={{ color: "#2c2e2e", fontWeight: "bold" }}>Policies</Typography>
               </AccordionSummary>
               <AccordionDetails>
                 <ListItemButton sx={{ ...hoverSx }} onClick={() => router.push("/code-of-conduct")}>
@@ -116,29 +121,37 @@ export const DrawerMenu = (props) => {
                 href="https://github.com/PostReview/postreview-app"
                 target="_blank"
                 rel="noreferrer"
+                className="hover:text-green-dark"
               >
                 <FaGithub />
               </a>
-              <a href="https://twitter.com/PostReviewOrg" target="_blank" rel="noreferrer">
+              <a
+                href="https://twitter.com/PostReviewOrg"
+                target="_blank"
+                rel="noreferrer"
+                className="hover:text-green-dark"
+              >
                 <AiFillTwitterCircle />
               </a>
-              <a href="https://discord.com/invite/gZ4Hn2VryK" target="_blank" rel="noreferrer">
+              <a
+                href="https://discord.com/invite/gZ4Hn2VryK"
+                target="_blank"
+                rel="noreferrer"
+                className="hover:text-green-dark"
+              >
                 <FaDiscord />
               </a>
             </div>
           </div>
           <div id="sign-up-button" className="mx-2 bg-gray-light">
             <button
-              className="bg-green px-3 py-1 rounded-lg hover:bg-green-dark"
+              className="px-3 py-1 font-semibold rounded-lg text-gray-darkest hover:text-black bg-green hover:bg-green-dark"
               onClick={() => router.push("/signup")}
             >
               Sign up
             </button>
           </div>
-          <div
-            id="copyright"
-            className="self-end mx-4 mt-10 text-xl bg-gray-light text-gray-medium"
-          >
+          <div id="copyright" className="self-end mx-4 mt-10 text-xl bg-gray-light text-black/90">
             <span className="text-2xl">&copy;</span> PostReview {datetime.getFullYear()}
           </div>
         </div>

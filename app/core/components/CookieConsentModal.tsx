@@ -23,11 +23,13 @@ export const CookieConsentModal = (props) => {
           backgroundColor: "#545454",
           color: "#94EC01",
           fontSize: "1rem",
+          borderRadius: "6px",
         }}
         declineButtonStyle={{
           backgroundColor: "#545454",
           color: "#fff",
           fontSize: "1rem",
+          borderRadius: "6px",
         }}
         expires={150}
         onAccept={() => {

@@ -1,7 +1,6 @@
 import React, { useState } from "react"
 import {
   Box,
-  Button,
   Dialog,
   DialogActions,
   DialogContent,
@@ -78,6 +77,12 @@ export const ArticleAction = (props) => {
         MenuListProps={{
           "aria-labelledby": "basic-button",
         }}
+        PaperProps={{
+          sx: {
+            backgroundColor: "#545454",
+            color: "white",
+          },
+        }}
       >
         <MenuItem onClick={handleOpenReviewDialog}>Edit</MenuItem>
         <MenuItem onClick={() => handleChangeAnonymous(article)}>
@@ -104,16 +109,19 @@ export const ArticleAction = (props) => {
             <div className="font-bold">{article.title}</div>
           </DialogContent>
           <DialogActions>
-            <Button onClick={closeDeleteReviewDialog} autoFocus>
+            <button
+              className="bg-gray-medium hover:bg-gray-dark text-white mx-2 rounded-md px-3 py-2 whitespace-nowrap"
+              onClick={closeDeleteReviewDialog}
+              autoFocus
+            >
               Cancel
-            </Button>
-            <Button
-              variant="contained"
-              color="error"
+            </button>
+            <button
+              className="bg-red hover:bg-gray-dark text-white mx-2 rounded-md px-3 py-2 whitespace-nowrap"
               onClick={() => handleDeleteReview(article.id)}
             >
-              Delete My Reviews
-            </Button>
+              Delete this review
+            </button>
           </DialogActions>
         </Dialog>
       </Box>

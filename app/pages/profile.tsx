@@ -101,13 +101,13 @@ const Profile = () => {
       <div className="mx-auto flex flex-row">
         <Button
           id="public-view-container"
-          className="m-2 underline text-md hover:cursor-pointer text-green-dark"
+          className="m-2 font-semibold underline text-md hover:cursor-pointer text-green-dark dark:text-green hover:text-green dark:hover:text-green-dark"
         >
           <Link href={`profiles/${currentUser?.handle}`}>Public profile view</Link>
         </Button>
         <Button
           id="delete-account"
-          className="m-2 underline hover:cursor-pointer text-gray-medium"
+          className="m-2 font-semibold underline hover:cursor-pointer hover:text-gray-darkest text-gray-medium"
           onClick={() => setIsDeactivateAccountDialogOpen(true)}
           color="error"
         >
