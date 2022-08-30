@@ -44,6 +44,8 @@ export default resolver.pipe(resolver.zod(Signup), async ({ email, handle, passw
     },
   }
 
+  await sendEmailWithTemplate(msg)
+
   // Update Algolia
   await index.saveObject({
     objectID: addedUser?.id,
@@ -56,8 +58,6 @@ export default resolver.pipe(resolver.zod(Signup), async ({ email, handle, passw
     createdAt_timestamp: addedUser?.createdAt.valueOf(),
     updatedAt_timestamp: addedUser?.updatedAt.valueOf(),
   })
-
-  await sendEmailWithTemplate(msg)
 
   return user
 })
