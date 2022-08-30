@@ -78,7 +78,10 @@ export const UploadYourPhoto = (props) => {
         >
           Save
         </button>
-        <button className="w-min my-4 text-gray-medium" onClick={() => router.push("/")}>
+        <button
+          className="w-min my-4 text-gray-medium hover:text-gray-darkest"
+          onClick={() => router.push("/")}
+        >
           Skip
         </button>
       </div>
