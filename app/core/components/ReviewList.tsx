@@ -5,7 +5,7 @@ import { Review } from "./Review"
 import getQuestionCategories from "app/queries/getQuestionCategories"
 
 export const ReviewList = (prop) => {
-  const { article, ratingScaleMax, session } = prop
+  const { article, ratingScaleMax, session, articleHasReview } = prop
 
   const [usersWithReview] = useQuery(getUsersWithReviewsByArticleId, {
     currentArticleId: article?.id,
@@ -38,6 +38,7 @@ export const ReviewList = (prop) => {
                 ratingScaleMax={ratingScaleMax}
                 showArticleAction={true}
                 article={{ ...article, review: { ...currentUserReview?.review } }}
+                articleHasReview={articleHasReview}
               />
             </div>
           </div>

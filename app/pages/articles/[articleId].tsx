@@ -116,7 +116,12 @@ const ArticleDetails = (props) => {
           </div>
         )}
         {articleHasReview && (
-          <ReviewList article={article} ratingScaleMax={ratingScaleMax} session={session} />
+          <ReviewList
+            article={article}
+            ratingScaleMax={ratingScaleMax}
+            session={session}
+            articleHasReview={articleHasReview}
+          />
         )}
         <Dialog open={isReviewDialogOpen} onClose={closeReviewDialog}>
           <PopupReview
