@@ -49,6 +49,7 @@ export default resolver.pipe(resolver.zod(Signup), async ({ email, handle, passw
     objectID: addedUser?.id,
     handle: addedUser?.handle,
     displayName: addedUser?.displayName,
+    pronoun: addedUser?.pronoun,
     icon: addedUser?.icon,
     createdAt_timestamp: addedUser?.createdAt.valueOf(),
     updatedAt_timestamp: addedUser?.updatedAt.valueOf(),
