@@ -61,8 +61,13 @@ export default function Article(props) {
     >
       <div id="title-star-container" className="w-full flex md:flex-row flex-row justify-between">
         <div id="title" className="font-semibold inline mr-3">
-          <Link href={`/articles/${id}`}>
-            {title.length < 70 ? title : title.slice(0, 70) + "..."}
+          <Link href={`/articles/${id}`} passHref>
+            <a>
+              <span className="sm:hidden">
+                {title.length < 70 ? title : title.slice(0, 70) + "..."}
+              </span>
+              <span className="hidden sm:block">{title}</span>
+            </a>
           </Link>
         </div>
         {/* Show the rating and the star */}
