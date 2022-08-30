@@ -1,6 +1,11 @@
 import db from "db"
 import { Ctx, AuthorizationError } from "blitz"
 import * as z from "zod"
+import algoliasearch from "algoliasearch"
+
+// Initialize Algolia
+const client = algoliasearch(process.env.ALGOLIA_APP_ID!, process.env.ALGOLIA_API_ADMIN_KEY!)
+const index = client.initIndex(`${process.env.ALGOLIA_PREFIX}_users`)
 
 const inputData = z.object({
   id: z.number(),
@@ -29,5 +34,13 @@ export default async function changeUserInfo(input: z.infer<typeof inputData>, c
       ...otherData,
     },
   })
+
+  // Update Algolia
+  await index.partialUpdateObject({
+    objectID: data.id,
+    ...otherData,
+    updatedAt_timestamp: Date.now(),
+  })
+
   return result
 }
