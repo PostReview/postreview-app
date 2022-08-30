@@ -7,6 +7,7 @@ import SearchResultArticle from "./SearchResultArticle"
 import { cleanCrossRefItem } from "../cleanCrossRefItem"
 import getArticleByDoi from "app/queries/getArticleByDoi"
 import addArticle from "app/mutations/addArticle"
+import SearchResultUser from "./SearchResultUser"
 
 const searchClient = algoliasearch(
   process.env.ALGOLIA_APP_ID as string,
@@ -102,12 +103,26 @@ export default function EnterDOI(props) {
                       indexName: `${process.env.ALGOLIA_PREFIX}_articles`,
                       query,
                     },
+                    {
+                      indexName: `${process.env.ALGOLIA_PREFIX}_users`,
+                      query,
+                    },
                   ],
                 })
               },
               templates: {
                 item({ item, components }) {
-                  return <SearchResultArticle item={item} components={components} />
+                  return (
+                    <>
+                      {item.__autocomplete_indexName.match(/_articles/g) && (
+                        <SearchResultArticle item={item} components={components} />
+                      )}
+
+                      {item.__autocomplete_indexName.match(/_users/g) && (
+                        <SearchResultUser item={item} components={components} />
+                      )}
+                    </>
+                  )
                 },
               },
             },
