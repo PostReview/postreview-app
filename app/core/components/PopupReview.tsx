@@ -87,7 +87,10 @@ export default function PopupReview(prop) {
 
   const handleReviewSubmit = async () => {
     setLoading(true)
-    showThankYou()
+    // Thank-you badge
+    // Check if all answers are null
+    const reviewsAllNull = reviewAnswers.map((answer) => answer.response).every((e) => e === null)
+    if (!reviewsAllNull) showThankYou()
     // If there's no rating given, show the error message
     if (reviewAnswers.length == 0) return setShowReviewRequiredError(true)
     await invoke(addReviewMutation, reviewAnswers)

@@ -18,6 +18,7 @@ export const Review = (props) => {
     ratingScaleMax,
     showArticleAction = false,
     article,
+    articleHasReview,
   } = props
   const submittedAt = reviews[0]?.createdAt?.toISOString().split("T")[0]
   const updatedAt = reviews[0]?.updatedAt.toISOString().split("T")[0]
@@ -72,7 +73,7 @@ export const Review = (props) => {
       >
         {showArticleAction && (
           <div className="absolute top-0 right-0">
-            <ArticleAction article={article} />
+            <ArticleAction article={article} articleHasReview={articleHasReview} />
           </div>
         )}
         <div id="review-header-section" className="flex flex-row items-center relative">

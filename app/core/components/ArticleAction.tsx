@@ -17,7 +17,7 @@ import changeReviewAnonimity from "app/mutations/changeReivewAnonimity"
 import { MoreHoriz } from "@mui/icons-material"
 
 export const ArticleAction = (props) => {
-  const { article } = props
+  const { article, articleHasReview } = props
   const session = useSession()
   const router = useRouter()
   const [anchorEl, setAnchorEl] = useState(null)
@@ -93,6 +93,7 @@ export const ArticleAction = (props) => {
           setUserHasReview={setUserHasReview}
           setIsChangeMade={setIsChangeMade}
           session={session}
+          articleHasReview={articleHasReview}
         />
       </Dialog>
       <Box>
