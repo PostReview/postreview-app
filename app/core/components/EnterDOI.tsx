@@ -120,22 +120,24 @@ export default function EnterDOI(props) {
                 handleArticleAdd(currentItem)
               },
               getItems() {
-                return fetch(
-                  `https://api.crossref.org/works/?query=${encodeURIComponent(
-                    query
-                  )}&select=title,author,published,DOI&rows=10`
+                return debounced(
+                  fetch(
+                    `https://api.crossref.org/works/?query=${encodeURIComponent(
+                      query
+                    )}&select=title,author,published,DOI&rows=10`
+                  )
+                    .then((response) => response.json())
+                    .then(({ message }) => {
+                      // Filter out items
+                      const filteredItems = message.items
+                        // filter out items without titles (Ex. "vegetab" returning items without titles)
+                        .filter((item) => item.title)
+                        // filter out items without published dates
+                        .filter((item) => item.published?.["date-parts"])
+                      return filteredItems
+                    })
+                    .catch(() => [])
                 )
-                  .then((response) => response.json())
-                  .then(({ message }) => {
-                    // Filter out items
-                    const filteredItems = message.items
-                      // filter out items without titles (Ex. "vegetab" returning items without titles)
-                      .filter((item) => item.title)
-                      // filter out items without published dates
-                      .filter((item) => item.published?.["date-parts"])
-                    return filteredItems
-                  })
-                  .catch(() => [])
               },
               getItemInputValue({ item }) {
                 return item.description
@@ -147,7 +149,7 @@ export default function EnterDOI(props) {
                 },
               },
             },
-          ])
+          ]
         }}
       />
     </div>
