@@ -91,8 +91,11 @@ export default function EnterDOI(props) {
               sourceId: "products",
               async onSelect(params) {
                 const { item, setQuery } = params
-                if (item.objectID) {
+                if (item.__autocomplete_indexName.match(/_articles/g)) {
                   router.push(`/articles/${item.objectID}`)
+                }
+                if (item.__autocomplete_indexName.match(/_users/g)) {
+                  router.push(`/profiles/${item.handle}`)
                 }
               },
               getItems() {
