@@ -53,7 +53,7 @@ export default function EnterDOI(props) {
     <div className="m-1 rounded-md flex flex-row items-center flex-grow max-w-7xl justify-end">
       <Autocomplete
         placeholder="Search Title, Author, DOI"
-        openOnFocus={true}
+        openOnFocus={false}
         getSources={({ query }) => {
           // If the input is a DOI, return the specific paper
           // `https://api.crossref.org/works/${matchedDOI}`
