@@ -14,6 +14,9 @@ const config: BlitzConfig = {
     ALGOLIA_PREFIX: process.env.ALGOLIA_PREFIX,
     UPLOADCARE_PUBLIC_KEY: process.env.UPLOADCARE_PUBLIC_KEY,
   },
+  images: {
+    domains: ["ucarecdn.com"],
+  },
   /* Uncomment this to customize the webpack config
   webpack: (config, { buildId, dev, isServer, defaultLoaders, webpack }) => {
     // Note: we provide webpack above so you should not `require` it
