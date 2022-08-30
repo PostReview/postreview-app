@@ -84,49 +84,49 @@ export default function EnterDOI(props) {
               })
           }
           // If the input is not a DOI, query the CrossRef endpoint
-          return fetch(
-            `https://api.crossref.org/works/?query=${encodeURIComponent(
-              query
-            )}&select=title,author,published,DOI&rows=10`
-          )
-            .then((response) => response.json())
-            .then(({ message }) => {
-              return debounced([
-                {
-                  // Look for papers already in our database
-                  sourceId: "products",
-                  async onSelect(params) {
-                    const { item, setQuery } = params
-                    if (item.objectID) {
-                      router.push(`/articles/${item.objectID}`)
-                    }
-                  },
-                  getItems() {
-                    return getAlgoliaResults({
-                      searchClient,
-                      queries: [
-                        {
-                          indexName: `${process.env.ALGOLIA_PREFIX}_articles`,
-                          query,
-                        },
-                      ],
-                    })
-                  },
-                  templates: {
-                    item({ item, components }) {
-                      return <SearchResultArticle item={item} components={components} />
+          return debounced([
+            {
+              // Look for papers already in our database
+              sourceId: "products",
+              async onSelect(params) {
+                const { item, setQuery } = params
+                if (item.objectID) {
+                  router.push(`/articles/${item.objectID}`)
+                }
+              },
+              getItems() {
+                return getAlgoliaResults({
+                  searchClient,
+                  queries: [
+                    {
+                      indexName: `${process.env.ALGOLIA_PREFIX}_articles`,
+                      query,
                     },
-                  },
+                  ],
+                })
+              },
+              templates: {
+                item({ item, components }) {
+                  return <SearchResultArticle item={item} components={components} />
                 },
-                {
-                  // Look for papers in CrossRef
-                  sourceId: "message",
-                  onSelect(params) {
-                    const { item, setQuery } = params
-                    const currentItem = cleanCrossRefItem(item)
-                    handleArticleAdd(currentItem)
-                  },
-                  getItems() {
+              },
+            },
+            {
+              // Look for papers in CrossRef
+              sourceId: "crossRef",
+              onSelect(params) {
+                const { item, setQuery } = params
+                const currentItem = cleanCrossRefItem(item)
+                handleArticleAdd(currentItem)
+              },
+              getItems() {
+                return fetch(
+                  `https://api.crossref.org/works/?query=${encodeURIComponent(
+                    query
+                  )}&select=title,author,published,DOI&rows=10`
+                )
+                  .then((response) => response.json())
+                  .then(({ message }) => {
                     // Filter out items
                     const filteredItems = message.items
                       // filter out items without titles (Ex. "vegetab" returning items without titles)
@@ -134,19 +134,20 @@ export default function EnterDOI(props) {
                       // filter out items without published dates
                       .filter((item) => item.published?.["date-parts"])
                     return filteredItems
-                  },
-                  getItemInputValue({ item }) {
-                    return item.description
-                  },
-                  templates: {
-                    item({ item, components }) {
-                      const currentItem = cleanCrossRefItem(item)
-                      return <SearchResultArticle item={currentItem} components={components} />
-                    },
-                  },
+                  })
+                  .catch(() => [])
+              },
+              getItemInputValue({ item }) {
+                return item.description
+              },
+              templates: {
+                item({ item, components }) {
+                  const currentItem = cleanCrossRefItem(item)
+                  return <SearchResultArticle item={currentItem} components={components} />
                 },
-              ])
-            })
+              },
+            },
+          ])
         }}
       />
     </div>
