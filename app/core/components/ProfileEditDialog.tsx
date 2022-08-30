@@ -65,9 +65,12 @@ export const ProfileEditDialog = (props) => {
           <Typography sx={{ ml: 2, flex: 1 }} variant="h6" component="div">
             Edit profile
           </Typography>
-          <Button color="inherit" onClick={() => handleSave()}>
-            save
-          </Button>
+          <button
+            className="font-semibold text-white hover:text-green-dark"
+            onClick={() => handleSave()}
+          >
+            Save
+          </button>
         </Toolbar>
       </AppBar>
       <div className="bg-black w-full h-full text-white flex flex-col items-center">
