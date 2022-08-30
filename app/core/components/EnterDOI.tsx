@@ -47,7 +47,7 @@ export default function EnterDOI(props) {
       })
     }
   }
-  const debounced = debouncePromise((items) => Promise.resolve(items), 1000)
+  const debounced = debouncePromise((items) => Promise.resolve(items), 300)
 
   return (
     <div className="m-1 rounded-md flex flex-row items-center flex-grow max-w-7xl justify-end">
