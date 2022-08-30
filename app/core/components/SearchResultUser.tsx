@@ -1,7 +1,6 @@
 import { Image } from "blitz"
 
 const SearchResultUser = ({ item, components }) => {
-  console.log(item)
   return (
     <>
       <div className="my-1 mx-1 flex flex-row">
