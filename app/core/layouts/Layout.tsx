@@ -16,7 +16,9 @@ const Layout = ({ title, children }: LayoutProps) => {
   )
   useEffect(() => {
     if (cookieAccepted) {
-      setCookie(<script type="text/javascript">{undefined}</script>)
+      setCookie(
+        <script type="text/javascript">{`window.$crisp=[];window.CRISP_WEBSITE_ID="74d9b823-a426-4e01-9e43-c115f596cb9f";(function(){d=document;s=d.createElement("script");s.src="https://client.crisp.chat/l.js";s.async=1;d.getElementsByTagName("head")[0].appendChild(s);})()`}</script>
+      )
     }
   }, [cookieAccepted])
 
