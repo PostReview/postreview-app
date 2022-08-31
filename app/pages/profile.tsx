@@ -91,9 +91,9 @@ const Profile = () => {
         setOpen={setOpen}
         showEditButton={true}
       />
-      <div id="my-reviews-container" className="m-4 mt-8 max-w-2xl">
-        <h1 className="text-2xl font-semibold text-gray-darkest dark:text-white">Reviews</h1>
-        <div className=" text-gray-darkest dark:text-white">
+      <div id="my-reviews-container" className="mx-4 mt-8 max-w-5xl">
+        <h1 className=" mx-2 text-2xl font-semibold text-gray-darkest dark:text-white">Reviews</h1>
+        <div className=" text-gray-darkest dark:text-white w-96 sm:w-[40rem]">
           {myArticlesWithReview?.length === 0 && <MyReviewsEmptyState />}
           <MyReviewsTable articleWithReview={myArticlesWithReview} currentUser={currentUser} />
         </div>

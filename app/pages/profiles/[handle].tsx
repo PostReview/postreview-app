@@ -26,13 +26,13 @@ const PublicProfileDetails = () => {
         <ProfileBgImage />
         <ProfileInfo userInfo={userInfo} showEditButton={false} />
 
-        <div id="my-reviews-container" className="mt-8 max-w-7xl">
-          <h1 className="text-2xl font-semibold text-gray-darkest dark:text-white">Reviews</h1>
-          <div className="text-gray-darkest dark:text-white">
+        <div id="my-reviews-container" className="mx-4 mt-8 max-w-5xl">
+          <h1 className="mx-2 text-2xl font-semibold text-gray-darkest dark:text-white">Reviews</h1>
+          <div className="text-gray-darkest dark:text-white w-96 sm:w-[40rem]">
             {defaultArticlesWithReview.length === 0 && (
               <div
                 className="m-6 p-4 border-gray-medium
-    flex flex-col w-80 h-32 justify-center"
+    flex flex-col w-96 sm:w-[40rem] h-32 justify-center"
               >
                 <div className="flex flex-col items-center">
                   <div
