@@ -75,12 +75,16 @@ export const UploadYourPhoto = (props) => {
         <button
           className="w-min whitespace-nowrap my-4 px-8 py-2 text-green rounded-lg bg-black/50 hover:bg-gray-darkest dark:bg-gray-medium dark:hover:bg-black/40"
           onClick={() => handleSave()}
+          data-splitbee-event="Onboarding complete"
+          data-splitbee-event-onboardingType="Save"
         >
           Save
         </button>
         <button
           className="w-min my-4 text-gray-medium hover:text-gray-darkest"
           onClick={() => router.push("/")}
+          data-splitbee-event="Onboarding complete"
+          data-splitbee-event-onboardingType="Skip"
         >
           Skip
         </button>
