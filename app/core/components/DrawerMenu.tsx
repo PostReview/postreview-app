@@ -151,7 +151,10 @@ export const DrawerMenu = (props) => {
               Sign up
             </button>
           </div>
-          <div id="copyright" className="self-end mx-4 mt-10 text-xl bg-gray-light text-black/90">
+          <div
+            id="copyright"
+            className="self-end mx-4 mt-10 text-lg bg-gray-light text-gray-medium/60"
+          >
             <span className="text-2xl">&copy;</span> PostReview {datetime.getFullYear()}
           </div>
         </div>
