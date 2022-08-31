@@ -14,6 +14,7 @@ import Layout from "app/core/layouts/Layout"
 import { ArticleSummaryScores } from "app/core/components/ArticleSummaryScores"
 import { ArticleMetadata } from "app/core/components/ArticleMetadata"
 import ThankYouBadge from "app/core/components/ThankYouBadge"
+import { SocialMetadata } from "app/core/components/SocialMetadata"
 
 const ArticleDetails = (props) => {
   // The maximum rating
@@ -87,10 +88,13 @@ const ArticleDetails = (props) => {
     setIsAccordionOpen(!isAccordionOpen)
   }
 
+  const pageTitle = `${currentTitle} | PostReview`
+
   return (
     <div className="flex flex-col min-h-screen">
       <Head>
-        <title>{`${currentTitle} | PostReview`}</title>
+        <title>{pageTitle}</title>
+        <SocialMetadata title={pageTitle} />
       </Head>
       <main className="m-6 flex-grow flex flex-col items-center">
         <ArticleMetadata article={article} />
