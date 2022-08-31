@@ -1,4 +1,4 @@
-import { BlitzPage, invoke, Link, useMutation, useQuery, useRouter, useSession } from "blitz"
+import { BlitzPage, Head, invoke, Link, useMutation, useQuery, useRouter, useSession } from "blitz"
 import { Dialog, DialogActions, DialogContent, DialogTitle } from "@mui/material"
 import { Box } from "@mui/system"
 import Navbar from "app/core/components/Navbar"
@@ -15,6 +15,7 @@ import resendVerification from "app/auth/mutations/resendVerification"
 import { ProfileEditDialog } from "app/core/components/ProfileEditDialog"
 import { ProfileBgImage } from "app/core/components/ProfileBgImage"
 import { ProfileInfo } from "app/core/components/ProfileInfo"
+import { SocialMetadata } from "app/core/components/SocialMetadata"
 
 const Profile = () => {
   const router = useRouter()
@@ -147,6 +148,9 @@ const Profile = () => {
 const ProfilePage: BlitzPage = () => {
   return (
     <div className="flex flex-col min-h-screen">
+      <Head>
+        <SocialMetadata />
+      </Head>
       <Navbar />
       <Profile />
     </div>
