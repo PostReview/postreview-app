@@ -114,6 +114,7 @@ const ArticleDetails = (props) => {
             <button
               className="px-4 py-4 text-xl text-green rounded-lg bg-black/50 hover:bg-gray-darkest dark:bg-gray-medium dark:hover:bg-black/40"
               onClick={openReviewDialog}
+              data-splitbee-event="Add review"
             >
               Add review
             </button>

@@ -138,7 +138,12 @@ const LoginPage: BlitzPage = () => {
                     </a>
                   </Link>
                 </div>
-                <Button addstyles="my-4" type="submit" disabled={isSubmitting}>
+                <Button
+                  addstyles="my-4"
+                  type="submit"
+                  disabled={isSubmitting}
+                  data-splitbee-event="Log in"
+                >
                   Log in
                 </Button>
               </form>
@@ -154,7 +159,7 @@ const LoginPage: BlitzPage = () => {
           </div>
 
           <div className="text-gray-darkest dark:text-white text-bold text-center my-4">or</div>
-          <GoogleButton type="log-in" />
+          <GoogleButton type="log-in" data-splitbee-event="Log in" />
         </div>
       </main>
     </div>
