@@ -1,13 +1,19 @@
 import Navbar from "app/core/components/Navbar"
 import Layout from "app/core/layouts/Layout"
-import { BlitzPage, Image } from "blitz"
+import { BlitzPage, Head, Image } from "blitz"
 import transparencyPhoto from "public/transparency-photo.png"
 import diversityPhoto from "public/diversity-photo.png"
 import accountabilityPhoto from "public/accountability-photo.png"
+import { SocialMetadata } from "app/core/components/SocialMetadata"
+
+const pageTitle = "Mission and Vision | PostReview"
 
 const MissionVisionPage: BlitzPage = () => {
   return (
     <div className="flex flex-col min-h-screen bg-white">
+      <Head>
+        <SocialMetadata title={pageTitle} />
+      </Head>
       <Navbar />
       <main className="mb-20 flex-grow flex flex-col items-center text-gray-darkest">
         <h1 className="mt-12 text-5xl font-bold">Our Mission</h1>
@@ -68,7 +74,5 @@ const MissionVisionPage: BlitzPage = () => {
     </div>
   )
 }
-MissionVisionPage.getLayout = (page) => (
-  <Layout title="Mission and Vision | PostReview">{page}</Layout>
-)
+MissionVisionPage.getLayout = (page) => <Layout title={pageTitle}>{page}</Layout>
 export default MissionVisionPage

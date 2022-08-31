@@ -1,5 +1,5 @@
 import React, { Suspense, useEffect, useState } from "react"
-import { useRouter, useSession, BlitzPage, useQuery, useRouterQuery } from "blitz"
+import { useRouter, useSession, BlitzPage, useQuery, useRouterQuery, Head } from "blitz"
 import Layout from "app/core/layouts/Layout"
 
 // Components
@@ -9,6 +9,7 @@ import { HowItWorks } from "app/core/components/HowItWorks"
 import ArticleList from "app/core/components/ArticleList"
 import getQuestionCategories from "app/queries/getQuestionCategories"
 import { NavDots } from "app/core/components/NavDots"
+import { SocialMetadata } from "app/core/components/SocialMetadata"
 
 const UserInfo = () => {
   const router = useRouter()
@@ -111,6 +112,9 @@ const UserInfo = () => {
 const Home: BlitzPage = () => {
   return (
     <div className="flex flex-col min-h-screen">
+      <Head>
+        <SocialMetadata />
+      </Head>
       <Navbar />
       <main className="flex-grow flex flex-col items-center bg-white dark:bg-gray-darkest">
         <UserInfo />

@@ -1,15 +1,20 @@
 import Navbar from "app/core/components/Navbar"
-import { BlitzPage, Image, useRouter } from "blitz"
-import { Suspense } from "react"
+import { BlitzPage, Head, Image, useRouter } from "blitz"
 import twoScientistsPhoto from "public/two-scientists-photo.png"
 import peopleAroundTheWorld from "public/people-around-the-world.png"
 import logoWithNameDarkMode from "public/logo-withname-darkmode.png"
 import Layout from "app/core/layouts/Layout"
+import { SocialMetadata } from "app/core/components/SocialMetadata"
+
+const pageTitle = "Our Story | PostReview"
 
 const About: BlitzPage = () => {
   const router = useRouter()
   return (
     <div className="flex flex-col min-h-screen">
+      <Head>
+        <SocialMetadata title={pageTitle} />
+      </Head>
       <Navbar />
       <div className="w-full bg-gray-darkest flex flex-col items-center">
         <main className="flex-grow flex flex-col items-center bg-white text-gray-darkest">
@@ -144,5 +149,5 @@ const About: BlitzPage = () => {
   )
 }
 
-About.getLayout = (page) => <Layout title="Our Story | PostReview">{page}</Layout>
+About.getLayout = (page) => <Layout title={pageTitle}>{page}</Layout>
 export default About

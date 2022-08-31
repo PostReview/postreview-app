@@ -1,4 +1,4 @@
-import { BlitzPage, Image, Link, Routes } from "blitz"
+import { BlitzPage, Head, Image, Link, Routes } from "blitz"
 import Layout from "app/core/layouts/Layout"
 import Navbar from "app/core/components/Navbar"
 import privacyPolicy from "public/privacy-policy.png"
@@ -9,6 +9,9 @@ import MuiAccordion, { AccordionProps } from "@mui/material/Accordion"
 import MuiAccordionSummary, { AccordionSummaryProps } from "@mui/material/AccordionSummary"
 import MuiAccordionDetails from "@mui/material/AccordionDetails"
 import Typography from "@mui/material/Typography"
+import { SocialMetadata } from "app/core/components/SocialMetadata"
+
+const pageTitle = "Privacy Policy | PostReview"
 
 const Accordion = styled((props: AccordionProps) => (
   <MuiAccordion disableGutters elevation={0} square {...props} />
@@ -92,6 +95,9 @@ const PrivacyPolicyPage: BlitzPage = () => {
 
   return (
     <div className="flex flex-col min-h-screen bg-white dark:bg-gray-darkest">
+      <Head>
+        <SocialMetadata title={pageTitle} />
+      </Head>
       <Navbar />
       <main className="flex-grow flex flex-col items-center bg-gray-light dark:bg-gray-darkest">
         <div className="py-4 w-full text-3xl font-bold bg-gray-medium dark:bg-black/60">
@@ -532,6 +538,6 @@ const PrivacyPolicyPage: BlitzPage = () => {
   )
 }
 
-PrivacyPolicyPage.getLayout = (page) => <Layout title="Privacy Policy | PostReview">{page}</Layout>
+PrivacyPolicyPage.getLayout = (page) => <Layout title={pageTitle}>{page}</Layout>
 
 export default PrivacyPolicyPage

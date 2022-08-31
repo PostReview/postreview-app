@@ -1,6 +1,5 @@
-import { BlitzPage, Image, Link } from "blitz"
+import { BlitzPage, Head, Image, Link } from "blitz"
 import Layout from "app/core/layouts/Layout"
-import { Suspense } from "react"
 import Navbar from "app/core/components/Navbar"
 import codeOfConduct from "public/code-of-conduct.png"
 import * as React from "react"
@@ -10,6 +9,9 @@ import MuiAccordion, { AccordionProps } from "@mui/material/Accordion"
 import MuiAccordionSummary, { AccordionSummaryProps } from "@mui/material/AccordionSummary"
 import MuiAccordionDetails from "@mui/material/AccordionDetails"
 import Typography from "@mui/material/Typography"
+import { SocialMetadata } from "app/core/components/SocialMetadata"
+
+const pageTitle = "Code of Conduct | PostReview"
 
 const Accordion = styled((props: AccordionProps) => (
   <MuiAccordion disableGutters elevation={0} square {...props} />
@@ -86,6 +88,9 @@ const CodeOfConductPage: BlitzPage = () => {
   }
   return (
     <div className="flex flex-col min-h-screen bg-white dark:bg-gray-darkest">
+      <Head>
+        <SocialMetadata title={pageTitle} />
+      </Head>
       <Navbar />
       <main className="flex-grow flex flex-col items-center bg-gray-light dark:bg-gray-darkest">
         <div className="py-4 w-full text-3xl font-bold bg-gray-medium dark:bg-black/60">
@@ -423,6 +428,6 @@ const CodeOfConductPage: BlitzPage = () => {
   )
 }
 
-CodeOfConductPage.getLayout = (page) => <Layout title="Code of Conduct | PostReview">{page}</Layout>
+CodeOfConductPage.getLayout = (page) => <Layout title={pageTitle}>{page}</Layout>
 
 export default CodeOfConductPage

@@ -7,6 +7,7 @@ import { ProfileBgImage } from "app/core/components/ProfileBgImage"
 import { ProfileInfo } from "app/core/components/ProfileInfo"
 import noReviewPhoto from "public/no-review-photo.png"
 import Layout from "app/core/layouts/Layout"
+import { SocialMetadata } from "app/core/components/SocialMetadata"
 
 const PublicProfileDetails = () => {
   const userHandle = useParam("handle", "string") as String
@@ -15,12 +16,15 @@ const PublicProfileDetails = () => {
     currentUserId: userInfo?.id,
   })
 
+  const pageTitle = `${
+    userInfo?.displayName ? userInfo?.displayName : userInfo?.handle
+  } | PostReview`
+
   return (
     <>
       <Head>
-        <title>{`${
-          userInfo?.displayName ? userInfo?.displayName : userInfo?.handle
-        } | PostReview`}</title>
+        <title>{pageTitle}</title>
+        <SocialMetadata title={pageTitle} />
       </Head>
       <main className="flex flex-col items-center min-h-screen bg-white dark:bg-black/60 relative text-gray-darkest dark:text-white">
         <ProfileBgImage />

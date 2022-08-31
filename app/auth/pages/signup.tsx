@@ -1,4 +1,4 @@
-import { useRouter, BlitzPage, invoke, useMutation, Image, Link, Routes } from "blitz"
+import { useRouter, BlitzPage, invoke, useMutation, Image, Link, Routes, Head } from "blitz"
 import Layout from "app/core/layouts/Layout"
 import { useEffect, useState } from "react"
 import Navbar from "app/core/components/Navbar"
@@ -12,6 +12,9 @@ import postReviewLogoLightMode from "public/logo-lightmode.png"
 import { BsEye, BsEyeSlash } from "react-icons/bs"
 import { createTheme, Switch, ThemeProvider } from "@mui/material"
 import { useCurrentUser } from "app/core/hooks/useCurrentUser"
+import { SocialMetadata } from "app/core/components/SocialMetadata"
+
+const pageTitle = "Sign Up | PostReview"
 
 const SignupPage: BlitzPage = () => {
   const router = useRouter()
@@ -55,6 +58,9 @@ const SignupPage: BlitzPage = () => {
 
   return (
     <div className="flex flex-col min-h-screen bg-white dark:bg-gray-darkest">
+      <Head>
+        <SocialMetadata title={pageTitle} />
+      </Head>
       <Navbar hideSearch={true} />
       <main className="flex-grow flex flex-col items-center justify-center">
         <div id="postReviewLogo" className="h-70 w-full flex justify-center">
