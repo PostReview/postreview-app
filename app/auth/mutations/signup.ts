@@ -21,21 +21,18 @@ export default resolver.pipe(resolver.zod(Signup), async ({ email, handle, passw
   const emailCode = await generateCode(hashedPassword)
   const origin = process.env.APP_ORIGIN || process.env.BLITZ_DEV_SERVER_ORIGIN
 
+  const datetime = new Date()
+
   const msg = {
-    From: "hello@postreview.org",
+    From: "'PostReview'<info@postreview.org>",
     To: user.email,
     TemplateAlias: "welcome",
     TemplateModel: {
       product_url: process.env.PUBLIC_URL,
-      product_name: "PostReview",
       name: addedUser?.handle,
-      expire_in: 30,
       action_url: `${origin}/verify-email/${emailCode}?userId=${user.id}`,
-      operating_system: "operating_system_Value",
-      browser_name: "browser_name_Value",
-      support_url: "hello@postreview.org",
-      company_name: "PostReview",
-      company_address: "",
+      support_url: "info@postreview.org",
+      year: datetime.getFullYear(),
     },
   }
 
