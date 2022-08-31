@@ -1,4 +1,4 @@
-import { BlitzPage, useMutation, Link, Routes, Image } from "blitz"
+import { BlitzPage, useMutation, Link, Routes, Image, Head } from "blitz"
 import Layout from "app/core/layouts/Layout"
 import { Suspense, useEffect, useState } from "react"
 import Navbar from "app/core/components/Navbar"
@@ -9,6 +9,9 @@ import { Button } from "app/core/components/Button"
 import detectiveDarkMode from "public/detective-darkmode.png"
 import detectiveLightMode from "public/detective-lightmode.png"
 import { BsEye, BsEyeSlash } from "react-icons/bs"
+import { SocialMetadata } from "app/core/components/SocialMetadata"
+
+const pageTitle = "Log In | PostReview"
 
 const LoginPage: BlitzPage = () => {
   const [loginMutation] = useMutation(login)
@@ -27,6 +30,9 @@ const LoginPage: BlitzPage = () => {
 
   return (
     <div className="flex flex-col min-h-screen bg-white dark:bg-gray-darkest">
+      <Head>
+        <SocialMetadata title={pageTitle} />
+      </Head>
       <Navbar hideSearch={true} />
       <main className="flex-grow flex flex-col items-center justify-center">
         <div className="contrast-100 mt-6 h-60 w-full flex justify-center">
@@ -156,6 +162,6 @@ const LoginPage: BlitzPage = () => {
 }
 
 LoginPage.redirectAuthenticatedTo = "/"
-LoginPage.getLayout = (page) => <Layout title="Log In | PostReview">{page}</Layout>
+LoginPage.getLayout = (page) => <Layout title={pageTitle}>{page}</Layout>
 
 export default LoginPage
