@@ -64,35 +64,28 @@ export const DrawerMenu = (props) => {
           </div>
           <div className="border border-gray-medium" />
           <List>
-            <ListItemButton sx={{ ...hoverSx }}>
-              <Typography
-                sx={{ fontWeight: "bold" }}
-                onClick={() => router.push(session.userId ? "/" : "/?search=true")}
-              >
-                Home
-              </Typography>
+            <ListItemButton
+              sx={{ ...hoverSx }}
+              onClick={() => router.push(session.userId ? "/" : "/?search=true")}
+            >
+              <Typography sx={{ fontWeight: "bold" }}>Home</Typography>
             </ListItemButton>
-            <ListItemButton sx={{ ...hoverSx }}>
-              <Typography sx={{ fontWeight: "bold" }} onClick={() => router.push("/how-it-works")}>
-                How it works
-              </Typography>
+            <ListItemButton sx={{ ...hoverSx }} onClick={() => router.push("/how-it-works")}>
+              <Typography sx={{ fontWeight: "bold" }}>How it works</Typography>
             </ListItemButton>
             <Accordion>
               <AccordionSummary expandIcon={<ExpandMoreIcon />} sx={{ ...hoverSx }}>
                 <Typography sx={{ color: "#2c2e2e", fontWeight: "bold" }}>About us</Typography>
               </AccordionSummary>
               <AccordionDetails>
-                <ListItemButton sx={{ ...hoverSx }}>
-                  <ListItemText
-                    primary={"Mission and Vision"}
-                    onClick={() => router.push("/mission-vision")}
-                  />
+                <ListItemButton sx={{ ...hoverSx }} onClick={() => router.push("/mission-vision")}>
+                  <ListItemText primary={"Mission and Vision"} />
                 </ListItemButton>
-                <ListItemButton sx={{ ...hoverSx }}>
-                  <ListItemText primary={"Our story"} onClick={() => router.push("/about")} />
+                <ListItemButton sx={{ ...hoverSx }} onClick={() => router.push("/about")}>
+                  <ListItemText primary={"Our story"} />
                 </ListItemButton>
-                <ListItemButton sx={{ ...hoverSx }}>
-                  <ListItemText primary={"Team"} onClick={() => router.push("/team")} />
+                <ListItemButton sx={{ ...hoverSx }} onClick={() => router.push("/team")}>
+                  <ListItemText primary={"Team"} />
                 </ListItemButton>
               </AccordionDetails>
             </Accordion>
