@@ -18,11 +18,7 @@ export default passportAuth({
         {
           clientID: process.env.GOOGLE_CLIENT_ID as string,
           clientSecret: process.env.GOOGLE_CLIENT_SECRET as string,
-          callbackURL:
-            process.env.NODE_ENV === "production"
-              ? // deployment target
-                "https://postreview-app.herokuapp.com/api/auth/google/callback"
-              : process.env.GOOGLE_CALLBACK_URL,
+          callbackURL: process.env.GOOGLE_CALLBACK_URL,
           scope: ["email", "profile"],
         },
         // TODO: Ask users to set their own handle,
