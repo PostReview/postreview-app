@@ -16,7 +16,7 @@ export const MyReviewsTable = (props) => {
         return (
           <div
             key={article.id}
-            className="m-1 p-2 border-gray-medium/20 border-4
+            className="mx-2 my-4 p-2 border-gray-medium/20 border-4
             flex flex-col max-w-5xl"
           >
             <div id="metadata-container" className="flex flex-row justify-between items-center">
