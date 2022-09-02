@@ -23,7 +23,7 @@ const About: BlitzPage = () => {
           </h1>
           <div id="story-container" className="flex flex-col max-w-2xl mt-24 mx-8">
             <div className="text-2xl text-left">
-              Last year, a question peaked two scientists&apos; minds.
+              Last year, a question piqued two scientists&apos; minds.
             </div>
             <h2 className="my-36 md:ml-16 max-w-xl text-4xl font-bold text-black">
               Why is it so difficult to track evaluations of scholarly articles?
