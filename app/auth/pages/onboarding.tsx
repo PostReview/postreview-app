@@ -1,4 +1,4 @@
-import { useRouter, BlitzPage, useSession, useMutation } from "blitz"
+import { useRouter, BlitzPage, useMutation, useRouterQuery } from "blitz"
 import Layout from "app/core/layouts/Layout"
 import { useEffect, useState } from "react"
 import Navbar from "app/core/components/Navbar"
@@ -10,6 +10,9 @@ import changeUserInfo from "app/mutations/changeUserInfo"
 
 const OnboardingPage: BlitzPage = () => {
   const router = useRouter()
+
+  // Get the article id of interest
+  const articleId = useRouterQuery().articleId
 
   // handle darkmode
   const [isDark, setIsDark] = useState(false)
@@ -51,6 +54,7 @@ const OnboardingPage: BlitzPage = () => {
             currentUser={currentUser}
             setCurrentUser={setCurrentUser}
             changeUserInfoMutation={changeUserInfoMutation}
+            articleId={articleId}
           />
         )}
       </main>

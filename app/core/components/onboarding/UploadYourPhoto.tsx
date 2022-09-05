@@ -7,7 +7,7 @@ import detectiveDarkMode from "public/detective-darkmode.png"
 import detectiveLightMode from "public/detective-lightmode.png"
 
 export const UploadYourPhoto = (props) => {
-  const { isDark, currentUser, setCurrentUser, router, changeUserInfoMutation } = props
+  const { isDark, currentUser, setCurrentUser, router, changeUserInfoMutation, articleId } = props
 
   // Uploadcare
   const UPLOADCARE_PUBLIC_KEY = process.env.UPLOADCARE_PUBLIC_KEY
@@ -19,6 +19,7 @@ export const UploadYourPhoto = (props) => {
   // Handle the save button
   const handleSave = () => {
     changeUserInfoMutation({ ...currentUser, icon: icon, isOnboarded: true })
+    if (articleId) return router.push(`/articles/${articleId}`)
     router.push("/")
   }
 
@@ -82,7 +83,10 @@ export const UploadYourPhoto = (props) => {
         </button>
         <button
           className="w-min my-4 text-gray-medium hover:text-gray-darkest"
-          onClick={() => router.push("/")}
+          onClick={() => {
+            if (articleId) return router.push(`/articles/${articleId}`)
+            router.push("/")
+          }}
           data-splitbee-event="Onboarding complete"
           data-splitbee-event-onboardingType="Skip"
         >
