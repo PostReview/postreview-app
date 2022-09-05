@@ -265,7 +265,7 @@ const SignupPage: BlitzPage = () => {
             )}
           </Formik>
           <div className="text-gray-darkest dark:text-white text-bold text-center my-4">or</div>
-          <GoogleButton type="sign-up" data-splitbee-event="Sign up" />
+          <GoogleButton type="sign-up" />
           <div className="my-4 text-gray-darkest dark:text-white">
             Already have an account?{" "}
             <Link href={Routes.LoginPage()}>
