@@ -6,6 +6,7 @@ import StarIcon from "@mui/icons-material/Star"
 import { ArticleAction } from "./ArticleAction"
 import { ReviewStars } from "./ReviewStars"
 import { AvatarIcon } from "./AvatarIcon"
+import { BsFillChatRightTextFill } from "react-icons/bs"
 
 export const Review = (props) => {
   const {
@@ -94,6 +95,19 @@ export const Review = (props) => {
         <div className="m-auto">
           <TotalScoreCard textClass="text-4xl" />
         </div>
+        {
+          // Show a speech bubble icon when there's a comment
+          comment && (
+            <div id="comment-icon" className="absolute right-10 top-auto rounded-md">
+              <button
+                className="rounded-full bg-gray-dark p-2 text-white"
+                onClick={() => setIsCardExpanded(!isCardExpanded)}
+              >
+                <BsFillChatRightTextFill />
+              </button>
+            </div>
+          )
+        }
       </div>
       {isCardExpanded && (
         <ReviewStars
