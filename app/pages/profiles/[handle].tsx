@@ -1,4 +1,4 @@
-import { BlitzPage, Head, Image, useParam, useQuery } from "blitz"
+import { BlitzPage, Head, Image, Link, useParam, useQuery, useSession } from "blitz"
 import Navbar from "app/core/components/Navbar"
 import getReviewAnswersByUserId from "app/queries/getReviewAnswersByUserId"
 import getUserInfo from "app/queries/getUserInfo"
@@ -8,6 +8,7 @@ import { ProfileInfo } from "app/core/components/ProfileInfo"
 import noReviewPhoto from "public/no-review-photo.png"
 import Layout from "app/core/layouts/Layout"
 import { SocialMetadata } from "app/core/components/SocialMetadata"
+import { Button } from "app/core/components/Button"
 
 const PublicProfileDetails = () => {
   const userHandle = useParam("handle", "string") as String
@@ -15,6 +16,7 @@ const PublicProfileDetails = () => {
   const [defaultArticlesWithReview] = useQuery(getReviewAnswersByUserId, {
     currentUserId: userInfo?.id,
   })
+  const session = useSession()
 
   const pageTitle = `${
     userInfo?.displayName ? userInfo?.displayName : userInfo?.handle
@@ -62,6 +64,16 @@ const PublicProfileDetails = () => {
             />
           </div>
         </div>
+        {session?.userId === userInfo?.id && (
+          <div className="absolute left-0 m-2">
+            <Button
+              id="public-view-container"
+              className="m-2 font-semibold underline hover:cursor-pointer hover:text-gray-darkest text-gray-medium"
+            >
+              <Link href={`/profile`}>&larr; Back to your own view</Link>
+            </Button>
+          </div>
+        )}
       </main>
     </>
   )
