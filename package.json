@@ -50,7 +50,7 @@
     "react-cookie-consent": "8.0.1",
     "react-dom": "18.0.0-alpha-67222f044-20210915",
     "react-final-form": "6.5.3",
-    "react-icons": "4.2.0",
+    "react-icons": "4.4.0",
     "react-instantsearch-hooks-web": "6.24.2",
     "ts-node": "10.4.0",
     "tslib": "2.3.1",
