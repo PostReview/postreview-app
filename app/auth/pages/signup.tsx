@@ -1,4 +1,14 @@
-import { useRouter, BlitzPage, invoke, useMutation, Image, Link, Routes, Head } from "blitz"
+import {
+  useRouter,
+  BlitzPage,
+  invoke,
+  useMutation,
+  Image,
+  Link,
+  Routes,
+  Head,
+  useRouterQuery,
+} from "blitz"
 import Layout from "app/core/layouts/Layout"
 import { useEffect, useState } from "react"
 import Navbar from "app/core/components/Navbar"
@@ -20,12 +30,17 @@ const SignupPage: BlitzPage = () => {
   const router = useRouter()
   const currentUser = useCurrentUser()
 
+  // Get query parameter for the article of interest
+  const articleId = useRouterQuery().articleId
+
   // Redirect when logged in & already onboarded
   useEffect(() => {
     if (currentUser && !currentUser?.isOnboarded) {
+      if (articleId) router.push(`/onboarding?articleId=${articleId}`)
       router.push("/onboarding")
     }
     if (currentUser?.isOnboarded) {
+      if (articleId) router.push(`/articles/${articleId}`)
       router.push("/")
     }
   })
