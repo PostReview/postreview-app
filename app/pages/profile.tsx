@@ -111,6 +111,7 @@ const Profile = () => {
           className="m-2 font-semibold underline hover:cursor-pointer hover:text-gray-darkest text-gray-medium"
           onClick={() => setIsDeactivateAccountDialogOpen(true)}
           color="error"
+          data-splitbee-event={"Deactivate opened"}
         >
           Deactivate your account
         </Button>
@@ -125,10 +126,18 @@ const Profile = () => {
               you posted.
             </DialogContent>
             <DialogActions>
-              <Button type="cancel" onClick={() => setIsDeactivateAccountDialogOpen(false)}>
+              <Button
+                type="cancel"
+                onClick={() => setIsDeactivateAccountDialogOpen(false)}
+                data-splitbee-event={"Deactivate canceled"}
+              >
                 Cancel
               </Button>
-              <Button type="error" onClick={handleDeleteUser}>
+              <Button
+                type="error"
+                onClick={handleDeleteUser}
+                data-splitbee-event={"Deactivate completed"}
+              >
                 Deactivate
               </Button>
             </DialogActions>
