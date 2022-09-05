@@ -70,15 +70,15 @@ export const Review = (props) => {
     <>
       <div
         id="review-summary"
-        className="relative w-full h-32 p-2 flex flex-row items-center bg-gray-light dark:bg-gray-light/10  border-black"
+        className="relative flex h-32 w-full flex-row items-center border-black bg-gray-light p-2  dark:bg-gray-light/10"
       >
         {showArticleAction && (
           <div className="absolute top-0 right-0">
             <ArticleAction article={article} articleHasReview={articleHasReview} />
           </div>
         )}
-        <div id="review-header-section" className="flex flex-row items-center relative">
-          <div id="avatar" className="m-2 absolute hover:cursor-pointer">
+        <div id="review-header-section" className="relative flex flex-row items-center">
+          <div id="avatar" className="absolute m-2 hover:cursor-pointer">
             <Tooltip title={tooltipText} placement="top" arrow>
               {isAnonymous ? (
                 <Avatar alt={"Anonymous"} sx={{ backgroundColor: "#545454" }} variant="square">
@@ -117,8 +117,8 @@ export const Review = (props) => {
         />
       )}
       {isCardExpanded && comment && (
-        <div className="p-4 w-full bg-gray-light dark:bg-gray-light/10 text-gray-darkest dark:text-white">
-          <h2 className="font-semibold text-xl w-full">Comment</h2>
+        <div className="w-full bg-gray-light p-4 text-gray-darkest dark:bg-gray-light/10 dark:text-white">
+          <h2 className="w-full text-xl font-semibold">Comment</h2>
           <p className="text-gray-medium dark:text-gray-light">
             {comment.length < 500 ? (
               comment
@@ -126,7 +126,7 @@ export const Review = (props) => {
               <>
                 {comment}
                 <span
-                  className="underline ml-2 italic hover:cursor-pointer"
+                  className="ml-2 italic underline hover:cursor-pointer"
                   onClick={() => setIsCommentExpanded(!isCommentExpanded)}
                 >
                   See less
@@ -136,7 +136,7 @@ export const Review = (props) => {
               <>
                 {comment.slice(0, 500)}...
                 <span
-                  className="underline ml-2 italic hover:cursor-pointer"
+                  className="ml-2 italic underline hover:cursor-pointer"
                   onClick={() => setIsCommentExpanded(!isCommentExpanded)}
                 >
                   See more
@@ -148,10 +148,10 @@ export const Review = (props) => {
       )}
       <div
         id="expand"
-        className="mt-0 w-full h-4 mb-3 bg-gray-medium hover:cursor-pointer"
+        className="mt-0 mb-3 h-4 w-full bg-gray-medium hover:cursor-pointer"
         onClick={() => setIsCardExpanded(!isCardExpanded)}
       >
-        <div className="mt-1 w-10 h-2 rounded-xl bg-gray-darkest m-auto"></div>
+        <div className="m-auto mt-1 h-2 w-10 rounded-xl bg-gray-darkest"></div>
       </div>
     </>
   )
