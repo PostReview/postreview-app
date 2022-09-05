@@ -158,7 +158,7 @@ const ArticleDetails = (props) => {
             <div className="flex flex-row text-xl items-center">
               <div className="flex-shrink">You need an account to add a review</div>
               <div className="flex-none px-4 text-2xl ml-1 underline text-green">
-                <Link href={Routes.SignupPage()}>
+                <Link href={`/signup?articleId=${articleId}`}>
                   <a>Sign up</a>
                 </Link>
               </div>
