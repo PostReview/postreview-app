@@ -51,7 +51,7 @@ export default function EnterDOI(props) {
   const debounced = debouncePromise((items) => Promise.resolve(items), 100)
 
   return (
-    <div className="m-1 rounded-md flex flex-row items-center flex-grow max-w-7xl justify-end">
+    <div className="m-1 flex max-w-7xl flex-grow flex-row items-center justify-end rounded-md">
       <Autocomplete
         placeholder="Search Title, Author, DOI"
         openOnFocus={false}
