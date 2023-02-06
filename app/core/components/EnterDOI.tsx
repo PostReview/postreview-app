@@ -51,7 +51,7 @@ export default function EnterDOI(props) {
   const debounced = debouncePromise((items) => Promise.resolve(items), 100)
 
   return (
-    <div className="m-1 rounded-md flex flex-row items-center flex-grow max-w-7xl justify-end">
+    <div className="m-1 flex max-w-7xl flex-grow flex-row items-center justify-end rounded-md">
       <Autocomplete
         placeholder="Search Title, Author, DOI"
         openOnFocus={false}
@@ -61,7 +61,11 @@ export default function EnterDOI(props) {
           const matchedDOI = query?.match(/10.\d{4,9}\/[-._;()\/:A-Z0-9]+$/i)
 
           if (matchedDOI) {
-            return fetch(`https://api.crossref.org/works/${encodeURIComponent(matchedDOI)}`)
+            return fetch(
+              `https://api.crossref.org/works/${encodeURIComponent(
+                matchedDOI
+              )}&mailto=info@postreview.org`
+            )
               .then((response) => response.json())
               .then(({ message }) => {
                 return [
@@ -140,9 +144,9 @@ export default function EnterDOI(props) {
               getItems() {
                 return debounced(
                   fetch(
-                    `https://api.crossref.org/works/?query=${encodeURIComponent(
+                    `https://api.crossref.org/works?query.bibliographic=${encodeURIComponent(
                       query
-                    )}&select=title,author,published,DOI&rows=10`
+                    )}&select=title,author,published,DOI&rows=10&mailto=info@postreview.org`
                   )
                     .then((response) => response.json())
                     .then(({ message }) => {
