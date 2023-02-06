@@ -144,7 +144,7 @@ export default function EnterDOI(props) {
               getItems() {
                 return debounced(
                   fetch(
-                    `https://api.crossref.org/works?query=${encodeURIComponent(
+                    `https://api.crossref.org/works?query.bibliographic=${encodeURIComponent(
                       query
                     )}&select=title,author,published,DOI&rows=10&mailto=info@postreview.org`
                   )
