@@ -54,69 +54,53 @@ const UserInfo = () => {
   // Getting the URL query for `search` for showing the article list
   const query = useRouterQuery()
 
-  if (session.userId || query.search) {
-    return (
-      <div className="w-full bg-black items-center pb-32">
-        <div id="header-category container" className="flex flex-col items-center">
-          <div
-            id="reviews-header"
-            className="mt-10 mb-2 items-center font-semibold text-5xl text-gray-medium"
-          >
-            All Reviews
-          </div>
-          <div
-            id="overall-reviews"
-            className="items-center flex flex-row font-bold text-white hover:cursor-pointer overflow-x-clip"
-          >
-            <span
-              className={`mr-1 ${questionCategory === "Overall" && "invisible"}`}
-              onClick={() => handleArrowClick("left")}
-            >
-              {"<<"}
-            </span>
-            <div className="text-4xl w-80 text-center">{questionCategory}</div>
-            <span
-              className={`ml-1 ${
-                questionCategory === searchCategories.slice(-1)[0] && "invisible"
-              }`}
-              onClick={() => handleArrowClick("right")}
-            >
-              {">>"}
-            </span>
-          </div>
-          <ArticleList questionCategory={questionCategory} />
-        </div>
-        <NavDots
-          searchCategories={searchCategories}
-          questionCategory={questionCategory}
-          setQuestionCategory={setQuestionCategory}
-        />
-      </div>
-    )
-  } else {
-    return (
-      <>
-        <Hero />
-        <HowItWorks />
-        <button
-          className="my-12 px-4 py-4 text-xl text-green rounded-lg bg-black/50 hover:bg-gray-darkest dark:bg-gray-medium dark:hover:bg-black/40"
-          onClick={() => router.push("/signup")}
+  return (
+    <div className="w-full items-center bg-black pb-32">
+      <div id="header-category container" className="flex flex-col items-center">
+        <div
+          id="reviews-header"
+          className="mt-10 mb-2 items-center text-5xl font-semibold text-gray-medium"
         >
-          Sign up now
-        </button>
-      </>
-    )
-  }
+          All Reviews
+        </div>
+        <div
+          id="overall-reviews"
+          className="flex flex-row items-center overflow-x-clip font-bold text-white hover:cursor-pointer"
+        >
+          <span
+            className={`mr-1 ${questionCategory === "Overall" && "invisible"}`}
+            onClick={() => handleArrowClick("left")}
+          >
+            {"<<"}
+          </span>
+          <div className="w-80 text-center text-4xl">{questionCategory}</div>
+          <span
+            className={`ml-1 ${questionCategory === searchCategories.slice(-1)[0] && "invisible"}`}
+            onClick={() => handleArrowClick("right")}
+          >
+            {">>"}
+          </span>
+        </div>
+        <ArticleList questionCategory={questionCategory} />
+      </div>
+      <NavDots
+        searchCategories={searchCategories}
+        questionCategory={questionCategory}
+        setQuestionCategory={setQuestionCategory}
+      />
+      {session.userId || <HowItWorks />}
+    </div>
+  )
 }
 
 const Home: BlitzPage = () => {
   return (
-    <div className="flex flex-col min-h-screen">
+    <div className="flex min-h-screen flex-col">
       <Head>
         <SocialMetadata />
       </Head>
       <Navbar />
-      <main className="flex-grow flex flex-col items-center bg-white dark:bg-gray-darkest">
+      <main className="flex flex-grow flex-col items-center bg-white dark:bg-gray-darkest">
         <UserInfo />
       </main>
     </div>
