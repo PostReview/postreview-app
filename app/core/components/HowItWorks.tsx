@@ -19,7 +19,7 @@ export const HowItWorks = () => {
       <div className="my-6 text-center text-4xl font-bold text-gray-darkest dark:text-white">
         How PostReview works
       </div>
-      <div className="text-3xl text-center font-semibold text-green">
+      <div className="text-center text-3xl font-semibold text-green">
         Share what you think in 3 simple steps
       </div>
       <div id="steps-container" className="flex flex-col items-center">
