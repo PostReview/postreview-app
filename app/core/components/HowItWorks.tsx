@@ -15,7 +15,7 @@ export const HowItWorks = () => {
   }, [])
 
   return (
-    <div id="how-it-works-container" className="flex flex-col min-h-screen p-8 max-w-4xl">
+    <div id="how-it-works-container" className="flex min-h-screen flex-col p-8">
       <div className="my-6 text-center text-4xl font-bold text-gray-darkest dark:text-white">
         How PostReview works
       </div>
