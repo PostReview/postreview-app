@@ -15,11 +15,11 @@ export const HowItWorks = () => {
   }, [])
 
   return (
-    <div id="how-it-works-container" className="flex flex-col min-h-screen p-8 max-w-4xl">
+    <div id="how-it-works-container" className="flex min-h-screen flex-col p-8">
       <div className="my-6 text-center text-4xl font-bold text-gray-darkest dark:text-white">
         How PostReview works
       </div>
-      <div className="text-3xl text-center font-semibold text-green">
+      <div className="text-center text-3xl font-semibold text-green">
         Share what you think in 3 simple steps
       </div>
       <div id="steps-container" className="flex flex-col items-center">
