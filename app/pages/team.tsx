@@ -11,18 +11,18 @@ const pageTitle = "Team | PostReview"
 
 const TeamPage: BlitzPage = () => {
   return (
-    <div className="flex flex-col min-h-screen bg-white">
+    <div className="flex min-h-screen flex-col bg-white">
       <Head>
         <SocialMetadata title={pageTitle} />
       </Head>
       <Navbar />
-      <main className="flex-grow flex flex-col items-center mb-12 text-gray-darkest">
-        <h1 className="text-5xl font-bold mt-12">Our Team</h1>
-        <div className="mx-4 text-center text-xl max-w-xl">
+      <main className="mb-12 flex flex-grow flex-col items-center text-gray-darkest">
+        <h1 className="mt-12 text-5xl font-bold">Our Team</h1>
+        <div className="mx-4 max-w-xl text-center text-xl">
           PostReview is developed by a small group of people passionate about improving
           communications in research.
         </div>
-        <div id="team-container" className="md:flex flex-row">
+        <div id="team-container" className="flex-row md:flex">
           <div id="anton-container" className="m-4 flex flex-col items-center">
             <Image
               id="anton-photo"
@@ -38,7 +38,7 @@ const TeamPage: BlitzPage = () => {
               Anton Lebed (he/him;{" "}
               <Link href="https://twitter.com/coglebed">
                 <a
-                  className="underline font-thin text-green hover:text-green-dark"
+                  className="font-thin text-green underline hover:text-green-dark"
                   target="_blank"
                   rel="nofollow"
                 >
@@ -64,7 +64,7 @@ const TeamPage: BlitzPage = () => {
               Nami Sunami (he/him;{" "}
               <Link href="https://twitter.com/n_sunami">
                 <a
-                  className="underline font-thin text-green hover:text-green-dark"
+                  className="font-thin text-green underline hover:text-green-dark"
                   target="_blank"
                   rel="nofollow"
                 >
@@ -90,7 +90,7 @@ const TeamPage: BlitzPage = () => {
               Jazelle Carillo (she/her;{" "}
               <Link href="https://twitter.com/jazellemaira">
                 <a
-                  className="underline font-thin text-green hover:text-green-dark"
+                  className="font-thin text-green underline hover:text-green-dark"
                   target="_blank"
                   rel="nofollow"
                 >
@@ -102,7 +102,7 @@ const TeamPage: BlitzPage = () => {
             </div>
           </div>
         </div>
-        <h1 id="special-thanks" className="text-4xl font-bold mt-12">
+        <h1 id="special-thanks" className="mt-12 text-4xl font-bold">
           Special Thanks
         </h1>
         <div id="chris-container" className="m-4 flex flex-col items-center">
@@ -120,7 +120,7 @@ const TeamPage: BlitzPage = () => {
             Chris Hartgerink (he/they;{" "}
             <Link href="https://twitter.com/chartgerink">
               <a
-                className="underline font-thin text-green hover:text-green-dark"
+                className="font-thin text-green underline hover:text-green-dark"
                 target="_blank"
                 rel="nofollow"
               >
@@ -131,7 +131,7 @@ const TeamPage: BlitzPage = () => {
             He is the founder of{" "}
             <Link href="https://libscie.org">
               <a
-                className="underline font-thin text-green hover:text-green-dark"
+                className="font-thin text-green underline hover:text-green-dark"
                 target="_blank"
                 rel="nofollow"
               >
@@ -141,7 +141,7 @@ const TeamPage: BlitzPage = () => {
             and{" "}
             <Link href="https://www.researchequals.com/">
               <a
-                className="underline font-thin text-green hover:text-green-dark"
+                className="font-thin text-green underline hover:text-green-dark"
                 target="_blank"
                 rel="nofollow"
               >
