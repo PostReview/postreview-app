@@ -33,7 +33,7 @@ const TeamPage: BlitzPage = () => {
               height={200}
             />
             <h3 className="text-2xl font-bold">Anton Lebed, PhD</h3>
-            <h3 className="font-semibold">Chief Operating Officer</h3>
+            <h3 className="font-semibold">Co-Founder</h3>
             <div className="m-4 max-w-lg">
               Anton Lebed (he/him;{" "}
               <Link href="https://twitter.com/coglebed">
@@ -46,8 +46,7 @@ const TeamPage: BlitzPage = () => {
                 </a>
               </Link>
               ) has a PhD in Cognitive Psychology with background in visual attention and creativity
-              research. In his spare time, Anton enjoys biking and playing board games. Anton is in
-              charge of the organizational efforts of PostReview.
+              research. In his spare time, Anton enjoys biking and playing board games.
             </div>
           </div>
           <div id="nami-container" className="m-4 flex flex-col items-center">
@@ -59,8 +58,8 @@ const TeamPage: BlitzPage = () => {
               width={200}
               height={200}
             />
-            <h3 className="text-2xl font-bold">Naoyuki(Nami) Sunami, PhD</h3>
-            <h3 className="font-semibold">Chief Technology Officer</h3>
+            <h3 className="text-2xl font-bold">Naoyuki (Nami) Sunami, PhD</h3>
+            <h3 className="font-semibold">Co-Founder</h3>
             <div className="m-4 max-w-lg">
               Nami Sunami (he/him;{" "}
               <Link href="https://twitter.com/n_sunami">
@@ -73,8 +72,7 @@ const TeamPage: BlitzPage = () => {
                 </a>
               </Link>
               ) has a PhD in Social Psychology with background in social rejection research. In his
-              spare time, Nami enjoys drawing, playing guitar and playing Warframe. Nami is in
-              charge of the full stack development of the PostReview platform.
+              spare time, Nami enjoys drawing, playing guitar and playing Warframe.
             </div>
           </div>
           <div id="jazelle-container" className="m-4 flex flex-col items-center">
@@ -99,8 +97,8 @@ const TeamPage: BlitzPage = () => {
                   @jazellemaira
                 </a>
               </Link>
-              ) is a wife and a cat mom. She enjoys painting and taking photos. Jazelle is in charge
-              of PostReview visual design and front end development.
+              ) is a wife and a cat mom. She enjoys painting and taking photos. Jazelle designed and
+              implemented the user interface.
             </div>
           </div>
         </div>
