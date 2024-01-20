@@ -11,18 +11,18 @@ const pageTitle = "Team | PostReview"
 
 const TeamPage: BlitzPage = () => {
   return (
-    <div className="flex flex-col min-h-screen bg-white">
+    <div className="flex min-h-screen flex-col bg-white">
       <Head>
         <SocialMetadata title={pageTitle} />
       </Head>
       <Navbar />
-      <main className="flex-grow flex flex-col items-center mb-12 text-gray-darkest">
-        <h1 className="text-5xl font-bold mt-12">Our Team</h1>
-        <div className="mx-4 text-center text-xl max-w-xl">
+      <main className="mb-12 flex flex-grow flex-col items-center text-gray-darkest">
+        <h1 className="mt-12 text-5xl font-bold">Our Team</h1>
+        <div className="mx-4 max-w-xl text-center text-xl">
           PostReview is developed by a small group of people passionate about improving
           communications in research.
         </div>
-        <div id="team-container" className="md:flex flex-row">
+        <div id="team-container" className="flex-row md:flex">
           <div id="anton-container" className="m-4 flex flex-col items-center">
             <Image
               id="anton-photo"
@@ -33,12 +33,12 @@ const TeamPage: BlitzPage = () => {
               height={200}
             />
             <h3 className="text-2xl font-bold">Anton Lebed, PhD</h3>
-            <h3 className="font-semibold">Chief Operating Officer</h3>
+            <h3 className="font-semibold">Co-Founder</h3>
             <div className="m-4 max-w-lg">
               Anton Lebed (he/him;{" "}
               <Link href="https://twitter.com/coglebed">
                 <a
-                  className="underline font-thin text-green hover:text-green-dark"
+                  className="font-thin text-green underline hover:text-green-dark"
                   target="_blank"
                   rel="nofollow"
                 >
@@ -46,8 +46,7 @@ const TeamPage: BlitzPage = () => {
                 </a>
               </Link>
               ) has a PhD in Cognitive Psychology with background in visual attention and creativity
-              research. In his spare time, Anton enjoys biking and playing board games. Anton is in
-              charge of the organizational efforts of PostReview.
+              research. In his spare time, Anton enjoys biking and playing board games.
             </div>
           </div>
           <div id="nami-container" className="m-4 flex flex-col items-center">
@@ -59,13 +58,13 @@ const TeamPage: BlitzPage = () => {
               width={200}
               height={200}
             />
-            <h3 className="text-2xl font-bold">Naoyuki(Nami) Sunami, PhD</h3>
-            <h3 className="font-semibold">Chief Technology Officer</h3>
+            <h3 className="text-2xl font-bold">Naoyuki (Nami) Sunami, PhD</h3>
+            <h3 className="font-semibold">Co-Founder</h3>
             <div className="m-4 max-w-lg">
               Nami Sunami (he/him;{" "}
               <Link href="https://twitter.com/n_sunami">
                 <a
-                  className="underline font-thin text-green hover:text-green-dark"
+                  className="font-thin text-green underline hover:text-green-dark"
                   target="_blank"
                   rel="nofollow"
                 >
@@ -73,8 +72,7 @@ const TeamPage: BlitzPage = () => {
                 </a>
               </Link>
               ) has a PhD in Social Psychology with background in social rejection research. In his
-              spare time, Nami enjoys drawing, playing guitar and playing Warframe. Nami is in
-              charge of the full stack development of the PostReview platform.
+              spare time, Nami enjoys drawing, playing guitar and playing Warframe.
             </div>
           </div>
           <div id="jazelle-container" className="m-4 flex flex-col items-center">
@@ -92,19 +90,19 @@ const TeamPage: BlitzPage = () => {
               Jazelle Carillo (she/her;{" "}
               <Link href="https://twitter.com/jazellemaira">
                 <a
-                  className="underline font-thin text-green hover:text-green-dark"
+                  className="font-thin text-green underline hover:text-green-dark"
                   target="_blank"
                   rel="nofollow"
                 >
                   @jazellemaira
                 </a>
               </Link>
-              ) is a wife and a cat mom. She enjoys painting and taking photos. Jazelle is in charge
-              of PostReview visual design and front end development.
+              ) is a wife and a cat mom. She enjoys painting and taking photos. Jazelle designed and
+              implemented the user interface.
             </div>
           </div>
         </div>
-        <h1 id="special-thanks" className="text-4xl font-bold mt-12">
+        <h1 id="special-thanks" className="mt-12 text-4xl font-bold">
           Special Thanks
         </h1>
         <div id="chris-container" className="m-4 flex flex-col items-center">
@@ -122,7 +120,7 @@ const TeamPage: BlitzPage = () => {
             Chris Hartgerink (he/they;{" "}
             <Link href="https://twitter.com/chartgerink">
               <a
-                className="underline font-thin text-green hover:text-green-dark"
+                className="font-thin text-green underline hover:text-green-dark"
                 target="_blank"
                 rel="nofollow"
               >
@@ -133,7 +131,7 @@ const TeamPage: BlitzPage = () => {
             He is the founder of{" "}
             <Link href="https://libscie.org">
               <a
-                className="underline font-thin text-green hover:text-green-dark"
+                className="font-thin text-green underline hover:text-green-dark"
                 target="_blank"
                 rel="nofollow"
               >
@@ -143,7 +141,7 @@ const TeamPage: BlitzPage = () => {
             and{" "}
             <Link href="https://www.researchequals.com/">
               <a
-                className="underline font-thin text-green hover:text-green-dark"
+                className="font-thin text-green underline hover:text-green-dark"
                 target="_blank"
                 rel="nofollow"
               >
